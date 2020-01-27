@@ -1,3 +1,69 @@
-baseURL = "http://example.org/"
+baseURL = "https://boratanrikulu.dev/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Bora Tanrıkulu"
+theme = "hugo-ink"
+paginate = 5
+
+copyright = "copyright notice"
+
+pygmentsstyle = "vs"
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
+
+googleAnalytics = "UA-77508691-3"
+disqusShortname = "boratanrikulu"
+
+[params]
+	subtitle = "Interested in shell scripting, system administration and golang."
+
+	# Optional 64x64 avatar image.
+	avatar = "/images/avatar.jpeg"
+
+	# Content types to disable Disqus on.
+	disableDisqusTypes = ["page"]
+
+	featherIconsCDN = true
+
+	mode = "auto" # "dark" or "auto"
+	# customCSS = "css/custom.css"  # Custom CSS applied to default styles.
+	# customDarkCSS = "css/custom-dark.css"  # Custom styles applied to dark mode css.
+	# customJS = ["js/custom.js", "js/custom1.js"]  # Custom JS scripts.
+
+# Nav.
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+name = "All posts"
+url = "/posts"
+weight = 2
+
+[[menu.main]]
+name = "Journey"
+url = "/journey"
+weight = 3
+
+[[menu.main]]
+name = "Tags"
+url = "/tags"
+weight = 4
+
+[[params.social]]
+name = "Github"
+icon = "github"
+url = "https://github.com/boratanrikulu/"
+
+[[params.social]]
+name = "Twitter"
+icon = "twitter"
+url = "https://twitter.com/boratanrikulu_/"
+
+[[params.social]]
+name = "LinkedIn"
+icon = "linkedin"
+url = "https://linkedin.com/bora-tanrikulu/"
+
+[taxonomies]
+tag = "tags"

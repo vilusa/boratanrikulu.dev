@@ -7,8 +7,6 @@ tags:
 title: PostgreSQL'de Veri Tipleri ve Sıralama
 ---
 
-***Yazan: [boratanrikulu](https://github.com/boratanrikulu)***
-
 **Kaynaklar:**  
 [**`Devrim Gündüz - PostgreSQL'de Veri Tipleri - Microsoft Türkiye`**](https://twitter.com/DevrimGunduzTR/status/1199761143901937665)  
 [**`2ndquadrant.com/on-rocks-and-sand/`**](https://www.2ndquadrant.com/en/blog/on-rocks-and-sand/)  

@@ -6,8 +6,6 @@ tags:
 title: Decrease and Conquer
 ---
 
-***Yazan: [boratanrikulu](https://github.com/boratanrikulu)***
-
 **Kaynaklar:**  
 [**Introduction to the Design & Analysis of Algorithms 3e - Pearson**](https://www.pandora.com.tr/kitap/introduction-to-the-design-and-analysis-of-algorithms-3e/270012)  
 [**@elif_haytaoglu**](https://www.linkedin.com/in/elif-haytaoglu-97176564/)

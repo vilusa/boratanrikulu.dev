@@ -6,13 +6,11 @@ tags:
 title: Archlinux - Temel Kurulum
 ---
 
-***Yazan: [boratanrikulu](https://github.com/boratanrikulu)***
-
 **Kaynaklar**  
 [wiki.archlinux.org/installation_guide](https://wiki.archlinux.org/index.php/Installation_guide)  
 [youtube.com/AverageLinuxUser](https://www.youtube.com/watch?v=GKdPSGb9f5s)
 
---- 
+---
 
 **NOT 1:** Kurulumu gerçekleştirebilmeniz için orta seviye GNU/LINUX bilginiz olması gerekmektedir, aşağıdaki anlatım da buna uygun olarak hazırlanmıştır. **Kurulum sırasında yaşayabileceğiniz herhangi bir sorun, sorumluluğum altında değildir.**  
 

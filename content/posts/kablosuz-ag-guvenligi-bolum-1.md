@@ -6,8 +6,6 @@ tags:
 title: Kablosuz Ağ Güvenliği - Bölüm 1
 ---
 
-***Yazan: [boratanrikulu](https://github.com/boratanrikulu)***
-
 **Kaynaklar**  
 Hacktrick'18 - Kablosuz Ağ Sızma Testleri - Besim Altınok
 

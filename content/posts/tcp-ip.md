@@ -6,8 +6,6 @@ tags:
 title: TCP/IP
 ---
 
-***Yazan: [boratanrikulu](https://github.com/boratanrikulu)***
-
 **Kaynaklar**    
 [kevsersrca.github.io/blog/security/osi-katmanlari-ve-prokolleri/](https://kevsersrca.github.io/blog//security/osi-katmanlari-ve-prokolleri/)    
 [en.wikipedia.org/wiki/TCP/IP](https://en.wikipedia.org/wiki/TCP/IP)  

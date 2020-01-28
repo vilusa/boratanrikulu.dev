@@ -6,8 +6,6 @@ tags:
 title: DNS Nedir ? Nasıl Çalışır ?
 ---
 
-***Yazan: [boratanrikulu](https://github.com/boratanrikulu)***
-
 **Kaynaklar:**  
 [**`cloudflare.com/what-is-dns`**](https://www.cloudflare.com/learning/dns/what-is-dns/)  
 [**`çağlar yeşilyurt - dhcp / dns`**](https://person.zettlina.com/sunum/dns/dns.html#16)   

@@ -6,8 +6,6 @@ tags:
 title: Dosya ve Dizin İzinleri
 ---
 
-***Yazan: [boratanrikulu](https://github.com/boratanrikulu)***
-
 **Kaynaklar**  
 [wiki.archlinux.org/File_permissions_and_attributes](https://wiki.archlinux.org/index.php/File_permissions_and_attributes)  
 [en.wikipedia.org/wiki/Chmod](https://en.wikipedia.org/wiki/Chmod)

@@ -6,8 +6,6 @@ tags:
 title: Pasif Bilgi Toplama (Açık Kaynak İstihbaratı)
 ---
 
-***Yazan: [boratanrikulu](https://github.com/boratanrikulu)***
-
 **Kaynaklar:**  
 [erdemoflaz.com/pasif-bilgi-toplama](https://erdemoflaz.com/pasif-bilgi-toplama/)  
 [canyoupwn.me](https://canyoupwn.me)  

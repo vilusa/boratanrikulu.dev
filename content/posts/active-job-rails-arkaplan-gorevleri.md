@@ -6,8 +6,6 @@ tags:
 title: Active Job - Rails Arkaplan Görevleri
 ---
 
-***Yazan: [boratanrikulu](https://github.com/boratanrikulu)***
-
 **Kaynaklar:**  
 [Rails Guides](https://edgeguides.rubyonrails.org/active_job_basics.html)
 

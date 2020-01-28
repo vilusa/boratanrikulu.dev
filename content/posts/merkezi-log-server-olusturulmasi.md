@@ -6,8 +6,6 @@ tags:
 title: Merkezi Log Server Oluşturulması
 ---
 
-***Yazan: [boratanrikulu](https://github.com/boratanrikulu)***
-
 **Kaynaklar**  
 LYK'18 - GNU/Linux Sistem Yönetimi 2. Düzey [**[Erdem Bayer]**](https://www.linkedin.com/in/erdem-bayer-1633915/)  
 

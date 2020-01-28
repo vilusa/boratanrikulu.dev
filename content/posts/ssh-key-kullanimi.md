@@ -6,8 +6,6 @@ tags:
 title: SSH-Key Kullanımı
 ---
 
-***Yazan: [boratanrikulu](https://github.com/boratanrikulu)***
-
 **Kaynaklar**  
 [www.digitalocean.com - Görsel Kaynağı](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2)
 

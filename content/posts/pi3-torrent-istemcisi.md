@@ -5,9 +5,6 @@ tags:
 - GNU/Linux
 title: Raspberry Pi 3 Torrent İstemcisi
 ---
-***Yazan: [boratanrikulu](https://github.com/boratanrikulu)***
-
----
 
 <p align="center"> 
 	<img src="/images/posts/pi3-torrent-server/0.png">

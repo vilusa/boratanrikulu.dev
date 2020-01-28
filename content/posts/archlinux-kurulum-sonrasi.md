@@ -6,10 +6,6 @@ tags:
 title: Archlinux - Kurulum Sonrası
 ---
 
-***Yazan: [boratanrikulu](https://github.com/boratanrikulu)***
-
---- 
-
 **NOT 1:** Kurulumu gerçekleştirebilmeniz için orta seviye GNU/LINUX bilginiz olması gerekmektedir, aşağıdaki anlatım da buna uygun olarak hazırlanmıştır. **Kurulum sırasında yaşayabileceğiniz herhangi bir sorun, sorumluluğum altında değildir.**  
 
 **NOT 2:** Adımlar XFCE masaüstüne uygun olacak şekildedir. Bazı paket yüklemeleri tercihendir. Kendi kişisel zevkinize göre şekillendirebilirsiniz.

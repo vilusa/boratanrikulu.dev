@@ -6,8 +6,6 @@ tags:
 title: Sniffing İşlemi
 ---
 
-***Yazan: [boratanrikulu](https://github.com/boratanrikulu)***
-
 **Kaynaklar**  
 [kevsersrca.github.io/blog/security/tcpdump/](https://kevsersrca.github.io/blog//security/tcpdump/)  
 [wiki.wireshark.org/CaptureFilters](https://wiki.wireshark.org/CaptureFilters)  

@@ -6,8 +6,6 @@ tags:
 title: Cron ile Zamanlanmış Görevler
 ---
 
-***Yazan: [boratanrikulu](https://github.com/boratanrikulu)***
-
 **Kaynaklar**  
 [wiki.archlinux.org/cron](https://wiki.archlinux.org/index.php/cron)  
 [en.wikipedia.org/wiki/Cron](https://en.wikipedia.org/wiki/Cron)

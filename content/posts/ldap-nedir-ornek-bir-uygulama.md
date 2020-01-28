@@ -6,8 +6,6 @@ tags:
 title: LDAP Nedir ? Örnek Bir Uygulama.
 ---
 
-***Yazan: [boratanrikulu](https://github.com/boratanrikulu)***
-
 **Kaynaklar**  
 LYK'18 - GNU/Linux Sistem Yönetimi 2. Düzey [**[Aydın Doyak]**](https://twitter.com/aydintd)  
 

@@ -6,8 +6,6 @@ tags:
 title: SMTP Nasıl Çalışır ve Postfix Kurulumu
 ---
 
-***Yazan: [boratanrikulu](https://github.com/boratanrikulu)***
-
 **Kaynaklar**  
 LYK'18 - GNU/Linux Sistem Yönetimi 2. Düzey [**[Erdem Bayer]**](https://www.linkedin.com/in/erdem-bayer-1633915/) [**[Murathan Bostancı]**](https://www.linkedin.com/in/murathanbostanci/)
 

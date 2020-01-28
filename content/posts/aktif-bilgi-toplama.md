@@ -6,8 +6,6 @@ tags:
 title: Aktif Bilgi Toplama (NMAP)
 ---
 
-***Yazan: [boratanrikulu](https://github.com/boratanrikulu)***
-
 **Kaynaklar:**  
 NMAP ile Ağ Keşfi - Murat Yokuş (Pusula Yayıncılık)  
 [canyoupwn.me/tr-nmap-cheatsheet/](https://canyoupwn.me/tr-nmap-cheatsheet/)  

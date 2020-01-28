@@ -6,8 +6,6 @@ tags:
 title: Parola Kırma Saldırıları
 ---
 
-***Yazan: [boratanrikulu](https://github.com/boratanrikulu)***
-
 **Kaynaklar**  
 [erdemoflaz.com/sifre-ve-parola-arasindaki-farklar](https://erdemoflaz.com/sifre-ve-parola-arasindaki-farklar/)  
 [openwall.com/john/doc/examples](http://www.openwall.com/john/doc/EXAMPLES.shtml)  

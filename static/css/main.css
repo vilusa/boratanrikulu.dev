@@ -21,7 +21,7 @@ body {
     font-weight: 400;
     color: #333;
     line-height: 1.8em;
-    font-size: 17px;
+    font-size: 1.1em;
 }
 
 a {
@@ -185,11 +185,6 @@ ul {
     margin-top: 0;
     padding: 20px;
     background-color: transparent !important;
-}
-
-.highlight {
-    background: 0 0;
-    background-color: #FAFAFA;
 }
 
 .wrapper {
@@ -454,7 +449,8 @@ pre.highlight, .highlight > pre, td.code pre {
   border-left: 7px solid #444;
   margin-top: 1em;
   border-radius: 4px;
-  font-weight: 00px;
+  font-size: 1.1em;
+  font-family: serif;
 }
 
 /* --- Tables --- */

@@ -13,6 +13,11 @@ pygmentscodefencesguesssyntax = true
 googleAnalytics = "UA-77508691-3"
 disqusShortname = "boratanrikulu"
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 [permalinks]
   posts = "/:filename/"
 

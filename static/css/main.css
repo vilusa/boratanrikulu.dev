@@ -420,7 +420,7 @@ ul {
 
 /* --- Codes --- */
 
-strong code {
+p code, strong code {
   padding: 2px 4px;
   font-size: 90%;
   color: #c7254e;
@@ -456,6 +456,7 @@ pre.highlight, .highlight > pre, td.code pre {
 /* --- Tables --- */
 
 table {
+  margin-top: 15px;
   padding: 0;
   width: 100%;
 }

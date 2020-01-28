@@ -13,6 +13,9 @@ pygmentscodefencesguesssyntax = true
 googleAnalytics = "UA-77508691-3"
 disqusShortname = "boratanrikulu"
 
+[permalinks]
+  posts = "/:filename/"
+
 [params]
 	subtitle = "Interested in shell scripting, system administration and golang."
 

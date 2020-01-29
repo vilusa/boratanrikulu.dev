@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GNU/Linux on Bora Tanrıkulu</title>
+    <link>https://boratanrikulu.dev/tags/gnu/linux/</link>
+    <description>Recent content in GNU/Linux on Bora Tanrıkulu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>copyright notice</copyright>
+    <lastBuildDate>Wed, 15 Jan 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://boratanrikulu.dev/tags/gnu/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Temel GNU/Linux Bilgisi</title>
+      <link>https://boratanrikulu.dev/gnulinux/</link>
+      <pubDate>Wed, 15 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/gnulinux/</guid>
+      <description> Izmir Fen Lisesi&amp;rsquo;nde katılımcılara temel kullanımı ve felsefeyi aktarmak amacıyla &amp;ldquo;Temel GNU/Linux Bilgisi&amp;rdquo; isimli bir eğitim verdim. Beni okullarına davet ettikleri için teşekkür ederim.
+  iframe { height: 50vh; width: 100%; }  </description>
+    </item>
+    
+    <item>
+      <title>LDAP Nedir ? Örnek Bir Uygulama.</title>
+      <link>https://boratanrikulu.dev/ldap-nedir-ornek-bir-uygulama/</link>
+      <pubDate>Tue, 28 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/ldap-nedir-ornek-bir-uygulama/</guid>
+      <description>Kaynaklar
+LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey **[Aydın Doyak]**
+NOT 0: Ldif dosyalarının syntax&#39;ına hakim olmak oldukça zor, ben de hakim değilim.
+Konfigürasyon dosyaları, Aydın Doyak&amp;rsquo;tan alınmıştır.
+aydintd.net/centos-7de-openldap-sunucu-kurulumu-ve-ayarlanmasi/
+NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz **[0]**
+NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim :)
+ Directory (Dizin) Nedir ? Dizin, belirli türden nesnelerden oluşan küme ve bu küme üzerinde sorgu yapılması imkanı veren bir yapı olarak özetlenebilir.</description>
+    </item>
+    
+    <item>
+      <title>Merkezi Log Server Oluşturulması</title>
+      <link>https://boratanrikulu.dev/merkezi-log-server-olusturulmasi/</link>
+      <pubDate>Mon, 27 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/merkezi-log-server-olusturulmasi/</guid>
+      <description>Kaynaklar
+LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey **[Erdem Bayer]**
+NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz **[0]**
+NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim :)
+ Rsyslog Nedir ? Rsyslog, log&amp;rsquo;ların yönlendirilmesini sağlayan, UNIX tabanlı sistemlerde çalışan, açık kaynak bir yazılımdır. Temel syslog protokolünü uygulayan rsyslog; içeriğe dayalı filtreleme, zengin filtreleme yetenekleri, esnek yapılandırma seçenekleri ile göze çarpar. Ayrıca taşıma için TCP&amp;rsquo;yi kullanma gibi özellikler ekler.</description>
+    </item>
+    
+    <item>
+      <title>Cron ile Zamanlanmış Görevler</title>
+      <link>https://boratanrikulu.dev/cron-ile-zamanlanmis-gorevler/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/cron-ile-zamanlanmis-gorevler/</guid>
+      <description>Kaynaklar
+wiki.archlinux.org/cron
+en.wikipedia.org/wiki/Cron
+NOT: Anlatım için debian9 kullanılmıştır.
+ Sunucuda Saat Ayarlamasının Yapılması Eğer zamanlanmış bir görev yapmak istiyorsanız ilk yapanız gereken, elinizde bulunan sunucunun sistem saatinin istediğiniz gibi olduğundan emin olmaktır. Sistem saatini aşağıdaki komut ile kontrol edebilirsiniz.
+$ date Eğer istenenden farklı bir sonuç gözleniyor ise aşağıdaki komut ile sistem saatini bölgesel olarak yeniden ayarlayabilirsiniz.
+$ sudo dpkg-reconfigure tzdata  Zamanlanmış Görev Nedir ? Zamanlanmış görevler sayesinde günlük-haftalık-aylık-yıllık periyotlar ile yapmanız gereken işlemleri manuel yapmak yerine otomatik olarak istenen zaman diliminde gerçekleşmesini sağlayabilirsiniz.</description>
+    </item>
+    
+    <item>
+      <title>Dosya ve Dizin İzinleri</title>
+      <link>https://boratanrikulu.dev/dosya-ve-dizin-izinleri/</link>
+      <pubDate>Mon, 09 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/dosya-ve-dizin-izinleri/</guid>
+      <description>Kaynaklar
+wiki.archlinux.org/File_permissions_and_attributes
+en.wikipedia.org/wiki/Chmod
+ Dosya ve Dizininlerin Linux&amp;rsquo;daki Durumu Linux&amp;rsquo;ta her şey birer dosyadır. **[1]**
+Özünde dizinler de dosyaların konumunu belirten birer özel dosyadır. Dizinler veri içeremez, yalnızca konum belirtmek amaçlı kullanılabilirler. Dizinlerin bir türü yoktur, uzantısı yoktur. Dosyaların ise bir türü vardır, uzantısı bulunabilir.
+Dizin ve dosya isimleri aynı olamaz.
+ Dosya ve Dizin İzinlerinin İncelenmesi ls ile dosyaların izinleri incelenebilir.
+$ ls -l fileName Dosya ve dizin işlemlerine bakıldığında 10 karakterden oluşan bir yapı görünür.</description>
+    </item>
+    
+    <item>
+      <title>Pacman ve APT Cheatsheet</title>
+      <link>https://boratanrikulu.dev/pacman-ve-apt-cheatsheet/</link>
+      <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/pacman-ve-apt-cheatsheet/</guid>
+      <description>Yazan: boratanrikulu
+Kaynaklar
+wiki.archlinux.org/Pacman/Rosetta
+ NOT : Eksik gördüğünüz kısımlar için pull request yollayabilirsiniz.**[1]**
+    PACMAN APT Açıklama     pacman -S [packageName] apt install [packageName] paket yükler   pacman -Rs [packageName] apt remove [packageName] paket siler   pacman -Ss [packageName] apt search [packageName] paket arar   pacman -Sy apt update repo paket bilgilerini günceller   pacman -Syu apt update &amp;amp;&amp;amp; apt upgrade yüklü paketleri günceller   pacman -Syu apt update &amp;amp;&amp;amp; apt dist-upgrade sistemin tam güncellemesini yapar   pacman -Qdtq | pacman -Rs - apt autoremove herhangi bir pakete bağlı olmayan gereksiz paketleri siler   pacman -Sw [packageName] apt install &amp;ndash;download-only [packageName] paketi yalnızca indirir (paket yöneticisi cache konumuna)   ls /var/cache/pacman/pkg/ ls /var/cache/apt/archives/ paket yöneticisi cache&amp;rsquo;ni görüntüler   pacman -U [/path/to/packageName.</description>
+    </item>
+    
+    <item>
+      <title>SSH-Key Kullanımı</title>
+      <link>https://boratanrikulu.dev/ssh-key-kullanimi/</link>
+      <pubDate>Fri, 06 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/ssh-key-kullanimi/</guid>
+      <description>Kaynaklar
+www.digitalocean.com - Görsel Kaynağı
+  SSH-Key&amp;rsquo;in Oluşturulması Öncelikle bilgisayarınızda ssh-key&amp;rsquo;i aşağıdaki gibi hazırlayın.
+$ ssh-keygen Ardından pub dosyasının içeriğini kopyalayın ve sunucu tarafına geçin.
+$ cat /path/to/ssh-key.pub  Sunucuda &amp;ldquo;authorized_keys&amp;rdquo; Dosyasının Hazırlanması Eğer hali hazırda sunucuda ilgili kullanıcının home dizini altında .ssh/authorized_keys dosyası bulunmuyorsa aşağıdaki işlemleri uygulayın.
+~/.ssh klasörünü aşağıdaki gibi oluşturun ve erişebilirliğini 700 olarak belirleyin.
+$ cd ~/ &amp;amp;&amp;amp; mkdir .ssh &amp;amp;&amp;amp; chmod 700 .ssh ~/.ssh/authorized_keys dosyasını aşağıdaki gibi oluşturun ve erişebilirliğini 600 olarak belirleyin.</description>
+    </item>
+    
+    <item>
+      <title>Raspberry Pi 3 Torrent İstemcisi</title>
+      <link>https://boratanrikulu.dev/pi3-torrent-istemcisi/</link>
+      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/pi3-torrent-istemcisi/</guid>
+      <description>Raspberry Pi 3 ile kolaylıkla bir torrent istemcisi hazırlayabilirsiniz. Bu mini server üzerinden gerekli indirme işlemlerinizi gerçekleştirebilir, indirilen verileri tüm ağdaki cihazların erişebileceği şekilde paylaşabilirsiniz.
+Malzemeler:  Raspberry Pi 3 Harici Hard Disk SD Kart Boş Bir Vakit  Not 1: Anlatım adımları GNU/Linux dağıtımlarına uygun olacak şekilde hazırlanmıştır. Windows ve OSX kullanıcıları başka kaynaklara göz gezdirebilir.
+Not 2: Anlatım adımlarını gerçekleştirebilmeniz için orta seviye GNU/Linux bilginiz olması gerekmektedir, aşağıdaki anlatım da buna uygun olarak hazırlanmıştır.</description>
+    </item>
+    
+    <item>
+      <title>Archlinux - Kurulum Sonrası</title>
+      <link>https://boratanrikulu.dev/archlinux-kurulum-sonrasi/</link>
+      <pubDate>Tue, 29 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/archlinux-kurulum-sonrasi/</guid>
+      <description>NOT 1: Kurulumu gerçekleştirebilmeniz için orta seviye GNU/LINUX bilginiz olması gerekmektedir, aşağıdaki anlatım da buna uygun olarak hazırlanmıştır. Kurulum sırasında yaşayabileceğiniz herhangi bir sorun, sorumluluğum altında değildir.
+NOT 2: Adımlar XFCE masaüstüne uygun olacak şekildedir. Bazı paket yüklemeleri tercihendir. Kendi kişisel zevkinize göre şekillendirebilirsiniz.
+Not 3: Adımlar Intel + Nvidia sistemlere uygun olacak şekilde yapılmıştır. Açık kaynak sürücülerin kurulumu yapılmıştır.
+Not 4: Ne yaptığınızı bilmiyorsanız adımları uygulamayın.
+ XORG Kurulumu Xorg kurulumu için aşağıdaki işlemleri yapmanız gerekmektedir.</description>
+    </item>
+    
+    <item>
+      <title>Archlinux - Temel Kurulum</title>
+      <link>https://boratanrikulu.dev/archlinux-temel-kurulum/</link>
+      <pubDate>Mon, 28 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/archlinux-temel-kurulum/</guid>
+      <description>Kaynaklar
+wiki.archlinux.org/installation_guide
+youtube.com/AverageLinuxUser
+ NOT 1: Kurulumu gerçekleştirebilmeniz için orta seviye GNU/LINUX bilginiz olması gerekmektedir, aşağıdaki anlatım da buna uygun olarak hazırlanmıştır. Kurulum sırasında yaşayabileceğiniz herhangi bir sorun, sorumluluğum altında değildir.
+NOT 2: Kurulum UEFI sistemlere uygun olacak şekilde yapılmıştır.
+NOT 3: Kurulum sırasında, ethernet kullanmanızı öneririm. Wifi bağlantıları sorun çıkarabiliyor. Ama yine de wifi kullanmanız gerekyor ise wifi-menu kullanabilirsiniz.
+Not 4: Ne yaptığınızı bilmiyorsanız adımları uygulamayın.
+ Temel İşler Türkçe klavyeyi terminalde kullanabilmek için load&amp;rsquo;layın.</description>
+    </item>
+    
+  </channel>
+</rss>

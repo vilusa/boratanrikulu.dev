@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Network on Bora Tanrıkulu</title>
+    <link>https://boratanrikulu.dev/tags/network/</link>
+    <description>Recent content in Network on Bora Tanrıkulu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>copyright notice</copyright>
+    <lastBuildDate>Thu, 28 Nov 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://boratanrikulu.dev/tags/network/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>DNS Nedir ? Nasıl Çalışır ?</title>
+      <link>https://boratanrikulu.dev/dns-nedir-nasil-calisir/</link>
+      <pubDate>Thu, 28 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/dns-nedir-nasil-calisir/</guid>
+      <description>Kaynaklar:
+cloudflare.com/what-is-dns
+çağlar yeşilyurt - dhcp / dns
+howdns.works
+ DNS Nedir ? DNS&amp;rsquo;i internetin adres defteri olarak düşünebiliriz. Insanlar Websitelerine domain adresleri ile ulaşır, boratanrikulu.dev gibi. Fakat gerçekte tarayıcılar için bu text ifadesi anlamsızdır, tarayıcının websitesine istek yapıp cevap alabilmesi için IP adresine ihtiyacı vardır. Bu IP adresini DNS bize verir.
+Internete bağlı her cihazın eşsiz bir IP adresi vardır. Yani yukarda DNS sorgusuna baktığımız boratanrikulu.dev için &amp;lsquo;185.199.109.153&amp;rsquo; adresi eşsizdir.</description>
+    </item>
+    
+    <item>
+      <title>SMTP Nasıl Çalışır ve Postfix Kurulumu</title>
+      <link>https://boratanrikulu.dev/smtp-nasil-calisir-ve-postfix-kurulumu/</link>
+      <pubDate>Sat, 25 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/smtp-nasil-calisir-ve-postfix-kurulumu/</guid>
+      <description>Kaynaklar
+LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Erdem Bayer]** [Murathan Bostancı]**
+NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz **[0]**
+NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim :)
+ SMTP Nedir ? Simple Mail Transfer Protocol, yani SMTP, ilk olarak 1982&amp;rsquo;de RFC 821&amp;lsquo;de tanımlanmıştır.
+Günümüzde kullanılan Extended SMTP ise, 2008&amp;rsquo;de güncellenerek RFC 5321&amp;lsquo;de tanımlanmıştır.
+25/TCP portunu kullanan SMTP, e-posta göndermek için sunucu ile istemci arasındaki iletişimi belirleyen protokoldür.</description>
+    </item>
+    
+    <item>
+      <title>Bus Topology - Örnek Uygulama</title>
+      <link>https://boratanrikulu.dev/bus-topology-ornek-uygulama/</link>
+      <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/bus-topology-ornek-uygulama/</guid>
+      <description>Kaynaklar
+LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey (Engür Pişirici)
+NOT: Anlatım için VirtualBox ve Debian9 kullanılmıştır.
+ Bus Topology Nedir ? Cihazların tek bir çizgi(line) üzerinde birbirine bağlanması ile oluşturulan network&amp;rsquo;e Bus Topology denir.
+ Avantajları  Küçük network için kolay bir çözümdür. Star Topology&amp;rsquo;e göre daha az kablo gerektirir, ucuzdur.   Dezavantajları  Temassızlık, kopukluk, kısa devre vs. tüm sistemi etkiler. Arıza tespiti zordur.     Oluşturulacak Yapıya Genel Bir Bakış Bu şekilde bir yapı kurup, B server&#39;ı üzerinden akan trafiği yönetmek istiyoruz.</description>
+    </item>
+    
+    <item>
+      <title>TCP/IP</title>
+      <link>https://boratanrikulu.dev/tcp-ip/</link>
+      <pubDate>Mon, 23 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/tcp-ip/</guid>
+      <description>Kaynaklar kevsersrca.github.io/blog/security/osi-katmanlari-ve-prokolleri/ en.wikipedia.org/wiki/TCP/IP
+networkstatic.net (çizimler)
+ TCP/IP Nedir ? Transmission Control Protocol/Internet Protocol kısa ifadesi ile TCP/IP; bilgisayarların kendileri arasında nasıl iletişim kurduğunu belirleyen bir kurallar dizisidir. Verilerin nasıl paketleneceğini, gönderilmesini, alınmasını belirler ve pakette bozulma olup olmadığını tespit eder.
+TCP/IP adından anlaşılacağı gibi TCP ve IP olmak üzere iki ayrı protokolün birleşimidir.
+IP protokolü paketlere nereye gideceğini ve oraya nasıl gidileceğini söyler. Hedefe (destination) ulaşmak için arada başka bilgisayarı kullanmak gibi bir yönteme sahiptir.</description>
+    </item>
+    
+  </channel>
+</rss>

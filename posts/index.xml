@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Bora Tanrıkulu</title>
+    <link>https://boratanrikulu.dev/posts/</link>
+    <description>Recent content in Posts on Bora Tanrıkulu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>copyright notice</copyright>
+    <lastBuildDate>Wed, 15 Jan 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://boratanrikulu.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Temel GNU/Linux Bilgisi</title>
+      <link>https://boratanrikulu.dev/gnulinux/</link>
+      <pubDate>Wed, 15 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/gnulinux/</guid>
+      <description> Izmir Fen Lisesi&amp;rsquo;nde katılımcılara temel kullanımı ve felsefeyi aktarmak amacıyla &amp;ldquo;Temel GNU/Linux Bilgisi&amp;rdquo; isimli bir eğitim verdim. Beni okullarına davet ettikleri için teşekkür ederim.
+  iframe { height: 50vh; width: 100%; }  </description>
+    </item>
+    
+    <item>
+      <title>PostgreSQL&#39;de Veri Tipleri ve Sıralama</title>
+      <link>https://boratanrikulu.dev/postgresql-veri-tipleri-ve-siralama/</link>
+      <pubDate>Wed, 25 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/postgresql-veri-tipleri-ve-siralama/</guid>
+      <description>Kaynaklar:
+Devrim Gündüz - PostgreSQL&#39;de Veri Tipleri - Microsoft Türkiye
+2ndquadrant.com/on-rocks-and-sand/
+postgresql.org/docs/current/datatype
+ PostgreSQL&amp;rsquo;de Veri Tipleri  PostgreSQL&amp;rsquo;de bir çok veri tipi vardır. 400&amp;rsquo;e yakın diyebiliriz.
+Fakat veri tipleri bunlarla da sınır değil, eklentiler sayesinde kendi veri tipimizi yaratabilir, kullanabiliriz.
+Bu anlatım boyunca öncelikle PostgreSQL&amp;rsquo;de bulunan temel veritiplerini inceleyeceğiz, daha sonrasında ise Sıralama (Alignment) işleminin nasıl yapıldığına bakacağız.
+ Şimdi anlatımın ileriki safhalarında Sıralama (Alignment) işlemini anlatırken kullanacağımız bir senaryo düşünelim.</description>
+    </item>
+    
+    <item>
+      <title>DNS Nedir ? Nasıl Çalışır ?</title>
+      <link>https://boratanrikulu.dev/dns-nedir-nasil-calisir/</link>
+      <pubDate>Thu, 28 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/dns-nedir-nasil-calisir/</guid>
+      <description>Kaynaklar:
+cloudflare.com/what-is-dns
+çağlar yeşilyurt - dhcp / dns
+howdns.works
+ DNS Nedir ? DNS&amp;rsquo;i internetin adres defteri olarak düşünebiliriz. Insanlar Websitelerine domain adresleri ile ulaşır, boratanrikulu.dev gibi. Fakat gerçekte tarayıcılar için bu text ifadesi anlamsızdır, tarayıcının websitesine istek yapıp cevap alabilmesi için IP adresine ihtiyacı vardır. Bu IP adresini DNS bize verir.
+Internete bağlı her cihazın eşsiz bir IP adresi vardır. Yani yukarda DNS sorgusuna baktığımız boratanrikulu.dev için &amp;lsquo;185.199.109.153&amp;rsquo; adresi eşsizdir.</description>
+    </item>
+    
+    <item>
+      <title>Active Job - Rails Arkaplan Görevleri</title>
+      <link>https://boratanrikulu.dev/active-job-rails-arkaplan-gorevleri/</link>
+      <pubDate>Fri, 02 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/active-job-rails-arkaplan-gorevleri/</guid>
+      <description>Kaynaklar:
+Rails Guides
+Not: Anlatımda ruby-2.6.3, rails-6.0.0.rc2 kullanılmıştır.
+ Arkaplan Görevi Nedir ? Rails&amp;rsquo;da arka plan görevlerini yönetmek için kullanılan Active Record&amp;rsquo;u açıklamaya başlamadan önce ilk olarak arkaplan görevi kavramının ne olduğuna açıklık getirmek gerekiyor.
+Arkaplan görevleri bir işlemin durmasına rol açmadan, eş bir çizgide yürüyerek rol almasıdır. E-posta yollanması buna çok güzel bir örnektir. Örneğin kullanıcı sistemimize kayıt olmak için kayıt ol formunu doldurduğunda onaylama epostası yollanıyor olsun. Kullanıcı bu tuşa bastığında eposta yollama işlemini direkt olarak işleme alırsak, e-posta yollanasıya kadar kullanıcı yükleme ekranında bekler.</description>
+    </item>
+    
+    <item>
+      <title>Decrease and Conquer</title>
+      <link>https://boratanrikulu.dev/decrease-and-conquer/</link>
+      <pubDate>Fri, 21 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/decrease-and-conquer/</guid>
+      <description>Kaynaklar:**
+Introduction to the Design &amp;amp; Analysis of Algorithms 3e - Pearson
+@elif_haytaoglu**
+ Decrease and Conquer Bu yaklaşımda; verilen problemlere çözüm bulmak amacıyla problemden daha küçük boyuttaki örneğine çözüm aranır. Daha küçük boyutu için bulunan çözüm ana probleme uygulanır.
+Yaklaşımın üç çeşidi bulunur:
+ Decrease by a constant (sabit bir sayı ile azaltma) Decrease by a constant factor (sabit bir çarpan ile azaltma) Variable size decrease (değişken boyutta azaltma)   Decrease-by-a-constant Algoritmaları İşleyeceğimiz ilk çeşit olan decrease-by-a-constant yaklaşımında, değişken sayısı her aşamada belli bir sabit sayı kadar azaltılarak (bu sabit sayı genellikle 1 olarak seçilir), çözüm bulunmaya çalışılır.</description>
+    </item>
+    
+    <item>
+      <title>Brute Force ve Kapsamlı Arama</title>
+      <link>https://boratanrikulu.dev/brute-force/</link>
+      <pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/brute-force/</guid>
+      <description>Kaynaklar:**
+Introduction to the Design &amp;amp; Analysis of Algorithms 3e - Pearson
+@elif_haytaoglu**
+ Brute Force Brute Force yaklışımı, bir problemin çözümü için en kolay yollardan biridir. Direkt sonuç odaklıdır, performans aranmaz.
+Örneğin 5^5&amp;rsquo;i brute force yaklaşımı ile aşağıdaki gibi 4 çarpma işlemi yaparak buluruz.
+5^5 = 5x5x5x5x5
+Brute Force uygularken, performans geliştirmesi yapmak amacıyla pek düşünülmez. Örneğin yukarda yaptığımız çarpma işlemlerinde değerini bildiğimiz 5^2 değerlerini kullanarak, bilgisayar için oldukça maliyetli olan çarpma işleminde azalma sağlayabilirdik ama brute force yaklaşımda pek fazla performans kazancı sağlama düşüncelerine girilmeyeceği için bunu düşünmedik.</description>
+    </item>
+    
+    <item>
+      <title>LDAP Nedir ? Örnek Bir Uygulama.</title>
+      <link>https://boratanrikulu.dev/ldap-nedir-ornek-bir-uygulama/</link>
+      <pubDate>Tue, 28 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/ldap-nedir-ornek-bir-uygulama/</guid>
+      <description>Kaynaklar
+LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey **[Aydın Doyak]**
+NOT 0: Ldif dosyalarının syntax&#39;ına hakim olmak oldukça zor, ben de hakim değilim.
+Konfigürasyon dosyaları, Aydın Doyak&amp;rsquo;tan alınmıştır.
+aydintd.net/centos-7de-openldap-sunucu-kurulumu-ve-ayarlanmasi/
+NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz **[0]**
+NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim :)
+ Directory (Dizin) Nedir ? Dizin, belirli türden nesnelerden oluşan küme ve bu küme üzerinde sorgu yapılması imkanı veren bir yapı olarak özetlenebilir.</description>
+    </item>
+    
+    <item>
+      <title>Merkezi Log Server Oluşturulması</title>
+      <link>https://boratanrikulu.dev/merkezi-log-server-olusturulmasi/</link>
+      <pubDate>Mon, 27 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/merkezi-log-server-olusturulmasi/</guid>
+      <description>Kaynaklar
+LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey **[Erdem Bayer]**
+NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz **[0]**
+NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim :)
+ Rsyslog Nedir ? Rsyslog, log&amp;rsquo;ların yönlendirilmesini sağlayan, UNIX tabanlı sistemlerde çalışan, açık kaynak bir yazılımdır. Temel syslog protokolünü uygulayan rsyslog; içeriğe dayalı filtreleme, zengin filtreleme yetenekleri, esnek yapılandırma seçenekleri ile göze çarpar. Ayrıca taşıma için TCP&amp;rsquo;yi kullanma gibi özellikler ekler.</description>
+    </item>
+    
+    <item>
+      <title>SMTP Nasıl Çalışır ve Postfix Kurulumu</title>
+      <link>https://boratanrikulu.dev/smtp-nasil-calisir-ve-postfix-kurulumu/</link>
+      <pubDate>Sat, 25 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/smtp-nasil-calisir-ve-postfix-kurulumu/</guid>
+      <description>Kaynaklar
+LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Erdem Bayer]** [Murathan Bostancı]**
+NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz **[0]**
+NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim :)
+ SMTP Nedir ? Simple Mail Transfer Protocol, yani SMTP, ilk olarak 1982&amp;rsquo;de RFC 821&amp;lsquo;de tanımlanmıştır.
+Günümüzde kullanılan Extended SMTP ise, 2008&amp;rsquo;de güncellenerek RFC 5321&amp;lsquo;de tanımlanmıştır.
+25/TCP portunu kullanan SMTP, e-posta göndermek için sunucu ile istemci arasındaki iletişimi belirleyen protokoldür.</description>
+    </item>
+    
+    <item>
+      <title>PostgreSQL Nedir ? Nasıl Çalışır ?</title>
+      <link>https://boratanrikulu.dev/postgresql-nedir-nasil-calisir/</link>
+      <pubDate>Thu, 16 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/postgresql-nedir-nasil-calisir/</guid>
+      <description>Kaynaklar
+LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey **[Devrim Gündüz]**
+NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz **[0]**
+NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim :)
+ PostgreSQL Nedir ? PostgreSQL güçlü bir Object-Relational database servisidir.
+SQL dilinin kullanıldığı PostgreSQL&amp;rsquo;in verileri güvenli bir şekilde saklama, karmaşık verileri ölçeklendirme gibi bir çok özelliği vardır.
+PostgreSQL tüm ana işletim sistemlerinde çalışır.
+PostgreSQL, kanıtlanmış mimarisi, güvenilirliği, veri bütünlüğü, sağlam özellik seti, genişletilebilirliği ve yazılımın arkasındaki açık kaynak topluluğunun sürekli olarak performans ve yenilikçi çözümler sunması ile güçlü bir ün kazanmıştır.</description>
+    </item>
+    
+    <item>
+      <title>Bus Topology - Örnek Uygulama</title>
+      <link>https://boratanrikulu.dev/bus-topology-ornek-uygulama/</link>
+      <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/bus-topology-ornek-uygulama/</guid>
+      <description>Kaynaklar
+LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey (Engür Pişirici)
+NOT: Anlatım için VirtualBox ve Debian9 kullanılmıştır.
+ Bus Topology Nedir ? Cihazların tek bir çizgi(line) üzerinde birbirine bağlanması ile oluşturulan network&amp;rsquo;e Bus Topology denir.
+ Avantajları  Küçük network için kolay bir çözümdür. Star Topology&amp;rsquo;e göre daha az kablo gerektirir, ucuzdur.   Dezavantajları  Temassızlık, kopukluk, kısa devre vs. tüm sistemi etkiler. Arıza tespiti zordur.     Oluşturulacak Yapıya Genel Bir Bakış Bu şekilde bir yapı kurup, B server&#39;ı üzerinden akan trafiği yönetmek istiyoruz.</description>
+    </item>
+    
+    <item>
+      <title>Cron ile Zamanlanmış Görevler</title>
+      <link>https://boratanrikulu.dev/cron-ile-zamanlanmis-gorevler/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/cron-ile-zamanlanmis-gorevler/</guid>
+      <description>Kaynaklar
+wiki.archlinux.org/cron
+en.wikipedia.org/wiki/Cron
+NOT: Anlatım için debian9 kullanılmıştır.
+ Sunucuda Saat Ayarlamasının Yapılması Eğer zamanlanmış bir görev yapmak istiyorsanız ilk yapanız gereken, elinizde bulunan sunucunun sistem saatinin istediğiniz gibi olduğundan emin olmaktır. Sistem saatini aşağıdaki komut ile kontrol edebilirsiniz.
+$ date Eğer istenenden farklı bir sonuç gözleniyor ise aşağıdaki komut ile sistem saatini bölgesel olarak yeniden ayarlayabilirsiniz.
+$ sudo dpkg-reconfigure tzdata  Zamanlanmış Görev Nedir ? Zamanlanmış görevler sayesinde günlük-haftalık-aylık-yıllık periyotlar ile yapmanız gereken işlemleri manuel yapmak yerine otomatik olarak istenen zaman diliminde gerçekleşmesini sağlayabilirsiniz.</description>
+    </item>
+    
+    <item>
+      <title>Dosya ve Dizin İzinleri</title>
+      <link>https://boratanrikulu.dev/dosya-ve-dizin-izinleri/</link>
+      <pubDate>Mon, 09 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/dosya-ve-dizin-izinleri/</guid>
+      <description>Kaynaklar
+wiki.archlinux.org/File_permissions_and_attributes
+en.wikipedia.org/wiki/Chmod
+ Dosya ve Dizininlerin Linux&amp;rsquo;daki Durumu Linux&amp;rsquo;ta her şey birer dosyadır. **[1]**
+Özünde dizinler de dosyaların konumunu belirten birer özel dosyadır. Dizinler veri içeremez, yalnızca konum belirtmek amaçlı kullanılabilirler. Dizinlerin bir türü yoktur, uzantısı yoktur. Dosyaların ise bir türü vardır, uzantısı bulunabilir.
+Dizin ve dosya isimleri aynı olamaz.
+ Dosya ve Dizin İzinlerinin İncelenmesi ls ile dosyaların izinleri incelenebilir.
+$ ls -l fileName Dosya ve dizin işlemlerine bakıldığında 10 karakterden oluşan bir yapı görünür.</description>
+    </item>
+    
+    <item>
+      <title>Pacman ve APT Cheatsheet</title>
+      <link>https://boratanrikulu.dev/pacman-ve-apt-cheatsheet/</link>
+      <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/pacman-ve-apt-cheatsheet/</guid>
+      <description>Yazan: boratanrikulu
+Kaynaklar
+wiki.archlinux.org/Pacman/Rosetta
+ NOT : Eksik gördüğünüz kısımlar için pull request yollayabilirsiniz.**[1]**
+    PACMAN APT Açıklama     pacman -S [packageName] apt install [packageName] paket yükler   pacman -Rs [packageName] apt remove [packageName] paket siler   pacman -Ss [packageName] apt search [packageName] paket arar   pacman -Sy apt update repo paket bilgilerini günceller   pacman -Syu apt update &amp;amp;&amp;amp; apt upgrade yüklü paketleri günceller   pacman -Syu apt update &amp;amp;&amp;amp; apt dist-upgrade sistemin tam güncellemesini yapar   pacman -Qdtq | pacman -Rs - apt autoremove herhangi bir pakete bağlı olmayan gereksiz paketleri siler   pacman -Sw [packageName] apt install &amp;ndash;download-only [packageName] paketi yalnızca indirir (paket yöneticisi cache konumuna)   ls /var/cache/pacman/pkg/ ls /var/cache/apt/archives/ paket yöneticisi cache&amp;rsquo;ni görüntüler   pacman -U [/path/to/packageName.</description>
+    </item>
+    
+    <item>
+      <title>SSH-Key Kullanımı</title>
+      <link>https://boratanrikulu.dev/ssh-key-kullanimi/</link>
+      <pubDate>Fri, 06 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/ssh-key-kullanimi/</guid>
+      <description>Kaynaklar
+www.digitalocean.com - Görsel Kaynağı
+  SSH-Key&amp;rsquo;in Oluşturulması Öncelikle bilgisayarınızda ssh-key&amp;rsquo;i aşağıdaki gibi hazırlayın.
+$ ssh-keygen Ardından pub dosyasının içeriğini kopyalayın ve sunucu tarafına geçin.
+$ cat /path/to/ssh-key.pub  Sunucuda &amp;ldquo;authorized_keys&amp;rdquo; Dosyasının Hazırlanması Eğer hali hazırda sunucuda ilgili kullanıcının home dizini altında .ssh/authorized_keys dosyası bulunmuyorsa aşağıdaki işlemleri uygulayın.
+~/.ssh klasörünü aşağıdaki gibi oluşturun ve erişebilirliğini 700 olarak belirleyin.
+$ cd ~/ &amp;amp;&amp;amp; mkdir .ssh &amp;amp;&amp;amp; chmod 700 .ssh ~/.ssh/authorized_keys dosyasını aşağıdaki gibi oluşturun ve erişebilirliğini 600 olarak belirleyin.</description>
+    </item>
+    
+    <item>
+      <title>Raspberry Pi 3 Torrent İstemcisi</title>
+      <link>https://boratanrikulu.dev/pi3-torrent-istemcisi/</link>
+      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/pi3-torrent-istemcisi/</guid>
+      <description>Raspberry Pi 3 ile kolaylıkla bir torrent istemcisi hazırlayabilirsiniz. Bu mini server üzerinden gerekli indirme işlemlerinizi gerçekleştirebilir, indirilen verileri tüm ağdaki cihazların erişebileceği şekilde paylaşabilirsiniz.
+Malzemeler:  Raspberry Pi 3 Harici Hard Disk SD Kart Boş Bir Vakit  Not 1: Anlatım adımları GNU/Linux dağıtımlarına uygun olacak şekilde hazırlanmıştır. Windows ve OSX kullanıcıları başka kaynaklara göz gezdirebilir.
+Not 2: Anlatım adımlarını gerçekleştirebilmeniz için orta seviye GNU/Linux bilginiz olması gerekmektedir, aşağıdaki anlatım da buna uygun olarak hazırlanmıştır.</description>
+    </item>
+    
+    <item>
+      <title>Archlinux - Kurulum Sonrası</title>
+      <link>https://boratanrikulu.dev/archlinux-kurulum-sonrasi/</link>
+      <pubDate>Tue, 29 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/archlinux-kurulum-sonrasi/</guid>
+      <description>NOT 1: Kurulumu gerçekleştirebilmeniz için orta seviye GNU/LINUX bilginiz olması gerekmektedir, aşağıdaki anlatım da buna uygun olarak hazırlanmıştır. Kurulum sırasında yaşayabileceğiniz herhangi bir sorun, sorumluluğum altında değildir.
+NOT 2: Adımlar XFCE masaüstüne uygun olacak şekildedir. Bazı paket yüklemeleri tercihendir. Kendi kişisel zevkinize göre şekillendirebilirsiniz.
+Not 3: Adımlar Intel + Nvidia sistemlere uygun olacak şekilde yapılmıştır. Açık kaynak sürücülerin kurulumu yapılmıştır.
+Not 4: Ne yaptığınızı bilmiyorsanız adımları uygulamayın.
+ XORG Kurulumu Xorg kurulumu için aşağıdaki işlemleri yapmanız gerekmektedir.</description>
+    </item>
+    
+    <item>
+      <title>Archlinux - Temel Kurulum</title>
+      <link>https://boratanrikulu.dev/archlinux-temel-kurulum/</link>
+      <pubDate>Mon, 28 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/archlinux-temel-kurulum/</guid>
+      <description>Kaynaklar
+wiki.archlinux.org/installation_guide
+youtube.com/AverageLinuxUser
+ NOT 1: Kurulumu gerçekleştirebilmeniz için orta seviye GNU/LINUX bilginiz olması gerekmektedir, aşağıdaki anlatım da buna uygun olarak hazırlanmıştır. Kurulum sırasında yaşayabileceğiniz herhangi bir sorun, sorumluluğum altında değildir.
+NOT 2: Kurulum UEFI sistemlere uygun olacak şekilde yapılmıştır.
+NOT 3: Kurulum sırasında, ethernet kullanmanızı öneririm. Wifi bağlantıları sorun çıkarabiliyor. Ama yine de wifi kullanmanız gerekyor ise wifi-menu kullanabilirsiniz.
+Not 4: Ne yaptığınızı bilmiyorsanız adımları uygulamayın.
+ Temel İşler Türkçe klavyeyi terminalde kullanabilmek için load&amp;rsquo;layın.</description>
+    </item>
+    
+    <item>
+      <title>Kablosuz Ağ Güvenliği - Bölüm 1</title>
+      <link>https://boratanrikulu.dev/kablosuz-ag-guvenligi-bolum-1/</link>
+      <pubDate>Sat, 26 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/kablosuz-ag-guvenligi-bolum-1/</guid>
+      <description>Kaynaklar
+Hacktrick&amp;rsquo;18 - Kablosuz Ağ Sızma Testleri - Besim Altınok
+ Bazı Temel Bilgiler Modemler kendilerinin aktif olduğu belirtmek için etrafa Beacon paketleri yayarlar, bu sayede çevredeki aktif ağları görebiliriz.
+Client modeme bağlanmak isterse, talep isteği olaran bir Probe Request paketi yollar.
+Bu paketi alan modem Probe Response paketi ile cevap verir.
+Eğer ağ şifreli ise Authentication Request ve Authentication Response aşamaları ile gerekli kontroller yapılmış olur.
+Asociation Request ve Asociation Response aşamaları ile de bağlanma işlemi tamamlanır.</description>
+    </item>
+    
+    <item>
+      <title>Sniffing İşlemi</title>
+      <link>https://boratanrikulu.dev/sniffing-islemi/</link>
+      <pubDate>Mon, 23 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/sniffing-islemi/</guid>
+      <description>Kaynaklar
+kevsersrca.github.io/blog/security/tcpdump/
+wiki.wireshark.org/CaptureFilters
+wiki.wireshark.org/DisplayFilters
+guru99.com/wireshark-passwords-sniffer
+ Sniffing Nedir ? Bilgisayarlar network&amp;rsquo;lerde paket yayınlayarak iletişim kurarlar. Bu işlem için IP kullanılır ve paket network&#39;ün türüne göre tüm ağı dolaşabilir. Paket geçtiği yollarda okunabilir yani pakete sniffing işlemi yapılabilir.
+Basit bir şekilde söylemek gerekirse Sniffing yani koklama network&amp;rsquo;te akan paketlerin tek tek incelenmesidir. Paketler değiştirilmeden direkt olarak okunabilir. Paketleri yakalamak için bir çok sniffing tool&amp;rsquo;u mevcuttur. (WireShark bunlar arasında en popüleridir.)
+Network&amp;rsquo;te akan paketleri sniffing işlemi ile (şifrelenmiş değil ise) parolalar gibi hassas veriler elde edilebilir.</description>
+    </item>
+    
+    <item>
+      <title>TCP/IP</title>
+      <link>https://boratanrikulu.dev/tcp-ip/</link>
+      <pubDate>Mon, 23 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/tcp-ip/</guid>
+      <description>Kaynaklar kevsersrca.github.io/blog/security/osi-katmanlari-ve-prokolleri/ en.wikipedia.org/wiki/TCP/IP
+networkstatic.net (çizimler)
+ TCP/IP Nedir ? Transmission Control Protocol/Internet Protocol kısa ifadesi ile TCP/IP; bilgisayarların kendileri arasında nasıl iletişim kurduğunu belirleyen bir kurallar dizisidir. Verilerin nasıl paketleneceğini, gönderilmesini, alınmasını belirler ve pakette bozulma olup olmadığını tespit eder.
+TCP/IP adından anlaşılacağı gibi TCP ve IP olmak üzere iki ayrı protokolün birleşimidir.
+IP protokolü paketlere nereye gideceğini ve oraya nasıl gidileceğini söyler. Hedefe (destination) ulaşmak için arada başka bilgisayarı kullanmak gibi bir yönteme sahiptir.</description>
+    </item>
+    
+    <item>
+      <title>Parola Kırma Saldırıları</title>
+      <link>https://boratanrikulu.dev/parola-kirma-saldirilari/</link>
+      <pubDate>Tue, 17 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/parola-kirma-saldirilari/</guid>
+      <description>Kaynaklar
+erdemoflaz.com/sifre-ve-parola-arasindaki-farklar
+openwall.com/john/doc/examples
+null-byte.wonderhowto.com/how-to/crunch
+ Parola Nedir ? Okunduğunda anlam ifade eden, kişinin kendinin de bildiği, kendinin seçip kullandığı kelimelerdir.
+Örneğin: 123456, password, qwerty gibi kelimeler buna örnek verilebilir.
+Şifre Nedir ? Normal olarak okunduğunda bir anlam ifade etmeyen, çeşitli algoritmalar ile oluşturulup geri dönüştürülebilir veya geri dönüştürülemez hallerde kullanıldığı metinlerdir.
+Örneğin: sha-1, md5, base64, md4, rsa, idea gibi algoritmalar şifrelemede sıklıkla kullanılan çeşitlerdir.
+Kısaca “senin bildiğin parola, sistemin bildiği şifredir” diyebiliriz.</description>
+    </item>
+    
+    <item>
+      <title>Exploit</title>
+      <link>https://boratanrikulu.dev/exploit/</link>
+      <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/exploit/</guid>
+      <description>Kaynaklar
+tr.wikipedia.org/wiki/exploit
+medium.com/@celk0irem007/kevgir-yetki-yukseltme
+github.com/rapid7/how-to-use-msfvenom
+ Exploit Nedir ?   Ingilizcede &amp;ldquo;kendi çıkarına kullanmak&amp;rdquo; anlamına gelen exploit; bug ya da açıkların yaratabileceği istenmeyen durumlardan yararlanan komut dizisidir.
+Exploit&amp;rsquo;ler genellikle hedef sistemin kontrolünü kazanma, yetki yükseltme ya da DDOS atakları gibi şeyler için kullanılır.
+   Exploit Türleri  Çeşitli exploit&amp;rsquo;ler mevcuttur:    Türler     Local Exploits   Remote Exploits   Dos-Exploits   Command-Execution-Exploits   SQL-Injection-Exploits   Zero-Day-Exploits      Local Exploits  Local Exploit&amp;rsquo;ler mesela bir .</description>
+    </item>
+    
+    <item>
+      <title>Aktif Bilgi Toplama (NMAP)</title>
+      <link>https://boratanrikulu.dev/aktif-bilgi-toplama/</link>
+      <pubDate>Tue, 13 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/aktif-bilgi-toplama/</guid>
+      <description>Kaynaklar:
+NMAP ile Ağ Keşfi - Murat Yokuş (Pusula Yayıncılık)
+canyoupwn.me/tr-nmap-cheatsheet/
+jlk.fjfi.cvut.cz/arch/manpages/man/extra/nmap/
+ Aktif Bilgi Toplama ?   Geçen hafta anlatımını yaptığım pasif bilgi toplama ile IP ve servis bilgileri gibi bir çok veriye, hedef sistem ile doğrudan ilişkiye girmeden, hali hazırda internet üzerinde bulunan açık kaynaklardan bilgi toplayarak erişmiştik.
+  Pasif bilgi toplama işleminden sonra aktif bilgi toplama adımı gelmektedir.
+Aktif bilgi toplama adımında hedef sistem ile doğrudan ilişkiye girilir.</description>
+    </item>
+    
+    <item>
+      <title>Pasif Bilgi Toplama (Açık Kaynak İstihbaratı)</title>
+      <link>https://boratanrikulu.dev/pasif-bilgi-toplama/</link>
+      <pubDate>Mon, 05 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/pasif-bilgi-toplama/</guid>
+      <description>Kaynaklar:
+erdemoflaz.com/pasif-bilgi-toplama
+canyoupwn.me
+wikipedia.org
+ Açık Kaynak İstihbaratı Nedir (OSINT)?   Diğer bir adıyla Open-Source Intelligence; dış dünyaya erişimi açık kaynakların kullanımıyla, çıkarlar doğrultusunda, hedefe yönelik bilgi toplanmasıdır. Herkes internet üzerinde bir iz bırakır. Bu bırakılan izlerin toplanıp birleştirilmesi / takip edilmesi ile önemli bilgiler elde edilebilir.
+  Örneğin benim ismimi, google ya da başka bir arama motoru üzerinde aratacak olursanız, benim kullandığım sosyal medya hesaplarımın bir çoğuna, fotoğraflarıma, yaşıma, e-mail adresime, belki çok daha kişisel bilgilerime erişim sağlayabilirsiniz.</description>
+    </item>
+    
+  </channel>
+</rss>

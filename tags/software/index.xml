@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Software on Bora Tanrıkulu</title>
+    <link>https://boratanrikulu.dev/tags/software/</link>
+    <description>Recent content in Software on Bora Tanrıkulu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>copyright notice</copyright>
+    <lastBuildDate>Fri, 02 Aug 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://boratanrikulu.dev/tags/software/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Active Job - Rails Arkaplan Görevleri</title>
+      <link>https://boratanrikulu.dev/active-job-rails-arkaplan-gorevleri/</link>
+      <pubDate>Fri, 02 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/active-job-rails-arkaplan-gorevleri/</guid>
+      <description>Kaynaklar:
+Rails Guides
+Not: Anlatımda ruby-2.6.3, rails-6.0.0.rc2 kullanılmıştır.
+ Arkaplan Görevi Nedir ? Rails&amp;rsquo;da arka plan görevlerini yönetmek için kullanılan Active Record&amp;rsquo;u açıklamaya başlamadan önce ilk olarak arkaplan görevi kavramının ne olduğuna açıklık getirmek gerekiyor.
+Arkaplan görevleri bir işlemin durmasına rol açmadan, eş bir çizgide yürüyerek rol almasıdır. E-posta yollanması buna çok güzel bir örnektir. Örneğin kullanıcı sistemimize kayıt olmak için kayıt ol formunu doldurduğunda onaylama epostası yollanıyor olsun. Kullanıcı bu tuşa bastığında eposta yollama işlemini direkt olarak işleme alırsak, e-posta yollanasıya kadar kullanıcı yükleme ekranında bekler.</description>
+    </item>
+    
+  </channel>
+</rss>

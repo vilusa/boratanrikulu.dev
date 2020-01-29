@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Computer Science on Bora Tanrıkulu</title>
+    <link>https://boratanrikulu.dev/tags/computer-science/</link>
+    <description>Recent content in Computer Science on Bora Tanrıkulu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>copyright notice</copyright>
+    <lastBuildDate>Fri, 21 Jun 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://boratanrikulu.dev/tags/computer-science/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Decrease and Conquer</title>
+      <link>https://boratanrikulu.dev/decrease-and-conquer/</link>
+      <pubDate>Fri, 21 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/decrease-and-conquer/</guid>
+      <description>Kaynaklar:**
+Introduction to the Design &amp;amp; Analysis of Algorithms 3e - Pearson
+@elif_haytaoglu**
+ Decrease and Conquer Bu yaklaşımda; verilen problemlere çözüm bulmak amacıyla problemden daha küçük boyuttaki örneğine çözüm aranır. Daha küçük boyutu için bulunan çözüm ana probleme uygulanır.
+Yaklaşımın üç çeşidi bulunur:
+ Decrease by a constant (sabit bir sayı ile azaltma) Decrease by a constant factor (sabit bir çarpan ile azaltma) Variable size decrease (değişken boyutta azaltma)   Decrease-by-a-constant Algoritmaları İşleyeceğimiz ilk çeşit olan decrease-by-a-constant yaklaşımında, değişken sayısı her aşamada belli bir sabit sayı kadar azaltılarak (bu sabit sayı genellikle 1 olarak seçilir), çözüm bulunmaya çalışılır.</description>
+    </item>
+    
+    <item>
+      <title>Brute Force ve Kapsamlı Arama</title>
+      <link>https://boratanrikulu.dev/brute-force/</link>
+      <pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/brute-force/</guid>
+      <description>Kaynaklar:**
+Introduction to the Design &amp;amp; Analysis of Algorithms 3e - Pearson
+@elif_haytaoglu**
+ Brute Force Brute Force yaklışımı, bir problemin çözümü için en kolay yollardan biridir. Direkt sonuç odaklıdır, performans aranmaz.
+Örneğin 5^5&amp;rsquo;i brute force yaklaşımı ile aşağıdaki gibi 4 çarpma işlemi yaparak buluruz.
+5^5 = 5x5x5x5x5
+Brute Force uygularken, performans geliştirmesi yapmak amacıyla pek düşünülmez. Örneğin yukarda yaptığımız çarpma işlemlerinde değerini bildiğimiz 5^2 değerlerini kullanarak, bilgisayar için oldukça maliyetli olan çarpma işleminde azalma sağlayabilirdik ama brute force yaklaşımda pek fazla performans kazancı sağlama düşüncelerine girilmeyeceği için bunu düşünmedik.</description>
+    </item>
+    
+  </channel>
+</rss>

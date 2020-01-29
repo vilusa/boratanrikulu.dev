@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Security on Bora Tanrıkulu</title>
+    <link>https://boratanrikulu.dev/tags/security/</link>
+    <description>Recent content in Security on Bora Tanrıkulu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>copyright notice</copyright>
+    <lastBuildDate>Sat, 26 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://boratanrikulu.dev/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Kablosuz Ağ Güvenliği - Bölüm 1</title>
+      <link>https://boratanrikulu.dev/kablosuz-ag-guvenligi-bolum-1/</link>
+      <pubDate>Sat, 26 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/kablosuz-ag-guvenligi-bolum-1/</guid>
+      <description>Kaynaklar
+Hacktrick&amp;rsquo;18 - Kablosuz Ağ Sızma Testleri - Besim Altınok
+ Bazı Temel Bilgiler Modemler kendilerinin aktif olduğu belirtmek için etrafa Beacon paketleri yayarlar, bu sayede çevredeki aktif ağları görebiliriz.
+Client modeme bağlanmak isterse, talep isteği olaran bir Probe Request paketi yollar.
+Bu paketi alan modem Probe Response paketi ile cevap verir.
+Eğer ağ şifreli ise Authentication Request ve Authentication Response aşamaları ile gerekli kontroller yapılmış olur.
+Asociation Request ve Asociation Response aşamaları ile de bağlanma işlemi tamamlanır.</description>
+    </item>
+    
+    <item>
+      <title>Sniffing İşlemi</title>
+      <link>https://boratanrikulu.dev/sniffing-islemi/</link>
+      <pubDate>Mon, 23 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/sniffing-islemi/</guid>
+      <description>Kaynaklar
+kevsersrca.github.io/blog/security/tcpdump/
+wiki.wireshark.org/CaptureFilters
+wiki.wireshark.org/DisplayFilters
+guru99.com/wireshark-passwords-sniffer
+ Sniffing Nedir ? Bilgisayarlar network&amp;rsquo;lerde paket yayınlayarak iletişim kurarlar. Bu işlem için IP kullanılır ve paket network&#39;ün türüne göre tüm ağı dolaşabilir. Paket geçtiği yollarda okunabilir yani pakete sniffing işlemi yapılabilir.
+Basit bir şekilde söylemek gerekirse Sniffing yani koklama network&amp;rsquo;te akan paketlerin tek tek incelenmesidir. Paketler değiştirilmeden direkt olarak okunabilir. Paketleri yakalamak için bir çok sniffing tool&amp;rsquo;u mevcuttur. (WireShark bunlar arasında en popüleridir.)
+Network&amp;rsquo;te akan paketleri sniffing işlemi ile (şifrelenmiş değil ise) parolalar gibi hassas veriler elde edilebilir.</description>
+    </item>
+    
+    <item>
+      <title>Parola Kırma Saldırıları</title>
+      <link>https://boratanrikulu.dev/parola-kirma-saldirilari/</link>
+      <pubDate>Tue, 17 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/parola-kirma-saldirilari/</guid>
+      <description>Kaynaklar
+erdemoflaz.com/sifre-ve-parola-arasindaki-farklar
+openwall.com/john/doc/examples
+null-byte.wonderhowto.com/how-to/crunch
+ Parola Nedir ? Okunduğunda anlam ifade eden, kişinin kendinin de bildiği, kendinin seçip kullandığı kelimelerdir.
+Örneğin: 123456, password, qwerty gibi kelimeler buna örnek verilebilir.
+Şifre Nedir ? Normal olarak okunduğunda bir anlam ifade etmeyen, çeşitli algoritmalar ile oluşturulup geri dönüştürülebilir veya geri dönüştürülemez hallerde kullanıldığı metinlerdir.
+Örneğin: sha-1, md5, base64, md4, rsa, idea gibi algoritmalar şifrelemede sıklıkla kullanılan çeşitlerdir.
+Kısaca “senin bildiğin parola, sistemin bildiği şifredir” diyebiliriz.</description>
+    </item>
+    
+    <item>
+      <title>Exploit</title>
+      <link>https://boratanrikulu.dev/exploit/</link>
+      <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/exploit/</guid>
+      <description>Kaynaklar
+tr.wikipedia.org/wiki/exploit
+medium.com/@celk0irem007/kevgir-yetki-yukseltme
+github.com/rapid7/how-to-use-msfvenom
+ Exploit Nedir ?   Ingilizcede &amp;ldquo;kendi çıkarına kullanmak&amp;rdquo; anlamına gelen exploit; bug ya da açıkların yaratabileceği istenmeyen durumlardan yararlanan komut dizisidir.
+Exploit&amp;rsquo;ler genellikle hedef sistemin kontrolünü kazanma, yetki yükseltme ya da DDOS atakları gibi şeyler için kullanılır.
+   Exploit Türleri  Çeşitli exploit&amp;rsquo;ler mevcuttur:    Türler     Local Exploits   Remote Exploits   Dos-Exploits   Command-Execution-Exploits   SQL-Injection-Exploits   Zero-Day-Exploits      Local Exploits  Local Exploit&amp;rsquo;ler mesela bir .</description>
+    </item>
+    
+    <item>
+      <title>Aktif Bilgi Toplama (NMAP)</title>
+      <link>https://boratanrikulu.dev/aktif-bilgi-toplama/</link>
+      <pubDate>Tue, 13 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/aktif-bilgi-toplama/</guid>
+      <description>Kaynaklar:
+NMAP ile Ağ Keşfi - Murat Yokuş (Pusula Yayıncılık)
+canyoupwn.me/tr-nmap-cheatsheet/
+jlk.fjfi.cvut.cz/arch/manpages/man/extra/nmap/
+ Aktif Bilgi Toplama ?   Geçen hafta anlatımını yaptığım pasif bilgi toplama ile IP ve servis bilgileri gibi bir çok veriye, hedef sistem ile doğrudan ilişkiye girmeden, hali hazırda internet üzerinde bulunan açık kaynaklardan bilgi toplayarak erişmiştik.
+  Pasif bilgi toplama işleminden sonra aktif bilgi toplama adımı gelmektedir.
+Aktif bilgi toplama adımında hedef sistem ile doğrudan ilişkiye girilir.</description>
+    </item>
+    
+    <item>
+      <title>Pasif Bilgi Toplama (Açık Kaynak İstihbaratı)</title>
+      <link>https://boratanrikulu.dev/pasif-bilgi-toplama/</link>
+      <pubDate>Mon, 05 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://boratanrikulu.dev/pasif-bilgi-toplama/</guid>
+      <description>Kaynaklar:
+erdemoflaz.com/pasif-bilgi-toplama
+canyoupwn.me
+wikipedia.org
+ Açık Kaynak İstihbaratı Nedir (OSINT)?   Diğer bir adıyla Open-Source Intelligence; dış dünyaya erişimi açık kaynakların kullanımıyla, çıkarlar doğrultusunda, hedefe yönelik bilgi toplanmasıdır. Herkes internet üzerinde bir iz bırakır. Bu bırakılan izlerin toplanıp birleştirilmesi / takip edilmesi ile önemli bilgiler elde edilebilir.
+  Örneğin benim ismimi, google ya da başka bir arama motoru üzerinde aratacak olursanız, benim kullandığım sosyal medya hesaplarımın bir çoğuna, fotoğraflarıma, yaşıma, e-mail adresime, belki çok daha kişisel bilgilerime erişim sağlayabilirsiniz.</description>
+    </item>
+    
+  </channel>
+</rss>

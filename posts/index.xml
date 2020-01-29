@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Bora Tanrıkulu</title>
-    <link>https://boratanrikulu.dev/posts/</link>
+    <link>https://staging.boratanrikulu.dev/posts/</link>
     <description>Recent content in Posts on Bora Tanrıkulu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>copyright notice</copyright>
     <lastBuildDate>Wed, 15 Jan 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://boratanrikulu.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://staging.boratanrikulu.dev/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Temel GNU/Linux Bilgisi</title>
-      <link>https://boratanrikulu.dev/gnulinux/</link>
+      <link>https://staging.boratanrikulu.dev/gnulinux/</link>
       <pubDate>Wed, 15 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/gnulinux/</guid>
+      <guid>https://staging.boratanrikulu.dev/gnulinux/</guid>
       <description> Izmir Fen Lisesi&amp;rsquo;nde katılımcılara temel kullanımı ve felsefeyi aktarmak amacıyla &amp;ldquo;Temel GNU/Linux Bilgisi&amp;rdquo; isimli bir eğitim verdim. Beni okullarına davet ettikleri için teşekkür ederim.
   iframe { height: 50vh; width: 100%; }  </description>
     </item>
     
     <item>
       <title>PostgreSQL&#39;de Veri Tipleri ve Sıralama</title>
-      <link>https://boratanrikulu.dev/postgresql-veri-tipleri-ve-siralama/</link>
+      <link>https://staging.boratanrikulu.dev/postgresql-veri-tipleri-ve-siralama/</link>
       <pubDate>Wed, 25 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/postgresql-veri-tipleri-ve-siralama/</guid>
+      <guid>https://staging.boratanrikulu.dev/postgresql-veri-tipleri-ve-siralama/</guid>
       <description>Kaynaklar:
 Devrim Gündüz - PostgreSQL&#39;de Veri Tipleri - Microsoft Türkiye
 2ndquadrant.com/on-rocks-and-sand/
@@ -40,10 +40,10 @@ Bu anlatım boyunca öncelikle PostgreSQL&amp;rsquo;de bulunan temel veritipleri
     
     <item>
       <title>DNS Nedir ? Nasıl Çalışır ?</title>
-      <link>https://boratanrikulu.dev/dns-nedir-nasil-calisir/</link>
+      <link>https://staging.boratanrikulu.dev/dns-nedir-nasil-calisir/</link>
       <pubDate>Thu, 28 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/dns-nedir-nasil-calisir/</guid>
+      <guid>https://staging.boratanrikulu.dev/dns-nedir-nasil-calisir/</guid>
       <description>Kaynaklar:
 cloudflare.com/what-is-dns
 çağlar yeşilyurt - dhcp / dns
@@ -54,10 +54,10 @@ Internete bağlı her cihazın eşsiz bir IP adresi vardır. Yani yukarda DNS so
     
     <item>
       <title>Active Job - Rails Arkaplan Görevleri</title>
-      <link>https://boratanrikulu.dev/active-job-rails-arkaplan-gorevleri/</link>
+      <link>https://staging.boratanrikulu.dev/active-job-rails-arkaplan-gorevleri/</link>
       <pubDate>Fri, 02 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/active-job-rails-arkaplan-gorevleri/</guid>
+      <guid>https://staging.boratanrikulu.dev/active-job-rails-arkaplan-gorevleri/</guid>
       <description>Kaynaklar:
 Rails Guides
 Not: Anlatımda ruby-2.6.3, rails-6.0.0.rc2 kullanılmıştır.
@@ -67,10 +67,10 @@ Arkaplan görevleri bir işlemin durmasına rol açmadan, eş bir çizgide yür�
     
     <item>
       <title>Decrease and Conquer</title>
-      <link>https://boratanrikulu.dev/decrease-and-conquer/</link>
+      <link>https://staging.boratanrikulu.dev/decrease-and-conquer/</link>
       <pubDate>Fri, 21 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/decrease-and-conquer/</guid>
+      <guid>https://staging.boratanrikulu.dev/decrease-and-conquer/</guid>
       <description>Kaynaklar:**
 Introduction to the Design &amp;amp; Analysis of Algorithms 3e - Pearson
 @elif_haytaoglu**
@@ -81,10 +81,10 @@ Yaklaşımın üç çeşidi bulunur:
     
     <item>
       <title>Brute Force ve Kapsamlı Arama</title>
-      <link>https://boratanrikulu.dev/brute-force/</link>
+      <link>https://staging.boratanrikulu.dev/brute-force/</link>
       <pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/brute-force/</guid>
+      <guid>https://staging.boratanrikulu.dev/brute-force/</guid>
       <description>Kaynaklar:**
 Introduction to the Design &amp;amp; Analysis of Algorithms 3e - Pearson
 @elif_haytaoglu**
@@ -96,10 +96,10 @@ Brute Force uygularken, performans geliştirmesi yapmak amacıyla pek düşünü
     
     <item>
       <title>LDAP Nedir ? Örnek Bir Uygulama.</title>
-      <link>https://boratanrikulu.dev/ldap-nedir-ornek-bir-uygulama/</link>
+      <link>https://staging.boratanrikulu.dev/ldap-nedir-ornek-bir-uygulama/</link>
       <pubDate>Tue, 28 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/ldap-nedir-ornek-bir-uygulama/</guid>
+      <guid>https://staging.boratanrikulu.dev/ldap-nedir-ornek-bir-uygulama/</guid>
       <description>Kaynaklar
 LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey **[Aydın Doyak]**
 NOT 0: Ldif dosyalarının syntax&#39;ına hakim olmak oldukça zor, ben de hakim değilim.
@@ -112,10 +112,10 @@ NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim
     
     <item>
       <title>Merkezi Log Server Oluşturulması</title>
-      <link>https://boratanrikulu.dev/merkezi-log-server-olusturulmasi/</link>
+      <link>https://staging.boratanrikulu.dev/merkezi-log-server-olusturulmasi/</link>
       <pubDate>Mon, 27 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/merkezi-log-server-olusturulmasi/</guid>
+      <guid>https://staging.boratanrikulu.dev/merkezi-log-server-olusturulmasi/</guid>
       <description>Kaynaklar
 LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey **[Erdem Bayer]**
 NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz **[0]**
@@ -125,10 +125,10 @@ NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim
     
     <item>
       <title>SMTP Nasıl Çalışır ve Postfix Kurulumu</title>
-      <link>https://boratanrikulu.dev/smtp-nasil-calisir-ve-postfix-kurulumu/</link>
+      <link>https://staging.boratanrikulu.dev/smtp-nasil-calisir-ve-postfix-kurulumu/</link>
       <pubDate>Sat, 25 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/smtp-nasil-calisir-ve-postfix-kurulumu/</guid>
+      <guid>https://staging.boratanrikulu.dev/smtp-nasil-calisir-ve-postfix-kurulumu/</guid>
       <description>Kaynaklar
 LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Erdem Bayer]** [Murathan Bostancı]**
 NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz **[0]**
@@ -140,10 +140,10 @@ Günümüzde kullanılan Extended SMTP ise, 2008&amp;rsquo;de güncellenerek RFC
     
     <item>
       <title>PostgreSQL Nedir ? Nasıl Çalışır ?</title>
-      <link>https://boratanrikulu.dev/postgresql-nedir-nasil-calisir/</link>
+      <link>https://staging.boratanrikulu.dev/postgresql-nedir-nasil-calisir/</link>
       <pubDate>Thu, 16 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/postgresql-nedir-nasil-calisir/</guid>
+      <guid>https://staging.boratanrikulu.dev/postgresql-nedir-nasil-calisir/</guid>
       <description>Kaynaklar
 LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey **[Devrim Gündüz]**
 NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz **[0]**
@@ -156,10 +156,10 @@ PostgreSQL, kanıtlanmış mimarisi, güvenilirliği, veri bütünlüğü, sağl
     
     <item>
       <title>Bus Topology - Örnek Uygulama</title>
-      <link>https://boratanrikulu.dev/bus-topology-ornek-uygulama/</link>
+      <link>https://staging.boratanrikulu.dev/bus-topology-ornek-uygulama/</link>
       <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/bus-topology-ornek-uygulama/</guid>
+      <guid>https://staging.boratanrikulu.dev/bus-topology-ornek-uygulama/</guid>
       <description>Kaynaklar
 LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey (Engür Pişirici)
 NOT: Anlatım için VirtualBox ve Debian9 kullanılmıştır.
@@ -169,10 +169,10 @@ NOT: Anlatım için VirtualBox ve Debian9 kullanılmıştır.
     
     <item>
       <title>Cron ile Zamanlanmış Görevler</title>
-      <link>https://boratanrikulu.dev/cron-ile-zamanlanmis-gorevler/</link>
+      <link>https://staging.boratanrikulu.dev/cron-ile-zamanlanmis-gorevler/</link>
       <pubDate>Tue, 10 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/cron-ile-zamanlanmis-gorevler/</guid>
+      <guid>https://staging.boratanrikulu.dev/cron-ile-zamanlanmis-gorevler/</guid>
       <description>Kaynaklar
 wiki.archlinux.org/cron
 en.wikipedia.org/wiki/Cron
@@ -184,10 +184,10 @@ $ sudo dpkg-reconfigure tzdata  Zamanlanmış Görev Nedir ? Zamanlanmış göre
     
     <item>
       <title>Dosya ve Dizin İzinleri</title>
-      <link>https://boratanrikulu.dev/dosya-ve-dizin-izinleri/</link>
+      <link>https://staging.boratanrikulu.dev/dosya-ve-dizin-izinleri/</link>
       <pubDate>Mon, 09 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/dosya-ve-dizin-izinleri/</guid>
+      <guid>https://staging.boratanrikulu.dev/dosya-ve-dizin-izinleri/</guid>
       <description>Kaynaklar
 wiki.archlinux.org/File_permissions_and_attributes
 en.wikipedia.org/wiki/Chmod
@@ -200,10 +200,10 @@ $ ls -l fileName Dosya ve dizin işlemlerine bakıldığında 10 karakterden olu
     
     <item>
       <title>Pacman ve APT Cheatsheet</title>
-      <link>https://boratanrikulu.dev/pacman-ve-apt-cheatsheet/</link>
+      <link>https://staging.boratanrikulu.dev/pacman-ve-apt-cheatsheet/</link>
       <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/pacman-ve-apt-cheatsheet/</guid>
+      <guid>https://staging.boratanrikulu.dev/pacman-ve-apt-cheatsheet/</guid>
       <description>Yazan: boratanrikulu
 Kaynaklar
 wiki.archlinux.org/Pacman/Rosetta
@@ -213,10 +213,10 @@ wiki.archlinux.org/Pacman/Rosetta
     
     <item>
       <title>SSH-Key Kullanımı</title>
-      <link>https://boratanrikulu.dev/ssh-key-kullanimi/</link>
+      <link>https://staging.boratanrikulu.dev/ssh-key-kullanimi/</link>
       <pubDate>Fri, 06 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/ssh-key-kullanimi/</guid>
+      <guid>https://staging.boratanrikulu.dev/ssh-key-kullanimi/</guid>
       <description>Kaynaklar
 www.digitalocean.com - Görsel Kaynağı
   SSH-Key&amp;rsquo;in Oluşturulması Öncelikle bilgisayarınızda ssh-key&amp;rsquo;i aşağıdaki gibi hazırlayın.
@@ -228,10 +228,10 @@ $ cd ~/ &amp;amp;&amp;amp; mkdir .ssh &amp;amp;&amp;amp; chmod 700 .ssh ~/.ssh/a
     
     <item>
       <title>Raspberry Pi 3 Torrent İstemcisi</title>
-      <link>https://boratanrikulu.dev/pi3-torrent-istemcisi/</link>
+      <link>https://staging.boratanrikulu.dev/pi3-torrent-istemcisi/</link>
       <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/pi3-torrent-istemcisi/</guid>
+      <guid>https://staging.boratanrikulu.dev/pi3-torrent-istemcisi/</guid>
       <description>Raspberry Pi 3 ile kolaylıkla bir torrent istemcisi hazırlayabilirsiniz. Bu mini server üzerinden gerekli indirme işlemlerinizi gerçekleştirebilir, indirilen verileri tüm ağdaki cihazların erişebileceği şekilde paylaşabilirsiniz.
 Malzemeler:  Raspberry Pi 3 Harici Hard Disk SD Kart Boş Bir Vakit  Not 1: Anlatım adımları GNU/Linux dağıtımlarına uygun olacak şekilde hazırlanmıştır. Windows ve OSX kullanıcıları başka kaynaklara göz gezdirebilir.
 Not 2: Anlatım adımlarını gerçekleştirebilmeniz için orta seviye GNU/Linux bilginiz olması gerekmektedir, aşağıdaki anlatım da buna uygun olarak hazırlanmıştır.</description>
@@ -239,10 +239,10 @@ Not 2: Anlatım adımlarını gerçekleştirebilmeniz için orta seviye GNU/Linu
     
     <item>
       <title>Archlinux - Kurulum Sonrası</title>
-      <link>https://boratanrikulu.dev/archlinux-kurulum-sonrasi/</link>
+      <link>https://staging.boratanrikulu.dev/archlinux-kurulum-sonrasi/</link>
       <pubDate>Tue, 29 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/archlinux-kurulum-sonrasi/</guid>
+      <guid>https://staging.boratanrikulu.dev/archlinux-kurulum-sonrasi/</guid>
       <description>NOT 1: Kurulumu gerçekleştirebilmeniz için orta seviye GNU/LINUX bilginiz olması gerekmektedir, aşağıdaki anlatım da buna uygun olarak hazırlanmıştır. Kurulum sırasında yaşayabileceğiniz herhangi bir sorun, sorumluluğum altında değildir.
 NOT 2: Adımlar XFCE masaüstüne uygun olacak şekildedir. Bazı paket yüklemeleri tercihendir. Kendi kişisel zevkinize göre şekillendirebilirsiniz.
 Not 3: Adımlar Intel + Nvidia sistemlere uygun olacak şekilde yapılmıştır. Açık kaynak sürücülerin kurulumu yapılmıştır.
@@ -252,10 +252,10 @@ Not 4: Ne yaptığınızı bilmiyorsanız adımları uygulamayın.
     
     <item>
       <title>Archlinux - Temel Kurulum</title>
-      <link>https://boratanrikulu.dev/archlinux-temel-kurulum/</link>
+      <link>https://staging.boratanrikulu.dev/archlinux-temel-kurulum/</link>
       <pubDate>Mon, 28 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/archlinux-temel-kurulum/</guid>
+      <guid>https://staging.boratanrikulu.dev/archlinux-temel-kurulum/</guid>
       <description>Kaynaklar
 wiki.archlinux.org/installation_guide
 youtube.com/AverageLinuxUser
@@ -268,10 +268,10 @@ Not 4: Ne yaptığınızı bilmiyorsanız adımları uygulamayın.
     
     <item>
       <title>Kablosuz Ağ Güvenliği - Bölüm 1</title>
-      <link>https://boratanrikulu.dev/kablosuz-ag-guvenligi-bolum-1/</link>
+      <link>https://staging.boratanrikulu.dev/kablosuz-ag-guvenligi-bolum-1/</link>
       <pubDate>Sat, 26 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/kablosuz-ag-guvenligi-bolum-1/</guid>
+      <guid>https://staging.boratanrikulu.dev/kablosuz-ag-guvenligi-bolum-1/</guid>
       <description>Kaynaklar
 Hacktrick&amp;rsquo;18 - Kablosuz Ağ Sızma Testleri - Besim Altınok
  Bazı Temel Bilgiler Modemler kendilerinin aktif olduğu belirtmek için etrafa Beacon paketleri yayarlar, bu sayede çevredeki aktif ağları görebiliriz.
@@ -283,10 +283,10 @@ Asociation Request ve Asociation Response aşamaları ile de bağlanma işlemi t
     
     <item>
       <title>Sniffing İşlemi</title>
-      <link>https://boratanrikulu.dev/sniffing-islemi/</link>
+      <link>https://staging.boratanrikulu.dev/sniffing-islemi/</link>
       <pubDate>Mon, 23 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/sniffing-islemi/</guid>
+      <guid>https://staging.boratanrikulu.dev/sniffing-islemi/</guid>
       <description>Kaynaklar
 kevsersrca.github.io/blog/security/tcpdump/
 wiki.wireshark.org/CaptureFilters
@@ -299,10 +299,10 @@ Network&amp;rsquo;te akan paketleri sniffing işlemi ile (şifrelenmiş değil i
     
     <item>
       <title>TCP/IP</title>
-      <link>https://boratanrikulu.dev/tcp-ip/</link>
+      <link>https://staging.boratanrikulu.dev/tcp-ip/</link>
       <pubDate>Mon, 23 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/tcp-ip/</guid>
+      <guid>https://staging.boratanrikulu.dev/tcp-ip/</guid>
       <description>Kaynaklar kevsersrca.github.io/blog/security/osi-katmanlari-ve-prokolleri/ en.wikipedia.org/wiki/TCP/IP
 networkstatic.net (çizimler)
  TCP/IP Nedir ? Transmission Control Protocol/Internet Protocol kısa ifadesi ile TCP/IP; bilgisayarların kendileri arasında nasıl iletişim kurduğunu belirleyen bir kurallar dizisidir. Verilerin nasıl paketleneceğini, gönderilmesini, alınmasını belirler ve pakette bozulma olup olmadığını tespit eder.
@@ -312,10 +312,10 @@ IP protokolü paketlere nereye gideceğini ve oraya nasıl gidileceğini söyler
     
     <item>
       <title>Parola Kırma Saldırıları</title>
-      <link>https://boratanrikulu.dev/parola-kirma-saldirilari/</link>
+      <link>https://staging.boratanrikulu.dev/parola-kirma-saldirilari/</link>
       <pubDate>Tue, 17 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/parola-kirma-saldirilari/</guid>
+      <guid>https://staging.boratanrikulu.dev/parola-kirma-saldirilari/</guid>
       <description>Kaynaklar
 erdemoflaz.com/sifre-ve-parola-arasindaki-farklar
 openwall.com/john/doc/examples
@@ -329,10 +329,10 @@ Kısaca “senin bildiğin parola, sistemin bildiği şifredir” diyebiliriz.</
     
     <item>
       <title>Exploit</title>
-      <link>https://boratanrikulu.dev/exploit/</link>
+      <link>https://staging.boratanrikulu.dev/exploit/</link>
       <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/exploit/</guid>
+      <guid>https://staging.boratanrikulu.dev/exploit/</guid>
       <description>Kaynaklar
 tr.wikipedia.org/wiki/exploit
 medium.com/@celk0irem007/kevgir-yetki-yukseltme
@@ -344,10 +344,10 @@ Exploit&amp;rsquo;ler genellikle hedef sistemin kontrolünü kazanma, yetki yük
     
     <item>
       <title>Aktif Bilgi Toplama (NMAP)</title>
-      <link>https://boratanrikulu.dev/aktif-bilgi-toplama/</link>
+      <link>https://staging.boratanrikulu.dev/aktif-bilgi-toplama/</link>
       <pubDate>Tue, 13 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/aktif-bilgi-toplama/</guid>
+      <guid>https://staging.boratanrikulu.dev/aktif-bilgi-toplama/</guid>
       <description>Kaynaklar:
 NMAP ile Ağ Keşfi - Murat Yokuş (Pusula Yayıncılık)
 canyoupwn.me/tr-nmap-cheatsheet/
@@ -359,10 +359,10 @@ Aktif bilgi toplama adımında hedef sistem ile doğrudan ilişkiye girilir.</de
     
     <item>
       <title>Pasif Bilgi Toplama (Açık Kaynak İstihbaratı)</title>
-      <link>https://boratanrikulu.dev/pasif-bilgi-toplama/</link>
+      <link>https://staging.boratanrikulu.dev/pasif-bilgi-toplama/</link>
       <pubDate>Mon, 05 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/pasif-bilgi-toplama/</guid>
+      <guid>https://staging.boratanrikulu.dev/pasif-bilgi-toplama/</guid>
       <description>Kaynaklar:
 erdemoflaz.com/pasif-bilgi-toplama
 canyoupwn.me

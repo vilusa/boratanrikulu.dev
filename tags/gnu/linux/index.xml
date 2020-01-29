@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>GNU/Linux on Bora Tanrıkulu</title>
-    <link>https://boratanrikulu.dev/tags/gnu/linux/</link>
+    <link>https://staging.boratanrikulu.dev/tags/gnu/linux/</link>
     <description>Recent content in GNU/Linux on Bora Tanrıkulu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>copyright notice</copyright>
     <lastBuildDate>Wed, 15 Jan 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://boratanrikulu.dev/tags/gnu/linux/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://staging.boratanrikulu.dev/tags/gnu/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Temel GNU/Linux Bilgisi</title>
-      <link>https://boratanrikulu.dev/gnulinux/</link>
+      <link>https://staging.boratanrikulu.dev/gnulinux/</link>
       <pubDate>Wed, 15 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/gnulinux/</guid>
+      <guid>https://staging.boratanrikulu.dev/gnulinux/</guid>
       <description> Izmir Fen Lisesi&amp;rsquo;nde katılımcılara temel kullanımı ve felsefeyi aktarmak amacıyla &amp;ldquo;Temel GNU/Linux Bilgisi&amp;rdquo; isimli bir eğitim verdim. Beni okullarına davet ettikleri için teşekkür ederim.
   iframe { height: 50vh; width: 100%; }  </description>
     </item>
     
     <item>
       <title>LDAP Nedir ? Örnek Bir Uygulama.</title>
-      <link>https://boratanrikulu.dev/ldap-nedir-ornek-bir-uygulama/</link>
+      <link>https://staging.boratanrikulu.dev/ldap-nedir-ornek-bir-uygulama/</link>
       <pubDate>Tue, 28 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/ldap-nedir-ornek-bir-uygulama/</guid>
+      <guid>https://staging.boratanrikulu.dev/ldap-nedir-ornek-bir-uygulama/</guid>
       <description>Kaynaklar
 LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey **[Aydın Doyak]**
 NOT 0: Ldif dosyalarının syntax&#39;ına hakim olmak oldukça zor, ben de hakim değilim.
@@ -40,10 +40,10 @@ NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim
     
     <item>
       <title>Merkezi Log Server Oluşturulması</title>
-      <link>https://boratanrikulu.dev/merkezi-log-server-olusturulmasi/</link>
+      <link>https://staging.boratanrikulu.dev/merkezi-log-server-olusturulmasi/</link>
       <pubDate>Mon, 27 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/merkezi-log-server-olusturulmasi/</guid>
+      <guid>https://staging.boratanrikulu.dev/merkezi-log-server-olusturulmasi/</guid>
       <description>Kaynaklar
 LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey **[Erdem Bayer]**
 NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz **[0]**
@@ -53,10 +53,10 @@ NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim
     
     <item>
       <title>Cron ile Zamanlanmış Görevler</title>
-      <link>https://boratanrikulu.dev/cron-ile-zamanlanmis-gorevler/</link>
+      <link>https://staging.boratanrikulu.dev/cron-ile-zamanlanmis-gorevler/</link>
       <pubDate>Tue, 10 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/cron-ile-zamanlanmis-gorevler/</guid>
+      <guid>https://staging.boratanrikulu.dev/cron-ile-zamanlanmis-gorevler/</guid>
       <description>Kaynaklar
 wiki.archlinux.org/cron
 en.wikipedia.org/wiki/Cron
@@ -68,10 +68,10 @@ $ sudo dpkg-reconfigure tzdata  Zamanlanmış Görev Nedir ? Zamanlanmış göre
     
     <item>
       <title>Dosya ve Dizin İzinleri</title>
-      <link>https://boratanrikulu.dev/dosya-ve-dizin-izinleri/</link>
+      <link>https://staging.boratanrikulu.dev/dosya-ve-dizin-izinleri/</link>
       <pubDate>Mon, 09 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/dosya-ve-dizin-izinleri/</guid>
+      <guid>https://staging.boratanrikulu.dev/dosya-ve-dizin-izinleri/</guid>
       <description>Kaynaklar
 wiki.archlinux.org/File_permissions_and_attributes
 en.wikipedia.org/wiki/Chmod
@@ -84,10 +84,10 @@ $ ls -l fileName Dosya ve dizin işlemlerine bakıldığında 10 karakterden olu
     
     <item>
       <title>Pacman ve APT Cheatsheet</title>
-      <link>https://boratanrikulu.dev/pacman-ve-apt-cheatsheet/</link>
+      <link>https://staging.boratanrikulu.dev/pacman-ve-apt-cheatsheet/</link>
       <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/pacman-ve-apt-cheatsheet/</guid>
+      <guid>https://staging.boratanrikulu.dev/pacman-ve-apt-cheatsheet/</guid>
       <description>Yazan: boratanrikulu
 Kaynaklar
 wiki.archlinux.org/Pacman/Rosetta
@@ -97,10 +97,10 @@ wiki.archlinux.org/Pacman/Rosetta
     
     <item>
       <title>SSH-Key Kullanımı</title>
-      <link>https://boratanrikulu.dev/ssh-key-kullanimi/</link>
+      <link>https://staging.boratanrikulu.dev/ssh-key-kullanimi/</link>
       <pubDate>Fri, 06 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/ssh-key-kullanimi/</guid>
+      <guid>https://staging.boratanrikulu.dev/ssh-key-kullanimi/</guid>
       <description>Kaynaklar
 www.digitalocean.com - Görsel Kaynağı
   SSH-Key&amp;rsquo;in Oluşturulması Öncelikle bilgisayarınızda ssh-key&amp;rsquo;i aşağıdaki gibi hazırlayın.
@@ -112,10 +112,10 @@ $ cd ~/ &amp;amp;&amp;amp; mkdir .ssh &amp;amp;&amp;amp; chmod 700 .ssh ~/.ssh/a
     
     <item>
       <title>Raspberry Pi 3 Torrent İstemcisi</title>
-      <link>https://boratanrikulu.dev/pi3-torrent-istemcisi/</link>
+      <link>https://staging.boratanrikulu.dev/pi3-torrent-istemcisi/</link>
       <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/pi3-torrent-istemcisi/</guid>
+      <guid>https://staging.boratanrikulu.dev/pi3-torrent-istemcisi/</guid>
       <description>Raspberry Pi 3 ile kolaylıkla bir torrent istemcisi hazırlayabilirsiniz. Bu mini server üzerinden gerekli indirme işlemlerinizi gerçekleştirebilir, indirilen verileri tüm ağdaki cihazların erişebileceği şekilde paylaşabilirsiniz.
 Malzemeler:  Raspberry Pi 3 Harici Hard Disk SD Kart Boş Bir Vakit  Not 1: Anlatım adımları GNU/Linux dağıtımlarına uygun olacak şekilde hazırlanmıştır. Windows ve OSX kullanıcıları başka kaynaklara göz gezdirebilir.
 Not 2: Anlatım adımlarını gerçekleştirebilmeniz için orta seviye GNU/Linux bilginiz olması gerekmektedir, aşağıdaki anlatım da buna uygun olarak hazırlanmıştır.</description>
@@ -123,10 +123,10 @@ Not 2: Anlatım adımlarını gerçekleştirebilmeniz için orta seviye GNU/Linu
     
     <item>
       <title>Archlinux - Kurulum Sonrası</title>
-      <link>https://boratanrikulu.dev/archlinux-kurulum-sonrasi/</link>
+      <link>https://staging.boratanrikulu.dev/archlinux-kurulum-sonrasi/</link>
       <pubDate>Tue, 29 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/archlinux-kurulum-sonrasi/</guid>
+      <guid>https://staging.boratanrikulu.dev/archlinux-kurulum-sonrasi/</guid>
       <description>NOT 1: Kurulumu gerçekleştirebilmeniz için orta seviye GNU/LINUX bilginiz olması gerekmektedir, aşağıdaki anlatım da buna uygun olarak hazırlanmıştır. Kurulum sırasında yaşayabileceğiniz herhangi bir sorun, sorumluluğum altında değildir.
 NOT 2: Adımlar XFCE masaüstüne uygun olacak şekildedir. Bazı paket yüklemeleri tercihendir. Kendi kişisel zevkinize göre şekillendirebilirsiniz.
 Not 3: Adımlar Intel + Nvidia sistemlere uygun olacak şekilde yapılmıştır. Açık kaynak sürücülerin kurulumu yapılmıştır.
@@ -136,10 +136,10 @@ Not 4: Ne yaptığınızı bilmiyorsanız adımları uygulamayın.
     
     <item>
       <title>Archlinux - Temel Kurulum</title>
-      <link>https://boratanrikulu.dev/archlinux-temel-kurulum/</link>
+      <link>https://staging.boratanrikulu.dev/archlinux-temel-kurulum/</link>
       <pubDate>Mon, 28 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/archlinux-temel-kurulum/</guid>
+      <guid>https://staging.boratanrikulu.dev/archlinux-temel-kurulum/</guid>
       <description>Kaynaklar
 wiki.archlinux.org/installation_guide
 youtube.com/AverageLinuxUser

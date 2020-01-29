@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Computer Science on Bora Tanrıkulu</title>
-    <link>https://boratanrikulu.dev/tags/computer-science/</link>
+    <link>https://staging.boratanrikulu.dev/tags/computer-science/</link>
     <description>Recent content in Computer Science on Bora Tanrıkulu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>copyright notice</copyright>
     <lastBuildDate>Fri, 21 Jun 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://boratanrikulu.dev/tags/computer-science/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://staging.boratanrikulu.dev/tags/computer-science/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Decrease and Conquer</title>
-      <link>https://boratanrikulu.dev/decrease-and-conquer/</link>
+      <link>https://staging.boratanrikulu.dev/decrease-and-conquer/</link>
       <pubDate>Fri, 21 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/decrease-and-conquer/</guid>
+      <guid>https://staging.boratanrikulu.dev/decrease-and-conquer/</guid>
       <description>Kaynaklar:**
 Introduction to the Design &amp;amp; Analysis of Algorithms 3e - Pearson
 @elif_haytaoglu**
@@ -28,10 +28,10 @@ Yaklaşımın üç çeşidi bulunur:
     
     <item>
       <title>Brute Force ve Kapsamlı Arama</title>
-      <link>https://boratanrikulu.dev/brute-force/</link>
+      <link>https://staging.boratanrikulu.dev/brute-force/</link>
       <pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://boratanrikulu.dev/brute-force/</guid>
+      <guid>https://staging.boratanrikulu.dev/brute-force/</guid>
       <description>Kaynaklar:**
 Introduction to the Design &amp;amp; Analysis of Algorithms 3e - Pearson
 @elif_haytaoglu**

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>PostgreSQL Nedir ? Nasıl Çalışır ? - Bora Tanrıkulu</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="PostgreSQL Nedir ? Nasıl Çalışır ?" />
+<meta property="og:description" content="postgresql&#39;in nasıl çalıştığını adım adım açıklar." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boratanrikulu.dev/postgresql-nedir-nasil-calisir/" />
+<meta property="article:published_time" content="2018-08-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-08-16T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PostgreSQL Nedir ? Nasıl Çalışır ?"/>
+<meta name="twitter:description" content="postgresql&#39;in nasıl çalıştığını adım adım açıklar."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="https://boratanrikulu.dev/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://boratanrikulu.dev/">
+				<img src="/images/avatar.jpeg" alt="Bora Tanrıkulu" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="https://boratanrikulu.dev/">Bora Tanrıkulu</a></h1>
+	<div class="site-description"><p>Interested in shell scripting, system administration and golang.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/boratanrikulu/" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/boratanrikulu_/" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://linkedin.com/in/bora-tanrikulu/" title="LinkedIn"><i data-feather="linkedin"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/aboutme">About me</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">16</span>
+							<span class="rest">Aug 2018</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">PostgreSQL Nedir ? Nasıl Çalışır ?</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p><strong>Kaynaklar</strong><br>
+LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://twitter.com/DevrimGunduzTR">**[Devrim Gündüz]**</a></p>
+<p><strong>NOT 1:</strong> Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz <a href="https://github.com/boratanrikulu/boratanrikulu.github.io/tree/master/_posts">**[0]**</a><br>
+<strong>NOT 2:</strong> Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim <strong>:)</strong></p>
+<hr>
+<h2 id="postgresql-nedir-">PostgreSQL Nedir ?</h2>
+<p>PostgreSQL güçlü bir <strong>Object-Relational</strong> database servisidir.</p>
+<p>SQL dilinin kullanıldığı PostgreSQL&rsquo;in verileri güvenli bir şekilde saklama, karmaşık verileri ölçeklendirme gibi bir çok özelliği vardır.</p>
+<p>PostgreSQL tüm ana işletim sistemlerinde çalışır.</p>
+<p>PostgreSQL, kanıtlanmış mimarisi, güvenilirliği, veri bütünlüğü, sağlam özellik seti, genişletilebilirliği ve yazılımın arkasındaki açık kaynak topluluğunun sürekli olarak performans ve yenilikçi çözümler sunması ile güçlü bir ün kazanmıştır. <a href="https://www.postgresql.org/about/">**[1]**</a></p>
+<hr>
+<h2 id="postgresqlin-özellikleri">PostgreSQL&rsquo;in Özellikleri</h2>
+<ul>
+<li>Desteklenen database büyüklüğü <strong>sonsuz</strong>dur.</li>
+</ul>
+<blockquote>
+<p>Bir Tablo&rsquo;ya en fazla <strong>16 TB</strong> veri konabilir ama tablolar <strong>alt-tablo</strong>lara bölünebileceği ve bu alt-tablolar da 16 TB veri saklayabileceği için desteklenen veri büyüklüğü sonsuz olmuş olur.</p>
+</blockquote>
+<ul>
+<li>
+<p>Desteklenen satır <strong>(tuple)</strong> sayısı <strong>sonsuz</strong>dur.</p>
+</li>
+<li>
+<p>Desteklenen Index sayısı <strong>sonsuz</strong>dur.</p>
+</li>
+</ul>
+<blockquote>
+<p>Burada dikkat edilmesi gereken önemli bir husus vardır, eğer index sayısı çok fazla olursa ciddi bir <strong>performans kaybı</strong> yaşanacaktır.</p>
+</blockquote>
+<ul>
+<li>
+<p><strong>Object-Relational</strong> bir database&rsquo;dir. (RDMS değil)</p>
+</li>
+<li>
+<p>Bir tabloda <strong>250-1600</strong> arası kolon <strong>(attribute)</strong> olabilir.</p>
+</li>
+</ul>
+<blockquote>
+<p>row = tuple, column = attribute</p>
+</blockquote>
+<ul>
+<li>PostgreSQL aynı anda <strong>2^32</strong> tane <strong>client</strong>&lsquo;ın bağlanmasını destekler.</li>
+</ul>
+<blockquote>
+<p>4.294.967.296, yani 4 milyar.. <strong>Sonsuz diyebiliriz.</strong> Tabiki bunu destekleyecek bir altyapı şuan pek mümkün değil.</p>
+</blockquote>
+<ul>
+<li>Son olarak, PostgreSQL sunucunuz için donanım yükseltmeyi düşünüyorsanız; RAM, <strong>RAM alın!</strong></li>
+</ul>
+<hr>
+<h2 id="postgresql-nasıl-çalışır-">PostgreSQL Nasıl Çalışır ?</h2>
+<h3 id="bağlantının-kurulması">Bağlantının Kurulması</h3>
+<p align="center">
+	<img src="/images/posts/postgresql-nedir-nasil-calisir/1.png">
+</p>
+<p>Bir client yani bir DBA PostgreSQL servisine bağlanacağı sırada 3 zorunlu 1 opsiyonel bilgi gereklidir;</p>
+<ul>
+<li>Database Adı</li>
+<li>Kullanıcı Adı</li>
+<li>IP Adresi</li>
+<li>Parola (opsiyonel)</li>
+</ul>
+<p>Eğer girilen bilgiler doğru ise Postmaster tarafından bir postgres <strong>fork</strong> edilir ve client bağlanır. (attach)</p>
+<p>Her client bağlandığında ayrı bir postgres fork edilir. Client bağlantısı kesileceğinde bu süreç öldürülür. Öldürme işlemi <strong>pg-terminate-backend</strong> kullanılır. Kill yerine ayrı bir yapının kullanılmasının sebebi, öldürme işlemlerinin Postmaster&rsquo;a bildirilmek istenmesidir.</p>
+<blockquote>
+<p>Peki neden thread yerine fork&rsquo;lama işlemi yapılıyor ?. Aslında burada bakış açısı farkı vardır, farklı düşünce şekilleri olabilir. Thread yapısında, her client kapanması durumunda postmaster'ın da kapatılması gerekirdi. Bu yüzden fork&rsquo;lama tercih edilmiştir.</p>
+</blockquote>
+<p>Genel yapıya bakıldığında her client bağlantısı sağlandığında fork&rsquo;lama işlemi ve öldürme işleminin yürütüldüğü gözükür. Her bağlantı işleminde bunun yapılması oldukça büyük bir yük yaratacaktır. Bunun engellenmesi amacıyla <strong>Connection Pooler</strong> kullanılır.</p>
+<hr>
+<h3 id="connection-pooler">Connection Pooler</h3>
+<p align="center">
+	<img src="/images/posts/postgresql-nedir-nasil-calisir/2.png">
+</p>
+<p>Connection Pooler ile her bağlantı için uygulanan fork&rsquo;lama işleminin yükü önlenebilir.</p>
+<p>Connection Pooler, PostgreSQL başlatıldığında default client sayısı kadar postgres oluşturur ve kendine bağlar.</p>
+<p>Postgres&rsquo;lerin oluşturulması yalnızca 1 kez yapılacağı için pooler sayesinde işlem yükünden ciddi bir kazanç sağlanır.</p>
+<p>Bir client bağlanacağında direkt olarak Connection Pooler ile bağlantı kurar. Server ise karşısında direkt olarak Connection Pooler'ı görür.</p>
+<p>Connection Pooler ayrı bir sunucuda ya da direkt PostgreSQL ile aynı sunucuda yürütülebilir. Ama aynı sunucuda daha performanslı bir sonuç verecektir.</p>
+<p>PostgreSQL default olarak en fazla 100 client kabul edebilir. Bu nedenle default ayarlar ile Connection Pooler çalıştırıldığında kendine 100 tane postgres bağlantısı sağlar. Eğer dışardan gelen client sayısı 100&rsquo;den fazla olursa, pooler bunları sıraya koyabilir.</p>
+<p>PgBouncer bir connection pooler&rsquo;dır. <a href="https://pgbouncer.github.io/">**[2]**</a></p>
+<hr>
+<h3 id="sorguların-çalıştırılması">Sorguların Çalıştırılması</h3>
+<p align="center">
+	<img src="/images/posts/postgresql-nedir-nasil-calisir/3.png">
+</p>
+<p>Sorgular için 3 aşama uygulanır.</p>
+<ul>
+<li>Parse</li>
+<li>Analyze (Optimizer)</li>
+<li>Execute</li>
+</ul>
+<p>Postgres&rsquo;e Query Backend denir. Sorgular Postgres tarafından çalıştırılır.</p>
+<p>Shared Buffers sabit alanı kernel tarafından ayrılıp postmaster&rsquo;a verilir. Tüm sorgu (query) işlemleri bu Shared Buffers alanında çalıştırılır. Shared Buffers&rsquo;ta tutulan veriler veriler diskin bir yansısı olarak düşünülebilir. Diskteki veri ile Shared Buffers&rsquo;taki veri aynı ise clean buffer olarak adlandırılır. Clean-Dirty durumunu kernel bilir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#000;font-weight:bold">SELECT</span> <span style="color:#000;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">FROM</span> customers
+</code></pre></div><p>Bir sorgu çalıştırılacağı zaman Shared Bufffers&rsquo;da verinin olup olmadığına bakılır, eğer yok ise kernel tarafından ilk olarak cache&rsquo;e bakılır eğer orada da yok ise diske gidilir, ilgili veriler shared buffers&rsquo;a taşınır ve sorgu çalıştırılır. Sorgu çalıştırıldıktan sonra sonuç postgres&rsquo;e atılır, postgres de sonucu client&rsquo;a yollar.</p>
+<blockquote>
+<p>Eğer yapılan sorgunun sonucunun boyutu shared buffers'ın fiziksel boyutundan büyük ise, shared buffers bypass edilebilir.</p>
+</blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#000;font-weight:bold">INSERT</span> <span style="color:#000;font-weight:bold">INTO</span> customers(name) <span style="color:#000;font-weight:bold">VALUES</span>(<span style="color:#d14">&#39;</span><span style="color:#d14">bora</span><span style="color:#d14">&#39;</span>)
+</code></pre></div><p>Bir insert sorgusu çalıştırılacağı zaman diske yazılmasına gerek yoktur, direkt olarak Shared Buffers&rsquo;a yazılabilir, daha sonra bu veriler disk ile eşlenir. Disk ile eşlenmemiş, yani disk ile aynı olmayan veriler Dirty Buffer olarak adlandırılır.</p>
+<hr>
+<h3 id="journal-nedir-">Journal Nedir ?</h3>
+<p>Shared Buffers ile Disk arasındaki eşliğin sağlanması için günümüz dosya sistemlerinde kullanılan journal mantığı ile aynı durum söz konusudur.</p>
+<blockquote>
+<p>FAT32&rsquo;den NTFS&rsquo;e ve EXT3&rsquo;den EXT4&rsquo;e geçildiğinde journal özelliği gelmiştir.</p>
+</blockquote>
+<p>Disklerin default olarak 5%&rsquo; i journal olarak tanımlanır. Veriler diske yazılacağında direkt olarak journal bölgesine yazılır, bu bölgeye yazılan veriler belli bir periyod ile dışar <strong>flash</strong> edilir.</p>
+<p>Buradaki mantık küçük bir alana yazma işleminin daha kolay olmasıdır, yazma küçük bir bölgeye yapılır ve bu veriler daha sonra dağıtılır.</p>
+<p>PostgreSQL de benzer bir mantık ile çalışır. WAL için postgres&rsquo;in journal'ı denebilir. <a href="https://www.postgresql.org/docs/9.1/static/wal-intro.html">**[3]**</a></p>
+<hr>
+<h3 id="dirty-buffers">Dirty Buffers</h3>
+<p align="center">
+	<img src="/images/posts/postgresql-nedir-nasil-calisir/4.png">
+</p>
+<p>Shared Buffers&rsquo;taki veriler <strong>Clean</strong> ve <strong>Dirty</strong> olmak üzere ikiye ayrılır. Buffer durumu kernel tarafından bilinir. Kernel eğer veriyi götürüyorsa clean, dışarıdan geliyor ise dirty olarak isimlendirir.</p>
+<p>Dirty Buffers'ın belli aralıkla ile diske yazılması gerekir. Bunun için Background Writer kullanılır.</p>
+<blockquote>
+<p>Disk üzerinde bir buffer boyutu 8kb iken RAM&rsquo;de 4kb yer kaplar.</p>
+</blockquote>
+<p>Background Writer belli aralıkla Shared Buffers&rsquo;taki dirty buffer&rsquo;ları diske (data) yazar ve flag&rsquo;lerini değiştirir.</p>
+<p>Background Writer default değer olarak 200ms&rsquo;de 400kb yazacak şekilde ayarlıdır.</p>
+<p>Checkpoint, BGW&rsquo;den farklı olarak, herhangi bir algoritme kullanmadan, direkt olarak tüm dirty buffer&rsquo;ların DATA&rsquo;ya yazılmasını sağlar.</p>
+<p>Eğer BGW işini düzgün yapamaz ise LRU (Least Recently Used)&rsquo; ın başındaki buffer dirty olabilir, böyle olursa LRU gelen sorguyu parse eder ve BGW gibi davranıp, BGW&rsquo;nin iki katı kadar temizleme yapar. Bu işlem yeteri kadar clean açılasaya kadar devam eder.</p>
+<hr>
+<h3 id="bgw-yazma-işlemini-nasıl-yapar-">BGW Yazma İşlemini Nasıl Yapar ?</h3>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">r1</td>
+<td align="center">1</td>
+<td align="center">A</td>
+</tr>
+<tr>
+<td align="center">r2</td>
+<td align="center">2</td>
+<td align="center">B</td>
+</tr>
+<tr>
+<td align="center">r3</td>
+<td align="center">3</td>
+<td align="center">C</td>
+</tr>
+</tbody>
+</table>
+<p>Örneğin yukardaki gibi bir tablo olsun ve bu tabloda 2. satırı silmek istiyor olalım. Bu durumda ilk aşamada direkt olarak silme işlemi uygulanmaz. 2. satırın visibility&rsquo;si invisible olarak değiştirilir.</p>
+<p>Ya da örneğin 2. satırı silmek yerine güncellemek istiyor olalım, bu durumda ise aynı anda çalışacak şekilde <strong>[INSERT + DELETE]</strong> işlemleri uygulanır, yani aslında direkt olarak veri değiştirilmez, ilgili veri invisible yapılır ve yani bir satır eklenmiş olur. Update&rsquo;in bu şekilde yapılması sayesinde farklı tracesection işlemleri yapılabilir.</p>
+<blockquote>
+<p>SELECT cmin,cmax,xmin,xmax FROM table</p>
+</blockquote>
+<p>Silme işleminin bu şekilde geciktirilme sebebi, silmenin oldukça masraflı olmasıdır.</p>
+<p>Invisible olarak belirtilen satırlar belli bir periyod ile autovacuum ile temizlenir. Autovacuum ayarlarının düzenlenmesi önemlidir, default ayarlar ile şişme olabilir.</p>
+<p>Ayrıca elle de vacuum işlemi yapılabilir.</p>
+<hr>
+<h2 id="örnek-bir-postgresql-uygulaması">Örnek Bir PostgreSQL Uygulaması</h2>
+<p><strong>NOT:</strong> Örnek uygulama amacıyla CentOS tercih ettim. Siz başka dağıtımlar tercih edebilirsiniz.</p>
+<p>İlk olarak repo adresini eklememiz gerekiyor. <a href="https://yum.postgresql.org/">**[4]**</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum install https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-7-x86_64/pgdg-centos10-10-2.noarch.rpm
+</code></pre></div><p>Ardından PostgreSQL kurulumunu yapalım.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum install postgresql10-server
+</code></pre></div><p>Database Class&rsquo;larını oluşturmak için aşağıdaki komutu yürütüyoruz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/usr/pgsql-10/bin/postgresql-10-setup initdb
+</code></pre></div><p>Herşey hazır, servisi başlatabiliriz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">systemctl start postgresql-10.service
+</code></pre></div><p>Sistemimizde otomatik olarak postgres isimli bir kullanıcı oluşturuldu.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">grep <span style="color:#d14">&#34;postgres&#34;</span> /etc/passwd
+</code></pre></div><p>Bu kullanıcıya geçiş yapalım. Bu aşamada parola sorgusunu atlatmak için komutu root yetkisi ile çalıştırmalısınız. Parola belirlemek istiyorsanız (<strong>sudo passwd postgres</strong> diyebilirsiniz.)</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">su - postgres
+</code></pre></div><p>Ardından aşağıdaki komut ile sisteme girilir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">psql
+</code></pre></div><p align="center">
+	<img src="/images/posts/postgresql-nedir-nasil-calisir/5.png">
+</p>
+<p>Şimdi örnek için kullanacağımız Database&rsquo;i oluşturalım.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#000;font-weight:bold">CREATE</span> <span style="color:#000;font-weight:bold">DATABASE</span> example;
+</code></pre></div><p>İşlemleri belli bir database üzerinde yapmak için <strong>connect</strong> olmamız gerekmekte. Aşağıdaki gibi oluşturduğumuz database&rsquo;e connect olalım.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#d14">\c</span> example;
+</code></pre></div><p>Şimdi örnek bir tablo oluşturalım.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#000;font-weight:bold">CREATE</span> <span style="color:#000;font-weight:bold">TABLE</span> customers(gender <span style="color:#0086b3">char</span>, name <span style="color:#0086b3">text</span>, surname <span style="color:#0086b3">text</span>, age <span style="color:#0086b3">int</span>);
+</code></pre></div><p>Oluşan tabloları görüntülemek için <strong>\d</strong> kullanılır. Aşağıdaki gibi oluşturduğumuz tabloyu görüntüleyebiliriz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#d14">\d</span> customers;
+</code></pre></div><p align="center">
+	<img src="/images/posts/postgresql-nedir-nasil-calisir/6.png">
+</p>
+<p>Aşağıdaki gibi yeni bir müşteri eklemesi yapabiliriz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#000;font-weight:bold">INSERT</span> <span style="color:#000;font-weight:bold">INTO</span> customers <span style="color:#000;font-weight:bold">VALUES</span>(<span style="color:#d14">&#39;</span><span style="color:#d14">M</span><span style="color:#d14">&#39;</span>, <span style="color:#d14">&#39;</span><span style="color:#d14">Bora</span><span style="color:#d14">&#39;</span>, <span style="color:#d14">&#39;</span><span style="color:#d14">Tanrikulu</span><span style="color:#d14">&#39;</span>, <span style="color:#099">21</span>);
+</code></pre></div><p>Son olarak yaptığımız işlemin sonucu görmek için tüm tabloyu görüntüleyelim.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#000;font-weight:bold">SELECT</span> <span style="color:#000;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">FROM</span> customers;
+</code></pre></div><p align="center">
+	<img src="/images/posts/postgresql-nedir-nasil-calisir/7.png">
+</p>
+<hr>
+<p><strong>NOT :</strong> Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim <strong>:)</strong></p>
+
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/database">Database</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'boratanrikulu';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> copyright notice |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77508691-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

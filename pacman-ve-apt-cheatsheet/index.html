@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Pacman ve APT Cheatsheet - Bora Tanrıkulu</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Pacman ve APT Cheatsheet" />
+<meta property="og:description" content="Yazan: boratanrikulu
+Kaynaklar
+wiki.archlinux.org/Pacman/Rosetta
+ NOT : Eksik gördüğünüz kısımlar için pull request yollayabilirsiniz.**[1]**
+    PACMAN APT Açıklama     pacman -S [packageName] apt install [packageName] paket yükler   pacman -Rs [packageName] apt remove [packageName] paket siler   pacman -Ss [packageName] apt search [packageName] paket arar   pacman -Sy apt update repo paket bilgilerini günceller   pacman -Syu apt update &amp;&amp; apt upgrade yüklü paketleri günceller   pacman -Syu apt update &amp;&amp; apt dist-upgrade sistemin tam güncellemesini yapar   pacman -Qdtq | pacman -Rs - apt autoremove herhangi bir pakete bağlı olmayan gereksiz paketleri siler   pacman -Sw [packageName] apt install &ndash;download-only [packageName] paketi yalnızca indirir (paket yöneticisi cache konumuna)   ls /var/cache/pacman/pkg/ ls /var/cache/apt/archives/ paket yöneticisi cache&rsquo;ni görüntüler   pacman -U [/path/to/packageName." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boratanrikulu.dev/pacman-ve-apt-cheatsheet/" />
+<meta property="article:published_time" content="2018-07-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-07-07T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Pacman ve APT Cheatsheet"/>
+<meta name="twitter:description" content="Yazan: boratanrikulu
+Kaynaklar
+wiki.archlinux.org/Pacman/Rosetta
+ NOT : Eksik gördüğünüz kısımlar için pull request yollayabilirsiniz.**[1]**
+    PACMAN APT Açıklama     pacman -S [packageName] apt install [packageName] paket yükler   pacman -Rs [packageName] apt remove [packageName] paket siler   pacman -Ss [packageName] apt search [packageName] paket arar   pacman -Sy apt update repo paket bilgilerini günceller   pacman -Syu apt update &amp;&amp; apt upgrade yüklü paketleri günceller   pacman -Syu apt update &amp;&amp; apt dist-upgrade sistemin tam güncellemesini yapar   pacman -Qdtq | pacman -Rs - apt autoremove herhangi bir pakete bağlı olmayan gereksiz paketleri siler   pacman -Sw [packageName] apt install &ndash;download-only [packageName] paketi yalnızca indirir (paket yöneticisi cache konumuna)   ls /var/cache/pacman/pkg/ ls /var/cache/apt/archives/ paket yöneticisi cache&rsquo;ni görüntüler   pacman -U [/path/to/packageName."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="https://boratanrikulu.dev/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://boratanrikulu.dev/">
+				<img src="/images/avatar.jpeg" alt="Bora Tanrıkulu" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="https://boratanrikulu.dev/">Bora Tanrıkulu</a></h1>
+	<div class="site-description"><p>Interested in shell scripting, system administration and golang.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/boratanrikulu/" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/boratanrikulu_/" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://linkedin.com/in/bora-tanrikulu/" title="LinkedIn"><i data-feather="linkedin"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/aboutme">About me</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">07</span>
+							<span class="rest">Jul 2018</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">Pacman ve APT Cheatsheet</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p><em><strong>Yazan: <a href="https://github.com/boratanrikulu">boratanrikulu</a></strong></em></p>
+<p><strong>Kaynaklar</strong><br>
+<a href="https://wiki.archlinux.org/index.php/Pacman/Rosetta">wiki.archlinux.org/Pacman/Rosetta</a></p>
+<hr>
+<p><strong>NOT</strong> : Eksik gördüğünüz kısımlar için <strong>pull request</strong> yollayabilirsiniz.<a href="https://github.com/boratanrikulu/boratanrikulu.github.io">**[1]**</a></p>
+<hr>
+<table>
+<thead>
+<tr>
+<th align="center">PACMAN</th>
+<th align="center">APT</th>
+<th align="center">Açıklama</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">pacman -S <em>[packageName]</em></td>
+<td align="center">apt install <em>[packageName]</em></td>
+<td align="center">paket yükler</td>
+</tr>
+<tr>
+<td align="center">pacman -Rs <em>[packageName]</em></td>
+<td align="center">apt remove <em>[packageName]</em></td>
+<td align="center">paket siler</td>
+</tr>
+<tr>
+<td align="center">pacman -Ss <em>[packageName]</em></td>
+<td align="center">apt search <em>[packageName]</em></td>
+<td align="center">paket arar</td>
+</tr>
+<tr>
+<td align="center">pacman -Sy</td>
+<td align="center">apt update</td>
+<td align="center">repo paket bilgilerini günceller</td>
+</tr>
+<tr>
+<td align="center">pacman -Syu</td>
+<td align="center">apt update &amp;&amp; apt upgrade</td>
+<td align="center">yüklü paketleri günceller</td>
+</tr>
+<tr>
+<td align="center">pacman -Syu</td>
+<td align="center">apt update &amp;&amp; apt dist-upgrade</td>
+<td align="center">sistemin tam güncellemesini yapar</td>
+</tr>
+<tr>
+<td align="center">pacman -Qdtq | pacman -Rs -</td>
+<td align="center">apt autoremove</td>
+<td align="center">herhangi bir pakete bağlı olmayan gereksiz paketleri siler</td>
+</tr>
+<tr>
+<td align="center">pacman -Sw <em>[packageName]</em></td>
+<td align="center">apt install &ndash;download-only <em>[packageName]</em></td>
+<td align="center">paketi yalnızca indirir (paket yöneticisi cache konumuna)</td>
+</tr>
+<tr>
+<td align="center">ls /var/cache/pacman/pkg/</td>
+<td align="center">ls /var/cache/apt/archives/</td>
+<td align="center">paket yöneticisi cache&rsquo;ni görüntüler</td>
+</tr>
+<tr>
+<td align="center">pacman -U <em>[/path/to/packageName.pkg.tar.xz]</em></td>
+<td align="center">apt install <em>[/path/to/packageName.deb]</em></td>
+<td align="center">paketi dosya ile yükler</td>
+</tr>
+<tr>
+<td align="center">tail -f /var/log/pacman.log</td>
+<td align="center">tail -f /var/log/dpkg.log</td>
+<td align="center">paket yöneticisi log&rsquo;larını gösterir</td>
+</tr>
+<tr>
+<td align="center">pacman -Si <em>[packageName]</em></td>
+<td align="center">apt show <em>[packageName]</em></td>
+<td align="center">repo&rsquo;daki bir paketin bilgisini gösterir</td>
+</tr>
+<tr>
+<td align="center">pacman -Qi <em>[packageName]</em></td>
+<td align="center">dpkg -s <em>[packageName]</em></td>
+<td align="center">yüklü olan bir paketin bilgisini gösterir</td>
+</tr>
+<tr>
+<td align="center">pacman -Q | less</td>
+<td align="center">dpkg -l | less <br>**-ya da-**<br>apt list &ndash;installed | less</td>
+<td align="center">yük olan tüm paketleri listeler</td>
+</tr>
+<tr>
+<td align="center">pacman -Qsq &gt; packages.list</td>
+<td align="center"><strong>?</strong></td>
+<td align="center">yüklü olan tüm paketlerin isimlerini <em>packages.list</em> dosyasına kaydeder</td>
+</tr>
+<tr>
+<td align="center">pacman -Ss | less</td>
+<td align="center">apt list | less</td>
+<td align="center">repo&rsquo;da bulunan tüm paketleri listeler</td>
+</tr>
+<tr>
+<td align="center">pacman -Ql <em>[packageName]</em></td>
+<td align="center">dpkg -L <em>[packageName]</em></td>
+<td align="center">yüklü olan paketin dosyalarının konumlarını gösterir</td>
+</tr>
+<tr>
+<td align="center">less /etc/pacman.d/mirrorlist</td>
+<td align="center">apt-cache policy</td>
+<td align="center">paket kaynak adreslerini listeler</td>
+</tr>
+<tr>
+<td align="center">less /etc/pacman.conf</td>
+<td align="center"><strong>?</strong></td>
+<td align="center">paket yöneticisi ayarlarını gösterir</td>
+</tr>
+</tbody>
+</table>
+
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/gnu/linux">GNU/Linux</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'boratanrikulu';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> copyright notice |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77508691-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

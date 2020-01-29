@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Active Job - Rails Arkaplan Görevleri - Bora Tanrıkulu</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Active Job - Rails Arkaplan Görevleri" />
+<meta property="og:description" content="Rails&#39;da arkaplan görevlerin nasıl yapılacağını anlatır." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boratanrikulu.dev/active-job-rails-arkaplan-gorevleri/" />
+<meta property="article:published_time" content="2019-08-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-08-02T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Active Job - Rails Arkaplan Görevleri"/>
+<meta name="twitter:description" content="Rails&#39;da arkaplan görevlerin nasıl yapılacağını anlatır."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="https://boratanrikulu.dev/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://boratanrikulu.dev/">
+				<img src="/images/avatar.jpeg" alt="Bora Tanrıkulu" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="https://boratanrikulu.dev/">Bora Tanrıkulu</a></h1>
+	<div class="site-description"><p>Interested in shell scripting, system administration and golang.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/boratanrikulu/" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/boratanrikulu_/" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://linkedin.com/in/bora-tanrikulu/" title="LinkedIn"><i data-feather="linkedin"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/aboutme">About me</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">02</span>
+							<span class="rest">Aug 2019</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">Active Job - Rails Arkaplan Görevleri</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p><strong>Kaynaklar:</strong><br>
+<a href="https://edgeguides.rubyonrails.org/active_job_basics.html">Rails Guides</a></p>
+<p><strong>Not:</strong> Anlatımda <code>ruby-2.6.3</code>, <code>rails-6.0.0.rc2</code> kullanılmıştır.</p>
+<hr>
+<h1 id="arkaplan-görevi-nedir-">Arkaplan Görevi Nedir ?</h1>
+<p>Rails&rsquo;da arka plan görevlerini yönetmek için kullanılan Active Record&rsquo;u açıklamaya başlamadan önce ilk olarak arkaplan görevi kavramının ne olduğuna açıklık getirmek gerekiyor.</p>
+<p>Arkaplan görevleri bir işlemin durmasına rol açmadan, eş bir çizgide yürüyerek rol almasıdır. E-posta yollanması buna çok güzel bir örnektir. Örneğin kullanıcı sistemimize kayıt olmak için kayıt ol formunu doldurduğunda onaylama epostası yollanıyor olsun. Kullanıcı bu tuşa bastığında eposta yollama işlemini direkt olarak işleme alırsak, e-posta yollanasıya kadar kullanıcı yükleme ekranında bekler. Fakat eğer arka plan görevi olarak çalışmasını sağlar ise işlem bir kuyruğa alınır ve sayfa direkt yüklenir.</p>
+<hr>
+<h1 id="nerelerde-arkaplan-görevlerine-ihtiyaç-olabilir-">Nerelerde Arkaplan Görevlerine İhtiyaç Olabilir ?</h1>
+<p>Örneğin bir kullanıcı alışveriş sitesinden bir şey satın aldığında arka planda bir fatura oluşturup e-posta olarak yollamak gerekir. Bu fatura oluşturma ve e-posta yollama aşamalarında arka plan görevi kullanmak mantıklı olacaktır.</p>
+<p>Ya da şunu hayal edin haftalık bülten sitemiz var. Kullanıcı e-postasını sisteme girdiğinde haftalık olarak bilgilendirme e-postası almak istiyor, bu durumda da arka plan görevleri kullanmak mantıklı olacaktır.</p>
+<hr>
+<h1 id="active-job-nedir-">Active Job nedir ?</h1>
+<p>Active Job, zamanlanmış olarak çalışacak görevleri tanımlayan, bu görevlerin kuyruk servislerine (çoğunlukla III. parti) aktarılmasından sorumlu bir framework yani uygulama çatısıdır.</p>
+<p>Active Job&rsquo;un ana amacı; Kuyruk(queue) amacıyla kullandığımız III. parti servisi değişse dahi daha önceden yazmış olduğumuz görevlerin yani job&rsquo;ların baştan yazımının önüne geçmektir.</p>
+<p>Active Job sayesinde görevlerimizi yazabilir ve istediğimiz kuyruk servisi kullanabilir, değiştirebiliriz.</p>
+<hr>
+<h1 id="kuyruk-servisleri">Kuyruk Servisleri</h1>
+<p>Rails&rsquo;de varsayılan olarak kuyruk mekanizması RAM üzerinde tutulacak şekildedir. Herhangi bir elektrik kesintisinde ya da RAM&rsquo;de oluşacak bir sorunda kuyruktaki tüm görevler yok olacaktır.</p>
+<p>Bu durumda III. parti bir kuyruk servisi kullanmak mantıklı olabilir.<br>
+Bu servislere <code>Sidekiq</code>, <code>Resque</code>, <code>Delayed Job</code> vs. örnek verilebilir.<br>
+Servislerin güncel listesine buradan <a href="https://edgeapi.rubyonrails.org/classes/ActiveJob/QueueAdapters.html"><strong><code>QueueAdapters</code></strong></a> bakılabilir.</p>
+<p>Kuyruk servisini ayarlamak oldukça basit. Config dosyasında belirtmemiz yeterli.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">config<span style="color:#000;font-weight:bold">.</span>active_job<span style="color:#000;font-weight:bold">.</span>queue_adapter <span style="color:#000;font-weight:bold">=</span> <span style="color:#990073">:sidekiq</span>
+</code></pre></div><p>Ya da görev bazlı olarak seçeceğimiz servisi değiştirebiliriz. Yani config dosyasında varsayılan olarak ayarlanan servisin üzerine yazmış oluruz. Örneğin haftalık bülten görevi için &ldquo;sidekiq&rdquo; kullanırken, ödeme hatırlatıcı e-postaların atılması için &ldquo;resque&rdquo; kullanabiliriz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">NewsletterJob</span> <span style="color:#000;font-weight:bold">&lt;</span> <span style="color:#008080">ApplicationJob</span>
+  <span style="color:#0086b3">self</span><span style="color:#000;font-weight:bold">.</span>queue_adapter <span style="color:#000;font-weight:bold">=</span> <span style="color:#990073">:sidekiq</span>
+<span style="color:#000;font-weight:bold">end</span>
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">FeeJob</span> <span style="color:#000;font-weight:bold">&lt;</span> <span style="color:#008080">ApplicationJob</span>
+  <span style="color:#0086b3">self</span><span style="color:#000;font-weight:bold">.</span>queue_adapter <span style="color:#000;font-weight:bold">=</span> <span style="color:#990073">:resque</span>
+<span style="color:#000;font-weight:bold">end</span>
+</code></pre></div><p>Ben, bu örnekte sidekiq kullanmayı tercih ettim.</p>
+<p>Bunun için Gemfile&rsquo;e sidekiq&rsquo;i eklemeli ve routes dosyasını da aşağıdaki gibi ayarlamalısınız. Ayrıca sidekiq çalışmak için redis sunucusuna ihtiyaç duyuyor.</p>
+<p>Gemfile</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">gem <span style="color:#d14">&#39;sidekiq&#39;</span>, <span style="color:#d14">&#39;~&gt; 5.2&#39;</span>, <span style="color:#d14">&#39;&gt;= 5.2.7&#39;</span>
+</code></pre></div><p>Routes</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#0086b3">require</span> <span style="color:#d14">&#39;sidekiq/web&#39;</span>
+<span style="color:#0086b3">require</span> <span style="color:#d14">&#39;sidekiq/cron/web&#39;</span>
+
+<span style="color:#008080">Rails</span><span style="color:#000;font-weight:bold">.</span>application<span style="color:#000;font-weight:bold">.</span>routes<span style="color:#000;font-weight:bold">.</span>draw <span style="color:#000;font-weight:bold">do</span>
+  mount <span style="color:#008080">Sidekiq</span><span style="color:#000;font-weight:bold">::</span><span style="color:#008080">Web</span>, <span style="color:#990073">at</span>: <span style="color:#d14">&#39;/sidekiq&#39;</span>
+<span style="color:#000;font-weight:bold">end</span>
+</code></pre></div><hr>
+<h1 id="kullanıcı-kayıt-olduğunda-arkaplanda-e-posta-atılması">Kullanıcı Kayıt Olduğunda Arkaplanda E-posta Atılması</h1>
+<p>Uygulamızda kullanıcılar kayıt olduğunda arka planda e-posta yollamak istiyoruz.</p>
+<p>Kullanıcıyı yaratalım.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">rails generate scaffold <span style="color:#008080">User</span> <span style="color:#0086b3">name</span><span style="color:#990073">:string</span> <span style="color:#990073">email</span>:string
+</code></pre></div><p>E-posta yollayabilmek için mailer ekleyelim</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">rails generate mailer <span style="color:#008080">UserMailer</span>
+</code></pre></div><p>Bu mailer&rsquo;e <strong>welcome</strong> diye bir method ekleyelim</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">UserMailer</span> <span style="color:#000;font-weight:bold">&lt;</span> <span style="color:#008080">ApplicationMailer</span>
+  <span style="color:#000;font-weight:bold">def</span> <span style="color:#458;font-weight:bold"></span><span style="color:#000;font-weight:bold"></span><span style="color:#900;font-weight:bold">welcome</span>(user)
+    <span style="color:#008080">@user</span> <span style="color:#000;font-weight:bold">=</span> user
+    mail(<span style="color:#990073">to</span>: <span style="color:#008080">@user</span><span style="color:#000;font-weight:bold">.</span>email, <span style="color:#990073">subject</span>: <span style="color:#d14">&#39;Welcome!&#39;</span>)
+  <span style="color:#000;font-weight:bold">end</span>
+<span style="color:#000;font-weight:bold">end</span>
+
+</code></pre></div><p>Model&rsquo;e de bir callback ekleyelim. Artık kullanıcı kayıt olduğunda arka plan görevi olarak bir e-posta atıyoruz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">User</span> <span style="color:#000;font-weight:bold">&lt;</span> <span style="color:#008080">ApplicationRecord</span>
+  after_create <span style="color:#990073">:send_welcome_mail</span>
+
+  <span style="color:#000;font-weight:bold">private</span>
+
+  <span style="color:#000;font-weight:bold">def</span> <span style="color:#458;font-weight:bold"></span><span style="color:#000;font-weight:bold"></span><span style="color:#900;font-weight:bold">send_welcome_mail</span>
+    <span style="color:#008080">UserMailer</span><span style="color:#000;font-weight:bold">.</span>welcome(<span style="color:#0086b3">self</span>)<span style="color:#000;font-weight:bold">.</span>deliver_later
+  <span style="color:#000;font-weight:bold">end</span>
+<span style="color:#000;font-weight:bold">end</span>
+</code></pre></div><p>Burada <code>deliver_later</code> ifadesi oldukça önemli. Böyle diyerek işlemin bir görev olarak kuyruğa girmesini sağlıyoruz. Eğer <code>deliver_now</code> deseydik kuyruğa girmeden direkt olarak işleme alınacaktı.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#008080">UserMailer</span><span style="color:#000;font-weight:bold">.</span>welcome(<span style="color:#0086b3">self</span>)<span style="color:#000;font-weight:bold">.</span>deliver_now
+
+<span style="color:#008080">UserMailer</span><span style="color:#000;font-weight:bold">.</span>welcome(<span style="color:#0086b3">self</span>)<span style="color:#000;font-weight:bold">.</span>deliver_later
+</code></pre></div><hr>
+<h1 id="görev-job-oluşturma">Görev (Job) Oluşturma</h1>
+<p>Sistemimizde kullanıcılar satın aldıkları aboneliklere uygun şekilde bir pasif olma tarihine sahip olsun. Yani örneğin kullanıcı 10 Ağustos tarihine kadar abone olup parasını ödemiş olsun. Bu tarihte artık pasif hale getirilmesi gerekir.</p>
+<p>Bunun için bir görev yaratalım.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">rails generate job users_clean
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">UsersCleanJob</span> <span style="color:#000;font-weight:bold">&lt;</span> <span style="color:#008080">ApplicationJob</span>
+  queue_as <span style="color:#990073">:default</span>
+
+  <span style="color:#000;font-weight:bold">def</span> <span style="color:#458;font-weight:bold"></span><span style="color:#000;font-weight:bold"></span><span style="color:#900;font-weight:bold">perform</span>(<span style="color:#000;font-weight:bold">*</span>args)
+    <span style="color:#998;font-style:italic"># Do something later</span>
+  <span style="color:#000;font-weight:bold">end</span>
+<span style="color:#000;font-weight:bold">end</span>
+</code></pre></div><p>Bunu tetiklemek için</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#008080">GuestsCleanupJob</span><span style="color:#000;font-weight:bold">.</span>perform_later(<span style="color:#008080">@user</span>)
+</code></pre></div><p>Bizim tetikleme tarihimiz belli olduğu için</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#008080">GuestsCleanupJob</span><span style="color:#000;font-weight:bold">.</span>set(<span style="color:#990073">wait_until</span>: <span style="color:#008080">@user</span><span style="color:#000;font-weight:bold">.</span>expire_date)<span style="color:#000;font-weight:bold">.</span>perform_later(<span style="color:#008080">@user</span>)
+</code></pre></div><hr>
+<h1 id="görevlere-callbacks-eklemek">Görevlere Callbacks eklemek</h1>
+<p>Görevlere de aynı modellerde yaptığımız gibi callback eklenebilir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">GuestsCleanupJob</span> <span style="color:#000;font-weight:bold">&lt;</span> <span style="color:#008080">ApplicationJob</span>
+  queue_as <span style="color:#990073">:default</span>
+
+  around_perform <span style="color:#990073">:around_cleanup</span>
+
+  <span style="color:#000;font-weight:bold">def</span> <span style="color:#458;font-weight:bold"></span><span style="color:#000;font-weight:bold"></span><span style="color:#900;font-weight:bold">perform</span>
+    <span style="color:#998;font-style:italic"># Do something later</span>
+  <span style="color:#000;font-weight:bold">end</span>
+
+  <span style="color:#000;font-weight:bold">private</span>
+    <span style="color:#000;font-weight:bold">def</span> <span style="color:#458;font-weight:bold"></span><span style="color:#000;font-weight:bold"></span><span style="color:#900;font-weight:bold">around_cleanup</span>
+      <span style="color:#998;font-style:italic"># Do something before perform</span>
+      <span style="color:#000;font-weight:bold">yield</span>
+      <span style="color:#998;font-style:italic"># Do something after perform</span>
+    <span style="color:#000;font-weight:bold">end</span>
+<span style="color:#000;font-weight:bold">end</span>
+</code></pre></div><p>Diğer callback&rsquo;ler de aynı model&rsquo;deki gibidir.</p>
+<ul>
+<li>before_enqueue</li>
+<li>around_enqueue</li>
+<li>after_enqueue</li>
+<li>before_perform</li>
+<li>around_perform</li>
+<li>after_perform</li>
+</ul>
+
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/software">Software</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'boratanrikulu';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> copyright notice |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77508691-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

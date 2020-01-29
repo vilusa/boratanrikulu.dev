@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>SSH-Key Kullanımı - Bora Tanrıkulu</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="SSH-Key Kullanımı" />
+<meta property="og:description" content="ssh-key&#39;in nasıl kullanıldığını açıklar." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boratanrikulu.dev/ssh-key-kullanimi/" />
+<meta property="article:published_time" content="2018-07-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-07-06T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SSH-Key Kullanımı"/>
+<meta name="twitter:description" content="ssh-key&#39;in nasıl kullanıldığını açıklar."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="https://boratanrikulu.dev/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://boratanrikulu.dev/">
+				<img src="/images/avatar.jpeg" alt="Bora Tanrıkulu" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="https://boratanrikulu.dev/">Bora Tanrıkulu</a></h1>
+	<div class="site-description"><p>Interested in shell scripting, system administration and golang.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/boratanrikulu/" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/boratanrikulu_/" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://linkedin.com/in/bora-tanrikulu/" title="LinkedIn"><i data-feather="linkedin"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/aboutme">About me</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">06</span>
+							<span class="rest">Jul 2018</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">SSH-Key Kullanımı</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p><strong>Kaynaklar</strong><br>
+<a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2">www.digitalocean.com - Görsel Kaynağı</a></p>
+<hr>
+<p align="center"> 
+	<img src="/images/posts/ssh-key-kullanimi/0.png">
+</p>
+<hr>
+<h2 id="ssh-keyin-oluşturulması">SSH-Key&rsquo;in Oluşturulması</h2>
+<p>Öncelikle bilgisayarınızda ssh-key&rsquo;i aşağıdaki gibi hazırlayın.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ ssh-keygen
+</code></pre></div><p align="center"> 
+	<img src="/images/posts/ssh-key-kullanimi/1.png">
+</p>
+<p>Ardından pub dosyasının içeriğini kopyalayın ve sunucu tarafına geçin.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ cat /path/to/ssh-key.pub
+</code></pre></div><p align="center"> 
+	<img src="/images/posts/ssh-key-kullanimi/2.png">
+</p>
+<hr>
+<h2 id="sunucuda-authorized_keys-dosyasının-hazırlanması">Sunucuda &ldquo;authorized_keys&rdquo; Dosyasının Hazırlanması</h2>
+<p>Eğer hali hazırda sunucuda ilgili kullanıcının home dizini altında <strong>.ssh/authorized_keys</strong> dosyası bulunmuyorsa aşağıdaki işlemleri uygulayın.</p>
+<p><strong>~/.ssh</strong> klasörünü aşağıdaki gibi oluşturun ve erişebilirliğini 700 olarak belirleyin.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ <span style="color:#0086b3">cd</span> ~/ <span style="color:#000;font-weight:bold">&amp;&amp;</span> mkdir .ssh <span style="color:#000;font-weight:bold">&amp;&amp;</span> chmod <span style="color:#099">700</span> .ssh
+</code></pre></div><p><strong>~/.ssh/authorized_keys</strong> dosyasını aşağıdaki gibi oluşturun ve erişebilirliğini 600 olarak belirleyin.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ touch .ssh/authorized_keys <span style="color:#000;font-weight:bold">&amp;&amp;</span> chmod <span style="color:#099">600</span> .ssh/authorized_keys
+</code></pre></div><p align="center"> 
+	<img src="/images/posts/ssh-key-kullanimi/3.png">
+</p>
+<p>Ardından kopyaladığınız key&rsquo;i <strong>.ssh/authorized_keys</strong> dosyasına yapıştırın.</p>
+<p align="center"> 
+	<img src="/images/posts/ssh-key-kullanimi/4.png">
+</p>
+<hr>
+<h2 id="ssh-key-kullanımı-ile-sunucuya-bağlanmak">SSH-Key Kullanımı ile Sunucuya Bağlanmak</h2>
+<p>Artık <strong>-i</strong> parametresi ile key&rsquo;in konumunu belirterek sunucuya bağlayabilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ ssh -i /path/to/ssh-key username@ServerIP
+</code></pre></div><p>Aşağıda görüldüğü gibi parola kullanılmadan bağlantı sağlanmış oldu.</p>
+<p align="center"> 
+	<img src="/images/posts/ssh-key-kullanimi/5.png">
+</p>
+<hr>
+<h2 id="ssh-kullanımının-daha-güvenli-hale-getirilmesi">SSH Kullanımının Daha Güvenli Hale Getirilmesi</h2>
+<p>Sunucunuzun daha güvenli bir hale gelmesi için default port olan 22&rsquo;yi değiştirmenizde, root kullanıcısı ve parola kullanımı ile girişleri kapatmanızda fayda vardır. Aşağıdaki gibi bu işlemi yapabilirsiniz.</p>
+<p>config dosyasını aşağıdaki gibi açın ve ilgili satırları tabloda belirtildiği gibi değiştirin.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ sudo nano /etc/ssh/sshd_config
+</code></pre></div><table>
+<thead>
+<tr>
+<th align="center">Eski</th>
+<th align="center">Yeni</th>
+<th align="center">Amacı</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">#Port 22</td>
+<td align="center">Port KullanmakIstediginizPort</td>
+<td align="center">Default olan 22&rsquo;i yerine başka bir port kullanmak</td>
+</tr>
+<tr>
+<td align="center">#PermitRootLogin yes</td>
+<td align="center">PermitRootLogin no</td>
+<td align="center">root kullanıcısı ile ssh bağlantılarını engellemek</td>
+</tr>
+<tr>
+<td align="center">#PasswordAuthentication yes</td>
+<td align="center">PasswordAuthentication no</td>
+<td align="center">Parola ile girişleri kapatmak</td>
+</tr>
+<tr>
+<td align="center">#PubkeyAuthentication yes</td>
+<td align="center">PubkeyAuthentication yes</td>
+<td align="center">Pubkey kullanarak girişlere izin vermek</td>
+</tr>
+</tbody>
+</table>
+<p>İşlem gerçekleştirildikten sonra aşağıda görüldüğü gibi ssh-key olmadan bağlantı kurulmasına izin verilmemektedir.</p>
+<p align="center"> 
+	<img src="/images/posts/ssh-key-kullanimi/8.png">
+</p>
+<hr>
+<h2 id="sshconfig-dosyasının-kullanımı">&ldquo;.ssh/config&rdquo; Dosyasının Kullanımı</h2>
+<p>Eğer birden fazla sunucu ile uğraşıyorsanız, her bağlantı kurma aşamasında IP girmek tam bir işkence. Bunun önüne geçmek için bilgisayarınızda aşağıdaki gibi bir .ssh/config dosyası oluşturabilirsiniz. Bu sayede IP&rsquo;leri girmeden direkt olarak <strong>ssh serverName</strong> diyerek sunucunuz ile bağlantı sağlayabilirsiniz.</p>
+<p>Bunun için <strong>~/.ssh/config</strong> dosyasını oluşturun.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ touch .ssh/config
+</code></pre></div><p>Ardından aşağıdaki dosyayı ayarlayın.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	Host	serverName
+		HostName		ServerIP
+		User			username
+		Port			<span style="color:#099">22</span>
+		IdentityFile		/path/to/ssh-key
+</code></pre></div><p align="center"> 
+	<img src="/images/posts/ssh-key-kullanimi/6.png">
+</p>
+<p>Artık herhangi bir şekilde IP girmek yerine direkt olarak <strong>ssh serverName</strong> diyerek sunucunuza bağlanabilirsiniz.</p>
+<p align="center"> 
+	<img src="/images/posts/ssh-key-kullanimi/7.png">
+</p>
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/gnu/linux">GNU/Linux</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'boratanrikulu';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> copyright notice |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77508691-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

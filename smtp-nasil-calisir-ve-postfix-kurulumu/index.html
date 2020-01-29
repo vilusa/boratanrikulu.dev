@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>SMTP Nasıl Çalışır ve Postfix Kurulumu - Bora Tanrıkulu</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="SMTP Nasıl Çalışır ve Postfix Kurulumu" />
+<meta property="og:description" content="lyk18&#39;de yapılan postfix anlatımının bir özeti." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boratanrikulu.dev/smtp-nasil-calisir-ve-postfix-kurulumu/" />
+<meta property="article:published_time" content="2018-08-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-08-25T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SMTP Nasıl Çalışır ve Postfix Kurulumu"/>
+<meta name="twitter:description" content="lyk18&#39;de yapılan postfix anlatımının bir özeti."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="https://boratanrikulu.dev/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://boratanrikulu.dev/">
+				<img src="/images/avatar.jpeg" alt="Bora Tanrıkulu" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="https://boratanrikulu.dev/">Bora Tanrıkulu</a></h1>
+	<div class="site-description"><p>Interested in shell scripting, system administration and golang.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/boratanrikulu/" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/boratanrikulu_/" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://linkedin.com/in/bora-tanrikulu/" title="LinkedIn"><i data-feather="linkedin"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/aboutme">About me</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">25</span>
+							<span class="rest">Aug 2018</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">SMTP Nasıl Çalışır ve Postfix Kurulumu</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p><strong>Kaynaklar</strong><br>
+LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://www.linkedin.com/in/erdem-bayer-1633915/"><strong>[Erdem Bayer]**</strong></a> <a href="https://www.linkedin.com/in/murathanbostanci/">[Murathan Bostancı]**</a></p>
+<p><strong>NOT 1:</strong> Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz <a href="https://github.com/boratanrikulu/boratanrikulu.github.io/tree/master/_posts">**[0]**</a><br>
+<strong>NOT 2:</strong> Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim <strong>:)</strong></p>
+<hr>
+<h2 id="smtp-nedir-">SMTP Nedir ?</h2>
+<p><strong>Simple Mail Transfer Protocol</strong>, yani SMTP, ilk olarak 1982&rsquo;de <a href="https://tools.ietf.org/html/rfc821"><strong>RFC 821</strong></a>&lsquo;de tanımlanmıştır.<br>
+Günümüzde kullanılan <strong>Extended SMTP</strong> ise, 2008&rsquo;de güncellenerek <a href="https://tools.ietf.org/html/rfc5321"><strong>RFC 5321</strong></a>&lsquo;de tanımlanmıştır.</p>
+<p><strong>25/TCP</strong> portunu kullanan SMTP, e-posta göndermek için sunucu ile istemci arasındaki iletişimi belirleyen protokoldür. <a href="https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol">**[1]**</a></p>
+<hr>
+<h2 id="bir-e-mailin-yapısı">Bir E-Mail&rsquo;in Yapısı</h2>
+<p align="center">
+	<img src="/images/posts/smtp-nasil-calisir-ve-postfix-kurulumu/4.png">
+</p>
+<p>Bir mail iki kısımdan oluşur;</p>
+<ul>
+<li><strong>Header</strong></li>
+<li><strong>Body</strong></li>
+</ul>
+<p><strong>Header</strong> kısmında mail ile ilgili bilgiler tutulur; nereden geldiği, nereye gideceği, yollanım tarihi, mail konusu gibi.. Ama bunlardan sadece iki tanesi zorunludur; nereden geldiği ve nereye gideceği.. Yani <strong>From</strong> ve <strong>To</strong> bilgileri haricinde diğer bilgilerin doldurulması SMTP için zorunluluk değildir.</p>
+<p>Diğer bir kısım olan <strong>Body</strong>, yollanacak mesajı saklayan bölümdür. Bu bölüm için bir zorunluk yoktur. Dolu veya boş olması SMTP açısından bir sorun değildir.</p>
+<hr>
+<h2 id="bir-e-mail-nasıl-hedefe-ulaşır-">Bir E-Mail Nasıl Hedefe Ulaşır ?</h2>
+<p align="center">
+	<img src="/images/posts/smtp-nasil-calisir-ve-postfix-kurulumu/1.png">
+</p>
+<p><strong><a href="mailto:admin@boratanrikulu.me">admin@boratanrikulu.me</a></strong> kullanıcısının <strong><a href="mailto:elon.musk@spacex.com">elon.musk@spacex.com</a></strong> kullanıcısına mail atmak istediğini düşünelim.</p>
+<p>Bu durumda client tarafından mail yollandığında, mail ilk olarak <a href="https://boratanrikulu.me"><strong>boratanrikulu.me</strong></a>&lsquo;nin mail server'ına gidecektir. Bu <strong>server bilgisi DNS sorgusunda bulunan MX kaydı ile tespit edilir</strong>. Yani mail yollanacağında MX kaydı sorgusu yapılır ve mail ona göre ilgili server&rsquo;a yollanır.</p>
+<p>Mail&rsquo;in server&rsquo;a yollanma işlemi SMTP protokolü ile gerçekleşir. Bu aşamada eğer server&rsquo;da gerekli konfigürasyon yapıldıysa; mail&rsquo;i yollayan kişi gerçekten <a href="https://boratanrikulu.me"><strong>boratanrikulu.me</strong></a> kullanıcısı mı, gönderilen mail&rsquo;de istenmeyen veri ya da text var mı gibi bazı kontroller yapılabilir, ama bunların hiç biri aslında bir zorunluluk değildir.</p>
+<p><strong>From</strong> ve <strong>To</strong> kısımlarının dolu olması yeterlidir, bunların herhangi bir şekilde doğrulunun yapılması zorunluluk değildir. Ama tabiki günümüz mail servisleri tarafından bu kontroller yapılacaktır. Fakat söylediğim gibi, <strong>bu kontrollerin yapılması bir zorunluluk değildir</strong> SMTP protokolü için.</p>
+<p>Mail, server tarafından alındıktan sonra bir <strong>envelope</strong>&lsquo;a (zarf) konur. Mail, server&rsquo;lar arasında bu envelope içersinde iletilir.</p>
+<hr>
+<p align="center">
+	<img src="/images/posts/smtp-nasil-calisir-ve-postfix-kurulumu/2.png">
+</p>
+<p><a href="https://boratanrikulu.me/"><strong>boratanrikulu.me</strong></a> mail server'ı tarafından mail, <a href="https://www.spacex.com/"><strong>spacex.com</strong></a> mail server'ına SMTP protokolü kullanılarak yollanır. Bu aşamada mail direkt olarak hedef server&rsquo;a ulaşacak diye bir şey yoktur. <strong>Mail yollanırken araya başka server&rsquo;lar girebilir</strong> ve mail bu şekilde iletilir. Ya da iletilemeyebilir. Yani <strong>yolda mail kaybolabilir</strong>. Bu yüzden gerekli testlerin yapılması önemli bir husustur.</p>
+<p><strong>SMTP mail&rsquo;in hedefe kesinlikle varacağını tahattüt etmez.</strong></p>
+<p>Mail&rsquo;in hangi server&rsquo;lardan geçtiği <strong>envelope header</strong>&lsquo;a bakılarak tespit edilebilir.</p>
+<p>Mail <a href="https://www.spacex.com/"><strong>spacex.com</strong></a>&lsquo;a ulaştığında hedef sistem tarafından bazı kontroller yapılabilir. Fakat bunların hiç biri zorunlu değildir. Hatta kontrol yapılmasını geçelim, server&rsquo;lar tarafından direkt olarak header ve body kısımları değiştirilebilir. Bunun engellenmesi amacıyla <strong>SSL</strong> şifreleme yapılması önemlidir.</p>
+<p>Şöyle düşünün, elimizde temel konfigürasyon haricinde bir ek ayar, kontrol yapılmamış iki tane mail server'ı olsun. Bu durumda hiç bir kontrol yapılmadığı için istediğimiz mail adresini <strong>From</strong> kısmıda belirterek, hedefdeki mail server'ına yollayabiliriz ve hedefteki kullanıcı sanki bizim yazdığımız kullanıcıdan gelmişçesine bu mail&rsquo;i alır. Bunun bir örneğini anlatımın ilerki kısımlarında mevcuttur.</p>
+<hr>
+<p>Genel olarak, gerekli konfigürasyon ayarları yapılmış bir mail server'ında aşağıdaki gibi kontroller yapalabilir.</p>
+<ul>
+<li><strong>Gri liste</strong> ile mail&rsquo;i yollayan kullanıcının kontrolü</li>
+<li>Mail&rsquo;in geldiği mail adresinin alan adının, <strong>reverse dns</strong> adresinin kontrolü</li>
+<li>Mail <strong>SPF</strong> kaydındaki bir server&rsquo;dan mı geliyor kontrolü</li>
+</ul>
+<blockquote>
+<p>SPF (<strong>Sender Policy Framework</strong>) mail server'ı tarafından kabul edilecek mail server&rsquo;larının kaydını tutar.</p>
+</blockquote>
+<ul>
+<li>Mail&rsquo;in geldiği server, <strong>domain key</strong> ile örtüşüyor mu kontrolü</li>
+<li>Mail&rsquo;i gönderen adres, <strong>RBL</strong> (kara liste) altında var mı kontrolü</li>
+<li><strong>Header</strong> ve <strong>Body</strong> kısımlarının kontrolü (Saat, başlık, belli kelimeler)</li>
+<li><strong>Content Security</strong> (virüs taraması) ve <strong>spam</strong> kontrolü yapılır.</li>
+</ul>
+<p>Eğer bu ve benzeri kontrolleri geçerse; ya da kontrol olmayan bir mail server'ı ise, hedef kullanıcının dizinine mail teslim edilir.</p>
+<hr>
+<h2 id="e-mailin-kullanıcı-tarafından-teslim-alınması">E-Mail&rsquo;in Kullanıcı Tarafından Teslim Alınması</h2>
+<p align="center">
+	<img src="/images/posts/smtp-nasil-calisir-ve-postfix-kurulumu/3.png">
+</p>
+<p>Bir kullanıcı e-mail server'ından mail&rsquo;lerini almak istediğinde bunu iki yol ile yapabilir;</p>
+<ul>
+<li><strong>POP</strong></li>
+<li><strong>IMAP</strong></li>
+</ul>
+<p>POP yani <strong>Post Office Protocol</strong> ile mail&rsquo;ler server&rsquo;dan client cihazına (local) çekilir. Aynı bir posta ofisi gibi çalışır. Gelen mail olduğunda, mail fiziksel olarak cihaza alınır.</p>
+<p>IMAP yani <strong>Internet Messaged Access Protocol</strong> ile ise client üzerine alınmadan direkt olarak server ile iletişim kurularak görüntülenir.</p>
+<hr>
+<h2 id="postfix-kurulumu">Postfix Kurulumu</h2>
+<p><strong>NOT:</strong> Anlatım için <strong>CentOS 7</strong> tercih edilmiştir.</p>
+<p>Bu örnekte <a href="https://boratanrikulu.me"><strong>boratanrikulu.me</strong></a> server'ı için basit bir mail servisinin nasıl yapılandırıldığındığı göreceksiniz. Bu anlatımı uygulayarak takip edebilmek için elinizde bir domain ve server olması gerekmektedir. Elinizde yok ise de yalnızca okuyarak da anlatıma katılabilirsiniz.</p>
+<p>Anlatımda domain servisi için <a href="https://www.namecheap.com/"><strong>namecheap</strong></a>&lsquo;i tercih ettim. Siz farklı şirketleri tercih edebilirsiniz, DNS ayarları menusu hepsinde benzer olacaktır.</p>
+<hr>
+<h4 id="mx-kaydının-hazırlanması">MX Kaydının Hazırlanması</h4>
+<p>Mail yollanması sırasında MX kaydından mail server'ı tespit edildiği için <strong>DNS&rsquo;in SMTP için hayati önemi vardır</strong>. Bu yüzden ilk olarak <a href="https://boratanrikulu.me"><strong>boratanrikulu.me</strong></a> domain&rsquo;i için MX kaydı olarak server IP&rsquo;mizi girmeliyiz aşağıdaki örnekteki.</p>
+<p align="center">
+	<img src="/images/posts/smtp-nasil-calisir-ve-postfix-kurulumu/5.png">
+</p>
+<p>Yapılan değişikliğin işlenmesi bir süre alabilir. Süreci hızlandırmak içiv TTL süresini düşürebilirsiniz. İşlemin başarılı şekilde gerçekleştiğini tespit etmek için aşağıdaki gibi MX kaydına bakabilirisiniz.</p>
+<p align="center">
+	<img src="/images/posts/smtp-nasil-calisir-ve-postfix-kurulumu/6.png">
+</p>
+<hr>
+<h4 id="serverda-temel-ayarların-yapılması">Server&rsquo;da Temel Ayarların Yapılması</h4>
+<p>MX kaydını ekledikten sonra artık server'ı yapılandırmaya başlayabiliriz. İlk olarak hostname&rsquo;i ayarlamak ile başlıyoruz.</p>
+<p>Şuanki <strong>hostname</strong>&lsquo;i görmek için aşadağıdaki komutu yürütebilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hostnamectl status
+</code></pre></div><p>Ardından MX kaydına eklediğimiz adresi hostname olarak set edelim.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hostnamectl set-hostname mail.boratanrikulu.me  
+</code></pre></div><p>Ayrıca <strong>/etc/hosts</strong> dosyasına aşağıdaki gibi bir satır ekleyin</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vim /etc/hosts
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">127.0.0.1 mail mail.boratanrikulu.me
+</code></pre></div><p>Server <strong>saat ayarları</strong> da mail servisleri için önemlidir. Karışıklılığı önlemek adına saat ayarlarından emin olalım. Aşağıdaki gibi güncel saat ayarlarına bakabilirisiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">timedatectl status
+</code></pre></div><p>Eğer saat ayarlarında bir sorun var ise aşağıdaki gibi <strong>timezone</strong> değiştirebilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">timedatectl list-timezones | grep Istanbul
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">timedatectl set-timezone Europe/Istanbul
+</code></pre></div><p>Ayrıca server&rsquo;lardan saat kaymaları yaşanabilir, saniyelik olarak kaymaların bile kötü etkileri olacaktır. Bunu engellemek için <strong>NTP</strong> kullanacağız, aşağıdaki gibi kurup başlatabilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum install ntp
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">systemctl start ntpd <span style="color:#000;font-weight:bold">&amp;&amp;</span> systemctl <span style="color:#0086b3">enable</span> ntpd
+</code></pre></div><p>Ardından aşağıdaki gibi durum sorgusu yapabilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ntpq -pn
+</code></pre></div><hr>
+<h4 id="postfix-kurulumu-ve-default-ayarlar-ile-birkaç-test">Postfix Kurulumu ve Default Ayarlar ile Birkaç Test</h4>
+<p>Artık postfix kullanıma geçebiliriz. Eğer <strong>postfix</strong> ve <strong>telnet</strong> kurulu değilse aşağıdaki gibi kurun.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum install telnet postfix
+</code></pre></div><p>Ben bu mail servisini bilgilendirme amaçlı kullanıcağım için <strong>info</strong> ve <strong>request</strong> isimli kullanıcıları ekliyorum. Siz kendinize göre farklı yapabilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">adduser info
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">adduser request
+</code></pre></div><p>Artık postfix kullanıma geçebiliriz. Telnet ile bağlanalım.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">telnet mail.boratanrikulu.me smtp
+</code></pre></div><p>Bu örnekteki amacımız <strong><a href="mailto:info@mail.boratanrikulu.me">info@mail.boratanrikulu.me</a></strong> kullanıcısından <strong><a href="mailto:root@mail.boratanrikulu.me">root@mail.boratanrikulu.me</a></strong> kullanıcısına mail atmak. Bu sayede hiç bir konfigürasyon yapılmamış mail server'ını test edebileceğiz.</p>
+<p>SMTP protokolünde ile yapılması gereken selamlamadır. Aşağıdaki gibi server'ı selamlayım.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">EHLO mail.boratanrikulu.me
+</code></pre></div><p>Mail&rsquo;i kimin yolladığı, yani <strong>From</strong> kısmı aşağıdaki gibi belirtilir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">MAIL FROM:info@mail.boratanrikulu.me
+</code></pre></div><p>Mail&rsquo;i kimin alacağı, yani <strong>To</strong> kısmı ise aşağıdaki gibi belirtilir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">RCPT TO:root@mail.boratanrikulu.me
+</code></pre></div><p>Yollanacak mesajı girebilmek için, yani <strong>body</strong> kısmı bilgilerini girebilmek için DATA diyerek bunu belirtmemiz gerekir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">DATA
+</code></pre></div><p>Artık yollanacak mesajı girebiliriz. Ben aşağıdaki gibi bir örnek mesajı girdim.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">mail from info to root.
+</code></pre></div><p>Body kısmına girilen verinin bittiğini belirtmek için tek satırda <strong>&quot;.&quot;</strong> yazıp belirtmemiz gerekir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">.
+</code></pre></div><p>Artık telnet bağlantımızı sonlandırabiliriz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">QUIT
+</code></pre></div><p>Default ayarlara göre mail&rsquo;ler <strong>/var/spool/mail</strong> dizini altında kullanıcılara ait dosyalara yazılır. Yani her mail için ayrı dosyalar oluşturmak yerine tek bir dosya içersinde tutulur. Bunun belli avantajları ve dezavantajları vardır.</p>
+<p>Tekli dosyaya yazma işlemine <strong>MBOX</strong> denir. Her mail için ayrı oluşturulması amacıyla ise <strong>Maildir/</strong> kullanılır. MBOX&rsquo;un Maildir&rsquo;e göre farkları aşağıdaki gibidir.</p>
+<ul>
+<li>
+<p><strong>Avantajları</strong></p>
+<ul>
+<li>MBOX&rsquo;da <strong>sıralı işler hızlıdır</strong> çünkü mail&rsquo;ler tek dosya üzerinden, aç kapa yapmadan, direkt olarak okunur.</li>
+<li><strong>Yedekleme</strong> işlemi daha <strong>kolaydır</strong>.</li>
+<li>Tarihe göre <strong>sıralama hızlıdır</strong>.</li>
+<li>E-mail&rsquo;e <strong>müdahale edilmesi</strong> gerektiğinde bütün e-mail dosya okunması gerekir yani daha <strong>yavaştır</strong>.</li>
+<li><strong>Arama</strong> işlemleri <strong>hızlıdır</strong>.</li>
+<li>E-mail <strong>taşıma</strong> işlemi daha <strong>hızlı ve kolaydır</strong>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Dezavantajları</strong></p>
+<ul>
+<li>Diğer header&rsquo;lara göre <strong>sıralama daha yavaştır</strong>.</li>
+<li><strong>Silme</strong> işlemleri daha <strong>yavaştır</strong>.</li>
+<li>Dosya <strong>bozulma risk daha büyüktür</strong>.</li>
+<li>Bir çok deamon'ın dosya üzerinde işlem yapması, <strong>süreçler arası bekleme durumu doğurur</strong>, performans düşer.</li>
+</ul>
+</li>
+</ul>
+<p>Default ayarlar ile MBOX kullanıdığı için az önceki örnekte yolladığımız e-mail&rsquo;i aşağıdaki gibi görüntüleyebiliriz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ls /var/spool/mail
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">less /var/spool/mail/root
+</code></pre></div><hr>
+<h4 id="elon-muskdan-gelen-mail">Elon Musk&rsquo;dan Gelen Mail</h4>
+<p>Daha önceden de belirttiğim gibi, default ayarlarda aslında yapılmasını bekleyeceğimiz hiçbir kontrol yapılmaz. Örneğin aşağıdaki gibi bir mail&rsquo;i sanki <strong><a href="mailto:elon.musk@spacex.com">elon.musk@spacex.com</a></strong>&lsquo;dan root kullanıcısına yollanmış gibi atarsak; bu mail kullanıcıya sanki Elon Musk tarafından gelmiş gibi ulaşacaktır.</p>
+<p><strong>Evet! Yanlış duymadın, default ayarlar ile durum bu şekilde.</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">telnet mail.boratanrikulu.me smtp
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">EHLO mail.boratanrikulu.me
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">MAIL FROM:elon.musk@spacex.com
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">RCPT TO:root@mail.boratanrikulu.me
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">DATA
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">i have a job offer for you. are you interested ?
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">.
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">QUIT
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">less /var/spool/mail/root
+</code></pre></div><p>Gördüğünüz gibi, Elon Musk tarafından bir iş teklifi aldım <strong>:)</strong>.</p>
+<p align="center">
+	<img src="/images/posts/smtp-nasil-calisir-ve-postfix-kurulumu/7.png">
+</p>
+<hr>
+<h2 id="postfix-anatomy">Postfix Anatomy</h2>
+<p align="center">
+	<img src="/images/posts/smtp-nasil-calisir-ve-postfix-kurulumu/0.png">
+</p>
+<p>Postfix bir çok modülün birleşmesi ile oluşan bir yapıdır. <a href="http://www.porcupine.org/postfix/doc/big-picture.html">**[2]**</a></p>
+<p>Her şey ayrı bir parça olarka çalışır. Örneğin mail gönderilmesi bozulsa bile, mail alımı işlemi devam edebilir. Her servisin durumu ayrı ayrıdır.</p>
+<p><strong>qmgr</strong>, active kuyruğundan mailleri alır. Eğer kendi kullanıcısına gelmiş ise local daemon&rsquo;na verir.</p>
+<p>Eğer başka bir smtp&rsquo;ye aktarılacak ise <strong>smtp daemon</strong>&lsquo;a verilir, bu şekilde mail iletilir.</p>
+<p><strong>pipe</strong>, üçüncü parti yazılımlara çıktıları, girdi olarak vermek için kullanılır. Virüs taraması, spam kontrol, dosya gönderimlerini silmek gibi..</p>
+<hr>
+<h2 id="postfixin-yapılandırılması">Postfix&rsquo;in Yapılandırılması</h2>
+<p>Artık <a href="https://boratanrikulu.me"><strong>boratanrikulu.me</strong></a> için kullanacağımız basit bir bilgilendirme mail servisini hazırlamaya başlayabiliriz. Mail&rsquo;leri saklamak için çoklu dosya yolunu tercih edeceğiniz.</p>
+<p>Sistemimizde mail için kullanacağımız iki kullanıcı olacak; <strong>info</strong> ve <strong>request</strong>.</p>
+<p><strong><a href="mailto:info@mail.boratanrikulu.me">info@mail.boratanrikulu.me</a></strong> kullanıcısı, bilgilendirme mail&rsquo;lerinin atılabilmesi amacıyla kullanılacaktır. Bu mail adresi için mail kabul edilmeyecektir, yalnızca mail yollanması amacıyla kullanılacaktır.</p>
+<p><strong><a href="mailto:request@mail.boratanrikulu.me">request@mail.boratanrikulu.me</a></strong> kullanıcısı ise; site kullanıcılarının öneri ve isteklerini belirtmek amaçlı atacağı mail&rsquo;leri kabul edebilmek amacıyla kullanılacaktır. Bu mail adresinden mail atılması düşünülmemektedir, mail kabul edecektir.</p>
+<hr>
+<p>Yukarda bahsettiğimiz isteklerimizi uygulayabilmek amacıyla, konfigürasyona başlayabiliriz. Postfix için iki temel ayar dosyası vardır; <strong>main.cf</strong> ve <strong>master.cf</strong>. Bunlar /etc/postfix altında bulunur.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vim /etc/postfix/main.cf
+</code></pre></div><p>Değişikleri direkt olarak dosyanın en alt satırına ekleyebilirisiniz ama bunu önermem. Daha düzenli olması açısından lütfen aşağıdaki değişiklikleri ilgili satırları bulup yapınız. Bu aşamaları tek tek yazmıyorum, arayıp değiştirmelisiniz <strong>:)</strong>.</p>
+<p>Eğer <strong>myhostname</strong> set edilmez ise sistemin hostname&rsquo;ni kullanır. Biz <strong>myhostname</strong> ve <strong>mydomain</strong>&lsquo;i aşağıdaki gibi belirleyelim.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">myhostname = info.boratanrikulu.me
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">mydomain = boratanrikulu.me
+</code></pre></div><p><strong>myorigin</strong> dışarı yollanacak mail&rsquo;ler için kullanılacak adresi belirlemek amacıyla kullanılır.. Biz <strong>myorigin</strong> olarak hostname&rsquo;i kullanacağız.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">myorigin = $myhostname
+</code></pre></div><p><strong>inet_interfaces</strong> hangi interface&rsquo;lerden mail kabul edileceğini belirler. Biz tüm interface&rsquo;leri kabul etmek istiyoruz. Bu değeri <strong>&ldquo;all&rdquo;</strong> yapalım.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">inet_interfaces = all
+</code></pre></div><p><strong>mydestination</strong> ile hangi alan adları için mail kabul edileceği belirlenebilir. Aşağıdaki gibi belirleyelim.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">mydestination = $myhostname, localhost.$mydomain, localhost
+</code></pre></div><p><strong>local_recipient_maps</strong> ile kullanıcı bazlı işlemleri sağlayabiliriz, biz <strong>info</strong> kullanıcısına mail atılmasını istemiyoruz. Yalnızca <strong>request</strong> kullanıcısı için dışarıdan mail atılabilsin istiyoruz, bu amaçla aşağıdaki satırı eklemeliyiz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">local_recipient_maps = hash:/etc/postfix/local_recipients, $alias_maps
+</code></pre></div><p><strong>home_mailbox</strong> ile mail&rsquo;lerin kullanıcılara nasıl teslim edileceğini belirleyebiliriz. Bu şekilde her kullanıcının home dizini altına mail teslim edilir. Eğer <strong>Maildir</strong> olarak ayarlanır ise tek bir dosya üzerine mail&rsquo;ler yazılır, eğer <strong>Maildir/</strong> olarak ayarlanırsa her mail için ayrı dosya oluşturulur. Biz her mail için ayrı dosya oluşturulmasını istiyoruz, bu sebeple aşağıdaki gibi yapalım.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">home_mailbox = Maildir/
+</code></pre></div><p><strong>Recipients</strong> amacıyla girdiğimiz ayar için dosya oluşturmalıyız, aşağıdaki gibi oluşturuabilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">echo &#34;request@mail.boratanrikulu.me OK&#34; &gt; /etc/postfix/local_recipients
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">postmap /etc/postfix/local_recipients
+</code></pre></div><p>Yapacağımız ayarlar bu kadar. Dosya kayıt edip çıkabiliriz. <strong>inet_interfaces</strong> ayarlarını değiştirdiğimiz için servisi kapatıp tekrar açmamız gerekiyor.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">systemctl restart postfix
+</code></pre></div><hr>
+<p><strong>Maildir/</strong> kullanacağımız için kullanıcı dizinleri altında bir Maildir klasörü olmalı, aşağıdaki gibi oluşturabilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir /root/Maildir
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir /home/info/Maildir
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">chown -R info:info /home/info/Maildir
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir /home/request/Maildir
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">chown -R request:request /home/request/Maildir
+</code></pre></div><p>Bazı kullanıcılara gelen mail&rsquo;leri başka bir kullanıcının dizinine bırakmak için <strong>/etc/aliases</strong> kullanılır. Bizim kullanmak istediğimiz <strong>info</strong> kullanıcısı default ayarlarda <em>root</em> kullanıcısına yönlendiriliyor. Biz bunu istemediğimiz için o satırı aliases dosyasında yorum satırına alalım. Eğer bu işlemi yapmazsak, info kullanıcısına gelen tüm mail&rsquo;ler root kullanıcısına yönelendirilir.</p>
+<p><strong>Not:</strong> Biz &ldquo;request&rdquo; kullanıcısı haricinde hiç bir kullanıcı için mail kabul etmediğimiz için bu adım gereksiz olabilir. Ben düzenli olması açısından yine de yapma gereği duydum.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vim /etc/aliases
+</code></pre></div><p>Yorum satırına aldıktan sonra aşağıdaki komutu yürütün.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">postalias /etc/aliases
+</code></pre></div><hr>
+<h4 id="birkaç-test">Birkaç Test</h4>
+<p>Şimdi bir test yapalım. <strong><a href="mailto:info@mail.boratanrikulu.me">info@mail.boratanrikulu.me</a></strong> kullanıcısı ile bir gmail hesabına bilgilendirme mail&rsquo;i atalım.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">telnet mail.boratanrikulu.me smtp
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">EHLO mail.boratanrikulu.me
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">MAIL FROM:info@mail.boratanrikulu.me
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">RCPT TO:boratanrikulu@gmail.com
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">DATA
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Hello there! SMTP post is ready! Read it!
+https://boratanrikulu.me/smtp-nasil-calisir-ve-postfix-kurulumu
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">.
+</code></pre></div><p>Mail muhtemelen spam klasörüne düşecektir. Aşağıda gözüktüğü bir sorun ile karşılaşmadık.</p>
+<p align="center">
+	<img src="/images/posts/smtp-nasil-calisir-ve-postfix-kurulumu/8.png">
+</p>
+<hr>
+<p>Bir de <strong>request</strong> kullanıcısı için bir test yapalım. <strong><a href="mailto:boratanrikulu@gmail.com">boratanrikulu@gmail.com</a></strong> kullanıcısından bir istek mail&rsquo;i atalım.</p>
+<p align="center">
+	<img src="/images/posts/smtp-nasil-calisir-ve-postfix-kurulumu/9.png">
+</p>
+<p>Aşağıda gözüktüğü gibi mail sorunsuz bir şekilde server&rsquo;a ulaştı.</p>
+<p align="center">
+	<img src="/images/posts/smtp-nasil-calisir-ve-postfix-kurulumu/10.png">
+</p>
+
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/network">Network</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'boratanrikulu';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> copyright notice |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77508691-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

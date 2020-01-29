@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Pasif Bilgi Toplama (Açık Kaynak İstihbaratı) - Bora Tanrıkulu</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Pasif Bilgi Toplama (Açık Kaynak İstihbaratı)" />
+<meta property="og:description" content="pasif bilgi toplama hakkında kısa bir özet." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boratanrikulu.dev/pasif-bilgi-toplama/" />
+<meta property="article:published_time" content="2018-03-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-03-05T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Pasif Bilgi Toplama (Açık Kaynak İstihbaratı)"/>
+<meta name="twitter:description" content="pasif bilgi toplama hakkında kısa bir özet."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="https://boratanrikulu.dev/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://boratanrikulu.dev/">
+				<img src="/images/avatar.jpeg" alt="Bora Tanrıkulu" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="https://boratanrikulu.dev/">Bora Tanrıkulu</a></h1>
+	<div class="site-description"><p>Interested in shell scripting, system administration and golang.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/boratanrikulu/" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/boratanrikulu_/" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://linkedin.com/in/bora-tanrikulu/" title="LinkedIn"><i data-feather="linkedin"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/aboutme">About me</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">05</span>
+							<span class="rest">Mar 2018</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">Pasif Bilgi Toplama (Açık Kaynak İstihbaratı)</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p><strong>Kaynaklar:</strong><br>
+<a href="https://erdemoflaz.com/pasif-bilgi-toplama/">erdemoflaz.com/pasif-bilgi-toplama</a><br>
+<a href="https://canyoupwn.me">canyoupwn.me</a><br>
+<a href="https://www.wikipedia.org/">wikipedia.org</a></p>
+<hr>
+<h2 id="açık-kaynak-istihbaratı-nedir-osint">Açık Kaynak İstihbaratı Nedir (OSINT)?</h2>
+<ul>
+<li>
+<p>Diğer bir adıyla <strong>Open-Source Intelligence</strong>; dış dünyaya erişimi açık kaynakların kullanımıyla, çıkarlar doğrultusunda, hedefe yönelik bilgi toplanmasıdır. Herkes internet üzerinde bir iz bırakır. Bu bırakılan izlerin toplanıp birleştirilmesi / takip edilmesi ile önemli bilgiler elde edilebilir.</p>
+</li>
+<li>
+<p>Örneğin benim ismimi, google ya da başka bir arama motoru üzerinde aratacak olursanız, benim kullandığım sosyal medya hesaplarımın bir çoğuna, fotoğraflarıma, yaşıma, e-mail adresime, belki çok daha kişisel bilgilerime erişim sağlayabilirsiniz.</p>
+<p><a href="https://www.google.com/search?q=Bora+Tanrikulu">google.com/search?q=Bora+Tanrikulu</a></p>
+<p><a href="https://duckduckgo.com/?q=Bora+Tanrikulu">duckduckgo.com/?q=Bora+Tanrikulu</a></p>
+<p>Örneğin DuckDuckGo arama motoru üzerinde <strong>Bora Tanrıkulu</strong> şeklinde arama yaptığınızda aşağıdaki gibi bir sonuç elde edersiniz.</p>
+<p><img src="/images/posts/pasif-bilgi-toplama/1.png" alt="duckduckgo-search"></p>
+</li>
+<li>
+<p>Açık kaynak istihbaratının önemi TSK tarafından hazırlanmış <a href="https://www.academia.edu/9832312/A%C3%A7%C4%B1k_Kaynak_%C4%B0stihbarat%C4%B1">Türkiye ve Açık Kaynak İstihbaratı</a> metni içerisinde bulunan &ldquo;Çağımızda ülkeler istihbarat ihtiyaçlarını %80-90 oranında açık kaynaklardan elde etmektedir&rdquo; cümlesi ile daha rahat anlaşılabilir.</p>
+<p><img src="/images/posts/pasif-bilgi-toplama/2.png" alt="TSK-OSINT"></p>
+</li>
+</ul>
+<hr>
+<h2 id="hedefe-ait-ip-tespiti">Hedefe Ait IP Tespiti</h2>
+<ul>
+<li>
+<p>IP hakkında bilgi sahibi olmak için <a href="http://www.ipsorgu.com/">ipsorgu.com</a> gibi siteler kullanılabilir</p>
+<p><img src="/images/posts/pasif-bilgi-toplama/4.png" alt="ipsorgu"></p>
+<p>ya da <strong>nslookup</strong> gibi araçlar kullanılabilir</p>
+<p><img src="/images/posts/pasif-bilgi-toplama/3.png" alt="nslookup"></p>
+</li>
+</ul>
+<hr>
+<h2 id="hedefe-ait-subdomainlerin-tespiti">Hedefe Ait Subdomain&rsquo;lerin Tespiti</h2>
+<ul>
+<li>
+<p>Google arama motoru üzerinde <strong>site:*.pau.edu.tr</strong> şeklinde arama yaptığınızda <a href="http://www.pau.edu.tr/">pau.edu.tr</a> adresinin subdomain&rsquo;lerini görebilirsiniz.</p>
+<p>subdomain tespiti için <a href="https://www.netcraft.com/">netcraft.com</a> kullanılabilir.</p>
+<p><img src="/images/posts/pasif-bilgi-toplama/5.png" alt="pau.edu.tr"></p>
+</li>
+</ul>
+<hr>
+<h2 id="hedefe-ait-içeriklerin-tespiti">Hedefe Ait İçeriklerin Tespiti</h2>
+<ul>
+<li>
+<p>Google arama motoru üzerinde <strong>site:*.pau.edu.tr ext:pdf</strong> şeklinde arama yaptığınızda aşağıdaki gibi pdf&rsquo;leri görebilirsiniz.</p>
+<p><img src="/images/posts/pasif-bilgi-toplama/7.png" alt="pdf-pau.edu.tr"></p>
+</li>
+</ul>
+<hr>
+<h2 id="theharvester-ile-bilgi-toplanması">theHarvester ile Bilgi Toplanması</h2>
+<ul>
+<li>
+<p>theHarvester farklı açık kaynaklardan; e-mail adresleri, subdomain isimleri, virtual host&rsquo;ları, açık portları vb. tespit edebilen bir tool&rsquo;dur.</p>
+<p><img src="/images/posts/pasif-bilgi-toplama/15.png" alt="theHarvester"></p>
+<p><img src="/images/posts/pasif-bilgi-toplama/16.png" alt="theHarvester-pauedutr"></p>
+</li>
+</ul>
+<hr>
+<h2 id="cloudflare-bypassatlamak-etmek">CloudFlare Bypass(atlamak) Etmek</h2>
+<ul>
+<li>
+<p><a href="https://www.cloudflare.com">Cloudflare</a> bir içerik dağıtım ağı servisidir yani sitenizin verilerini dünya çapında dağıtılmış sunucularda saklar ve sitelerin ip adreslerini saklar.</p>
+<p>Araştırılması yapılacak sitenin CloudFlare arkasın olup olmadığı anlamak için <a href="https://builtwith.com/wikipedia.org">builtwith.com</a> kullanılabilir. Örneğin <a href="https://canyoupwn.me">canyoupwn.me</a> sitesi CloudFlare arkasındadır.</p>
+<p><img src="/images/posts/pasif-bilgi-toplama/23.png" alt="builtwith-canyoupenme"></p>
+<p>Bu saklanmış IP&rsquo;leri bulamak için bazı yöntemler vardır.</p>
+<p>Sitenin IP adresini bulmak için <strong>ping</strong> kullanılabilir. Bu yöntem ile sitenin CloudFlare&rsquo;e kayıtlı olan IP adresini görmüş oluruz. Ama sitenin tüm alt domain&rsquo;leri CloudFlare arkasına alınmamış olabilir.</p>
+<p>Buradaki mantığımız, sitenin tüm alt domainlerinin IP&rsquo;leri ile CloudFlare&rsquo;e kayıtlı olan IP&rsquo;yi karşılaştırmak. Bulunan bu farklı ip adresi sitenin gerçek ip adresi olur.</p>
+<p><img src="/images/posts/pasif-bilgi-toplama/22.png" alt="nmap-dns-brute"></p>
+</li>
+</ul>
+<hr>
+<h2 id="google-advanced-search">Google Advanced Search</h2>
+<ul>
+<li>
+<p>Önceki başlıklarda da kullandığımız durumlara bakılacak olursa, <strong>Google Advanced Search</strong> güçlü bir silahtır. Bu silahın kullanımını bilmek, bir çok önemli bilgiye erişim sağlamaya olanak sağlar.</p>
+<p>Operatorler: (defcon-2005)</p>
+<p><img src="/images/posts/pasif-bilgi-toplama/6.png" alt="google-advanced-search"></p>
+<p><strong>site:</strong> adres çubuğumuzda bulunan “https://canyoupwn.me” kısım.</p>
+<p><strong>inurl:</strong> adres çubuğumuzda bulunan “canyoupwn.me” kısım</p>
+<p><strong>intitle:</strong> sekmemizin başlığı “canyoupwn.me-for…”</p>
+<p><strong>intext:</strong> resimdeki web sayfamızın sol alt köşesinde bulunan kısım “ TR | Nmap Cheat Sheet ”</p>
+<p><strong>intitle:</strong> Aradığımız sayfanın başlığını bulacaktır.</p>
+<p><strong>inurl:</strong> Aradığımız sayfanın url’ni bulacaktır.</p>
+<p><strong>Url:</strong> İnternet’te bir kaynağa (belge veya resim gibi) rastgelen, standart bir formata uygun bir karakter dizgisidir.</p>
+<p><strong>filetype:</strong> Aradığımız belirli dosyaları bulacaktır.</p>
+<p><strong>allintext:</strong> Aradığımız tüm text dosyalarını bulacaktır.</p>
+<p><strong>link:</strong> Aradığımız link’e ait sayfaları bulacaktır</p>
+<p><strong>inanchor:</strong> Google aradığımız içerik bilgisi ile bağlantılı, içeriklere sahip bağlantılar ile aramamızı kısıtlayacaktır.</p>
+<p><strong>numrange:</strong> Google aradığımız numara veya numara aralıklarını bulacaktır.</p>
+<p><strong>daterange:</strong> Aradığımız tarih veya tarih aralıklarını bulacaktır.</p>
+<p><strong>author:</strong> Aradığımız yazara ait bilgileri bulacaktır.</p>
+<p><strong>groups:</strong> Google aradığımız bir topluluk ismini google groups da bulunan makaleler ve benzer isimdeki topluluk içerikleri ile sınırlandıracaktır.</p>
+<p><strong>insubject:</strong> Google, konuyla belirttiğimiz terimleri içeren içerikler(makale vb.) ile sınırlar.</p>
+<p><strong>msgid:</strong> (message id yani Türkçe adı ile mesaj kimliği) Her e-postanın bir kimliği(id) vardır.Google da bu kimlik ile arama yaptığımızda bu e-posta ile bağlantılı bilgiler ile aramamız sınırlanacaktır.</p>
+<p><strong>define:</strong> Aradığımız girdi ile ilgili bilgi bulacaktır.</p>
+<p><strong>maps:</strong> Aradığımız lokasyon ile ilgili bilgi bulacaktır.</p>
+<p><strong>book:</strong> Aradığımız kitap ile ilgili bilgi bulacaktır.</p>
+<p><strong>info:</strong> Google girdiğimiz url ile ilgili web sayfası hakkında bilgiler ile aramayı sınırlayacaktır.</p>
+<p><strong>related:</strong> Google girdiğimiz url ile belirttiğimiz web sayfası ile benzer web sayfaları ile aramayı sınırlandıracaktır.</p>
+</li>
+</ul>
+<hr>
+<h2 id="lokasyon-tespiti">Lokasyon Tespiti</h2>
+<ul>
+<li>
+<p><a href="https://www.wikipedia.org/">wikipedia.org</a> domain&rsquo;i <a href="http://www.ipfingerprints.com/">ipfingerprints.com</a> adresinde aratırsak aşağıdaki gibi bir sonuç elde ederiz.</p>
+<p><a href="http://www.ipfingerprints.com/">ipfingerprints.com</a> yerine başka muadil sistemler de tercih sebebi olabilir</p>
+<p><img src="/images/posts/pasif-bilgi-toplama/8.png" alt="location-wikipedia"></p>
+</li>
+</ul>
+<hr>
+<h2 id="whois-kaydı-incelemesi">WHOIS Kaydı İncelemesi</h2>
+<ul>
+<li>
+<p><a href="https://www.whois.net/">WHOIS</a> kullanılarak domain&rsquo;ler hakkında bilgi sahibi olunabilir.</p>
+<p>Örneğin aşağıdaki gibi bir arama ile, <a href="https://www.wikipedia.org/">wikipedia.org</a> hakkında bilgi edinilir.</p>
+<p><img src="/images/posts/pasif-bilgi-toplama/9.png" alt="wikipedia.org-1"></p>
+<p><img src="/images/posts/pasif-bilgi-toplama/10.png" alt="wikipedia.org-2"></p>
+</li>
+</ul>
+<hr>
+<h2 id="shodan-arama-motoru-ile-araştırma">Shodan Arama Motoru ile Araştırma</h2>
+<ul>
+<li>
+<p>Shodan ile internete bağlı cihazlar tespit edilebilir.</p>
+<p>Örneğin aşağıdaki gibi bir arama ile 22 portu (default ssh) ile internete bağlı cihazlar tespit edilebilir.</p>
+<p><img src="/images/posts/pasif-bilgi-toplama/11.png" alt="shodan-22"></p>
+</li>
+</ul>
+<hr>
+<h2 id="zoomeye-arama-motoru-ile-araştırma">Zoomeye Arama Motoru ile Araştırma</h2>
+<ul>
+<li>
+<p>Shodan ile benzer şekilde, Zoomeye ile de internete bağlı cihazlar üzerinde belli filtreleme yaparak sonuca ulaşılabilir.</p>
+<p>Örneğin <strong>os:linux</strong> şeklideki bir arama ile aşağıdaki gibi bir sonuç elde edilir.</p>
+<p><img src="/images/posts/pasif-bilgi-toplama/12.png" alt="zoomeye-os-linux"></p>
+<p>Daha detaylı aramaların nasıl yapıldığını öğrenmek için <a href="https://www.zoomeye.org/help">zoomeye.org/help</a></p>
+<p><img src="/images/posts/pasif-bilgi-toplama/13.png" alt="zoomeye-help"></p>
+</li>
+</ul>
+<hr>
+<h2 id="archiveorg-ile-zamanda-geriye-gitmek">Archive.org ile Zamanda Geriye Gitmek</h2>
+<ul>
+<li>
+<p><a href="https://archive.org/index.php">archive.org</a> geçmişten  günümüze kadar sitelerin o anki görünümünü kayıt altına alan bir web sitesidir.  Bu size, bir web sitesinin daha önceden yapılan hataların düzeltilmemiş yanlarının günümüze kadar gelmesi durumlarını incelemenize yarar.</p>
+<p>Örneğin facebook’un 10 yıl önceki görünümüne aşağıdaki gibi erişebilirsiniz.</p>
+<p><img src="/images/posts/pasif-bilgi-toplama/14.png" alt="facebook-timemachine-10"></p>
+</li>
+</ul>
+<hr>
+<h2 id="sosyal-medya-hesaplarının-analizi">Sosyal Medya Hesaplarının Analizi</h2>
+<ul>
+<li>
+<p><a href="https://pipl.com/">pipl.com</a>, insanların sosyal medya hesaplarını, fotoğraflarını, telefon numaralarını, lokasyonlarını aramayı sağlayan bir arama motorudur.</p>
+<p>Sosyal medya siteleri; insanların bilgilerini sosyal medya siteleri üzerinde tutarsızca paylaştığı günümüz dünyasında, insanlar hakkında bilgi toplamak için çok uygun bir ortamdır.</p>
+<p><img src="/images/posts/pasif-bilgi-toplama/17.png" alt="pipl-boratanrikulu"></p>
+</li>
+</ul>
+<hr>
+<h2 id="e-mail-adres-analizi">E-Mail Adres Analizi</h2>
+<ul>
+<li>
+<p><a href="https://haveibeenpwned.com/">haveibeenpwned.com</a> sitesi ile, araştırmasını yaptığımız e-mail&rsquo;in daha önce siber saldırılardan etkilenip etkilenmediğini araştırabiliriz.</p>
+<p><img src="/images/posts/pasif-bilgi-toplama/18.png" alt="pwnedmails"></p>
+</li>
+</ul>
+<hr>
+<h2 id="alexa-ile-site-analizi">Alexa ile Site Analizi</h2>
+<ul>
+<li>
+<p><a href="https://www.alexa.com/siteinfo">alexa.com</a> ile sitelerin dereceleri(rank), trafik kaynaklarını, istatistikleri incelenebilir.</p>
+<p><img src="/images/posts/pasif-bilgi-toplama/19.png" alt="alexa-wikipedia"></p>
+</li>
+</ul>
+<hr>
+<h2 id="cv-incelenmesi">CV İncelenmesi</h2>
+<ul>
+<li><a href="https://www.secretcv.com/">secretcv.com</a> oldukça büyük bir CV verisine sahiptir. Eğer aradığınız kişi bu veriler içinde birisi ise CV&rsquo;sine kolaylıkla ulaşabilirsiniz.</li>
+</ul>
+<hr>
+<h2 id="github-commitleri">GitHub Commit&rsquo;leri</h2>
+<ul>
+<li>
+<p><a href="https://github.com">GitHub</a> commit&rsquo;lerinin incelenmesiyle, geliştiriciler tarafından gözden kaçmış / göz ardı edilmiş bilgilere erişilebilir, önemli bilgiler elde edilebilir.</p>
+<p><img src="/images/posts/pasif-bilgi-toplama/20.png" alt="github-commit"></p>
+</li>
+</ul>
+<hr>
+<h2 id="pastebin">Pastebin</h2>
+<ul>
+<li>
+<p><a href="https://pastebin.com/">pastebin.com</a> hızlı olarak genellikle uzun textlerin gönderildiği bir web sitesidir. İnsanların dikkatsizce <strong>public</strong> olarak gönderme yaptığından dolayı, bir çok önemli verinin bulnabileceği bir sitedir.</p>
+<p><img src="/images/posts/pasif-bilgi-toplama/21.png" alt="pastebin"></p>
+</li>
+</ul>
+
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/security">Security</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'boratanrikulu';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> copyright notice |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77508691-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

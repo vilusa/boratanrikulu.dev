@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Cron ile Zamanlanmış Görevler - Bora Tanrıkulu</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Cron ile Zamanlanmış Görevler" />
+<meta property="og:description" content="zamanlanmış görevlerin linux&#39;da nasıl oluşturulduğunu açıklar." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boratanrikulu.dev/cron-ile-zamanlanmis-gorevler/" />
+<meta property="article:published_time" content="2018-07-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-07-10T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Cron ile Zamanlanmış Görevler"/>
+<meta name="twitter:description" content="zamanlanmış görevlerin linux&#39;da nasıl oluşturulduğunu açıklar."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="https://boratanrikulu.dev/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://boratanrikulu.dev/">
+				<img src="/images/avatar.jpeg" alt="Bora Tanrıkulu" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="https://boratanrikulu.dev/">Bora Tanrıkulu</a></h1>
+	<div class="site-description"><p>Interested in shell scripting, system administration and golang.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/boratanrikulu/" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/boratanrikulu_/" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://linkedin.com/in/bora-tanrikulu/" title="LinkedIn"><i data-feather="linkedin"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/aboutme">About me</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">10</span>
+							<span class="rest">Jul 2018</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">Cron ile Zamanlanmış Görevler</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p><strong>Kaynaklar</strong><br>
+<a href="https://wiki.archlinux.org/index.php/cron">wiki.archlinux.org/cron</a><br>
+<a href="https://en.wikipedia.org/wiki/Cron">en.wikipedia.org/wiki/Cron</a></p>
+<p><strong>NOT:</strong> Anlatım için debian9 kullanılmıştır.</p>
+<hr>
+<h2 id="sunucuda-saat-ayarlamasının-yapılması">Sunucuda Saat Ayarlamasının Yapılması</h2>
+<p>Eğer zamanlanmış bir görev yapmak istiyorsanız ilk yapanız gereken, elinizde bulunan sunucunun sistem saatinin istediğiniz gibi olduğundan emin olmaktır. Sistem saatini aşağıdaki komut ile kontrol edebilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ date
+</code></pre></div><p>Eğer istenenden farklı bir sonuç gözleniyor ise aşağıdaki komut ile sistem saatini bölgesel olarak yeniden ayarlayabilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ sudo dpkg-reconfigure tzdata
+</code></pre></div><p align="center"> 
+	<img src="/images/posts/cron-ile-zamanlanmis-gorevler/1.png">
+</p>
+<p align="center"> 
+	<img src="/images/posts/cron-ile-zamanlanmis-gorevler/2.png">
+</p>
+<hr>
+<h2 id="zamanlanmış-görev-nedir-">Zamanlanmış Görev Nedir ?</h2>
+<p>Zamanlanmış görevler sayesinde günlük-haftalık-aylık-yıllık periyotlar ile yapmanız gereken işlemleri manuel yapmak yerine otomatik olarak istenen zaman diliminde gerçekleşmesini sağlayabilirsiniz.</p>
+<p>Zamanlanmış görevler için çoğunlukla <strong>cron</strong> kullanılır. Çoğu sistemde cron kurulu olarak gelmektedir. Ayrıca yine çoğu sistemde default olarak gelen bazı zamanlanmış cron görevleri mevcuttur.<br>
+Bunlar <strong>/etc/</strong> altında aşağıdaki gibi bulunur.</p>
+<p align="center"> 
+	<img src="/images/posts/cron-ile-zamanlanmis-gorevler/3.png">
+</p>
+<hr>
+<h2 id="cron-nedir-">Cron Nedir ?</h2>
+<p>Cron zamanlanmış olarak komutları çalıştırmamızı sağlayan bir daemon&rsquo;dur. Çoğu linux dağıtımında yüklü olarak gelir.</p>
+<p>Cron kullanımı için iki temel yol vardır.</p>
+<p>Birincisi; hali hazırda sistemde /etc/ altında bulunan <strong>cron.daily</strong>, <strong>cron.hourly</strong>, <strong>cron.monthly</strong> ve <strong>cron.weekly</strong> klasörlerinine istenen script&rsquo;in kopyalanmasıdır.<br>
+Bu klasörlerde bulunan scriptler, <strong>/etc/crontab</strong>&lsquo;daki ayarlamaya göre ilgili zaman dilimlerinde çalıştırılır.</p>
+<p>/etc/crontab aşağıdaki gibidir.</p>
+<p align="center"> 
+	<img src="/images/posts/cron-ile-zamanlanmis-gorevler/4.png">
+</p>
+<p>İkinicisi; kullanıcıya özel crontab dosyası oluşturulmasıdır. Sıradaki başlıklarda bunun nasıl yapıldığını anlattım.</p>
+<hr>
+<h2 id="crontab-kullanımı">Crontab Kullanımı</h2>
+<p>Her kullanıcının kendisine ait bir crontab dosyası vardır.<br>
+<strong>Crontab</strong> ile bir crontab dosyası oluşturulduğunda bu dosyalar <strong>/var/spool/cron/crontabs/</strong> altında tutulur. <em>Ama bu dosyalara elle müdahale edilmemesi gerekir</em>, bunun yerine komut satırından <strong>crontab</strong> kullanılmalıdır.</p>
+<p>Crontab kullanım komutları aşağıdaki gibidir.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Komut</th>
+<th align="center">Açıklama</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">crontab -l</td>
+<td align="center">Komudu çalıştıran kullacının, eğer mevcut ise, crontab dosyasını gösterir</td>
+</tr>
+<tr>
+<td align="center">crontab -e</td>
+<td align="center">Komudu çalıştıran kullanıcının, crontab dosyasını açar</td>
+</tr>
+<tr>
+<td align="center">crontab -r</td>
+<td align="center">Komudu çalıştıran kullanıcının crontab dosyasını siler</td>
+</tr>
+<tr>
+<td align="center">crontab -u userName -e</td>
+<td align="center">Başka bir kullanıcının crontab dosyasını açar</td>
+</tr>
+</tbody>
+</table>
+<p>Crontab dosyasını bir kullanıcı için oluşturmak ve düzenlemek istiyorsak <strong>-e</strong> parametresini kullanmamız gerekir. Eğer ilk defa oluşturuluyorsa aşadağıki gibi boş/default bir crontab dosyası oluşacaktır.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ crontab -e
+</code></pre></div><p align="center"> 
+	<img src="/images/posts/cron-ile-zamanlanmis-gorevler/11.png">
+</p>
+<p>Crontab dosya yapısı aşağıdaki yapıdaki gibi kullanılmalıdır. Her satıra bir işlem yazılacak şekilde düzenlenmelidir.</p>
+<p align="center"> 
+	<img src="/images/posts/cron-ile-zamanlanmis-gorevler/10.png">
+</p>
+<p>Yukardaki ifade yerine direkt olarak aşağıdaki gibi bir yapı da kullanılabilir.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Komut</th>
+<th align="center">Eşiti</th>
+<th align="center">Açıklama</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong>@yearly</strong></td>
+<td align="center">0 0 1 1 *</td>
+<td align="center">Her yılın ilk günü çalışır</td>
+</tr>
+<tr>
+<td align="center"><strong>@monthly</strong></td>
+<td align="center">0 0 1 * *</td>
+<td align="center">Her ayın ilk günü çalışır</td>
+</tr>
+<tr>
+<td align="center"><strong>@weekly</strong></td>
+<td align="center">0 0 * * 0</td>
+<td align="center">Her hafta pazar günü çalışır</td>
+</tr>
+<tr>
+<td align="center"><strong>@daily</strong></td>
+<td align="center">0 0 * * *</td>
+<td align="center">Her gün gece yarısı çalışır</td>
+</tr>
+<tr>
+<td align="center"><strong>@hourly</strong></td>
+<td align="center">0 * * * *</td>
+<td align="center">Her saatin başlangıcında çalışır</td>
+</tr>
+<tr>
+<td align="center"><strong>@reboot</strong></td>
+<td align="center"><strong>-karşılığı yok-</strong></td>
+<td align="center">Her başlatma işleminde çalışır</td>
+</tr>
+</tbody>
+</table>
+<p>Örneğin aşağıdaki iki satır da aynı işlemi yapmaktadır.</p>
+<p align="center"> 
+	<img src="/images/posts/cron-ile-zamanlanmis-gorevler/12.png">
+</p>
+<hr>
+<h2 id="basit-bir-örnek-ile-gösterim">Basit Bir Örnek ile Gösterim</h2>
+<p>Aşağıdaki gibi elimizde basit bir backup script&rsquo;i olsun, ve bu script&rsquo;in <strong>blog</strong> kullanıcısı tarafından <strong>her hafta pazartesi günü saat 17:30&rsquo;da</strong> çalıştırılmasını istiyor olalım.</p>
+<p><strong>backupScript.sh :</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	<span style="color:#998;font-style:italic">#!/usr/bin/env bash</span>
+	<span style="color:#008080">TIME</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">`</span>date +%b-%d-%y<span style="color:#d14">`</span>
+	<span style="color:#008080">FILENAME</span><span style="color:#000;font-weight:bold">=</span>backup-<span style="color:#008080">$TIME</span>.tar.gz
+	<span style="color:#008080">SRCDIR</span><span style="color:#000;font-weight:bold">=</span>*
+	<span style="color:#008080">DESDIR</span><span style="color:#000;font-weight:bold">=</span>Backups
+	tar -cpzf <span style="color:#008080">$DESDIR</span>/<span style="color:#008080">$FILENAME</span> <span style="color:#008080">$SRCDIR</span>
+</code></pre></div><p>İlk olarak blog kullanıcısına geçiş yapalım.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ su blog
+</code></pre></div><p>Ardından bu kullanıcıya ait crontab dosyasını açalım.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ crontab -e
+</code></pre></div><p align="center"> 
+	<img src="/images/posts/cron-ile-zamanlanmis-gorevler/5.png">
+</p>
+<p>Dosya açıldığında aşağıdaki gibi boş bir crontab dosyası görüyoruz.</p>
+<p align="center"> 
+	<img src="/images/posts/cron-ile-zamanlanmis-gorevler/6.png">
+</p>
+<p>Ardından şu satırı ekleyelim :</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	<span style="color:#099">30</span> <span style="color:#099">17</span> * * <span style="color:#099">1</span> /home/blog/backupScript.sh
+</code></pre></div><p align="center"> 
+	<img src="/images/posts/cron-ile-zamanlanmis-gorevler/7.png">
+</p>
+<p>Ardından kayıt edip ve çıkalım.</p>
+<p align="center"> 
+	<img src="/images/posts/cron-ile-zamanlanmis-gorevler/8.png">
+</p>
+<p>İşlem bu kadar basit. Artık sunucuda <strong>her pazartesi 17:30&rsquo;da</strong> betiğin çalıştırıldığı klasördeki tüm verilerin backup'ı alınacak.</p>
+<p align="center"> 
+	<img src="/images/posts/cron-ile-zamanlanmis-gorevler/9.png">
+</p>
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/gnu/linux">GNU/Linux</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'boratanrikulu';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> copyright notice |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77508691-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

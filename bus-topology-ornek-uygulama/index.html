@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Bus Topology - Örnek Uygulama - Bora Tanrıkulu</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Bus Topology - Örnek Uygulama" />
+<meta property="og:description" content="lyk18&#39;de yapılan network uygulamasının bir özeti." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boratanrikulu.dev/bus-topology-ornek-uygulama/" />
+<meta property="article:published_time" content="2018-08-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-08-07T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Bus Topology - Örnek Uygulama"/>
+<meta name="twitter:description" content="lyk18&#39;de yapılan network uygulamasının bir özeti."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="https://boratanrikulu.dev/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://boratanrikulu.dev/">
+				<img src="/images/avatar.jpeg" alt="Bora Tanrıkulu" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="https://boratanrikulu.dev/">Bora Tanrıkulu</a></h1>
+	<div class="site-description"><p>Interested in shell scripting, system administration and golang.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/boratanrikulu/" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/boratanrikulu_/" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://linkedin.com/in/bora-tanrikulu/" title="LinkedIn"><i data-feather="linkedin"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/aboutme">About me</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">07</span>
+							<span class="rest">Aug 2018</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">Bus Topology - Örnek Uygulama</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p><strong>Kaynaklar</strong><br>
+LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey (Engür Pişirici)</p>
+<p><strong>NOT:</strong> Anlatım için VirtualBox ve Debian9 kullanılmıştır.</p>
+<hr>
+<h2 id="bus-topology-nedir-">Bus Topology Nedir ?</h2>
+<p>Cihazların tek bir çizgi(line) üzerinde birbirine bağlanması ile oluşturulan network&rsquo;e Bus Topology denir.</p>
+<ul>
+<li>Avantajları
+<ul>
+<li>Küçük network için kolay bir çözümdür.</li>
+<li>Star Topology&rsquo;e göre daha az kablo gerektirir, ucuzdur.</li>
+</ul>
+</li>
+<li>Dezavantajları
+<ul>
+<li>Temassızlık, kopukluk, kısa devre vs. tüm sistemi etkiler.</li>
+<li>Arıza tespiti zordur.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="oluşturulacak-yapıya-genel-bir-bakış">Oluşturulacak Yapıya Genel Bir Bakış</h2>
+<p align="center">
+	<img src="/images/posts/bus-topology-ornek-uygulama/logo.png">
+</p>
+<p>Bu şekilde bir yapı kurup, B server'ı üzerinden akan trafiği yönetmek istiyoruz. Bunun için 3 interface&rsquo;e ihtiyacımız var. Interface&rsquo;leri aşağıdaki gibi oluşturabilirsiniz.</p>
+<hr>
+<h2 id="interfacelerin-ayarlanması">Interface&rsquo;lerin Ayarlanması</h2>
+<p align="center">
+	<img src="/images/posts/bus-topology-ornek-uygulama/1.png">
+</p>
+<p>Interface oluşturmalarının yapılmasından sonra 4 tane sanal makine oluşturun ve network ayarlarını &ldquo;Host Only Adapter&rdquo; seçerek aşağıdaki gibi yapın.<br>
+(Adaptör sıralarına dikkat edin, script&rsquo;ler bunlara uygun yazılmıştır.)</p>
+<table>
+<thead>
+<tr>
+<th align="center">Device</th>
+<th align="center">Adapter 1</th>
+<th align="center">Adapter 2</th>
+<th align="center">Adapter 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Client - <strong>A</strong></td>
+<td align="center">vboxnet<strong>0</strong></td>
+<td align="center">vboxnet<strong>1</strong></td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">Forwarder - <strong>B</strong></td>
+<td align="center">vboxnet<strong>1</strong></td>
+<td align="center">vboxnet<strong>0</strong></td>
+<td align="center">vboxnet<strong>2</strong></td>
+</tr>
+<tr>
+<td align="center">Server - <strong>C</strong></td>
+<td align="center">vboxnet<strong>2</strong></td>
+<td align="center">vboxnet<strong>1</strong></td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">Server - <strong>D</strong></td>
+<td align="center">vboxnet<strong>2</strong></td>
+<td align="center">vboxnet<strong>1</strong></td>
+<td align="center">-</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="client---a-nın-yapılandırılması">Client - A&rsquo; nın Yapılandırılması</h2>
+<p>A Cihazını bir istemci gibi kullanacağımız için <strong>curl</strong>&lsquo;e ihtiyacımız olacak. Yüklü değil ise kurun. Eğer istiyorsanız terminal browser'ı da kurabilirsiniz.</p>
+<p>Network ayarlarını yapılandırmak için aşağıdaki script&rsquo;i root yetkisi ile her başlangıçta çalıştırılacak şekilde hazırlayın.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#999;font-weight:bold;font-style:italic">#!/bin/bash
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+setName<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+	ip link <span style="color:#0086b3">set</span> dev enp0s8 down
+	ip link <span style="color:#0086b3">set</span> dev enp0s8 name AtoB
+	ip link <span style="color:#0086b3">set</span> dev AtoB up
+<span style="color:#000;font-weight:bold">}</span>
+
+setIPs<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+	ip addr add 192.168.3.3/24 dev AtoB <span style="color:#998;font-style:italic"># sets Device A IP for vboxnet1</span>
+	ip route add 192.168.4.0/24 dev AtoB via 192.168.3.40 <span style="color:#998;font-style:italic"># sets Device B as the router to access vboxnet2</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+main<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+	setName
+	setIPs
+<span style="color:#000;font-weight:bold">}</span>
+
+main
+</code></pre></div><hr>
+<h2 id="forwarder---b-nin-yapılandırılması">Forwarder - B&rsquo; nin Yapılandırılması</h2>
+<p>B Cihazını bir forwarder olarak kullanacağız. C ve D cihazlarına erişim kapatıldığında bir uyarı sayfası göstermek istediğimizden dolayı <strong>apache2</strong>&lsquo;e ihtiyacımız olacak. Sunucuya apache2&rsquo;yi kurun.</p>
+<p>Uyarı sayfasını <strong>/var/www/hmtl/index.html</strong> altına koyabilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#999;font-weight:bold;font-style:italic">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#000080">html</span>&gt;
+&lt;<span style="color:#000080">head</span>&gt;
+	&lt;<span style="color:#000080">title</span>&gt;!Warning!&lt;/<span style="color:#000080">title</span>&gt;
+&lt;/<span style="color:#000080">head</span>&gt;
+&lt;<span style="color:#000080">body</span>&gt;
+	&lt;<span style="color:#000080">h1</span>&gt;C and D is unreachable.&lt;/<span style="color:#000080">h1</span>&gt;
+&lt;/<span style="color:#000080">body</span>&gt;
+&lt;/<span style="color:#000080">html</span>&gt;
+</code></pre></div><p>Network ayarlarını yapılandırmak için aşağıdaki script&rsquo;i root yetkisi ile her başlangıçta çalıştırılacak şekilde hazırlayın.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#999;font-weight:bold;font-style:italic">#!/bin/bash
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+setNames<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+	ip link <span style="color:#0086b3">set</span> dev enp0s8 down
+	ip link <span style="color:#0086b3">set</span> dev enp0s8 name BtoA
+	ip link <span style="color:#0086b3">set</span> dev BtoA up
+
+	ip link <span style="color:#0086b3">set</span> dev enp0s9 down
+	ip link <span style="color:#0086b3">set</span> dev enp0s9 name BtoC
+	ip link <span style="color:#0086b3">set</span> dev BtoC up
+<span style="color:#000;font-weight:bold">}</span>
+
+setIPs<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+	ip addr add 192.168.3.40/24 dev BtoA <span style="color:#998;font-style:italic"># sets Device B IP for vboxnet0</span>
+	ip addr add 192.168.4.2/24 dev BtoC <span style="color:#998;font-style:italic"># sets Device B IP for vboxnet2</span>
+
+<span style="color:#000;font-weight:bold">}</span>
+
+setIPForward<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+	<span style="color:#008080">ipForward</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">`</span>cat /proc/sys/net/ipv4/ip_forward<span style="color:#d14">`</span>
+
+	<span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000;font-weight:bold">[</span> <span style="color:#d14">&#34;</span><span style="color:#008080">$ipForward</span><span style="color:#d14">&#34;</span> -eq <span style="color:#d14">&#34;0&#34;</span> <span style="color:#000;font-weight:bold">]</span><span style="color:#000;font-weight:bold">]</span>; <span style="color:#000;font-weight:bold">then</span> <span style="color:#998;font-style:italic"># sets IP Forward as 1</span>
+		sysctl net.ipv4.ip_forward<span style="color:#000;font-weight:bold">=</span><span style="color:#099">1</span>
+	<span style="color:#000;font-weight:bold">fi</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+main<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+	setNames
+	setIPs
+	setIPForward
+<span style="color:#000;font-weight:bold">}</span>
+
+main
+</code></pre></div><hr>
+<h2 id="server---c-nin-yapılandırılması">Server - C&rsquo; nin Yapılandırılması</h2>
+<p>Birinci sunucumuz olan C&rsquo;ye apache2&rsquo;i kurun ve <strong>/var/www/hmtl/index.html</strong> dosyasını istediğiniz gibi şekillendirin. Ben bu örnekte aşağıdaki gibi sadece C olduğunu belirtecek bir yapı kullandım.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#999;font-weight:bold;font-style:italic">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#000080">html</span>&gt;
+&lt;<span style="color:#000080">head</span>&gt;
+	&lt;<span style="color:#000080">title</span>&gt;!Device-C!&lt;/<span style="color:#000080">title</span>&gt;
+&lt;/<span style="color:#000080">head</span>&gt;
+&lt;<span style="color:#000080">body</span>&gt;
+	&lt;<span style="color:#000080">h1</span>&gt;Yep. That&#39;s Fucking C!&lt;/<span style="color:#000080">h1</span>&gt;
+&lt;/<span style="color:#000080">body</span>&gt;
+&lt;/<span style="color:#000080">html</span>&gt;
+</code></pre></div><p>Network ayarlarını yapılandırmak için aşağıdaki script&rsquo;i root yetkisi ile her başlangıçta çalıştırılacak şekilde hazırlayın.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#999;font-weight:bold;font-style:italic">#!/bin/bash
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+setName<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+	ip link <span style="color:#0086b3">set</span> dev enp0s8 down
+	ip link <span style="color:#0086b3">set</span> dev enp0s8 name CtoB
+	ip link <span style="color:#0086b3">set</span> dev CtoB up
+<span style="color:#000;font-weight:bold">}</span>
+
+setIPs<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+	ip addr add 192.168.4.4/24 dev CtoB <span style="color:#998;font-style:italic"># sets Device C IP for vboxnet1</span>
+	ip route add 192.168.3.0/24 dev CtoB via 192.168.4.2 <span style="color:#998;font-style:italic"># sets Device B as the router to access vboxnet0</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+main<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+	setName
+	setIPs
+<span style="color:#000;font-weight:bold">}</span>
+
+main
+</code></pre></div><hr>
+<h2 id="server---d-nin-yapılandırılması">Server - D&rsquo; nin Yapılandırılması</h2>
+<p>İkinci sunucumuz olan D&rsquo;ye apache2&rsquo;i kurun ve <strong>/var/www/hmtl/index.html</strong> dosyasını istediğiniz gibi şekillendirin. Ben bu örnekte aşağıdaki gibi sadece D olduğunu belirtecek bir yapı kullandım.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#999;font-weight:bold;font-style:italic">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#000080">html</span>&gt;
+&lt;<span style="color:#000080">head</span>&gt;
+	&lt;<span style="color:#000080">title</span>&gt;!Device-D!&lt;/<span style="color:#000080">title</span>&gt;
+&lt;/<span style="color:#000080">head</span>&gt;
+&lt;<span style="color:#000080">body</span>&gt;
+	&lt;<span style="color:#000080">h1</span>&gt;Yep. That&#39;s Fucking D!&lt;/<span style="color:#000080">h1</span>&gt;
+&lt;/<span style="color:#000080">body</span>&gt;
+&lt;/<span style="color:#000080">html</span>&gt;
+</code></pre></div><p>Network ayarlarını yapılandırmak için aşağıdaki script&rsquo;i root yetkisi ile her başlangıçta çalıştırılacak şekilde hazırlayın.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#999;font-weight:bold;font-style:italic">#!/bin/bash
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+setName<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+	ip link <span style="color:#0086b3">set</span> dev enp0s8 down
+	ip link <span style="color:#0086b3">set</span> dev enp0s8 name DtoB
+	ip link <span style="color:#0086b3">set</span> dev DtoB up
+<span style="color:#000;font-weight:bold">}</span>
+
+setIPs<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+	ip addr add 192.168.4.5/24 dev DtoB <span style="color:#998;font-style:italic"># sets Device D IP for vboxnet1</span>
+	ip route add 192.168.3.0/24 dev DtoB via 192.168.4.2 <span style="color:#998;font-style:italic"># sets Device B as the router to access vboxnet0</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+main<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+	setName
+	setIPs
+<span style="color:#000;font-weight:bold">}</span>
+
+main
+</code></pre></div><hr>
+<h2 id="ne-yaptık--ne-yapmak-istiyoruz-">Ne Yaptık ? Ne Yapmak İstiyoruz ?</h2>
+<p>Oluşturulan scriptlerin çalışması için tüm cihazların kapatıp tekrar açın.<br>
+Şuan oluşan yapıda A cihazından (B üzerinden geçerek) C ve D cihazlarına erişim sağlanabiliyor. Ama bizim yapmak istediğimiz yapı tam olarak bu değil. Biz A cihazından yalnızca B&rsquo;ye istek yapılmasını, hangi cevabın dönüleceğini B üzerinden karar vermek istiyoruz.</p>
+<p>Yani aslında buradaki amaç B cihazı üzerinden client&rsquo;lara hizmet vermek, C ve D cihazlarını B&rsquo;nin arkasında tutmak. Bu sayede direkt olarak B üzerinde yaptığımız ayarlar sayesinde network'ü kollaylıkla yönetebileceğiz.</p>
+<hr>
+<h2 id="forwarder-yapılandırılması">Forwarder Yapılandırılması</h2>
+<p>B üzerine yapılan web servisi sorgularında hangi server&rsquo;dan dönüş sağlanılacağını ayarlamak için aşağıdaki gibi bir script kullanacağız.</p>
+<p>Bu sayede Client - A üzerinden yapılacak olacak olan &ldquo;curl 192.168.3.40&rdquo; sorgularında hangi sunucunun sonucunun dönüleceğini kolaylıkla belirleyebiliriz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#999;font-weight:bold;font-style:italic">#!/bin/bash
+</span><span style="color:#999;font-weight:bold;font-style:italic"></span>
+<span style="color:#008080">C_IP</span><span style="color:#000;font-weight:bold">=</span>192.168.4.4
+<span style="color:#008080">D_IP</span><span style="color:#000;font-weight:bold">=</span>192.168.4.5
+
+delete_them_all<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+	iptables -t nat -F <span style="color:#998;font-style:italic"># deletes all nat rules</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+add_nat_rule<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+	iptables -t nat -A PREROUTING -p tcp --dport <span style="color:#099">80</span> -d 192.168.3.40 -j DNAT --to-destination <span style="color:#d14">&#34;</span><span style="color:#008080">$1</span><span style="color:#d14">&#34;</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+main<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+	<span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000;font-weight:bold">[</span> <span style="color:#d14">&#34;</span><span style="color:#008080">$1</span><span style="color:#d14">&#34;</span> <span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;c&#34;</span> <span style="color:#000;font-weight:bold">]</span><span style="color:#000;font-weight:bold">]</span>; <span style="color:#000;font-weight:bold">then</span>
+		delete_them_all
+		add_nat_rule <span style="color:#d14">&#34;</span><span style="color:#008080">$C_IP</span><span style="color:#d14">&#34;</span> <span style="color:#998;font-style:italic"># adds Device C IP to forward</span>
+		<span style="color:#0086b3">echo</span> <span style="color:#d14">&#34;Process is Completed [C].&#34;</span>
+	<span style="color:#000;font-weight:bold">elif</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000;font-weight:bold">[</span> <span style="color:#d14">&#34;</span><span style="color:#008080">$1</span><span style="color:#d14">&#34;</span> <span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;d&#34;</span> <span style="color:#000;font-weight:bold">]</span><span style="color:#000;font-weight:bold">]</span>; <span style="color:#000;font-weight:bold">then</span>
+		delete_them_all
+		add_nat_rule <span style="color:#d14">&#34;</span><span style="color:#008080">$D_IP</span><span style="color:#d14">&#34;</span> <span style="color:#998;font-style:italic"># adds Device D IP to forward</span>
+		<span style="color:#0086b3">echo</span> <span style="color:#d14">&#34;Process is Completed [D].&#34;</span>
+	<span style="color:#000;font-weight:bold">elif</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000;font-weight:bold">[</span> <span style="color:#d14">&#34;</span><span style="color:#008080">$1</span><span style="color:#d14">&#34;</span> <span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;off&#34;</span> <span style="color:#000;font-weight:bold">]</span><span style="color:#000;font-weight:bold">]</span>; <span style="color:#000;font-weight:bold">then</span>
+		delete_them_all
+		<span style="color:#0086b3">echo</span> <span style="color:#d14">&#34;All NAT Rules are Deleted.&#34;</span>
+	<span style="color:#000;font-weight:bold">else</span>
+		<span style="color:#0086b3">echo</span> <span style="color:#d14">&#34;Please use only \&#34;c\&#34;, \&#34;d\&#34; or \&#34;off\&#34; as the input&#34;</span>
+	<span style="color:#000;font-weight:bold">fi</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+main <span style="color:#d14">&#34;</span><span style="color:#008080">$*</span><span style="color:#d14">&#34;</span>
+</code></pre></div><hr>
+<h2 id="client-üzerinden-görüntüleme-yapılması">Client Üzerinden Görüntüleme Yapılması</h2>
+<p>Eğer B üzerinde aşağıdaki gibi bir işlem yapılırsa,</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">B$ ./forward.sh c
+</code></pre></div><p>A artık B&rsquo;yi sorguladığında C&rsquo;yi görüntüleyecektir.</p>
+<p align="center">
+	<img src="/images/posts/bus-topology-ornek-uygulama/2.png">
+</p>
+<hr>
+<p>Eğer B üzerinden D forward'ı açılırsa</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">B$ ./forward.sh d
+</code></pre></div><p>Client - A, D&rsquo;yi görüntüler</p>
+<p align="center">
+	<img src="/images/posts/bus-topology-ornek-uygulama/3.png">
+</p>
+<hr>
+<p>Eğer B üzerinden Forward işlemi kapatılırsa,</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">B$ ./forward.sh off
+</code></pre></div><p>Client - A aşağıdaki gibi bir ekranla karşılaşır.</p>
+<p align="center">
+	<img src="/images/posts/bus-topology-ornek-uygulama/4.png">
+</p>
+<hr>
+<h2 id="b-üzerinden-hız-ayarlarının-kontrolü">B Üzerinden Hız Ayarlarının Kontrolü</h2>
+<p>&hellip;<br>
+&hellip;<br>
+Buraya Yazı Gelecek<br>
+&hellip;<br>
+&hellip;</p>
+
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/network">Network</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'boratanrikulu';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> copyright notice |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77508691-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

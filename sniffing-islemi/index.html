@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Sniffing İşlemi - Bora Tanrıkulu</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Sniffing İşlemi" />
+<meta property="og:description" content="sniffing&#39;in ne olduğunu wireshark ve tcpdump üzerinden açıklar." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boratanrikulu.dev/sniffing-islemi/" />
+<meta property="article:published_time" content="2018-04-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-04-23T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Sniffing İşlemi"/>
+<meta name="twitter:description" content="sniffing&#39;in ne olduğunu wireshark ve tcpdump üzerinden açıklar."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="https://boratanrikulu.dev/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://boratanrikulu.dev/">
+				<img src="/images/avatar.jpeg" alt="Bora Tanrıkulu" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="https://boratanrikulu.dev/">Bora Tanrıkulu</a></h1>
+	<div class="site-description"><p>Interested in shell scripting, system administration and golang.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/boratanrikulu/" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/boratanrikulu_/" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://linkedin.com/in/bora-tanrikulu/" title="LinkedIn"><i data-feather="linkedin"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/aboutme">About me</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">23</span>
+							<span class="rest">Apr 2018</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">Sniffing İşlemi</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p><strong>Kaynaklar</strong><br>
+<a href="https://kevsersrca.github.io/blog//security/tcpdump/">kevsersrca.github.io/blog/security/tcpdump/</a><br>
+<a href="https://wiki.wireshark.org/CaptureFilters">wiki.wireshark.org/CaptureFilters</a><br>
+<a href="https://wiki.wireshark.org/DisplayFilters">wiki.wireshark.org/DisplayFilters</a><br>
+<a href="https://www.guru99.com/wireshark-passwords-sniffer.html">guru99.com/wireshark-passwords-sniffer</a></p>
+<hr>
+<h2 id="sniffing-nedir-">Sniffing Nedir ?</h2>
+<p>Bilgisayarlar network&rsquo;lerde paket yayınlayarak iletişim kurarlar. Bu işlem için IP kullanılır ve paket network'ün türüne göre tüm ağı dolaşabilir. Paket geçtiği yollarda okunabilir yani pakete sniffing işlemi yapılabilir.</p>
+<p>Basit bir şekilde söylemek gerekirse Sniffing yani <em>koklama</em> network&rsquo;te akan paketlerin tek tek incelenmesidir. Paketler değiştirilmeden direkt olarak okunabilir. Paketleri yakalamak için bir çok sniffing tool&rsquo;u mevcuttur. (WireShark bunlar arasında en popüleridir.)</p>
+<p>Network&rsquo;te akan paketleri sniffing işlemi ile (şifrelenmiş değil ise) parolalar gibi hassas veriler elde edilebilir.</p>
+<h3 id="sniffing-türleri">Sniffing Türleri</h3>
+<p>İki tane sniffing türü var;</p>
+<ul>
+<li>Pasif Sniffing</li>
+<li>Aktif Sniffing</li>
+</ul>
+<p>Sniffing türleri anlamak için network&rsquo;leri oluştururken kullanılan iki temel cihaz olan <strong>hub</strong> ve <strong>switch</strong> hakkında bilgi sahibi olmamız gerekir.</p>
+<h4 id="hub">Hub</h4>
+<p>Hub&rsquo;lar yayımlanan paketleri tüm network&rsquo;teki port&rsquo;lara yollayarak çalışır. Eğer hedef bilgisayar network&rsquo;te bulunuyorsa paketi alır ve cevaplar.  Hub&rsquo;daki tüm cihazlar paketi görebilir.</p>
+<p>Aşağıdaki örnekte hedefimiz sadece Bilgisayar C ama network&rsquo;teki tüm cihazlar paketi okuyabilir.</p>
+<p align="center"> 
+<img src="/images/posts/sniffing-islemi/7.png">
+</p>
+<h4 id="switch">Switch</h4>
+<p>Switch&rsquo;ler yollanılan paketi IP ve MAC adresine göre yönlendirir. Network&rsquo;te sadece hedef sistem paketi okuyabilir.</p>
+<p>Aşağıdaki örnekte hedefimiz sadece Bilgisayar C ve network&rsquo;te sadece Bilgisayar C paketi okuyabilir.</p>
+<p align="center"> 
+<img src="/images/posts/sniffing-islemi/8.png">
+</p>
+<h4 id="pasif-sniffing">Pasif Sniffing</h4>
+<p>Hub&rsquo;da yayımlanan paketlere uygulanan sniffing işlemi türüdür. Pasif Sniffing olarak isimlendirilmesinin nedeni yapılması kolay tespiti zor olmasıdır.</p>
+<h4 id="aktif-sniffing">Aktif Sniffing</h4>
+<p>Switch&rsquo;te yayımlanan paketlere uygulanan sniffing işlemi türüdür. Aktif Sniffing olarak isimlendirilmesinin nedeni yapılmasının zor olmasıdır. Switch ile bağlanan network&rsquo;lerde sniffing işlemi için ARP Poisoning ve Mac Flooding uygulanmalıdır. Bu sayede Hub&rsquo;mış gibi davranması sağlanabilir.</p>
+<hr>
+<h2 id="wireshark-nedir--nasıl-kullanılır-">WireShark Nedir ? Nasıl Kullanılır ?</h2>
+<p>WireShark açık kaynak bir paket analiz tool&rsquo;udur.</p>
+<ul>
+<li>750&rsquo;nin üzerinde protokolü analiz edebilir</li>
+<li>Paketleri yakalayıp bir dosyaya kaydedebilir</li>
+<li>Daha önceden kaydedilmiş bir dosyayı açabilir-</li>
+<li>Gerçek zamanlı analiz yapabilir</li>
+<li>Bir analizi filtre edebilir (örneğin &ldquo;sadece HTTP mesajlarını göster&rdquo; gibi)</li>
+<li>Terminal veya kullanıcı arabirimi ile kullanılabilir</li>
+<li>Gelişmiş bir arayüz sunar</li>
+</ul>
+<p><img src="/images/posts/sniffing-islemi/1.png" alt="interface"></p>
+<p>WireShark bir çok filtreleme imkanına sahiptir. Bunlara genel olarak değinelim.</p>
+<p>Aşağıdaki örnekteki gibi belirli bir host&rsquo;un belirli bir portunu dinleyebiliriz.<br>
+<img src="/images/posts/sniffing-islemi/2.png" alt="belli-bir-port"></p>
+<p>Bu dinlemeleri yaptığımız sırada paketleri daha rahat okumak için filtreleme seçeneklerini kullanabiliriz. Aşağıdaki örnekte sadece <strong>http</strong> protokolüne bakıyoruz.<br>
+<img src="/images/posts/sniffing-islemi/3.png" alt="belli-bir-protokol"></p>
+<p>Şifresiz bir veriyi sniffing işlemi ile elde etmek oldukça kolaydır.
+<img src="/images/posts/sniffing-islemi/9.png" alt="pass-sniff"></p>
+<h4 id="capture-filtreleme-örnekleri">Capture filtreleme örnekleri;</h4>
+<ul>
+<li>
+<p>Belirli bir host</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    host 10.0.2.23
+</code></pre></div><p>``</p>
+</li>
+<li>
+<p>Belirli bir network</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    net 10.0.2.1/24
+</code></pre></div><p>``</p>
+</li>
+<li>
+<p>Belirli bir port</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    port 53
+</code></pre></div><p>``</p>
+</li>
+<li>
+<p>Belirli bir host ama belirli portlar değil</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    host 10.0.2.23 and not ( port 80 or port 53 )
+</code></pre></div><p>``</p>
+</li>
+<li>
+<p>Belirli bir port ve arp değil</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    port not 53 and not arp
+</code></pre></div><p>``</p>
+</li>
+<li>
+<p>Belirli bir tcp port&rsquo;u</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    tcp and port 80
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+<li>
+<p>Belirli bir tcp port aralığı</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    tcp portrange 60-6000
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+<li>
+<p>Belirli bir udp port&rsquo;u</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    udp and port 53
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+<li>
+<p>Belirli bir udp port aralığı</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    udp portrange 10-1000
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+<li>
+<p>Sadece IPv4 paketleri</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    ip
+</code></pre></div><p>``</p>
+</li>
+<li>
+<p>Sadece IPv6 paketleri</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    ip6
+</code></pre></div><p>``</p>
+</li>
+</ul>
+<h4 id="display-filtreleme-örnekleri">Display filtreleme örnekleri;</h4>
+<ul>
+<li>
+<p>Belirli bir source port&rsquo;u</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    ip.src == 10.0.2.23
+</code></pre></div><p>``</p>
+</li>
+<li>
+<p>Belirli bir destination port&rsquo;u</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    ip.dst == 10.0.2.23
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+<li>
+<p>Belirli bir source ve belirli bir destination değil</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    ip.src == 10.0.2.23 and ip.dst != 192.30.252.153
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+<li>
+<p>Belirli bir tcp port&rsquo;u</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    tcp.port == 80
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+<li>
+<p>Belirli bir udp port&rsquo;u</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    udp.port == 53
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+<li>
+<p>Belirli bir port ve belirli bir protokol</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    tcp.port == 80 and http
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+</ul>
+<hr>
+<h2 id="tcpdump-nedir--nasıl-kullanılır-">TCPDump Nedir ? Nasıl Kullanılır ?</h2>
+<p>Komut satırı üzerinden paket analizi yapmak için kullanılan bir tool&rsquo;dur. UNIX tabanlı işletim sistemleri içindir.</p>
+<p><img src="/images/posts/sniffing-islemi/4.png" alt="tcpdum-help"><br>
+<img src="/images/posts/sniffing-islemi/5.png" alt="tcpdump-d"><br>
+<img src="/images/posts/sniffing-islemi/6.png" alt="tcpdump"></p>
+<h4 id="kullanım-örnekleri">Kullanım örnekleri;</h4>
+<ul>
+<li>
+<p>Interface&rsquo;leri görmek</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    tcpdump -D
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+<li>
+<p>Belirli bir interface&rsquo;i dinlemek</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    tcpdump -i enp0s3
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+<li>
+<p>Belirli bir port&rsquo;u taramak</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    tcpdump port 53
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+<li>
+<p>Belirli bir protokol ve port&rsquo;u taramak</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    tcpdump tcp port 80
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+<li>
+<p>Belirli bir interface&rsquo;de, belirli sayıda paketi dinlemek ve .pcap formatında dışarı çıkarmak</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    tcpdump -i enp0s3 -c 10 -w output.pcap
+</code></pre></div><p>``<br>
+<strong>.pcap</strong> formatında dışarı çıkarılan dosyalar daha sonradan WireSharak gibi başka sniffing tool&rsquo;ları ile okunabilir.</p>
+</li>
+<li>
+<p>Dosya halindeki veriyi okumak</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    tcpdump -r output.pcap
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"></code></pre></div></li>
+</ul>
+
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/security">Security</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'boratanrikulu';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> copyright notice |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77508691-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

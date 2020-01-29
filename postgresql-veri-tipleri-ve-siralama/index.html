@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>PostgreSQL&#39;de Veri Tipleri ve Sıralama - Bora Tanrıkulu</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="PostgreSQL&#39;de Veri Tipleri ve Sıralama" />
+<meta property="og:description" content="postgresql&#39;de kullanılan veri tiplerini açıklar. sıralamayı (alignment) anlatır." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boratanrikulu.dev/postgresql-veri-tipleri-ve-siralama/" />
+<meta property="article:published_time" content="2019-12-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-12-25T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PostgreSQL&#39;de Veri Tipleri ve Sıralama"/>
+<meta name="twitter:description" content="postgresql&#39;de kullanılan veri tiplerini açıklar. sıralamayı (alignment) anlatır."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="https://boratanrikulu.dev/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://boratanrikulu.dev/">
+				<img src="/images/avatar.jpeg" alt="Bora Tanrıkulu" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="https://boratanrikulu.dev/">Bora Tanrıkulu</a></h1>
+	<div class="site-description"><p>Interested in shell scripting, system administration and golang.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/boratanrikulu/" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/boratanrikulu_/" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://linkedin.com/in/bora-tanrikulu/" title="LinkedIn"><i data-feather="linkedin"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/aboutme">About me</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">25</span>
+							<span class="rest">Dec 2019</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">PostgreSQL&#39;de Veri Tipleri ve Sıralama</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p><strong>Kaynaklar:</strong><br>
+<a href="https://twitter.com/DevrimGunduzTR/status/1199761143901937665"><strong><code>Devrim Gündüz - PostgreSQL'de Veri Tipleri - Microsoft Türkiye</code></strong></a><br>
+<a href="https://www.2ndquadrant.com/en/blog/on-rocks-and-sand/"><strong><code>2ndquadrant.com/on-rocks-and-sand/</code></strong></a><br>
+<a href="https://www.postgresql.org/docs/current/datatype.html"><strong><code>postgresql.org/docs/current/datatype</code></strong></a></p>
+<hr>
+<h2 id="postgresqlde-veri-tipleri">PostgreSQL&rsquo;de Veri Tipleri</h2>
+<hr>
+<p>PostgreSQL&rsquo;de bir çok veri tipi vardır. 400&rsquo;e yakın diyebiliriz.<br>
+Fakat veri tipleri bunlarla da sınır değil, eklentiler sayesinde kendi veri tipimizi yaratabilir, kullanabiliriz.</p>
+<p>Bu anlatım boyunca öncelikle PostgreSQL&rsquo;de bulunan temel veritiplerini inceleyeceğiz, daha sonrasında ise Sıralama (Alignment) işleminin nasıl yapıldığına bakacağız.</p>
+<hr>
+<p>Şimdi anlatımın ileriki safhalarında Sıralama (Alignment) işlemini anlatırken kullanacağımız bir senaryo düşünelim.<br>
+Bu senaryoda gelişi güzel olarak kolonların sıraladığı bir bir tablo olsun.</p>
+<p>Bu tablo aklımızın bir köşesinde dursun. Yazının sonunda geri döneceğiz. Şimdi PostgreSQL&rsquo;de bulunan temel veritiplerini inceleyelim.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Veri Adı</th>
+<th align="center">Veri Tipi</th>
+<th align="center">Veri Tipi Uzunluğu(byte)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">is_shipped</td>
+<td align="center">bool</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">user_id</td>
+<td align="center">int8</td>
+<td align="center">8</td>
+</tr>
+<tr>
+<td align="center">order_total</td>
+<td align="center">numeric</td>
+<td align="center">-1</td>
+</tr>
+<tr>
+<td align="center">order_dt</td>
+<td align="center">timestamptz</td>
+<td align="center">8</td>
+</tr>
+<tr>
+<td align="center">order_type</td>
+<td align="center">int2</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center">ship_dt</td>
+<td align="center">timestamptz</td>
+<td align="center">8</td>
+</tr>
+<tr>
+<td align="center">item_ct</td>
+<td align="center">int4</td>
+<td align="center">4</td>
+</tr>
+<tr>
+<td align="center">ship_cost</td>
+<td align="center">numeric</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">receive_dt</td>
+<td align="center">timestamptz</td>
+<td align="center">8</td>
+</tr>
+<tr>
+<td align="center">tracking_cd</td>
+<td align="center">text</td>
+<td align="center">-1</td>
+</tr>
+<tr>
+<td align="center">id</td>
+<td align="center">int8</td>
+<td align="center">8</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="temel-veri-tipleri">Temel Veri Tipleri</h2>
+<hr>
+<h4 id="char">Char</h4>
+<p>1 byte veri saklamak için kullanılır.</p>
+<hr>
+<h4 id="charn">Char(n)</h4>
+<p>n byte veri saklamak için kullanılır. Bu n ifadesi sabittir.<br>
+Char(n) kullanımı bir çok senaryoda mantıksızdır.</p>
+<p>Char(5) olduğunu hayal edin.<br>
+İçersine &ldquo;F&rdquo; ifadesini yazıp saklarsak geriye 4 byte&rsquo;lık boş alan kalacaktır.<br>
+Char(n) sabit uzunlukta veriler saklanacağında mantıklı olabilir.</p>
+<hr>
+<h4 id="varcharn">Varchar(n)</h4>
+<p>n byte&rsquo;a kadar veri saklamak amacıyla kullanılır. 1 GB ile sınırlıdır.<br>
+Char(n) yerine bunu kullanmak bir çok senaryoda çok daha mantıklı olacaktır.</p>
+<p><strong><code>Not</code></strong></p>
+<p>PostgreSQL&rsquo;de verileri birbirine <strong><code>cast</code></strong> etmek için <strong><code>::</code></strong> operatörü kullanılır. Aşağıdaki gibi kullanılır.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#d14">&#39;</span><span style="color:#d14">F</span><span style="color:#d14">&#39;</span>::<span style="color:#0086b3">varchar</span>(<span style="color:#099">5</span>) <span style="color:#000;font-weight:bold">as</span> vc5;
+<span style="color:#d14">&#39;</span><span style="color:#d14">F</span><span style="color:#d14">&#39;</span>::<span style="color:#0086b3">char</span>(<span style="color:#099">5</span>) <span style="color:#000;font-weight:bold">as</span> c5;
+</code></pre></div><p>Bu iki verinin boyutu birbirinden farklıdır.<br>
+vc5&rsquo;de yalnızca F&rsquo;in boyutu kadar alan gerekli iken, c5&rsquo;de sabit bir değer olan 5 byte kadar alan açılır.</p>
+<hr>
+<h4 id="text">Text</h4>
+<p>1 GB&rsquo;a kadar string saklamak amacıyla kullanılır.</p>
+<hr>
+<h4 id="smallint-int2">smallint, int2</h4>
+<p>2 byte&rsquo;lık integer veri saklamak amacıyla kullanılır.<br>
+smallint ve int2 ifadeleri birbirinin alias'ı durumundadır.</p>
+<hr>
+<h4 id="integer-int4-int">integer, int4, int</h4>
+<p>4 byte&rsquo;lık integer veri saklamak amacıyla kullanılır.</p>
+<hr>
+<h4 id="bigint-int8">bigint, int8</h4>
+<p>8 byte&rsquo;lık integer veri saklamak amacıyla kullanılır.</p>
+<hr>
+<h4 id="double-precission">Double precission</h4>
+<p>8 byte alan kaplar. 15 ondalık basamaklı veri saklamak amacıyla kullanılır.</p>
+<hr>
+<h4 id="reel">Reel</h4>
+<p>4 byte alan kaplar. 6 ondalıklı basamaklı.</p>
+<hr>
+<h4 id="numeric">Numeric</h4>
+<p>20 ondalık basamaklı saklamak için kullanılır.</p>
+<hr>
+<h4 id="serial">Serial</h4>
+<p>Aslında böyle bir veri tipi yoktur. Diğer database&rsquo;lerde bulunan <strong><code>Auto Increment</code></strong> özelliğinin karşılığıdır.</p>
+<p>0&rsquo;dan başlar. Tabloya bir veri girildiğinde bir artırılır, 1 olur.<br>
+Serial int4 tipindedir Integer tiplerine göre smallserial, bigserial türleri de vardır.</p>
+<p>Serial&rsquo;lar tablonun dışında ayrı bir nesne olarak saklanır. <strong><code>Sequance</code></strong> sayesinde bu yapı sağlanır.</p>
+<p><strong><code>Direkt müdahale edebilir miyiz ?</code></strong></p>
+<p>ID ifadesinin serial olarak tanımlandığını düşünün. Normalde tabloya her veri girdiğiizde ID ifadesine hiç dokunayız ve veriler düzenli bir şekilde 1&rsquo;er artarak devam eder. Peki ID ifadesini elle yazabilir miyiz ?</p>
+<p>Evet. Teknik olarak serial ifadesi bir integer değerin karşılığı olduğu için bu integer ifadesini tabloya elle veri girerken verebiliriz.</p>
+<p>Serial ifadeler eşsiz olacak diye bir kural yoktur. Tabloda serial ifadesinin eşsiz olacağı belirtilmemiş ise aynı veri olsa bile elle girebiliriz.</p>
+<hr>
+<h4 id="boolean">Boolean</h4>
+<p>True ya da false değer tutmak için kullanılır. Oluşturulurken; Y, N, y, n, true, false, T, F, 1, 0 verilebilir, içerde true ve false&rsquo;a dönüştürülür.</p>
+<hr>
+<h4 id="range">Range</h4>
+<p>Aynı kolon içersinde bir aralık tutabilmek amacıyla kullanılır. Arama sonuçlarını çok hızlı alabiliriz. Index&rsquo;lenir. Alt ve üst değer olarak tanımlanır.</p>
+<hr>
+<h4 id="enum">Enum</h4>
+<p>Statik, sıralı veri kümeleri saklamak için kullanılır.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#000;font-weight:bold">CREATE</span> <span style="color:#000;font-weight:bold">TYPE</span> haftanin_gunleri <span style="color:#000;font-weight:bold">AS</span> ENUM (<span style="color:#d14">&#39;</span><span style="color:#d14">Pazartesi</span><span style="color:#d14">&#39;</span>, <span style="color:#d14">&#39;</span><span style="color:#d14">Salı</span><span style="color:#d14">&#39;</span>, .... , <span style="color:#d14">&#39;</span><span style="color:#d14">Pazar</span><span style="color:#d14">&#39;</span>);
+</code></pre></div><hr>
+<h4 id="domain">Domain</h4>
+<p>Validasyon yapmak amacıyla kullanılır. Örneğin aşağıdaki örnekte US posta kodu için bir validasyon yapısı kurulmuştur. <a href="https://www.postgresql.org/docs/current/sql-createdomain.html"><strong><code>[kaynak]</code></strong></a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#000;font-weight:bold">CREATE</span> <span style="color:#000;font-weight:bold">DOMAIN</span> us_postal_code <span style="color:#000;font-weight:bold">AS</span> <span style="color:#0086b3">TEXT</span>
+<span style="color:#000;font-weight:bold">CHECK</span>(
+   VALUE <span style="color:#000;font-weight:bold">~</span> <span style="color:#d14">&#39;</span><span style="color:#d14">^\d{5}$</span><span style="color:#d14">&#39;</span>
+<span style="color:#000;font-weight:bold">OR</span> VALUE <span style="color:#000;font-weight:bold">~</span> <span style="color:#d14">&#39;</span><span style="color:#d14">^\d{5}-\d{4}$</span><span style="color:#d14">&#39;</span>
+);
+
+<span style="color:#000;font-weight:bold">CREATE</span> <span style="color:#000;font-weight:bold">TABLE</span> us_snail_addy (
+  address_id <span style="color:#0086b3">SERIAL</span> <span style="color:#000;font-weight:bold">PRIMARY</span> <span style="color:#000;font-weight:bold">KEY</span>,
+  street1 <span style="color:#0086b3">TEXT</span> <span style="color:#000;font-weight:bold">NOT</span> <span style="color:#000;font-weight:bold">NULL</span>,
+  street2 <span style="color:#0086b3">TEXT</span>,
+  street3 <span style="color:#0086b3">TEXT</span>,
+  city <span style="color:#0086b3">TEXT</span> <span style="color:#000;font-weight:bold">NOT</span> <span style="color:#000;font-weight:bold">NULL</span>,
+  postal us_postal_code <span style="color:#000;font-weight:bold">NOT</span> <span style="color:#000;font-weight:bold">NULL</span>
+);
+</code></pre></div><hr>
+<h4 id="date">Date</h4>
+<p>Tarih tutmak amacıyla kullanılır. Varsayılan olarak Y/M/D formatındadır. Datestyle gösterim şekli değiştiribilir.</p>
+<hr>
+<h4 id="time">Time</h4>
+<p>Saat saklamak içindir.</p>
+<hr>
+<h4 id="timestamp">Timestamp</h4>
+<p>Date ve Time saklamak içindir. Timezone bulunmaz.</p>
+<hr>
+<h4 id="timestamptz">Timestamptz</h4>
+<p>Timestamp&rsquo;a Timezone&rsquo;un eklenmiş halidir.</p>
+<hr>
+<h4 id="now">now()</h4>
+<p>Transaction&rsquo;a başlandığındaki zamanı gösterir. (current_timestamp)</p>
+<p><strong><code>Not</code></strong></p>
+<p>PostgreSQL&rsquo;de her şey transaction içersinde çalıştırılır.</p>
+<hr>
+<h4 id="clock_timestamp">clock_timestamp()</h4>
+<p>Transaction&rsquo;a başlama zamanı yerine gerçekten şuanki zamanı verir.</p>
+<hr>
+<h4 id="array">Array</h4>
+<p>PostgreSQL&rsquo;in en güzel yanlarında biri de verilerin Array tipinde saklanabilmesidir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#000;font-weight:bold">CREATE</span> <span style="color:#000;font-weight:bold">TABLE</span> sal_emp (
+    name            <span style="color:#0086b3">text</span>,
+    pay_by_quarter  <span style="color:#0086b3">integer</span>[],
+    schedule        <span style="color:#0086b3">text</span>[][]
+);
+</code></pre></div><hr>
+<h4 id="jsonb">JSONB</h4>
+<p>JSON verinin binary olarak sıkılaştırılarak tutulmasıdır.<br>
+PostgreSQL&rsquo;in NoSQL olarak tanımlanabilir, her nekadar yanlış olsa da.<br>
+NoSQL veritabanlarından daha eski bir geçmişe sahiptir.<br>
+Index&rsquo;lenebilir.</p>
+<hr>
+<h3 id="senaryolara-göre-doğru-veritipini-nasıl-seçeceğiz">Senaryolara göre doğru veritipini nasıl seçeceğiz?</h3>
+<p>Bir senaryo çizelim. Tablomuzda T.C. kimlik numarası tutmanız gerekiyor. Hangi tipini kullanmak daha doğru olur? <a href="https://blog.gunduzdanismanlik.com/index.php?/archives/20-TC-KMLK-NUMARASINDA-KULLANILAN-VER-TP.html"><strong><code>[kaynak]</code></strong></a></p>
+<p>Belki de ilk aklınıza gelen char(11) olabilir. Peki araştırma yapmadan direkt olarak ilk akla geleni kullanmak sizce doğru olur mu?</p>
+<p>İhtimalleri gözden geçirelim,<br>
+Integer tipinde tutamayız çünkü 11 haneyi desteklemez,<br>
+Big integer olarak tutabiliriz.<br>
+Ya da belki de Text tipini tercih edebiliriz.</p>
+<p>Elimizde 3 seçenek var, hangisinin maliyeti en düşünük buna bakmalıyız.</p>
+<p>İhtimalleri tek tek ele aldığımızda, 1.000.000 TC kimlik numarası saklandığında maliyeti aşağıdaki gibir.</p>
+<ul>
+<li>VARCHAR(11), indexler dahil, 115 MB,</li>
+<li>TEXT, indexler dahil, 72 MB, 7.605ms,</li>
+<li>CHAR( ), indexler dahil, 72 MB, 7.847ms,</li>
+<li>BIGINT, indexler dahil, 56 MB</li>
+</ul>
+<p>Bu durumda belki de Text ya da Char olarak tutmanın daha iyi olabileceğini düşündüğümüz T.C. kimlik numarası en ucuza Bigint türünde saklandığını görmüş olduk. Veri tiplerini doğru kullanırsak çok fazla performans ve maliyet kazancı sağlayabiliriz.</p>
+<hr>
+<h3 id="örneğimize-geri-dönelim"><strong><code>Örneğimize geri dönelim.</code></strong></h3>
+<p>Şimdi veri tiplerinin genel hatlarıyla tanıdığımıza göre konunun başında verdiğimiz örneğe geri dönebiliriz.</p>
+<p>| Veri Adı | Veri Tipi | Veri Tipi Uzunluğu(byte) |
+|:&mdash;&mdash;&ndash;:|:&mdash;&mdash;&mdash;:|
+| is_shipped  | bool        | 1 |
+| user_id     | int8        | 8 |
+| order_total | numeric     | -1 |
+| order_dt    | timestamptz | 8 |
+| order_type  | int2        | 2 |
+| ship_dt     | timestamptz | 8 |
+| item_ct     | int4        | 4 |
+| ship_cost   | numeric     | -1 |
+| receive_dt  | timestamptz |  8 |
+| tracking_cd | text        | -1 |
+| id          | int8        | 8 |</p>
+<p>Bir yazılımcı olarak bu kolonları nasıl sıralardınız ? Hepiniz farklı bir cevabı olabilir. Kolayına nasıl gelirse. Yanlış.</p>
+<p>Bu kolonların sıralaması performansı ya da veritabanı boyunu etkiler mi konusu hiç aklınıza geldi mi ?</p>
+<hr>
+<h2 id="sıralama-alignment">Sıralama (Alignment)</h2>
+<p>PostgreSQL&rsquo;de verile 8 byte&rsquo;lık kolonlar halinde tutulur. Şimdi elimizde aşağıdaki veriler olduğunu düşünün.</p>
+<ul>
+<li>smallint (2byte),</li>
+<li>bigint (8),</li>
+<li>int (4)</li>
+</ul>
+<p>Bu veriler yukarıdaki gibi sıralandığında postgresql üzerinde aşağıdaki gibi tutulacaktır.</p>
+<p>Toplam 20 byte&rsquo;lık alan kullanmış olduk.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"> ------------   ------------   ------------
+|   8 Byte   | |   8 Byte   | |   8 Byte   |
+ ------------   ------------   ------------
+ |  | |     |   |       |     |    |
+  --   -----     -------       ----
+   |    |           |            |---------------
+   |    |           |                            |
+   |    |           |------------|               |
+   |    |                        |               |
+   |    |-------                 |               |
+   |            |                |               |
+   |            |                |               |
+   |            |                |               |
+   |            |                |               |
+   v            |                v               v
+ 2 Byte         v              8 Byte          4 Byte
+ smallint      6 Byte          bigint          int
+               padding
+
+
+</code></pre></div><hr>
+<h3 id="büyükten-küçüğe-doğru-sıralasak-nasıl-bir-sonuç-alırdık"><strong><code>Büyükten küçüğe doğru sıralasak nasıl bir sonuç alırdık?</code></strong></h3>
+<ul>
+<li>bigint (8),</li>
+<li>int (4),</li>
+<li>smallint (2byte)</li>
+</ul>
+<p>Şeklinde sıralasak nasıl olurdu ?</p>
+<p>Bu durumda 14 byte alan kullanılacaktır. Gördüğünüz gibi yalnızca  sıralayı farklı yaparak veritabanımızda büyük ölçüde yer tasarafu yaptık.</p>
+<p>En optimum sonuç için veritiplerine göre büüykten küçüğe sıralamak uygun olacaktır.</p>
+<p>Böylece hem okuma süreci hızlanır, hem alandan tasarruf yapılır hem de i/o azalır.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"> ------------   ------------   ------------
+|   8 Byte   | |   8 Byte   | |   8 Byte   |
+ ------------   ------------   ------------
+ |           | |     | |  |
+  -----------   -----   --
+      |           |      |
+      |           |      |
+      |           |      |-----------------|
+      |           |                        |
+      |           |-------                 |
+      |                   |                |
+      |                   |                |
+      |                   |                |
+      |                   |                |
+      v                   |                v
+   8 Byte                 v              2 Byte
+   bigint              4 Byte            smallint
+                       int
+
+
+</code></pre></div><hr>
+<h3 id="ormların-performans-ile-durumu-nasıl"><strong><code>ORM'ların performans ile durumu nasıl?</code></strong></h3>
+<p>Şimdi düşünelim. SQL sorgularını biz yazmıyor, db&rsquo;e direkt müdahale etmiyor olalım. Yani ORM kullanalım, performans kaybı yaşar mıyız ? Evet.</p>
+<p>Örneğin çoğu ORM int&rsquo;leri bigint olarak tutar. Her integer değeri için 4 byte kayıp yaşadığınızı düşünün.</p>
+<hr>
+<h3 id="nasıl-doğru-sıralamayı-bulacağız"><strong><code>Nasıl doğru sıralamayı bulacağız?</code></strong></h3>
+<p>Bir tablo yaratırken veri tiplerinin boyutlarını düşünüp sıralamak can sıkıcı olabilir. O yüzden en başta gelişi güzel yapıp ardından aşağıdaki SQL sorgusu ile doğru sıralama bulunabilir. <a href="https://www.2ndquadrant.com/en/blog/on-rocks-and-sand/#column-tetris"><strong><code>[kaynak]</code></strong></a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#000;font-weight:bold">SELECT</span> a.attname, t.typname, t.typalign, t.typlen
+  <span style="color:#000;font-weight:bold">FROM</span> pg_class <span style="color:#000;font-weight:bold">c</span>
+  <span style="color:#000;font-weight:bold">JOIN</span> pg_attribute a <span style="color:#000;font-weight:bold">ON</span> (a.attrelid <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">c</span>.oid)
+  <span style="color:#000;font-weight:bold">JOIN</span> pg_type t <span style="color:#000;font-weight:bold">ON</span> (t.oid <span style="color:#000;font-weight:bold">=</span> a.atttypid)
+ <span style="color:#000;font-weight:bold">WHERE</span> <span style="color:#000;font-weight:bold">c</span>.relname <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;</span><span style="color:#d14">user_order</span><span style="color:#d14">&#39;</span>
+   <span style="color:#000;font-weight:bold">AND</span> a.attnum <span style="color:#000;font-weight:bold">&gt;</span><span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>
+ <span style="color:#000;font-weight:bold">ORDER</span> <span style="color:#000;font-weight:bold">BY</span> t.typlen <span style="color:#000;font-weight:bold">DESC</span>;
+</code></pre></div><p>Bizim örneğimize göre en uygun kolon sıralaması aşağıdaki gibi yapılmalıdır. Yalnızca sıralamayı değiştirerek takribi olarak 20% alan tasarrufu sağlamış olduk.</p>
+<p>| Veri Adı | Veri Tipi | Veri Tipi Uzunluğu(byte) |
+|:&mdash;&mdash;&ndash;:|:&mdash;&mdash;&mdash;:|
+| id          | int8        | 8 |
+| user_id     | int8        | 8 |
+| order_dt    | timestamptz | 8 |
+| ship_dt     | timestamptz | 8 |
+| receive_dt  | timestamptz |  8 |
+| item_ct     | int4        | 4 |
+| order_type  | int2        | 2 |
+| is_shipped  | bool        | 1 |
+| tracking_cd | text        | -1 |
+| ship_cost   | numeric     | -1 |
+| order_total | numeric     | -1 |</p>
+
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/database">Database</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'boratanrikulu';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> copyright notice |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77508691-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

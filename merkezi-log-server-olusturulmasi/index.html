@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Merkezi Log Server Oluşturulması - Bora Tanrıkulu</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Merkezi Log Server Oluşturulması" />
+<meta property="og:description" content="lyk18&#39;de yapılan rsyslog anlatımının bir özeti." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boratanrikulu.dev/merkezi-log-server-olusturulmasi/" />
+<meta property="article:published_time" content="2018-08-27T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-08-27T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Merkezi Log Server Oluşturulması"/>
+<meta name="twitter:description" content="lyk18&#39;de yapılan rsyslog anlatımının bir özeti."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="https://boratanrikulu.dev/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://boratanrikulu.dev/">
+				<img src="/images/avatar.jpeg" alt="Bora Tanrıkulu" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="https://boratanrikulu.dev/">Bora Tanrıkulu</a></h1>
+	<div class="site-description"><p>Interested in shell scripting, system administration and golang.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/boratanrikulu/" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/boratanrikulu_/" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://linkedin.com/in/bora-tanrikulu/" title="LinkedIn"><i data-feather="linkedin"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/aboutme">About me</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">27</span>
+							<span class="rest">Aug 2018</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">Merkezi Log Server Oluşturulması</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p><strong>Kaynaklar</strong><br>
+LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://www.linkedin.com/in/erdem-bayer-1633915/">**[Erdem Bayer]**</a></p>
+<p><strong>NOT 1:</strong> Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz <a href="https://github.com/boratanrikulu/boratanrikulu.github.io/tree/master/_posts">**[0]**</a><br>
+<strong>NOT 2:</strong> Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim <strong>:)</strong></p>
+<hr>
+<h2 id="rsyslog-nedir-">Rsyslog Nedir ?</h2>
+<p>Rsyslog, log&rsquo;ların yönlendirilmesini sağlayan, UNIX tabanlı sistemlerde çalışan, açık kaynak bir yazılımdır. Temel syslog protokolünü uygulayan rsyslog; içeriğe dayalı filtreleme, zengin filtreleme yetenekleri, esnek yapılandırma seçenekleri ile göze çarpar. Ayrıca taşıma için TCP&rsquo;yi kullanma gibi özellikler ekler. <a href="https://en.wikipedia.org/wiki/Rsyslog">**[1]**</a></p>
+<hr>
+<h2 id="rsyslog-nasıl-çalışır-">Rsyslog Nasıl Çalışır ?</h2>
+<p>Bir süreç tarafından log yazılacağında, log ilk olarak <strong>/dev/log</strong>&lsquo;a yazılır.</p>
+<p>Örneğin postfix tarafından bir log yazılmak istendiğinde, ilgili log /dev/log&rsquo;a yazılır. <strong>rsyslog</strong> tarafından dinlenen /dev/log&rsquo;daki log mesajı; rsyslog tarafından <strong>/var/log/mail</strong>&lsquo;e yazılır.</p>
+<p>/dev/log bir <strong>socket</strong>&lsquo;tir.</p>
+<p align="center"> 
+	<img src="/images/posts/merkezi-log-server-olusturulmasi/1.png">
+</p>
+<hr>
+<p>Peki <strong>rsyslog</strong>, /dev/log&rsquo;a yazılan log&rsquo;ları <strong>nereye yazacağını nasıl anlıyor ?</strong></p>
+<p>Log&rsquo;ların nereye, hangi aciliyet ile yazılacağını belirtmek için 2 etiket kullanılır ;</p>
+<ul>
+<li><strong>Facility</strong> (type)</li>
+<li><strong>Severity</strong> (level)</li>
+</ul>
+<p><strong>Facility</strong> ile <strong>hangi türde</strong> bir log mesajı olduğu belirtilir;<br>
+<strong>Severity</strong> ile de <strong>hangi aciliyette</strong> bir log olduğu belirtilir.</p>
+<p>Facility ve Severity türleri bellidir, ekleme çıkarma yapılamaz.</p>
+<hr>
+<h4 id="facility-2httpswikigentooorgwikirsyslogfacility">Facility <a href="https://wiki.gentoo.org/wiki/Rsyslog#Facility">**[2]**</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">Numarasal Kod</th>
+<th align="center">Facility</th>
+<th align="center">Açıklama</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">0</td>
+<td align="center">kern</td>
+<td align="center">kernel messages</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">user</td>
+<td align="center">user-level messages</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">mail</td>
+<td align="center">mail system</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">daemon</td>
+<td align="center">system daemons</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">auth</td>
+<td align="center">security/authorization messages</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">syslog</td>
+<td align="center">messages generated internally by syslogd</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">lpr</td>
+<td align="center">line printer subsystem</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">news</td>
+<td align="center">network news subsystem</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="center">uucp</td>
+<td align="center">UUCP subsystem</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="center">cron</td>
+<td align="center">clock daemon</td>
+</tr>
+<tr>
+<td align="center">10</td>
+<td align="center">security</td>
+<td align="center">security/authorization messages</td>
+</tr>
+<tr>
+<td align="center">11</td>
+<td align="center">ftp</td>
+<td align="center">FTP daemon</td>
+</tr>
+<tr>
+<td align="center">12</td>
+<td align="center">ntp</td>
+<td align="center">NTP subsystem</td>
+</tr>
+<tr>
+<td align="center">13</td>
+<td align="center">logaudit</td>
+<td align="center">log audit</td>
+</tr>
+<tr>
+<td align="center">14</td>
+<td align="center">logalert</td>
+<td align="center">log alert</td>
+</tr>
+<tr>
+<td align="center">15</td>
+<td align="center">clock</td>
+<td align="center">clock daemon (note 2)</td>
+</tr>
+<tr>
+<td align="center">16</td>
+<td align="center">local0</td>
+<td align="center">local use 0 (local0)</td>
+</tr>
+<tr>
+<td align="center">17</td>
+<td align="center">local1</td>
+<td align="center">local use 1 (local1)</td>
+</tr>
+<tr>
+<td align="center">18</td>
+<td align="center">local2</td>
+<td align="center">local use 2 (local2)</td>
+</tr>
+<tr>
+<td align="center">.</td>
+<td align="center">.</td>
+<td align="center">.</td>
+</tr>
+<tr>
+<td align="center">.</td>
+<td align="center">.</td>
+<td align="center">.</td>
+</tr>
+<tr>
+<td align="center">23</td>
+<td align="center">local7</td>
+<td align="center">local use 7 (local7)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="severity-3httpswikigentooorgwikirsyslogseverity">Severity <a href="https://wiki.gentoo.org/wiki/Rsyslog#Severity">**[3]**</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">Numarasal Kod</th>
+<th align="center">Severity</th>
+<th align="center">Açıklama</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">0</td>
+<td align="center">emerg</td>
+<td align="center">system is unusable</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">alert</td>
+<td align="center">action must be taken immediately</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">crit</td>
+<td align="center">critical conditions</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">error</td>
+<td align="center">error conditions</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">warning</td>
+<td align="center">warning conditions</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">notice</td>
+<td align="center">normal but significant condition</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">info</td>
+<td align="center">informational messages</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">debug</td>
+<td align="center">debug-level messages</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="birkaç-örnek">Birkaç Örnek</h4>
+<p><strong>logger</strong> ile log mesajı üretebiliriz.</p>
+<p>Örneğin aşağıdaki gibi bir log oluşturulalım.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> logger <span style="color:#d14">&#34;first log we sent&#34;</span>
+</code></pre></div><p>CentOS&rsquo;da bu log /var/log/messages&rsquo;a düşecektir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> less /var/log/messages
+</code></pre></div><p>logger&rsquo;da <strong>facility</strong> ve <strong>severity</strong> belirtmek için <strong>-p</strong> parametresi kullanılır.</p>
+<p>Örneğin aşağıdaki gibi bir log oluşturulalım.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> logger -p mail.alert <span style="color:#d14">&#34;postfix is down.&#34;</span>
+</code></pre></div><p>Bu log, /var/log/maillog&rsquo;a düşecektir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> tail -10 /var/log/maillog
+</code></pre></div><p>Eğer normalde olmayan bir facility ya da severity kullanmaya çalışırsak hata verecektir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> logger -p mesaj.onemli <span style="color:#d14">&#34;cok onemli bir mesaj.&#34;</span>
+</code></pre></div><p align="center"> 
+	<img src="/images/posts/merkezi-log-server-olusturulmasi/2.png">
+</p>
+<hr>
+<h4 id="rsyslog-konfigürasyon-dosyaları">Rsyslog Konfigürasyon Dosyaları</h4>
+<p>Rsyslog konfigürasyon dosyası <strong>/etc/rsyslog.conf</strong>&lsquo;dir. Ayrıca <strong>/etc/rsyslog.d/</strong> dizini altına conf uzantılı bir dosya konulursa, aynı şekilde işleme alınır.</p>
+<p>Modül&rsquo;ler ise <strong>/usr/lib64/rsyslog/</strong> dizini altında bulunur. Örneğin; imtcp modülü sayesinde tcp üzerinden log alınabilir, modüllerin kullanması için load&rsquo;lanması gerekir. Bunun için konfigürasyon dosyasında aşağıdaki gibi load&rsquo;lama yapılabilir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ModLoad imtcp
+</code></pre></div><p>Aslında rsyslog çalışma mantığı direkt, rsyslog tarafından /dev/log&rsquo;un okunması ve /var/log/ altında ilgili dosyaya yazılması şeklinde değildir. Araya bir çok modül girebilir. <strong>imuxsock</strong> modülü sayesinde /dev/log okunabilir..</p>
+<p>Şimdi ufaktan konfigürasyon dosyasını kurcalamaya başlayalım.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> vim /etc/rsyslog.conf
+</code></pre></div><p>Dosyada ayarlar incelendiğinde bazılarının başında <strong>&quot;-&quot;</strong> olduğu gözükür. Bu &ldquo;sync&rdquo; işleminin yapılmasına gerek olmadığı belirtmek içindir. Ama aslında günümüzde bir işlevi yoktur. Eskiden rsyslog tarafından yazma işlemi yapıldıktan sonra sync yapılırken, günümüzde bu işlem yapılmamaktadır. <strong>Yani &ldquo;-&rdquo; yazılsa da yazılmasa da sync yapılmaz.</strong></p>
+<p align="center"> 
+	<img src="/images/posts/merkezi-log-server-olusturulmasi/3.png">
+</p>
+<p>Şimdi test amacıyla bir kural satırı ekleyelim. Aşağıdaki satırı, konfigürasyon dosyasında uygun bir yere ekleyin.</p>
+<p>Bu kural satırı şunu söylemektedir; <strong>security facility</strong> ile gelen log&rsquo;lardan alert severity&rsquo;e sahip, <strong>auth facility</strong> ile gelenlerin de hepisini <strong>/var/log/sec-logs</strong> dosyasına yaz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">security.alert;auth.*        /var/log/sec-logs
+</code></pre></div><p>Şimdi bu ayarı kontrol etmek için dosyayı kayıt edip çıkalım. Yapılan konfigürasyon değişikleri için servisi reload&rsquo;lamalıyız.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> systemctl force-reload rsyslog
+</code></pre></div><p>Herhangi bir sorun olup olmadığını görmek için status&rsquo;e bakmayı da unutmayın.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> systemctl status rsyslog
+</code></pre></div><p>Şimdi yaptığımız kuralı test edelim. Aşağıdaki gibi 2 tane log yollayalım.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> logger -p security.warning <span style="color:#d14">&#34;someone trying to hack you.&#34;</span>
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> logger -p auth.alert <span style="color:#d14">&#34;you are under bruteforce attack.&#34;</span>
+</code></pre></div><p>Ardından aşağıdaki gibi oluşturduğumuz log&rsquo;ların yazıldığını görebiliriz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> cat /var/log/sec-logs
+</code></pre></div><p align="center"> 
+	<img src="/images/posts/merkezi-log-server-olusturulmasi/4.png">
+</p>
+<p>Örneğin auth ve cron haricindeki tüm facility&rsquo;lerin info severity&rsquo;e sahip olan loglarını bir yere kaydetmek istiyor olalım. Bu durumda aşağıdaki gibi bir kural girebiliriz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">*.info;mail.none;cron.none        /var/log/infos
+</code></pre></div><p>Ya da örneğin hiç bir yerde mail facility&rsquo;si olsun istemiyorsak konfigürasyon dosyasında kural satırlarının <strong>en üstüne</strong> şunu eklersek, <strong>hiç bir mail facility log&rsquo;u yazılmaz.</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">mail.*        stop
+</code></pre></div><p><strong>NOT :</strong> Konfigürasyon dosyasını değiştirdikten sonra servisi reload&rsquo;lamayı unutmayın <strong>:)</strong>.</p>
+<hr>
+<h2 id="merkezi-log-sunucusunun-hazırlanması">Merkezi Log Sunucusunun Hazırlanması</h2>
+<p>Bu örnekte merkezi bir log server'ı kuracağız.</p>
+<p>Bunun için elimizde bir adet <strong>postfix</strong> ve bir adet <strong>wordpress</strong> server'ı olacak, bu iki sunucunun da log&rsquo;larını ayrı bir server&rsquo;da tutacağız.</p>
+<p>Aşağıdaki görselde daha anlaşılır şekilde görebilirsiniz.</p>
+<p><strong>NOT :</strong> 3 server için de <strong>CentOS 7</strong> tercih edilmiştir. Siz başka dağıtımlar tercih edebilirsiniz.</p>
+<p align="center"> 
+	<img src="/images/posts/merkezi-log-server-olusturulmasi/0.png">
+</p>
+<hr>
+<h4 id="log-serverda-yapılacak-işlemler">Log Server&rsquo;da Yapılacak İşlemler</h4>
+<p><strong>NOT :</strong> Anlatımın önceki adımlarında test amaçlı yapılan işlemleri silin lütfen <strong>:)</strong>.</p>
+<p>Şuana kadar rsyslog için /dev/log <strong>socket</strong>&lsquo;inden log&rsquo;ları alıp, ilgili dosyalara yazdığını söyledik, hatta bu işlem için <strong>imuxsock</strong> modülünü kullandığını belirtik.</p>
+<p>Şimdi aynı mantıkla, bu sefer bir socket üzerinden değil de TCP ve UDP üzerinden log&rsquo;ların okunmasını ve ilgili dosyalar yazılmasını istiyoruz. Bunun için <strong>imtcp</strong> ve <strong>imudp</strong> modülleri kullanılır.</p>
+<p>Biz bu anlatımda log&rsquo;ların hedefe varıp varmadığından emin olmak istediğimizden dolayı TCP tercih edeceğiz. Bu yüzden dolayı Log Server&rsquo;da modül olarak imtcp&rsquo;yi load&rsquo;lamalıyız.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> vim /etc/rsyslog.conf
+</code></pre></div><p>Konfigürasyon dosyasında imtcp modül kısmını yorum satırı dışına alarak aşağıdaki gibi yapın.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"># Provides TCP syslog reception
+$ModLoad imtcp
+$InputTCPServerRun 514
+</code></pre></div><p>Ardından servisi reload&rsquo;layın.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> systemctl force-reload rsyslog
+</code></pre></div><p>Artık 514/TCP portu, rsyslog tarafından dinleniyor olmalı. Aşağıdaki gibi kontrol edebilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> netstat -nlptu | grep <span style="color:#d14">&#34;514&#34;</span>
+</code></pre></div><p>Ayrıca firewall&rsquo;da gerekli port&rsquo;u açmamız gerekiyor. Aşağıdaki gibi açabilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> firewall-cmd --zone<span style="color:#000;font-weight:bold">=</span>public --add-port<span style="color:#000;font-weight:bold">=</span>514/tcp
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> firewall-cmd --zone<span style="color:#000;font-weight:bold">=</span>public --permanent --add-port<span style="color:#000;font-weight:bold">=</span>514/tcp
+</code></pre></div><hr>
+<h4 id="postfix-ve-wordpress-serverda-yapılacak-işlemler">Postfix ve Wordpress Server&rsquo;da Yapılacak İşlemler</h4>
+<p>Şimdi Wordpress Server üzerinden, Log Server&rsquo;a bir log atalım ve herhangi bir sorun var mı diye kontrol edelim.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@wordpress ~#<span style="color:#000;font-weight:bold">]</span> logger -T -n 192.168.2.140 -P <span style="color:#099">514</span> -p mail.info <span style="color:#d14">&#34;Wordpress Server&#39;dan gelen LOG.&#34;</span>
+</code></pre></div><p>Şimdi Log Server&rsquo;da durumu kontrol edelim.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> tail -f /var/log/maillog
+</code></pre></div><p align="center"> 
+	<img src="/images/posts/merkezi-log-server-olusturulmasi/5.png">
+</p>
+<p>Eğer Wordpress Server'ın tüm log&rsquo;larını, Log Server&rsquo;a yollamak istiyorsak aşağıdaki gibi bir satırı konfigürasyon dosyasına eklememiz yeterlidir. Fakat biz Log Server log&rsquo;ları ile uzak server log&rsquo;larının karışmasını istemediğimiz için bir adım daha uygulamamız gerekiyor; <strong>template !</strong></p>
+<p><strong>NOT 1:</strong> Aynı satırı Postfix Server için de ekleyin.<br>
+<strong>NOT 2:</strong> Konfigürasyon dosyasını değiştirdikten sonra reload işlemini unutmayın.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">*.*          @@192.168.2.140:514 <span style="color:#998;font-style:italic"># TCP</span>
+<span style="color:#998;font-style:italic"># *.*        @192.168.2.140:514 # UDP</span>
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@wordpress ~#<span style="color:#000;font-weight:bold">]</span> systemctl force-reload rsyslog
+</code></pre></div><hr>
+<h4 id="template-kullanımı">Template Kullanımı</h4>
+<p>Bizim kurmak istediğimiz yapıdaki amaç; Log Server'ın <strong>/var/log/remote</strong> dizini altında <strong>her uzak sunucu için ayrı klasör oluşması</strong> ve bunların altında uzak server log&rsquo;larının saklanmasını sağlamak.</p>
+<p>Bunun için template yapısını kullanacağız. <a href="https://www.rsyslog.com/doc/master/configuration/properties.html">**[4]**</a></p>
+<p>Kullanacağımız template aşağıdaki gibi olacak. Bu iki satırı /etc/rsyslog.conf&rsquo;da uygun bir yere ekleyin ve servisi reload&rsquo;layın.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$template RemoteServersTamplate, &#34;/var/log/remote/%hostname%/%syslogfacility-text%/%syslogseverity-text%.log&#34;
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">*.*        ?RemoteServersTamplate
+</code></pre></div><p>Postfix ve Wordpress Server&rsquo;da test amaçlı birkaç log oluşturduğumuzda sorunsuz çalıştırğını gözlemliyoruz.</p>
+<p align="center"> 
+	<img src="/images/posts/merkezi-log-server-olusturulmasi/6.png">
+</p>
+<hr>
+<h4 id="expression-based-filtreleme-kullanımı">Expression-Based Filtreleme Kullanımı</h4>
+<p>Aslında burada aslında bir sorun var, gördüğünüz gibi local olan Log Server'ın log&rsquo;ları da yazılmış ve <strong>log</strong> diye bir klasör oluşturulmuş. Biz bunu istemiyoruz. Bunu önlemek amacıyla <strong>Expression-Based Filtreleme</strong> uygulanabilir.</p>
+<p>Bunun kullanımı şu şekildedir;</p>
+<p><strong>&quot;</strong> if <strong>EXPRESSION</strong> then <strong>ACTION</strong> else <strong>ACTION</strong> <strong>&quot;</strong></p>
+<p>Yani aslında Log Server'ın loglarını bu kural satırına uygulamak istemiyorsak şu şekilde yapmamız yeterlidir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">*.*        if $hostname != &#39;log&#39; then ?RemoteServersTamplate
+</code></pre></div><p>Tüm cihazlarda bir kaç log ürettikten sonra aşağıdaki sonucu gözlemliyoruz.</p>
+<p align="center"> 
+	<img src="/images/posts/merkezi-log-server-olusturulmasi/7.png">
+</p>
+<hr>
+<p><strong>NOT :</strong> Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim <strong>:)</strong></p>
+
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/gnu/linux">GNU/Linux</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'boratanrikulu';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> copyright notice |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77508691-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

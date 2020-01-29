@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Dosya ve Dizin İzinleri - Bora Tanrıkulu</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Dosya ve Dizin İzinleri" />
+<meta property="og:description" content="izin işlemlerinin linux&#39;da nasıl yapıldığını açıklar." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boratanrikulu.dev/dosya-ve-dizin-izinleri/" />
+<meta property="article:published_time" content="2018-07-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-07-09T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Dosya ve Dizin İzinleri"/>
+<meta name="twitter:description" content="izin işlemlerinin linux&#39;da nasıl yapıldığını açıklar."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="https://boratanrikulu.dev/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://boratanrikulu.dev/">
+				<img src="/images/avatar.jpeg" alt="Bora Tanrıkulu" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="https://boratanrikulu.dev/">Bora Tanrıkulu</a></h1>
+	<div class="site-description"><p>Interested in shell scripting, system administration and golang.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/boratanrikulu/" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/boratanrikulu_/" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://linkedin.com/in/bora-tanrikulu/" title="LinkedIn"><i data-feather="linkedin"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/aboutme">About me</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">09</span>
+							<span class="rest">Jul 2018</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">Dosya ve Dizin İzinleri</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p><strong>Kaynaklar</strong><br>
+<a href="https://wiki.archlinux.org/index.php/File_permissions_and_attributes">wiki.archlinux.org/File_permissions_and_attributes</a><br>
+<a href="https://en.wikipedia.org/wiki/Chmod">en.wikipedia.org/wiki/Chmod</a></p>
+<hr>
+<h2 id="dosya-ve-dizininlerin-linuxdaki-durumu">Dosya ve Dizininlerin Linux&rsquo;daki Durumu</h2>
+<p><strong>Linux&rsquo;ta her şey birer dosyadır</strong>. <a href="https://stackoverflow.com/a/10893965">**[1]**</a></p>
+<p>Özünde dizinler de dosyaların konumunu belirten birer özel dosyadır. Dizinler veri içeremez, yalnızca konum belirtmek amaçlı kullanılabilirler. Dizinlerin bir türü yoktur, uzantısı yoktur. Dosyaların ise bir türü vardır, uzantısı bulunabilir.</p>
+<p>Dizin ve dosya isimleri aynı olamaz.</p>
+<hr>
+<h2 id="dosya-ve-dizin-izinlerinin-incelenmesi">Dosya ve Dizin İzinlerinin İncelenmesi</h2>
+<p><strong>ls</strong> ile dosyaların izinleri incelenebilir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ ls -l fileName
+</code></pre></div><p align="center"> 
+	<img src="/images/posts/dosya-ve-dizin-izinleri/0.png">
+</p>
+<p>Dosya ve dizin işlemlerine bakıldığında 10 karakterden oluşan bir yapı görünür.</p>
+<p>Bu karakterler</p>
+<ul>
+<li>dosyalar için <strong>r</strong>[read] okumak, <strong>w</strong>[write] yazmak, <strong>x</strong>[execute] çalıştırmak</li>
+<li>dizinler için <strong>r</strong>[read] içeriğini görüntüleyebilmek, <strong>w</strong>[write] alt dosya ve dizinler oluşturabilmek, <strong>x</strong>[execute] cd ile içine girebilmek</li>
+</ul>
+<p>izinlerini temsilen kullanılır.
+<br><br>
+Bunları aşağıdaki gibi üçerli olarak gruplandırarak incelemekte fayda vardır.</p>
+<p align="center"> 
+	<img src="/images/posts/dosya-ve-dizin-izinleri/1.png">
+</p>
+<p>Yani bu örnektekinin;</p>
+<ul>
+<li>bir <strong>dizin</strong> olduğunu,</li>
+<li>dosya kullanıcısının <strong>okuma/yazma/çalıştırma</strong>,</li>
+<li>dosya grubunun <strong>okuma/çalıştırma</strong>,</li>
+<li>diğer herkesin de <strong>okuma/çalıştırma</strong></li>
+</ul>
+<p>iznine sahip olduğunu görüyoruz.</p>
+<hr>
+<h2 id="chmod-ile-izinlerin-düzenlemesi-text-method">Chmod ile İzinlerin Düzenlemesi [Text Method]</h2>
+<p>Chmod&rsquo;un 3 temel parametresi vardır, bunlar aşağıdaki gibidir.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Parametre</th>
+<th align="center">Anlamı</th>
+<th align="center">Açıklama</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong>-R</strong></td>
+<td align="center">Recursive</td>
+<td align="center">Objenin tüm alt klasörlerine de aynı işlemin uygulanması amaçlı kullanılır</td>
+</tr>
+<tr>
+<td align="center"><strong>-f</strong></td>
+<td align="center">Force</td>
+<td align="center">Ortaya çıkan hataların gözardı yapılarak işlemin uygulanmasını zorlamak amaçlı kullanılır</td>
+</tr>
+<tr>
+<td align="center"><strong>-v</strong></td>
+<td align="center">Verbose</td>
+<td align="center">İşlemin detayını göstermesi amaçlı kullanılır</td>
+</tr>
+</tbody>
+</table>
+<p>Text method&rsquo;da genel syntax aşağıdaki gibidir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ chmod <span style="color:#008080">who</span><span style="color:#000;font-weight:bold">=</span>permission fileName
+</code></pre></div><p>Kim olduğunu belirtmek için <strong>u</strong>, <strong>g</strong>, <strong>o</strong>, <strong>a</strong> kullanılır.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Text</th>
+<th align="center">Class</th>
+<th align="center">Açıklama</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong>u</strong></td>
+<td align="center">Owner</td>
+<td align="center">Dosyaya sahip olan kullanıcı</td>
+</tr>
+<tr>
+<td align="center"><strong>g</strong></td>
+<td align="center">Group</td>
+<td align="center">Dosyanın ait olduğu grup</td>
+</tr>
+<tr>
+<td align="center"><strong>o</strong></td>
+<td align="center">Other</td>
+<td align="center">Diğer herkes</td>
+</tr>
+<tr>
+<td align="center"><strong>a</strong></td>
+<td align="center">All</td>
+<td align="center">Herkes (<strong>ugo</strong> ile aynı anlama gelir)</td>
+</tr>
+</tbody>
+</table>
+<p>Örneğin bir dosya için dosya kullanıcısına okuma/yazma/çalıştırma izinleri vermek istiyorsak aşağıdaki gibi yapabiliriz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ chmod <span style="color:#008080">u</span><span style="color:#000;font-weight:bold">=</span>rwx fileName
+</code></pre></div><p align="center"> 
+	<img src="/images/posts/dosya-ve-dizin-izinleri/2.png">
+</p>
+<p>Yalnızca <strong>&rdquo; = &ldquo;</strong> operatörü yoktur. Diğer operatör ve amaçları da aşağıdaki gibidir.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Operator</th>
+<th align="center">Açıklama</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong>+</strong></td>
+<td align="center">Yetkiyi ilgili kullanıcılara ekler</td>
+</tr>
+<tr>
+<td align="center"><strong>-</strong></td>
+<td align="center">Yetkiyi ilgili kullanıcılardan çıkarır</td>
+</tr>
+<tr>
+<td align="center"><strong>=</strong></td>
+<td align="center">Yetkiyi eşitler</td>
+</tr>
+</tbody>
+</table>
+<p>Örneğin az önceki örnekte <strong>&rdquo; u=rwx &ldquo;</strong> demiştik. Bunun yerine direkt olarak çalıştırma iznini <strong>&rdquo; + &ldquo;</strong> ile ekleyebilirdik.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ chmod u+x fileName
+</code></pre></div><p align="center"> 
+	<img src="/images/posts/dosya-ve-dizin-izinleri/3.png">
+</p>
+<p>Ya da örneğin diğer herkesin yetkisini 0 yapmak istersek aşağıdaki gibi yapabiliriz. Bu şekilde diğer herkesin sahip olduğu yetkileri silmiş oluruz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ chmod <span style="color:#008080">o</span><span style="color:#000;font-weight:bold">=</span> fileName
+</code></pre></div><p>Ya da örneğin kullanıcı hariç diğer herkesten çalıştırma izinlerini çıkarmak istiyorsak aşağıdaki gibi yapabiliriz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ chmod go-x fileName
+</code></pre></div><hr>
+<h2 id="chmod-ile-izinlerin-düzenlemesi-numberic-method">Chmod ile İzinlerin Düzenlemesi [Numberic Method]</h2>
+<p>Her yetkinin numarasal olarak bir karşılığı vardır. Bunlar aşağıdaki gibidir.</p>
+<table>
+<thead>
+<tr>
+<th align="center">İzin</th>
+<th align="center">Numara Karşılığı</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong>r</strong></td>
+<td align="center">4</td>
+</tr>
+<tr>
+<td align="center"><strong>w</strong></td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center"><strong>x</strong></td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>Numarasal method&rsquo;da genel syntax aşağıdaki gibidir. Burada <strong>X</strong> her grup için yetki numaralarının toplamına eşittir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ chmod XXX fileName
+</code></pre></div><p>Örneğin elimizde <strong>&rdquo; -rw-r&ndash;r&ndash; &ldquo;</strong> olduğu varsayalım. Bu ifade <strong>644</strong> ile ifade edilebilir. Eğer yetkiyi text değil de direkt olarak numarasal formda görmek istersek <strong>stat</strong>&lsquo;ı kullanabiliriz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ stat -c %a fileName
+</code></pre></div><p align="center"> 
+	<img src="/images/posts/dosya-ve-dizin-izinleri/4.png">
+</p>
+<p><strong>644</strong> yetkisi numarasal method ile olarak bu şekilde :</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	chmod <span style="color:#099">644</span> fileName
+</code></pre></div><p>Text method&rsquo;u ile de bu şekilde :</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	chmod <span style="color:#008080">u</span><span style="color:#000;font-weight:bold">=</span>rw fileName <span style="color:#000;font-weight:bold">&amp;&amp;</span> chmod <span style="color:#008080">go</span><span style="color:#000;font-weight:bold">=</span>r fileName
+</code></pre></div><p>ifade edilmektedir, ikisi de aynı işlemi yapmaktadır.</p>
+<hr>
+<h2 id="chown-ile-sahipliğin-değiştirilmesi">Chown ile Sahipliğin Değiştirilmesi</h2>
+<p>Her dosyanın (ya da dizinin) ait olduğu bir kullanıcı ve bir grup olmalıdır. Eğer dosya ya da dizinlerin sahipliğini değiştirmek istiyorsak <strong>chown</strong>&lsquo;u kullanabiliriz.</p>
+<p>Genel syntax örnekleri aşağıdaki gibidir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ chown newOwner fileName
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ chown newOwner:newGroup fileName
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">	$ chown :newGroup fileName
+</code></pre></div><p align="center"> 
+	<img src="/images/posts/dosya-ve-dizin-izinleri/5.png">
+</p>
+<p>Eğer tüm alt klasör ve dizinler için de sahipliği değiştirmek istiyorsak, chmod&rsquo;da da olduğu gibi, recursive parametresi olan <strong>-R</strong> kullanılır.</p>
+<p align="center"> 
+	<img src="/images/posts/dosya-ve-dizin-izinleri/6.png">
+</p>
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/gnu/linux">GNU/Linux</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'boratanrikulu';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> copyright notice |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77508691-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

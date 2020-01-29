@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Brute Force ve Kapsamlı Arama - Bora Tanrıkulu</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Brute Force ve Kapsamlı Arama" />
+<meta property="og:description" content="&#39;algoritmalar - brute force&#39; konusu hakkında aldığım notlar." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boratanrikulu.dev/brute-force/" />
+<meta property="article:published_time" content="2019-06-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-06-18T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Brute Force ve Kapsamlı Arama"/>
+<meta name="twitter:description" content="&#39;algoritmalar - brute force&#39; konusu hakkında aldığım notlar."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="https://boratanrikulu.dev/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://boratanrikulu.dev/">
+				<img src="/images/avatar.jpeg" alt="Bora Tanrıkulu" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="https://boratanrikulu.dev/">Bora Tanrıkulu</a></h1>
+	<div class="site-description"><p>Interested in shell scripting, system administration and golang.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/boratanrikulu/" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/boratanrikulu_/" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://linkedin.com/in/bora-tanrikulu/" title="LinkedIn"><i data-feather="linkedin"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/aboutme">About me</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">18</span>
+							<span class="rest">Jun 2019</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">Brute Force ve Kapsamlı Arama</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p><strong>Kaynaklar:**<br>
+<a href="https://www.pandora.com.tr/kitap/introduction-to-the-design-and-analysis-of-algorithms-3e/270012"><strong>Introduction to the Design &amp; Analysis of Algorithms 3e - Pearson</strong></a><br>
+</strong>@elif_haytaoglu**<a href="https://www.linkedin.com/in/elif-haytaoglu-97176564/"></a></p>
+<hr>
+<h2 id="brute-force">Brute Force</h2>
+<p>Brute Force yaklışımı, bir problemin çözümü için en kolay yollardan biridir. Direkt sonuç odaklıdır, performans aranmaz.</p>
+<p>Örneğin 5^5&rsquo;i brute force yaklaşımı ile aşağıdaki gibi 4 çarpma işlemi yaparak buluruz.</p>
+<p><code>5^5 = 5x5x5x5x5</code></p>
+<p>Brute Force uygularken, performans geliştirmesi yapmak amacıyla pek düşünülmez. Örneğin yukarda yaptığımız çarpma işlemlerinde değerini bildiğimiz 5^2 değerlerini kullanarak, bilgisayar için oldukça maliyetli olan çarpma işleminde azalma sağlayabilirdik ama brute force yaklaşımda pek fazla <strong>performans kazancı sağlama düşüncelerine girilmeyeceği için</strong> bunu düşünmedik.</p>
+<hr>
+<h2 id="brute-force-ile-sıralama-algoritmaları">Brute Force ile Sıralama Algoritmaları</h2>
+<p>Bilgisayar bilimleri için oldukça önemli olan sıralama problemini çözmek amacıyla yüzlerce algoritma geliştirilmiştir. Bunlardan Selection Sort ve Bubble Sort, brute force yaklaşımıyla yapılan sıralama algoritmalarına örnektir. Bu iki algoritma da <code>Θ(n)</code> ile çalışır.</p>
+<h3 id="selection-sort">Selection Sort</h3>
+<p align="center"> 
+  <img src="/images/posts/brute-force/brute_force_2.gif" alt="selection sort">
+</p>
+<p>Algoritması:</p>
+<ul>
+<li>Tüm listeyi tara ve en küçük elemanı bul.</li>
+<li>İlk eleman ile en küçük elamanı yer değiştir.</li>
+<li>Listenin ikinci elemanından başlayarak sona kadar git, en küçük elamanı bul.</li>
+<li>İkinci eleman ile yeni en küçük elemanı yer değiştir.</li>
+<li>Tekrarla</li>
+</ul>
+<p>Sözde kodu:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">def <span style="color:#900;font-weight:bold">selection_sort</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">)</span>
+  <span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:</span> 0 to n<span style="color:#000;font-weight:bold">-</span>2 <span style="color:#000;font-weight:bold">do</span>
+    min <span style="color:#000;font-weight:bold">=</span> i
+    <span style="color:#000;font-weight:bold">for</span> j <span style="color:#000;font-weight:bold">:</span> i<span style="color:#000;font-weight:bold">+</span>1 to n<span style="color:#000;font-weight:bold">-</span>1 <span style="color:#000;font-weight:bold">do</span>
+      <span style="color:#000;font-weight:bold">if</span> <span style="color:#900;font-weight:bold">list</span><span style="color:#000;font-weight:bold">(</span>j<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">&lt;</span> list<span style="color:#000;font-weight:bold">(</span>min<span style="color:#000;font-weight:bold">)</span>
+        min <span style="color:#000;font-weight:bold">=</span> j
+    <span style="color:#900;font-weight:bold">swap</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">[</span>i<span style="color:#000;font-weight:bold">]</span><span style="color:#000;font-weight:bold">,</span> list<span style="color:#000;font-weight:bold">[</span>min<span style="color:#000;font-weight:bold">]</span><span style="color:#000;font-weight:bold">)</span>
+</code></pre></div><p>Büyüme hızı: <code>Θ(n^2)</code></p>
+<p>Selection Sort&rsquo;un diğer sıralama algoritmalarından <strong>ayıran bir özelliği</strong> vardır. Algoritma tüm elemanları n^2 kere dolaşırken swap işlemi yalnızca n kez yapılır.</p>
+<h3 id="bubble-sort">Bubble Sort</h3>
+<p align="center"> 
+  <img src="/images/posts/brute-force/brute_force_1.gif" alt="bubble sort">
+</p>
+<p>Algoritması:</p>
+<ul>
+<li>Listedeki komşu elemanları karşılaştır</li>
+<li>Eğer sıralı değilse yerini swap et</li>
+</ul>
+<p>Sözde kodu:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">def <span style="color:#900;font-weight:bold">bubble_sort</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">)</span>
+  <span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:</span> 0 to n<span style="color:#000;font-weight:bold">-</span>2 <span style="color:#000;font-weight:bold">do</span>
+    <span style="color:#000;font-weight:bold">for</span> j <span style="color:#000;font-weight:bold">:</span> 0 to n<span style="color:#000;font-weight:bold">-</span>1<span style="color:#000;font-weight:bold">-</span>i <span style="color:#000;font-weight:bold">do</span>
+      <span style="color:#000;font-weight:bold">if</span> list<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">&gt;</span> list<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">+</span>1<span style="color:#000;font-weight:bold">]</span>
+        <span style="color:#900;font-weight:bold">swap</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">]</span><span style="color:#000;font-weight:bold">,</span> list<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">+</span>1<span style="color:#000;font-weight:bold">]</span><span style="color:#000;font-weight:bold">)</span>
+</code></pre></div><p>Büyüme hızı: <code>Θ(n^2)</code></p>
+<p>Sıralama algoritmaları hakkında çözülebilecek problemler: (syf 129)</p>
+<ul>
+<li>A stack of fake coins</li>
+<li>Alternating disks</li>
+</ul>
+<hr>
+<h2 id="brute-force-ile-arama-algoritmaları">Brute Force ile Arama Algoritmaları</h2>
+<p>Bir önceki bölümde girilen dizinin sıralanmasını sağlamıştık. Bu bölümde ise girilen veriye göre brute force yaklaşımı uygulayarak arama yapacağız. Bunlardan ilki girilen dizi üzerinde arama yapan Sequential Search diğer ise bir string içersinde arama yapan String Matching.</p>
+<h3 id="sequential-search">Sequential Search</h3>
+<p>Algoritması:</p>
+<ul>
+<li>Aranan key ile tüm elemanları karşılaştır
+<ul>
+<li>Key bulunduğunda index&rsquo;i döndür</li>
+<li>Eğer key listenenin hiç bir elemanında bulunamadıysa -1 döndür</li>
+</ul>
+</li>
+</ul>
+<p>Sözde kodu:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">def <span style="color:#900;font-weight:bold">sequential_search</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">,</span> key<span style="color:#000;font-weight:bold">)</span>
+  <span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:</span> 0 to n<span style="color:#000;font-weight:bold">-</span>1 <span style="color:#000;font-weight:bold">do</span>
+    <span style="color:#000;font-weight:bold">if</span>  key <span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">=</span> list<span style="color:#000;font-weight:bold">[</span>i<span style="color:#000;font-weight:bold">]</span>
+      <span style="color:#000;font-weight:bold">return</span> i
+  <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">-</span>1
+</code></pre></div><p>Büyüme hızı: <code>Θ(n)</code></p>
+<h3 id="string-matching">String Matching</h3>
+<p>N karakterli bir cümle içersinde m karakterli bir kelime olup olmadığını bulunması.</p>
+<p>Algoritması:</p>
+<ul>
+<li>Kelimenin ilk harfi cümlede denk geldiğinde devamını karşılaştırmaya başla
+<ul>
+<li>Karakterler eşleştikçe dönmeye devam et</li>
+</ul>
+</li>
+<li>Hepsi denk geldi mi ?</li>
+<li>Hepsi denk gelmediyse bir dahaki ilk harf tutan yere</li>
+<li>Karşılaştırma durumuna tekrar başla</li>
+</ul>
+<p>Sözde kodu:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">def <span style="color:#900;font-weight:bold">string_matching</span><span style="color:#000;font-weight:bold">(</span>text<span style="color:#000;font-weight:bold">,</span> word<span style="color:#000;font-weight:bold">)</span>
+  <span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:</span> 0 to n<span style="color:#000;font-weight:bold">-</span>m <span style="color:#000;font-weight:bold">do</span>
+    j <span style="color:#000;font-weight:bold">=</span> 0
+    <span style="color:#000;font-weight:bold">while</span> j <span style="color:#000;font-weight:bold">&lt;</span> m AND word<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">=</span> text<span style="color:#000;font-weight:bold">[</span>i<span style="color:#000;font-weight:bold">+</span>j<span style="color:#000;font-weight:bold">]</span>
+      j<span style="color:#000;font-weight:bold">+</span><span style="color:#000;font-weight:bold">+</span>
+    <span style="color:#000;font-weight:bold">if</span> j <span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">=</span> m
+      <span style="color:#000;font-weight:bold">return</span> i
+  <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">-</span>1
+</code></pre></div><p>Büyüme hızı: En kötü durumda, her defasında while&rsquo;a gireceği için, <code>Θ(nm)</code></p>
+<hr>
+<h2 id="brute-force-ile-bilindik-iki-problemin-çözümü">Brute Force ile Bilindik İki Problemin Çözümü</h2>
+<p>Bu bölümde bilindik iki problem olen Closest-Pair ve Convex-Hull problemlerini brute force yaklaşımı ile çözeceğiz.</p>
+<h3 id="closest-pair-problem">Closest-Pair Problem</h3>
+<p>N nokta arasından en yakın iki noktanın bulunması problemidir. Brute Force yaklaşımı ile tüm nokta çiftlerinin uzaklıklarına bakılır, en küçük olan değer bu şekilde bulunur.</p>
+<p>Sözde kodu:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">def <span style="color:#900;font-weight:bold">closest_pair</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">)</span>
+  dmin <span style="color:#000;font-weight:bold">=</span> infinite
+  index1 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">-</span>1
+  index2 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">-</span>1
+  <span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:</span> 1 to n<span style="color:#000;font-weight:bold">-</span>1 <span style="color:#000;font-weight:bold">do</span>
+    <span style="color:#000;font-weight:bold">for</span> j <span style="color:#000;font-weight:bold">:</span> i<span style="color:#000;font-weight:bold">+</span>1 to n <span style="color:#000;font-weight:bold">do</span>
+      d <span style="color:#000;font-weight:bold">=</span> sqrt<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">(</span>xi<span style="color:#000;font-weight:bold">-</span>xj<span style="color:#000;font-weight:bold">)</span><span style="color:#000;font-weight:bold">^</span>2 <span style="color:#000;font-weight:bold">+</span> <span style="color:#000;font-weight:bold">(</span>yi<span style="color:#000;font-weight:bold">-</span>yj<span style="color:#000;font-weight:bold">)</span><span style="color:#000;font-weight:bold">^</span>2<span style="color:#000;font-weight:bold">)</span>
+      <span style="color:#000;font-weight:bold">if</span> d <span style="color:#000;font-weight:bold">&lt;</span> dmin
+        dmin <span style="color:#000;font-weight:bold">=</span> d
+        index1 <span style="color:#000;font-weight:bold">=</span> i
+        index2 <span style="color:#000;font-weight:bold">=</span> j
+  <span style="color:#000;font-weight:bold">return</span> index1<span style="color:#000;font-weight:bold">,</span> index2
+</code></pre></div><p>Temel işlem d&rsquo;nin bulunduğu yerdir.</p>
+<p>Büyüme hızı: <code>Θ(n^2)</code></p>
+<h3 id="convex-hull-problem">Convex-Hull Problem</h3>
+<p align="center"> 
+	<img height="400" src="/images/posts/brute-force/brute_force_1.png" alt="convex-hull problem">
+</p>
+<p>Verilen noktalar için <strong>dışbükey bir çevreleyici</strong>nin bulunmasıdır.</p>
+<p>X ve X birleştiren doğru parçası diğer tüm noktaları bir tarafta bırakıyorsa bu doğru parçası Convex Hull’ın bir kenarıdır. Bu testi tüm nokta çiftleri için gerçekleştirdiğimizde Convex-Hull'ın uç noktalarını bulabiliriz.</p>
+<hr>
+<h2 id="exhaustive-search-kapsamlı-arama">Exhaustive Search (kapsamlı arama)</h2>
+<p>Exhaustive Search, kombinasyonal problemlerine brute force yaklaşımı ile çözüm bulmaktadır.</p>
+<p>Bir problemin tüm elemanlarını bulur ve bu buldukları arasından problemin kısıtlamlarına uygun olanları seçer. Ardından seçilen elemanlar arasından problem için uygun olan eleman seçilir (en optimize olan eleman).</p>
+<p>Exhaustive Search'ü üç problemin çözümünde kullanacağız; Traveling Salesman Problem, Knapsack Problem, Assignment Problem.</p>
+<h3 id="traveling-salesman-problem-gezgin-satıcı-problemi">Traveling Salesman Problem (gezgin satıcı problemi)</h3>
+<p>150 yıldır araştırmacılar tarafından araştırılan bu problemde istenen, verilen n şehir içerisinde, her şehirde yalnızca bir kez uğranılan minimum turun bulunmasıdır. Bu noktada problem en kısa Hemiltonaian çevrimini bulmaya dönmüş olur. Brute force yaklaşımı ile, Exhaustive Search yaparsak, bu sorunu çözerken tüm kombinasyonal durumlar yazılır ve ağırlık bakımından en optimal yol(lar) seçilir.</p>
+<p align="center"> 
+	<img height="600" src="/images/posts/brute-force/brute_force_0.png" alt="traveling salesman problem">
+</p>
+<p>Kaç yol vardır ?</p>
+<p><code>(n-1)!</code></p>
+<p>Yukarda da gözüktüğü gibi yolların yarısı yalnızca yön anlamında farklıdır, ağırlık anlamında elimizde <code>(n-1)!/2</code> ihtimal vardır.</p>
+<p>Bu problemin çözümünün büyüme hızı o halde,<br>
+Büyüme hızı: <code>Θ(n!)</code></p>
+<h3 id="knapsack-problem-sırtçantası-problemi">Knapsack Problem (sırtçantası problemi)</h3>
+<p>Çok bilindik diğer bir problem olan Knapsack probleminde amaç bir sırt çantasına maksimum olarak sığabilecek alt ürün grubunu bulmaktır. Bir yük uçağı hayal edin, bu uçağın kapasitesini verimli kullanabilmek amacıyla, kapasiteyi aşmadan elmizdeki metaryeller optimum şekilde uçağa koymamız gerekir. Ya da bir hırsız düşünün, hırsız torbasını en verimli şekilde doldurmalıdır, hırsız çantasına ağırlıkça en az, <strong>pahaca en çok eşyayı doldurmak</strong> ister.</p>
+<p align="center"> 
+	<img src="/images/posts/brute-force/brute_force_2.png" alt="knapsack problem">
+</p>
+<p>Exhaustive Search yaklaşımına göre problemi çözmek istersek, kombinasyonal olarak tüm alt grupları bulur, problem sınırımız olan kapasiteye en uygun değeri taşıyan alt grubu seçeriz.</p>
+<p>n elemanlı bir kümenin tüm alt kümeleri <code>2^n</code> dir. Problemin çözümünün büyüme hızı o halde,<br>
+Büyüme hızı: <code>Ω(2^n)</code></p>
+<h3 id="assignment-problem-atama-problemi">Assignment Problem (atama problemi)</h3>
+<p>Bir diğer problem olan Assignment Probleminde n tane insan ve n tane iş olduğu söylenir, her çalışan yalnızca bir işe atabilir ve her işte yalnızca bir çalışan çalışabilir. Her çalışanın bir işte çalışması için belirli bir maliyet vardır. <strong>En düşük maliyete sahip çalışan-iş eşleştirilmesi</strong>nin nasıl yapılması gerektiğini sorar.</p>
+<p align="center"> 
+	<img src="/images/posts/brute-force/brute_force_3.png" alt="assignment problem">
+</p>
+<p>Yukardağı tabloyu bir matrix olarak düşünürseniz, her satırda ve kolonda yalnızca bir seçim yapılarak en düşük maliyet hesabı yapılacaktır.</p>
+<p align="center"> 
+	<img src="/images/posts/brute-force/brute_force_4.png" alt="assignment problem">
+</p>
+<p>Exhaustive Search yaklaşımı ile problem çözülecek olursa olabilecek tüm kombinasyonal ifadeler bulunur ve en düşük maliyete sahip olan seçilir. Fakat bu yöntemden çok daha kullanışlı olan Hungarian method&rsquo;unun kullanılması daha mantıklı olacaktır.</p>
+<p>Exhaustive Search hakkında çözülebilecek problemler: (syf 147)</p>
+<ul>
+<li>Eight-queens problem</li>
+<li>Famous alphametic</li>
+</ul>
+<hr>
+<h2 id="exhaustive-search-ile-graph-traversal-algoritmaları-dfs---bfs">Exhaustive Search ile Graph Traversal Algoritmaları (DFS - BFS)</h2>
+<p>Exhaustive Search dolaşma yöntemi olan DFS ve BFS&rsquo;ye de uygulanabilir.</p>
+<h3 id="depth-first-search-dfs">Depth-first search (DFS)</h3>
+<p>Derine gidilir. Dolaşma işlemi bir düğümden başlar. Gidilebilecek mümkün komşulardan bir tanesini seçer ve ilerler. Gidilebilecek diğer düğümlere bakmadan önce yeni gidilen düğümün komşuları incelenir ve bir tanesine gidilir. Gidilebilecek komşu kalmayınca geri sarılarak mümkün komşular aranır.</p>
+<p align="center"> 
+	<img src="/images/posts/brute-force/brute_force_5.png" alt="depth-first search">
+</p>
+<p>Sözde kodu:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">def <span style="color:#900;font-weight:bold">depth_first_search</span><span style="color:#000;font-weight:bold">(</span>graph<span style="color:#000;font-weight:bold">)</span>
+  mark each vertex in V with 0 as a mark of being <span style="color:#a61717;background-color:#e3d2d2">&#39;</span>unvisited<span style="color:#a61717;background-color:#e3d2d2">&#39;</span>
+  count <span style="color:#000;font-weight:bold">=</span> 0
+  <span style="color:#000;font-weight:bold">for</span> each vertex v in V <span style="color:#000;font-weight:bold">do</span>
+    <span style="color:#000;font-weight:bold">if</span> v is marked with 0
+      <span style="color:#900;font-weight:bold">dfs</span><span style="color:#000;font-weight:bold">(</span>v<span style="color:#000;font-weight:bold">)</span>
+
+def <span style="color:#900;font-weight:bold">dfs</span><span style="color:#000;font-weight:bold">(</span>v<span style="color:#000;font-weight:bold">)</span>
+  count<span style="color:#000;font-weight:bold">+</span><span style="color:#000;font-weight:bold">+</span>
+  mark v with count
+  <span style="color:#000;font-weight:bold">for</span> each vertex w in V adjacent to v <span style="color:#000;font-weight:bold">do</span>
+    <span style="color:#000;font-weight:bold">if</span> w is marked with 0
+      <span style="color:#900;font-weight:bold">dfs</span><span style="color:#000;font-weight:bold">(</span>w<span style="color:#000;font-weight:bold">)</span>
+</code></pre></div><h3 id="breadth-first-search-bfs">Breadth-first search (BFS)</h3>
+<p>Enine gidilir. Dolaşma işlemi bir düğümden başlar. Gidilebilecek mümkün komşular hepsini sırayla seçer ve ilerler. Gidilebilecek bütün komşular gezildikten sonra ilk komşunun komşuları seçilir.</p>
+<p align="center"> 
+	<img src="/images/posts/brute-force/brute_force_6.png" alt="breadth-first search">
+</p>
+<p>Sözde kodu:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">def <span style="color:#900;font-weight:bold">breadth_first_search</span><span style="color:#000;font-weight:bold">(</span>graph<span style="color:#000;font-weight:bold">)</span>
+  mark each vertex in V with 0 as a mark of being <span style="color:#a61717;background-color:#e3d2d2">&#39;</span>unvisited<span style="color:#a61717;background-color:#e3d2d2">&#39;</span>
+  count <span style="color:#000;font-weight:bold">=</span> 0
+  <span style="color:#000;font-weight:bold">for</span> each vertex v in V <span style="color:#000;font-weight:bold">do</span>
+    <span style="color:#000;font-weight:bold">if</span> v is marked with 0
+      <span style="color:#900;font-weight:bold">bfs</span><span style="color:#000;font-weight:bold">(</span>v<span style="color:#000;font-weight:bold">)</span>
+
+def <span style="color:#900;font-weight:bold">bfs</span><span style="color:#000;font-weight:bold">(</span>v<span style="color:#000;font-weight:bold">)</span>
+  count<span style="color:#000;font-weight:bold">+</span><span style="color:#000;font-weight:bold">+</span>
+  mark v with count
+  initialize a queue with v
+  <span style="color:#000;font-weight:bold">while</span> the queue is not empty <span style="color:#000;font-weight:bold">do</span>
+    <span style="color:#000;font-weight:bold">for</span> each vertex w in V adjacent to the front vertex <span style="color:#000;font-weight:bold">do</span>
+      <span style="color:#000;font-weight:bold">if</span> w is marked with 0
+        count<span style="color:#000;font-weight:bold">+</span><span style="color:#000;font-weight:bold">+</span>
+        add w to the queue
+    remove the front vertex from the queue
+</code></pre></div>
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/computer-science">Computer Science</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'boratanrikulu';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> copyright notice |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77508691-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

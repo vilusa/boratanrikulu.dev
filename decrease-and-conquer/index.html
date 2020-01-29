@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Decrease and Conquer - Bora Tanrıkulu</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Decrease and Conquer" />
+<meta property="og:description" content="&#39;algoritmalar - decrease and conquer&#39; konusu hakkında aldığım notlar." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boratanrikulu.dev/decrease-and-conquer/" />
+<meta property="article:published_time" content="2019-06-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-06-21T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Decrease and Conquer"/>
+<meta name="twitter:description" content="&#39;algoritmalar - decrease and conquer&#39; konusu hakkında aldığım notlar."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="https://boratanrikulu.dev/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://boratanrikulu.dev/">
+				<img src="/images/avatar.jpeg" alt="Bora Tanrıkulu" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="https://boratanrikulu.dev/">Bora Tanrıkulu</a></h1>
+	<div class="site-description"><p>Interested in shell scripting, system administration and golang.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/boratanrikulu/" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/boratanrikulu_/" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://linkedin.com/in/bora-tanrikulu/" title="LinkedIn"><i data-feather="linkedin"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/aboutme">About me</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">21</span>
+							<span class="rest">Jun 2019</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">Decrease and Conquer</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p><strong>Kaynaklar:**<br>
+<a href="https://www.pandora.com.tr/kitap/introduction-to-the-design-and-analysis-of-algorithms-3e/270012"><strong>Introduction to the Design &amp; Analysis of Algorithms 3e - Pearson</strong></a><br>
+</strong>@elif_haytaoglu**<a href="https://www.linkedin.com/in/elif-haytaoglu-97176564/"></a></p>
+<hr>
+<h2 id="decrease-and-conquer">Decrease and Conquer</h2>
+<p>Bu yaklaşımda; verilen problemlere çözüm bulmak amacıyla problemden daha küçük boyuttaki örneğine çözüm aranır. Daha küçük boyutu için bulunan çözüm ana probleme uygulanır.</p>
+<p>Yaklaşımın üç çeşidi bulunur:</p>
+<ul>
+<li>Decrease by a constant (sabit bir sayı ile azaltma)</li>
+<li>Decrease by a constant factor (sabit bir çarpan ile azaltma)</li>
+<li>Variable size decrease (değişken boyutta azaltma)</li>
+</ul>
+<hr>
+<h2 id="decrease-by-a-constant-algoritmaları">Decrease-by-a-constant Algoritmaları</h2>
+<p>İşleyeceğimiz ilk çeşit olan decrease-by-a-constant yaklaşımında, değişken sayısı her aşamada <strong>belli bir sabit sayı kadar azaltılarak</strong> (bu sabit sayı genellikle 1 olarak seçilir), çözüm bulunmaya çalışılır.</p>
+<p>1 azaltma olarak yapılan haline decrease-by-one da denir.</p>
+<h3 id="insertion-sort">Insertion Sort</h3>
+<p>Decrease-by-one yaklaşımı ile liste sıralanmasına Insertion Sort iyi bir örnektir.
+Algoritmanın mantığı şu şekildedir; sıralanması gereken listenin daha ufak bir bölümü sıralı gibi kabul edilir ve seçilen pivot bu mantıkla sırada durması gerektiği yere yerleştirilir.</p>
+<p align="center"> 
+  <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_1.gif" alt="insertion sort gif">
+</p>
+<p>Örnek vermek gerekirse, elinizde bir deste kart var gibi düşünün. Sıralamak için baktığınız karttan geriye dönük olarak giderek gereken yere koyarsınız. Insertion Sort tam olarak bu <strong>kart sıralaması</strong>nın yapılmasıdır.</p>
+<p>Sözde kodu:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">def <span style="color:#900;font-weight:bold">insertion_sort</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">)</span>
+  <span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:</span> 1 to n<span style="color:#000;font-weight:bold">-</span>1 <span style="color:#000;font-weight:bold">do</span>
+    v <span style="color:#000;font-weight:bold">=</span> list<span style="color:#000;font-weight:bold">[</span>i<span style="color:#000;font-weight:bold">]</span>
+    j <span style="color:#000;font-weight:bold">=</span> i<span style="color:#000;font-weight:bold">-</span>1
+    <span style="color:#000;font-weight:bold">while</span> j <span style="color:#000;font-weight:bold">&gt;</span><span style="color:#000;font-weight:bold">=</span> 0 AND list<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">&gt;</span> v <span style="color:#000;font-weight:bold">do</span>
+      list<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">+</span>1<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">=</span> list<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">]</span>
+      j<span style="color:#000;font-weight:bold">-</span><span style="color:#000;font-weight:bold">-</span>
+    list<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">+</span>1<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">=</span> v
+</code></pre></div><p>Algoritmadaki ana işlem <code>list[j] &gt; v</code> kontrolüdür.</p>
+<p>Büyüme hızı;<br>
+En kötü: <code>Θ(n^2)</code><br>
+En iyi: <code>Θ(n)</code><br>
+Ortalama: <code>Θ(n^2)</code></p>
+<hr>
+<h2 id="topological-sorting">Topological Sorting</h2>
+<p>Topological Sorting, yalnızca yönlü ağaçlarda uygulanabilen bir sıralama algoritmasıdır. Agaçtan kendisine bir girdi olmayan parçaların koparılma sırası olarak düşünülebilir. Paket yöneticileri, görev talimatları gibi uygulamalarda kullanılır.</p>
+<p>Topological Sorting uygulayabileceğimiz yollardan bir tanesi; tüm vertex&rsquo;lerin taranması ve herhangi bir <strong>girdisi olmayan vertex</strong>&lsquo;lerin çıkarılmasıdır.</p>
+<p align="center"> 
+  <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_3.gif" alt="topological sorting gif">
+</p>
+<p>Diğer bir yol ise; ilgili ağaçta <strong>DFS olarak dolaşmak</strong> ve bu dolaşma sırasının tersini almaktır. Tersi alanmış bu sıra bize Topological Sorting sıralamasını verecektir.</p>
+<p align="center"> 
+  <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_0.png" alt="topological sorting">
+</p>
+<p>Döngü içeren ağaçlara (yani DFS dolaşımında backforward içeren ağaçlara) Topological Sorting uygulanamaz. Örneğin aşağıdaki gibi bir ağaca Topological Sorting uygulanamaz.</p>
+<p align="center"> 
+  <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_7.png" alt="not topological sort">
+</p>
+<hr>
+<h2 id="kombinasyon-nesneleri-oluşturmak-için-algoritmalar">Kombinasyon Nesneleri Oluşturmak için Algoritmalar</h2>
+<p>Bu bölümde kombinasyon nesneleri olan; alt kümeler ve permütasyonların oluşturulmaları için kullanılan algoritmaları inceleyeceğiz.</p>
+<h3 id="permütasyon-oluşturmak">Permütasyon Oluşturmak</h3>
+<p>1&rsquo;den n&rsquo;ye kadar olan sayıların permütasyonları istense nasıl bulursunuz ?<br>
+<strong>John Trotter</strong> algoritması ile bunu oldukça pratik bir yoldan bulabiliriz.</p>
+<p align="center"> 
+  <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_8.png" alt="johnson trotter">
+</p>
+<ul>
+<li>İlk olarak tüm sayılara yukardaki gibi bir yön verilir</li>
+<li>En büyük eleman mobil olarak seçilir (kalın olarak yazılan)</li>
+<li>Mobil eleman ok yönüne doğru hareket ettirilir</li>
+<li>Mobil değiştitiğinde kendisinden daha büyük bir sayı var mı diye bakılır</li>
+<li>Eğer var ise, büyük olan sayının yönü değiştirilerek mobil yapılır</li>
+<li>Hiç bir mobil kalmayasaya kadar bu şekilde devam eder</li>
+</ul>
+<p align="center"> 
+  <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_9.png" alt="johnson trotter">
+</p>
+<p>Sözde kodu:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">def <span style="color:#900;font-weight:bold">john_trotter</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">)</span><span style="color:#000;font-weight:bold">:</span>
+  initialize the list with arrow as the first permutation
+  <span style="color:#000;font-weight:bold">while</span> the last permutaion has a mobile element <span style="color:#000;font-weight:bold">do</span>
+    find its largest mobile element k
+    swap k with the adjacent k s arrow points to
+    reverse the direction of all the elements that are larger than k
+    add the <span style="color:#000;font-weight:bold">new</span> permutaion to the list
+</code></pre></div><p>Büyüme hızı: <code>Ө(n!)</code></p>
+<h3 id="alt-küme-oluşturma">Alt Küme Oluşturma</h3>
+<p>Bir kümenin tüm alt kümelerini bulmak gerekiyor olsun. Bunun için oldukça basit bir mantık vardır; ikilik tabandan yararlanmak.</p>
+<p>3 elemanlı bir küme olsun, o halde <strong>ikilik taban</strong>da 111&rsquo;e kadar yazarsak tüm alt kümeleri bulmuş oluruz.</p>
+<p>Yani aşağıdaki gibi tüm alt kümeleri bulabiliriz.</p>
+<p align="center"> 
+  <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_10.png" alt="alt küme oluşturmak">
+</p>
+<hr>
+<h2 id="decrease-by-a-constant-factor-algoritmaları">Decrease-by-a-constant-factor Algoritmaları</h2>
+<p>İkinci olarak işleyeceğimiz çeşit; decrease-by-a-constant-factor, yani sabit bir kat sayı ile azaltma. Bu yaklaşımda problem, verinin <strong>belli bir katta daha ufak hali ele alınarak</strong> çözülür.</p>
+<h3 id="binary-search">Binary Search</h3>
+<p>İkili arama işlemi sıralı dizilerde aranan verinin bulunmasını sağlar.<br>
+Yaklaşım basittir. İlk olarak ortanca değere bakılır; ortanca değer ile aranan değer karşılaştıralarak <strong>sola</strong> ya da <strong>sağa</strong> gidilir. Bu algoritma recursive şekilde aranan veri bulunasaya ya da  gidilecek yer kalmayasa kadar devam eder.</p>
+<p align="center"> 
+  <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_4.png" alt="binary search">
+</p>
+<p>Sözde kodu:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">def <span style="color:#900;font-weight:bold">binary_search</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">,</span> key<span style="color:#000;font-weight:bold">)</span>
+  <span style="color:#000;font-weight:bold">if</span> list<span style="color:#000;font-weight:bold">[</span>list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">length</span><span style="color:#000;font-weight:bold">/</span>2<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">=</span> key
+    <span style="color:#000;font-weight:bold">return</span> list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">length</span><span style="color:#000;font-weight:bold">/</span>2
+  <span style="color:#000;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">if</span> key <span style="color:#000;font-weight:bold">&gt;</span> list<span style="color:#000;font-weight:bold">[</span>list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">length</span><span style="color:#000;font-weight:bold">/</span>2<span style="color:#000;font-weight:bold">]</span>
+    <span style="color:#000;font-weight:bold">return</span> <span style="color:#900;font-weight:bold">binary_search</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">right_half</span><span style="color:#000;font-weight:bold">,</span> key<span style="color:#000;font-weight:bold">)</span>
+  <span style="color:#000;font-weight:bold">else</span>
+    <span style="color:#000;font-weight:bold">return</span> binary_search<span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">left_half</span><span style="color:#000;font-weight:bold">,</span> key<span style="color:#000;font-weight:bold">)</span>
+</code></pre></div><p>Algoritmanın mantığı recursive olarak kurulmuş olsa da <strong>non-recursive</strong> olarak yazmak ta mümkündür.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">def <span style="color:#900;font-weight:bold">binary_search_nonrecursive</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">,</span> key<span style="color:#000;font-weight:bold">)</span>
+  left <span style="color:#000;font-weight:bold">=</span> 0
+  right <span style="color:#000;font-weight:bold">=</span> list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">length</span>
+
+  <span style="color:#000;font-weight:bold">while</span> counter <span style="color:#000;font-weight:bold">&lt;</span><span style="color:#000;font-weight:bold">=</span> left <span style="color:#000;font-weight:bold">do</span>
+    median <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span> counter <span style="color:#000;font-weight:bold">+</span> left <span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">/</span> 2
+    <span style="color:#000;font-weight:bold">if</span> key <span style="color:#000;font-weight:bold">=</span> list<span style="color:#000;font-weight:bold">[</span>median<span style="color:#000;font-weight:bold">]</span>
+      <span style="color:#000;font-weight:bold">return</span> median
+    <span style="color:#000;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">if</span> key <span style="color:#000;font-weight:bold">&lt;</span> list<span style="color:#000;font-weight:bold">[</span>median<span style="color:#000;font-weight:bold">]</span>
+      right <span style="color:#000;font-weight:bold">=</span> median <span style="color:#000;font-weight:bold">-</span> 1
+    <span style="color:#000;font-weight:bold">else</span>
+      left <span style="color:#000;font-weight:bold">=</span> median <span style="color:#000;font-weight:bold">+</span> 1
+  <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">-</span>1
+</code></pre></div><p>Algoritmanın çalışma mantığına göre,</p>
+<p><code>T(n) = T(n/2) + 1, T(1) = 1</code></p>
+<p>Buradan da,<br>
+Büyüme hızı: <code>Θ(log2(n))</code></p>
+<h3 id="fake-coin-problem-sahte-para-problemi">Fake-Coin Problem (sahte para problemi)</h3>
+<p>Elinizde bir avuç aynı cins bozuk para olduğunu hayal edin. Bu paralardan yalnızca biri sahte ve bu sahte olan para gerçek paraya göre daha hafif.<br>
+<strong>Sahte parayı nasıl bulursunuz ?</strong></p>
+<p>Decrease-by-a-constant yaklaşımı ile parayı logn&rsquo;lik bir zamanda kolayca tespit edilebilir.</p>
+<p>Elimizdeki para sayısı eğer tek ise, bir tanesini kenara ayırır ve kalan parayı (n-1)/2 olarak iki parçaya ayırarak tartarız. Eğer sonuç eşit ise ayırdığımız para sahtedir; eğer bir taraf daha hafif ise sahte para o gruptaki paralar arasındadır, o paraları da iki eş gruba ayırarak tartarız. Bu şekilde bölerek sahte parayı tespit edebiliriz.</p>
+<p>Algoritmanın çalışma mantığına göre çalışma zaman büyüme hızı (binary search ile aynı mantıkta),</p>
+<p><code>T(n) = T(n/2) + 1, T(1) = 0</code></p>
+<p>Bu da <code>Θ(log2(n))</code>'dir. Fakat bu algoritma geliştirilebilir. Eğer elimizdeki parayı 2&rsquo;ye değil de 3&rsquo;e bölerek işleme devam edersek çalışma zaman büyüme hızı azalacaktır.</p>
+<p><code>T(n) = T(n/3) + 1, T(1) = 0</code></p>
+<p>Bu da Θ(log3(n))&lsquo;dir.</p>
+<p>Peki; Θ(log3(n)), Θ(log2(n))&lsquo;den kaç kat daha hızlıdır ?<br>
+log2(n) / log3(n) = 1,6 kat</p>
+<h3 id="russian-peasant-multiplication-rus-köylü-çarpımı">Russian Peasant Multiplication (rus köylü çarpımı)</h3>
+<p>Ruslar tarafından geliştirilen, <strong>iki pozitif sayıyı daha kolay olarak çarpabilmeyi</strong> sağlayan bu algoritma aşağıdaki gibidir.</p>
+<p>n ve m isimli iki tane pozitif sayı olsun elimizde.</p>
+<p>Eğer n çift bir sayı ise, <code>n . m = n/2 . 2m</code><br>
+Eğer n tek bir sayi ise, <code>n . m = (n-1)/2 . 2m + m</code></p>
+<p>Olarak işlemi güncelleriz. İşlem <code>1 . m = m</code> olasaya kadar devam eder ve elimizde son kalan değer çarpma işleminin sonucu olmuş olur.</p>
+<p>50 ve 65 sayılarını çarpmak istiyor olalım, işlem aşağıdaki gibi olacaktır.</p>
+<p align="center"> 
+  <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_5.png" alt="russian peasant multiplication">
+</p>
+<h3 id="josephus-problem">Josephus Problem</h3>
+<p>Flavius Josephus, Roma&rsquo;lılara karşı bir isyanı yönetmiş tarihi bir karakterdir. Roma&rsquo;lılar tarafından etrafları sarıldığında ve isyankarlar teslim olmak yerine ölmeyi tercih ettiklerinde, kişilerin intihar etmeden ölebilmeleri için herkesin birbirini öldüreceği, son ayakta kalan kişinin de kendisini öldürmesi gerektiği bir sistem ortaya atmıştır. Bu şekilde neredeyse tüm isyanlarlar (kendini öldürecek olan bir kişi hariç) intihar etmeden canlarına son verebilecekti.</p>
+<p>Fakat Josephus bu fikri ortaya atarken aklında ölmek gibi bir fikir yoktu. <strong>En son hayatta kalacak kişinin yerin durmalı</strong> ve ardından kendini öldürmek yerine Roma&rsquo;lılara teslim olmalıydı. Peki tam olarak nerede durmalıydı ?</p>
+<p align="center"> 
+  <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_2.gif" alt="josephus problem gif">
+</p>
+<p>Aşağıdaki gibi adamların bir çember yapıp, saat yönünde ilerleyerek birbirini öldürdüğü düşünün. Yani 1 2&rsquo;yi, 3 4'ü, 5 6&rsquo;yı, 1 3'ü, 5 1&rsquo;i öldürecektir.</p>
+<p align="center"> 
+  <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_6.png" alt="josephus problem">
+</p>
+<p>6 kişilik bu örnekte en son ayakta kalan adam 5 numaralı yerde duran olacaktır.</p>
+<p>En son hayatta kalan kişinin konumunu bulmanın basit bir yolu vardır. Kişi sayısı <strong>ikilik tabanda</strong> yazılır, ardından sola doğru bir kayma işlemi yapılır (en soldaki rakamın en sağa atılması), çıkan ikilik tabandaki sayının onluk tabandaki karşılığı Josephus&rsquo;un durması gerektiği noktayı gösterecektir.</p>
+<p><code>J(5) = J(1 0 1) = 0 1 1 = 3,</code><br>
+<code>J(6) = J(1 1 0) = 1 0 1 = 5,</code><br>
+<code>J(7) = J(1 1 1) = 1 1 1 = 7,</code><br>
+<code>J(8) = J(1 0 0 0) = 0 0 0 1 = 1</code></p>
+
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/computer-science">Computer Science</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'boratanrikulu';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> copyright notice |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77508691-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

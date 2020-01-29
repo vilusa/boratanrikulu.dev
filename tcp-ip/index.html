@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>TCP/IP - Bora Tanrıkulu</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="TCP/IP" />
+<meta property="og:description" content="tcp/ip&#39;in genel bir tanımını yapar." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boratanrikulu.dev/tcp-ip/" />
+<meta property="article:published_time" content="2018-04-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-04-23T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="TCP/IP"/>
+<meta name="twitter:description" content="tcp/ip&#39;in genel bir tanımını yapar."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="https://boratanrikulu.dev/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://boratanrikulu.dev/">
+				<img src="/images/avatar.jpeg" alt="Bora Tanrıkulu" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="https://boratanrikulu.dev/">Bora Tanrıkulu</a></h1>
+	<div class="site-description"><p>Interested in shell scripting, system administration and golang.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/boratanrikulu/" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/boratanrikulu_/" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://linkedin.com/in/bora-tanrikulu/" title="LinkedIn"><i data-feather="linkedin"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/aboutme">About me</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">23</span>
+							<span class="rest">Apr 2018</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">TCP/IP</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p><strong>Kaynaklar</strong> <br>
+<a href="https://kevsersrca.github.io/blog//security/osi-katmanlari-ve-prokolleri/">kevsersrca.github.io/blog/security/osi-katmanlari-ve-prokolleri/</a> <br>
+<a href="https://en.wikipedia.org/wiki/TCP/IP">en.wikipedia.org/wiki/TCP/IP</a><br>
+<a href="http://networkstatic.net/wp-content/uploads/2012/04/">networkstatic.net (çizimler)</a></p>
+<hr>
+<h2 id="tcpip-nedir-">TCP/IP Nedir ?</h2>
+<p>Transmission Control Protocol/Internet Protocol kısa ifadesi ile TCP/IP; bilgisayarların kendileri arasında nasıl iletişim kurduğunu belirleyen bir kurallar dizisidir. Verilerin nasıl paketleneceğini, gönderilmesini, alınmasını belirler ve pakette bozulma olup olmadığını tespit eder.</p>
+<p>TCP/IP adından anlaşılacağı gibi TCP ve IP olmak üzere iki ayrı protokolün birleşimidir.</p>
+<p><strong>IP protokolü</strong> paketlere nereye gideceğini ve oraya nasıl gidileceğini söyler. Hedefe (destination) ulaşmak için arada başka bilgisayarı kullanmak gibi bir yönteme sahiptir.</p>
+<p><strong>TCP protokolü</strong> Internet&rsquo;e bağlı network&rsquo;lerde verilerin güvenilir şekilde iletilmesini sağlamaktan sorumludur. TCP, paketlerin hatalarını kontrol eder ve varsa yeniden gönderim taleplerini gönderir.</p>
+<hr>
+<h2 id="tcpip-layers-katmanlar">TCP/IP Layers (Katmanlar)</h2>
+<p align="center">
+<img src="/images/posts/tcp-ip/3.png">
+</p>
+<p>TCP/IP protokolü ile bir paket yollanacağında; gönderici yukardan aşağı olarak katmanları gezer ve paketi sarmallar (encapsulation). Alıcı paket aldığında ise aşağıdan yukarı doğru katmanları gezerek paketi açar.</p>
+<p>TCP/IP protokolünün belli katmanları vardır. Bunlar;</p>
+<ul>
+<li>Application Layer (Uygulama)</li>
+<li>Transport Layer (Taşıma)</li>
+<li>Internet Layer</li>
+<li>Link (Veri Bağlantısı)</li>
+<li>Physical Layer (Fiziksel)</li>
+</ul>
+<p align="center">
+<img width="640" src="/images/posts/tcp-ip/4.png">
+</p>
+<h3 id="application-layer">Application Layer</h3>
+<p>Uygulama katmanı, kullanıcılara servis sağlayan protokolleri içerir. Örneğin HTTP protokolü üzerinden HTML formatında yazılmış bir sayfanın yollanması gibi.</p>
+<p>Uygulama katmanı protokollerine; HTTP, FTP, SMTP, DHCP örnek verilebilir.</p>
+<p>Uygulama katmanı protokolleri daha düşük katmanlardaki protokollere kara kutuymuş gibi davranır. Yani sadece I/O önemlidir, nasıl işlendiği değil.</p>
+<p>Uygulama katmanı protokollerinin belli başlı port&rsquo;ları vardır. HTTP 80, DNS 53, Telnet 23 gibi..</p>
+<h3 id="transport-layer">Transport Layer</h3>
+<p align="center">
+<img width="640" src="/images/posts/tcp-ip/2.png">
+</p>
+<p>Taşıma katmanı, uygulama katmanında gelen verinin taşınmasından sorumludur. Sorumluluğu kapsamında hata kontrolünü, akış kontrolünü, tıkanma kontrolünü gibi şeyler yapabilir. Taşıma katmanı protokolleri uygulama katmanı protokolünün port numarasını içerir.</p>
+<p>İki tane taşıma katmanı protokolü vardır; TCP ve UDP</p>
+<ul>
+<li>
+<p><strong>TCP</strong> ile kurulan bir bağlantılarda verinin hedefe ulaşıp ulaşmadığı kontrol edilir, <strong>veri bozulması minumum seviyededir</strong>. Bozulan paketler tekrar yıllanır. UDP&rsquo;e göre daha <strong>yavaştır</strong>.</p>
+</li>
+<li>
+<p><strong>UDP</strong> ile kurulan bağlantılarda verinin hedefe ulaşıp ulaşmadığı kontrol edilmez, <strong>verinin bütünlüğü kontrol edilmez</strong>. TCP&rsquo;e göre daha <strong>hızlıdır</strong>.</p>
+</li>
+</ul>
+<h3 id="internet-layer">Internet Layer</h3>
+<p align="center">
+<img width="640" src="/images/posts/tcp-ip/1.png">
+</p>
+<p>Internet katmanında, paketler birden fazla network arasında taşınır. Bu işleme aynı zamanda <strong>routing</strong> de denir.<br>
+Taşıma katmanından gelen paket alınır, <strong>Kaynak ve Hedef IP adresleri ile sarılır</strong> (encapsulation). Ardından paket hedef gidebileceği network&rsquo;ler arasından hedef network&rsquo;e en yakın olanı seçer. Bu işlem hedef network&rsquo;e varıncaya dek devam eder.</p>
+<p><strong>IPv4</strong> protokolü ile oluşturulan IP&rsquo;ler 32 bitten oluşur. Başka bir ifadeyle sekiz bitlik 4 rakamdan oluşur. Bu rakamlar, 0 ila 255 arasında değişir. Bu da 2^32 farklı adres demektir.</p>
+<p><strong>IPv6</strong> protokolü IPv4&rsquo;lerin yetmemesinden dolayı oluşturulmuştur. IPv4’ten farklı olarak IPv6, 128 bit genişliğindedir. Bu da 2^128 farklı adres demektir.</p>
+<h3 id="link-layer">Link Layer</h3>
+<p>Paket kaynak ve hedef sistemin MAC adresleri ile birleştirilir. Ortaya çıkan frame Fiziksel Katmana yollanır.</p>
+<h3 id="physical-layer">Physical Layer</h3>
+<p>Fiziksel katman veriler sayısal hallerinde kablolar üzerinden aktarımı yapılır. Verilerin elektronik olarak iletimiyle ilgilenir. Veri paketleriyle, frame’lerle, adreslerle ya da verinin ulaşacağı hedef ile ilgilenmez.</p>
+<p align="center">
+<img width="640" src="/images/posts/tcp-ip/7.png">
+</p>
+<p>Bu adımlardan sonra işlemin tam tersi gerçeleşerek hedef sistem veriyi alır.</p>
+<p align="center">
+<img width="640" src="/images/posts/tcp-ip/5.png">
+</p>
+
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/network">Network</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'boratanrikulu';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> copyright notice |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77508691-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

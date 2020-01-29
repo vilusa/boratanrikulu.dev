@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>DNS Nedir ? Nasıl Çalışır ? - Bora Tanrıkulu</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="DNS Nedir ? Nasıl Çalışır ?" />
+<meta property="og:description" content="dns&#39;i tanımını yapar, nasıl çalıştığını açıklar." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boratanrikulu.dev/dns-nedir-nasil-calisir/" />
+<meta property="article:published_time" content="2019-11-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-11-28T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="DNS Nedir ? Nasıl Çalışır ?"/>
+<meta name="twitter:description" content="dns&#39;i tanımını yapar, nasıl çalıştığını açıklar."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="https://boratanrikulu.dev/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://boratanrikulu.dev/">
+				<img src="/images/avatar.jpeg" alt="Bora Tanrıkulu" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="https://boratanrikulu.dev/">Bora Tanrıkulu</a></h1>
+	<div class="site-description"><p>Interested in shell scripting, system administration and golang.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/boratanrikulu/" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/boratanrikulu_/" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://linkedin.com/in/bora-tanrikulu/" title="LinkedIn"><i data-feather="linkedin"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/aboutme">About me</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">28</span>
+							<span class="rest">Nov 2019</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">DNS Nedir ? Nasıl Çalışır ?</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p><strong>Kaynaklar:</strong><br>
+<a href="https://www.cloudflare.com/learning/dns/what-is-dns/"><strong><code>cloudflare.com/what-is-dns</code></strong></a><br>
+<a href="https://person.zettlina.com/sunum/dns/dns.html#16"><strong><code>çağlar yeşilyurt - dhcp / dns</code></strong></a><br>
+<a href="https://howdns.works/ep1/"><strong><code>howdns.works</code></strong></a></p>
+<hr>
+<h2 id="dns-nedir-">DNS Nedir ?</h2>
+<p>DNS&rsquo;i internetin adres defteri olarak düşünebiliriz. Insanlar Websitelerine domain adresleri ile ulaşır, boratanrikulu.dev gibi. Fakat gerçekte tarayıcılar için bu text ifadesi anlamsızdır, tarayıcının websitesine istek yapıp cevap alabilmesi için IP adresine ihtiyacı vardır. Bu IP adresini DNS bize verir.</p>
+<p align="center">
+  <img src="/images/posts/dns-nedir-nasil-calisir/0.png" alt="what-is-dns">
+</p>
+<p>Internete bağlı her cihazın eşsiz bir IP adresi vardır. Yani yukarda DNS sorgusuna baktığımız boratanrikulu.dev için &lsquo;185.199.109.153&rsquo; adresi eşsizdir. Tekildir. Fakat IP4 ve IP6 adreslerinin belirli bir sınırı vardır. Bu konu ile ilgili DHCP&rsquo;e ilerde değineceğiz.</p>
+<hr>
+<h2 id="dns-nasıl-çalışır-">DNS Nasıl Çalışır ?</h2>
+<p>Anladık, DNS text&rsquo;e karşılık bize bir IP adresi verir. Peki DNS nasıl çalışarak bu işlemi gerçekleştirir ?</p>
+<p>DNS&rsquo;in nasıl çalıştığını anlamak için DNS sunucu türlerinin neler olduğunu anlamakta fayda var. 4 çeşit DNS sunucusu bulunur.</p>
+<p>Bunlar;</p>
+<ul>
+<li>Recursive resolvers,</li>
+<li>Root nameservers,</li>
+<li>TLD nameservers,</li>
+<li>Authoritative nameservers.</li>
+</ul>
+<p>Hadi bunların neler olduğuna tek tek bakalım. <a href="https://www.cloudflare.com/learning/dns/dns-server-types/"><strong><code>[kaynak]</code></strong></a></p>
+<hr>
+<h4 id="recursive-resolver-nedir-">Recursive Resolver Nedir ?</h4>
+<p>DNS recursor olarak ta bilinen Recursive resolvers, DNS sorgu ayağının ilk adımıdır. Bunu client(istemci) ile DNS nameserver arasındaki elçi olarak düşünebiliriz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"> --------   What is IP of boratanrikulu.dev ?
+| Client | ------------------------------------|
+ --------                                      |
+                                               |
+                                               |
+                                               |
+                                 -------------------------
+                                | DNS Recursive Resolver  |
+                                |     (listens at 53)     |
+                                 -------------------------
+                                               |
+                                               |
+                                               |
+                                               |
+                                            .......
+                                            .......
+                                            .......
+</code></pre></div><p>Bu elçi tarayıcı tarafından (veya isteği ne atıyor ise) yapılan isteği alır ve DNS sorgulama sürecini yapıp sonucu geri client&rsquo;e döndürür. DNS Recursive Resolvers isteğin cevabını ilk olarak cache üzerinden sorgular. Eğer aranan cevap cache&rsquo;de zaten var ise ve bu bilginin güncelliği sisteme göre kabul edilebilir ise istek yapılmadan direkt olarak sonuç dönülebilir. Ya da Root nameserver, TLD nameserver, Authoritative nameserver için gerekli istekler atılır.</p>
+<p align="center">
+  <img src="https://www.cloudflare.com/images/posts/learning/dns/dns-server-types/root-nameserver.png" alt="how-dns-works-cloudfleare">
+</p>
+<hr>
+<h4 id="root-nameserver-nedir-">Root nameserver Nedir ?</h4>
+<p>Root nameserver&rsquo;i insanlar tarafından okunabilir olan text dosyasının IP karşılığına çevrilmesindeki ilk adım olarak düşünebiliriz. Recursive Resolver tarafından ilk istek atılan yerdir.</p>
+<p align="center">
+  <img src="https://www.cloudflare.com/images/posts/learning/dns/glossary/dns-root-server/dns-root-server.png" alt="root nameservers">
+</p>
+<p>Root nameserver&rsquo;lar zone olarak düşünülebilir. Dünyada 13 adet zone bulunur. Yani 13 çeşit Root Nameserver vardır. Fakat bu yalnızca 13 sunucu olduğunu anlamına gelmez. Birbirinin kopyası bir çok sunucu vardır. Bu sayede sunuculara daha kolay erişilebilir. Bu yapı anycast ile sağlanır.</p>
+<p>Recursive Resolver tarafından, eğer cache&rsquo;da ilgili veri yok ise, istek Root Nameserver&rsquo;a ilk olarak atılır. Ardından ağaç yapısında aşağılara, TLD Nameserver ve Authoritative Nameserver&rsquo;a istek atılarak devam edilir. Yani DNS yapısı ağaç şeklinde kurgulanmıştır, aynı *nix tabanlı sistemlerde olduğu gibi.</p>
+<p align="center">
+  <img src="https://person.zettlina.com/sunum/dns/hiyerarsi.png" alt="dns tree structure">
+</p>
+<p>Root Nameserver&rsquo;ların sorumluluğu Internet Corporation for Assigned Names and Numbers (ICANN) kurumu tarafından üstlenilmiştir. Yetkili kurum budur.</p>
+<p>Her Recursive Resolver'ın Root Nameserver listesi vardır. Nereye gideceğini bu şekilde bilir. 13 IP&rsquo;lik bu liste sayesinde ilk isteği nereye atacağını bilir.</p>
+<hr>
+<h4 id="tld-nameserver-nedir-">TLD nameserver Nedir ?</h4>
+<p>TLD, yani Top Level Domain Server, bir domain&rsquo;de bulunan son noktadan sonra gelen text ifadelerinin karşılığı olarak bulunan sunuculara denk gelir.</p>
+<p>Örneğin <strong>.com</strong> bir TLD Nameserver&rsquo;dir. Ve bu server&rsquo;da ilgili tüm domain&rsquo;lerin bilgileri bulunur.</p>
+<p>TLD&rsquo;lerin yönetimi, ICAAN&rsquo;nin bir dalı olan, Internet Assigned Numbers Authority (IANA) tarafından üstlenilmiştir.</p>
+<ul>
+<li>Generic Top Level Domains: Ülke bilgisi içermez.<br>
+.com, .org, .net, .edu, .gov, .dev vb.</li>
+<li>Country Code Top Level Domains: Ülke bilgisini içerir.<br>
+.fi, .it, .se, .no, .tr</li>
+</ul>
+<hr>
+<h4 id="authoritative-nameserver-nedir-">Authoritative nameserver Nedir ?</h4>
+<p>Recursive Resolver tarafından atılacak isteklerin sonucusudur.</p>
+<p>TLD Nameserver tarafından aldığımız Authoritative Nameserver&rsquo;e istek yapılır. Bu isteğe karşılık olarak server bize DNS bilgisi olarak bulunan verileri geri döndürülür.</p>
+<p>Recursive Resolver aldığı bu bilgiyi kendisine isteği yapan yere geri cevap olarak verir ve süreç bu şekilde tamamlanmış olur.</p>
+<p>Peki Authoritative Nameserver tarafından geri verilen cevapta neler olabilir, hangi record&rsquo;lar (kayıt) bulunabilir.</p>
+<hr>
+<h2 id="genel-resim">Genel Resim</h2>
+<p>DNS sunucu türlerini öğrendiğimize göre artık genel resme bakabiliriz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"> --------   What is IP of boratanrikulu.dev ?
+| Client | ------------------------------------|
+ --------                                      |
+                                               |  Gets request
+                                               |
+                                               |
+                                 -------------------------
+                                | DNS Recursive Resolver  |
+                                |     (listens at 53)     |
+                                 -------------------------
+                                               |
+                                               |  Make request
+                                               |
+                                               |
+                                               |
+                                               |
+                                               |
+        Do you know where is TLD nameservers   |
+    -----------------  &lt;---------------------- |
+   | Root Nameserver |                         |
+    -----------------  ----------------------&gt; |
+         Of course. Here is your list.         |
+                                               |
+                                               |
+                                               |
+                                               |
+                                               |
+                                               |
+                                               |
+            Do you know where is               |
+        boratanrikulu.dev nameservers          |
+    ----------------------  &lt;----------------- |
+   | TLD Nameserver (.dev)|                    |
+    ----------------------  -----------------&gt; |
+        Of course. Here is your server.        |
+                                               |
+                                               |
+                                               |
+                                               |
+                                               |
+                                               |
+                                               |
+            Do you know what are               |
+         records of boratanrikulu.dev          |
+    ----------------------------  &lt;----------- |
+   | Authoritative Nameserver   |              |
+   |     (boratanrikulu.dev)    |              |
+    ----------------------------  -----------&gt; |
+     Of course. Here are your records.                                               
+
+</code></pre></div><hr>
+<h2 id="dns-records-kayıt">DNS Records (Kayıt)</h2>
+<p><a href="https://www.cloudflare.com/learning/dns/dns-records/"><strong><code>[kaynak]</code></strong></a></p>
+<p>dns kayıtları
+a, aaaa, cname, soa, mx &hellip;..</p>
+<ul>
+<li>A record - Domain&rsquo;in IP karşılığını tutar. Yalnızca IPv4 saklayabilir. IPv6 saklamak için AAAA Record tercih edilir.</li>
+<li>CNAME record - Bir domain&rsquo;i diğerine yönlendirmek için kullanılır. TEXT veri saklar.</li>
+<li>MX record - E-posta isteklerini E-posta sunucusuna yönlendirmek için kullanılır. Server IP&rsquo;sini saklar.</li>
+<li>TXT record - Yöneticiye, record verisinde text saklayabilmesi için kullanılır. Sadece veriyi saklamak içindir.</li>
+<li>NS record - Domain için nameserver saklar.</li>
+<li>SOA record - Domain hakkında yönetici bilgisini içerir.
+<table>
+<thead>
+<tr>
+<th align="center">example.com</th>
+<th align="center">Record Type</th>
+<th align="center">Value</th>
+<th align="center">TTL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">@</td>
+<td align="center">A</td>
+<td align="center">12.34.56.78</td>
+<td align="center">14400</td>
+</tr>
+<tr>
+<td align="center">blog</td>
+<td align="center">CNAME</td>
+<td align="center">is an alias of example.com</td>
+<td align="center">32600</td>
+</tr>
+<tr>
+<td align="center">@</td>
+<td align="center">MX</td>
+<td align="center">10 mailhost.example.com</td>
+<td align="center">45000</td>
+</tr>
+<tr>
+<td align="center">@</td>
+<td align="center">MX</td>
+<td align="center">20 mailhost2.example.com</td>
+<td align="center">45000</td>
+</tr>
+<tr>
+<td align="center">@</td>
+<td align="center">TXT</td>
+<td align="center">This is an awesome domain! Definitely not spammy.</td>
+<td align="center">32600</td>
+</tr>
+<tr>
+<td align="center">@</td>
+<td align="center">NS</td>
+<td align="center">ns1.exampleserver.com</td>
+<td align="center">21600</td>
+</tr>
+<tr>
+<td align="center">@</td>
+<td align="center">SOA</td>
+<td align="center">admin.example.com<br>(<a href="mailto:admin@example.com">admin@example.com</a>)</td>
+<td align="center">11200</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<hr>
+<h2 id="bazı-araçlar">Bazı Araçlar</h2>
+<p>DNS üzerinde işlem yapmak için bir çok araç vardır. Bunların bir kaçına bakalım.</p>
+<hr>
+<h3 id="host">Host</h3>
+<p>Domain&rsquo;in nameserver&rsquo;ina bakmak amacıyla kullanılır.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Lookup Domain Name Server.
+
+- Lookup A, AAAA, and MX records of a domain:
+  host domain
+
+- Lookup a field (CNAME, TXT,...) of a domain:
+  host -t field domain
+
+- Reverse lookup an IP:
+  host ip_address
+
+- Specify an alternate DNS server to query:
+  host domain 8.8.8.8
+</code></pre></div><p align="center">
+  <img src="/images/posts/dns-nedir-nasil-calisir/1.png" alt="host">
+</p>
+<hr>
+<h3 id="dig">DIG</h3>
+<p>DNS Record hakkında detaylı bilgilere bakmak için kullanılır.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">DNS Lookup utility.
+
+- Lookup the IP(s) associated with a hostname (A records):
+  dig +short example.com
+
+- Lookup the mail server(s) associated with a given domain name (MX record):
+  dig +short example.com MX
+
+- Get all types of records for a given domain name:
+  dig example.com ANY
+
+- Specify an alternate DNS server to query:
+  dig @8.8.8.8 example.com
+
+- Perform a reverse DNS lookup on an IP address (PTR record):
+  dig -x 8.8.8.8
+
+- Find authoritative name servers for the zone and display SOA records:
+  dig +nssearch example.com
+
+- Perform iterative queries and display the entire trace path to resolve a domain name:
+  dig +trace example.com
+</code></pre></div><p align="center">
+  <img src="/images/posts/dns-nedir-nasil-calisir/2.png" alt="dig">
+</p>
+<hr>
+<h3 id="tcpdump">TCPDump</h3>
+<p>DNS için özel bir araç değildir. Fakat 53 portu dinlenerek DNS tarafiğine bakmak amacıyla kullanılabilir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">tcpdump
+
+Dump traffic on a network.
+More information: .
+
+- List available network interfaces:
+  tcpdump -D
+
+- Capture the traffic of a specific interface:
+  tcpdump -i eth0
+
+- Capture all TCP traffic showing contents (ASCII) in console:
+  tcpdump -A tcp
+
+- Capture the traffic from or to a host:
+  tcpdump host www.example.com
+
+- Capture the traffic from a specific interface, source, destination and destination port:
+  tcpdump -i eth0 src 192.168.1.1 and dst 192.168.1.2 and dst port 80
+
+- Capture the traffic of a network:
+  tcpdump net 192.168.1.0/24
+
+- Capture all traffic except traffic over port 22 and save to a dump file:
+  tcpdump -w dumpfile.pcap not port 22
+
+- Read from a given dump file:
+  tcpdump -r dumpfile.pcap
+</code></pre></div><hr>
+<h3 id="traceroute">Traceroute</h3>
+<p><a href="https://www.lifewire.com/traceroute-linux-command-4092586"><strong><code>[kaynak]</code></strong></a></p>
+<p>Bir host&rsquo;a yapılan istekte paketin geçtiği yollara bakmak amacıyla kullanabilir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Print the route packets trace to network host.
+
+- Traceroute to a host:
+  traceroute host
+
+- Disable IP address and host name mapping:
+  traceroute -n host
+
+- Specify wait time for response:
+  traceroute -w 0.5 host
+
+- Specify number of queries per hop:
+  traceroute -q 5 host
+
+- Specify size in bytes of probing packet:
+  traceroute host 42
+</code></pre></div><hr>
+<h2 id="dhcp-nedir-">DHCP Nedir ?</h2>
+<p>&hellip;</p>
+
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/network">Network</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'boratanrikulu';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> copyright notice |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77508691-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

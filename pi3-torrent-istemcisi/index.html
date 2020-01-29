@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Raspberry Pi 3 Torrent İstemcisi - Bora Tanrıkulu</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Raspberry Pi 3 Torrent İstemcisi" />
+<meta property="og:description" content="raspberry pi 3 ile torrent istemcisi hazırlanması." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boratanrikulu.dev/pi3-torrent-istemcisi/" />
+<meta property="article:published_time" content="2018-05-30T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-05-30T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Raspberry Pi 3 Torrent İstemcisi"/>
+<meta name="twitter:description" content="raspberry pi 3 ile torrent istemcisi hazırlanması."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="https://boratanrikulu.dev/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://boratanrikulu.dev/">
+				<img src="/images/avatar.jpeg" alt="Bora Tanrıkulu" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="https://boratanrikulu.dev/">Bora Tanrıkulu</a></h1>
+	<div class="site-description"><p>Interested in shell scripting, system administration and golang.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/boratanrikulu/" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/boratanrikulu_/" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://linkedin.com/in/bora-tanrikulu/" title="LinkedIn"><i data-feather="linkedin"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/aboutme">About me</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">30</span>
+							<span class="rest">May 2018</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">Raspberry Pi 3 Torrent İstemcisi</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p align="center"> 
+	<img src="/images/posts/pi3-torrent-server/0.png">
+</p>
+<p>Raspberry Pi 3 ile kolaylıkla bir torrent istemcisi hazırlayabilirsiniz. Bu mini server üzerinden gerekli indirme işlemlerinizi gerçekleştirebilir, indirilen verileri tüm ağdaki cihazların erişebileceği şekilde paylaşabilirsiniz.</p>
+<h4 id="malzemeler">Malzemeler:</h4>
+<ol>
+<li>Raspberry Pi 3</li>
+<li>Harici Hard Disk</li>
+<li>SD Kart</li>
+<li>Boş Bir Vakit</li>
+</ol>
+<p><strong>Not 1:</strong> Anlatım adımları GNU/Linux dağıtımlarına uygun olacak şekilde hazırlanmıştır. Windows ve OSX kullanıcıları başka kaynaklara göz gezdirebilir.</p>
+<p><strong>Not 2:</strong> Anlatım adımlarını gerçekleştirebilmeniz için orta seviye GNU/Linux bilginiz olması gerekmektedir, aşağıdaki anlatım da buna uygun olarak hazırlanmıştır. <strong>Kurulum sırasında yaşayabileceğiniz herhangi bir sorun, sorumluluğum altında değildir.</strong></p>
+<p><strong>Not 3:</strong> Anlatım adımlarını ihtiyacınıza göre yapınız. Örneğin indirilen verileri tüm ağa açık şekilde paylaşmak gibi bir amacınız yok ise Apache2 kurulum adımını yapmamanız gerekir.</p>
+<hr>
+<h2 id="sd-kartın-hazırlanışı">SD Kartın Hazırlanışı</h2>
+<p>Öncelikle bu adresten<a href="https://www.raspberrypi.org/downloads/raspbian/">**[1]**</a>  <strong>Raspbian Stretch Lite</strong>&lsquo;i indirin. Ardından aşağıdaki işlemleri uygulayın.</p>
+<p><strong>lsblk</strong> ile SD kartınızın lokasyonunu tespit edin. Örneğin benim sistemimde aşağıdaki gibi <strong>/dev/mmcblk0</strong> adresinde. Sizin de benzer olacaktır.</p>
+<p align="center"> 
+	<img src="/images/posts/pi3-torrent-server/1.png">
+</p>
+<p>Ardından raspbian&rsquo;nın bulunduğu lokasyona gidin ve aşağıdaki adımları <strong>girdileri kendinize göre değiştirerek</strong> uygulayın.<br>
+Benim sistemimde <strong>/tmp</strong> altında idi. Bu işlem biraz uzun sürecektir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	cd /tmp
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo dd if=2018-04-18-raspbian-stretch-lite.img of=/dev/mmcblk0 status=progress &amp;&amp; sync
+</code></pre></div><p>İşlemin ardından aşağıdaki gibi bir çıktı görmelisiniz.</p>
+<p align="center"> 
+	<img src="/images/posts/pi3-torrent-server/2.png">
+</p>
+<p>Yukardaki adımlarda bir sorun yaşamadıysanız imaj dosyasını başarı ile SD karta yazmışsınız demektir. Şimdi yapamamız gereken SSH servisinin otomatik olarak başlatılması için boot bölümünde <strong>ssh.txt</strong> isimli bir dosya oluşturmak.<br>
+<strong>Bu işlemi dosya yöneticiniz üzerinden de yapabilirsiniz</strong> ya da aşağıdaki örnekteki gibi de yapabilirsiniz.</p>
+<p align="center"> 
+	<img src="/images/posts/pi3-torrent-server/3.png">
+</p>
+<p>Artık SD kartınızı Raspberry Pi3 cihazınıza takıp gücü bağlayabilirsiniz.</p>
+<hr>
+<h2 id="pi3-cihazının-ip-tespiti">Pi3 Cihazının IP Tespiti</h2>
+<p>Local IP&rsquo;yi tespit edebilmeniz için bir çok yol mevcut. En basit olarak aşağıdaki gibi bir nmap taraması yapabilirsiniz. Root yetkisini hostname tespiti için vermeniz gerekmektedir. Aksi halde sadece sadece aktif IP&rsquo;leri elde edersiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo nmap -sP 192.168.2.0/24
+</code></pre></div><hr>
+<h2 id="temel-server-ayarları">Temel Server Ayarları</h2>
+<p>Pi3 server'ımız sadece local network&rsquo;te çalışacak olmasına rağmen temel sunucu ayarlarının yapılmasında fayda vardır. Bunlar sizin için bir problem değil ise bu aşamayı atlayabilirsiniz. Ama uygulamanızı <strong>kesinlikle</strong> öneririm.</p>
+<p>Pi3 cihazımızın default parolası <strong>raspberry</strong>&lsquo;dir. Aşağıdaki gibi bağlantı kurabilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	ssh pi@IPADRESI
+</code></pre></div><p>Eğer buraya kadar bir problem çıkmadıysa başarı ile bağlantı kurmuş olmalısınız.</p>
+<p align="center"> 
+	<img src="/images/posts/pi3-torrent-server/4.png">
+</p>
+<hr>
+<h4 id="upgrade-işlemleri">Upgrade İşlemleri</h4>
+<p>İlk iş olarak gerekli olan upgrade&rsquo;leri yapmanızı öneririm. Aşağıdaki gibi yapabilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo apt update &amp;&amp; sudo apt upgrade -y &amp;&amp; sudo reboot
+</code></pre></div><hr>
+<h4 id="parola-değiştirilmesi">Parola Değiştirilmesi</h4>
+<p>Default olarak <strong>raspberry</strong> olan parolayı aşağıdaki gibi değiştirebilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	passwd pi
+</code></pre></div><hr>
+<h4 id="sudo-yetkisi-parola-kontrolü">Sudo Yetkisi Parola Kontrolü</h4>
+<p>Raspbian&rsquo; <strong>pi</strong> kullanıcısı sudo yetkisini herhangi bir parola kontrolü olmadan kullanabilir. Bunu güvenlik sebepleri nedeniyle kapatmakta fayda vardır. Bu sayede sudo yetkisinin kullanılması için parola kontrolü yapılması sağlanmış olur.</p>
+<p>Bunun için aşağıdaki komutu yürütebilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	echo &#34;pi ALL=(ALL) ALL&#34; | sudo tee /etc/sudoers.d/010_pi-nopasswd
+</code></pre></div><hr>
+<h4 id="ssh-key-aktifleştirmek">SSH-Key Aktifleştirmek</h4>
+<p>Sunuculara parola ile bağlanmak hem işlemleri uzatmakta hem de güvenli değil. Bu yüzden ssh-key kullanmanızı öneririm. Oluşturmak için aşağıdaki adımları <strong>kendi bilgisayarınızda</strong> uygulayın. Çıkan seçenekleri kendinize göre cevaplayın ya da default bırakmak için enter yapın.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	ssh-keygen
+</code></pre></div><p>Eğer seçenekleri default olarak bıraktıysanız key&rsquo;iniz <strong>~/.ssh/id_rsa.pub</strong> altındadır. Aşağıdaki gibi dosyayı okuyun ve kopyalayın.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	cat ~/.ssh/id_rsa.pub
+</code></pre></div><p>Ardından <strong>server&rsquo;a geri dönün</strong> ve aşağıdaki adımları uygulayın.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	cd &amp;&amp; mkdir .ssh &amp;&amp; chmod 700 .ssh
+</code></pre></div><p>.ssh klasörüne girin ve <strong>authorized_keys</strong>&lsquo;i aşağıdaki gibi oluşturun.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	cd .ssh &amp;&amp; touch authorized_keys &amp;&amp; chmod 600 authorized_keys
+</code></pre></div><p>Aşağıdaki gibi key&rsquo;inizi authorized_keys dosyasına yazın.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	echo &#34;KEYINIZ BURAYA&#34; &gt; authorized_keys
+</code></pre></div><p align="center"> 
+	<img src="/images/posts/pi3-torrent-server/5.png">
+</p>
+<hr>
+<h4 id="ssh-ayarları">SSH Ayarları</h4>
+<p>Default ssh ayarlarını değiştirmek için <strong>/etc/ssh/sshd_config</strong> dosyasını aşağıdaki gibi açın.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo nano /etc/ssh/sshd_config
+</code></pre></div><p>Aşağıdaki gibi satırları değiştirin</p>
+<table>
+<thead>
+<tr>
+<th align="center">Eski</th>
+<th align="center">Yeni</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">#Port 22</td>
+<td align="center">Port KullanmakIstediginizPort</td>
+</tr>
+<tr>
+<td align="center">#PasswordAuthentication yes</td>
+<td align="center">PasswordAuthentication no</td>
+</tr>
+<tr>
+<td align="center">#PubkeyAuthentication yes</td>
+<td align="center">PubkeyAuthentication yes</td>
+</tr>
+</tbody>
+</table>
+<p>Ardından ssh servisini reload&rsquo;layın</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo systemctl reload ssh
+</code></pre></div><p>Ardından aşağıdaki gibi bağlantınızı koparın ve sorun olup olmadığını tespit etmek için tekrar bağlanmayı deneyin.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	exit
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	ssh -i ~/.ssh/id_rsa pi@IPADRESI -p KullanmakIstediginizPort
+</code></pre></div><hr>
+<h4 id="ufw-kurulumu">UFW Kurulumu</h4>
+<p>UFW Kurulumunu aşağıdaki gibi yapabilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo apt install ufw
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo ufw allow KullanmakIstediginizPort
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo ufw allow 80
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo ufw enable
+</code></pre></div><p>Durumu aşağıdaki gibi görebilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo ufw status verbose
+</code></pre></div><hr>
+<h4 id="saat-ayarı">Saat Ayarı</h4>
+<p>Saat ayarlamasını aşağıdaki gibi yapabilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo dpkg-reconfigure tzdata
+</code></pre></div><hr>
+<h2 id="harici-diskin-bağlanması">Harici Disk&rsquo;in Bağlanması</h2>
+<p>İndireceğiniz verileri kaydetmek için harici bir diske ihtiyacınız olacak. Otomatik olarak bağlama işlemlerini aşağıdaki gibi yapabilirsiniz. Diskin formatının <strong>ntfs</strong> olması beklenmektedir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo apt install ntfs-3g
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo mkdir /media/DATA
+</code></pre></div><p>Ardından <strong>lsblk</strong> ile diskinizin lokasyonunu tespit edin ve aşağıdaki gibi bağlayın.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo mount /dev/sda1 /media/DATA
+</code></pre></div><p>Bu ilemin boot sırasında otomatik olarak yapılabilmesi için <strong>/etc/fstab</strong> dosyasını düzenlememiz gerekir. <strong>Girdileri kendinize göre değiştirerek</strong> aşağıdaki gibi yapabilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	echo -e &#34;/dev/sda1\t/media/DATA\tntfs\tdefault\t0\t0&#34; | sudo tee -a /etc/fstab
+</code></pre></div><p>Artık /dev/sda1 bölümü otomatik olarak cihaz başlatıldığında /media/DATA bölümüne bağlanacak.</p>
+<hr>
+<h2 id="apache2-kurulumu">Apache2 Kurulumu</h2>
+<p>İndirdiğiniz verileri direkt olarak görüntülemek için http sunucusu mantıklı olackatır. Aşağıdaki gibi uygulayabilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo apt install apache2
+</code></pre></div><p>Apache2&rsquo;nin çalıştığı lokasyonu /media/DATA olarak değiştirmek için aşağıdaki adımları uygulayın.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	echo -e &#34;\n&lt;Directory /media/DATA&gt;\n\tOptions Indexes FollowSymLinks\n\tAllowOverride None\n\tRequire all granted\n&lt;/Directory&gt;&#34; | sudo tee -a /etc/apache2/apache2.conf
+</code></pre></div><p>Ardından aşağıdaki 000-default.conf dosyasındaki DocumentRoot&rsquo;u aşağıdaki gibi değiştirin.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo nano /etc/apache2/sites-available/000-default.conf
+</code></pre></div><table>
+<thead>
+<tr>
+<th align="center">Eski</th>
+<th align="center">Yeni</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">DocumentRoot /var/www/html</td>
+<td align="center">DocumentRoot /media/DATA</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="transmission-daemon-kurulumu">Transmission-Daemon Kurulumu</h2>
+<p>Torrent server'ını kurmak için aşağıdaki adımları takip edin.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo apt install transmission-daemon
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo service transmission-daemon stop
+</code></pre></div><p>Ardından aşağıdaki gib ayar dosyasını açın ve gerekli satırları değiştirin.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo nano /var/lib/transmission-daemon/info/settings.json
+</code></pre></div><table>
+<thead>
+<tr>
+<th>Eski</th>
+<th>Yeni</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&ldquo;download-dir&rdquo;: &ldquo;/var/lib/transmission-daemon/downloads&rdquo;,</td>
+<td>&ldquo;download-dir&rdquo;: &ldquo;/media/DATA/Torrents&rdquo;,</td>
+</tr>
+<tr>
+<td>&ldquo;incomplete-dir&rdquo;: &ldquo;/var/lib/transmission-daemon/Downloads&rdquo;,</td>
+<td>&ldquo;incomplete-dir&rdquo;: &ldquo;/media/DATA/Torrents&rdquo;,</td>
+</tr>
+<tr>
+<td>“rpc-password”: “hashBilgisi”,</td>
+<td>“rpc-password”: “parolaniz”,</td>
+</tr>
+<tr>
+<td>&ldquo;rpc-whitelist&rdquo;: &ldquo;127.0.0.1&rdquo;,</td>
+<td>&ldquo;rpc-whitelist&rdquo;: &ldquo;127.0.0.1, 192.168.*.*&quot;,</td>
+</tr>
+<tr>
+<td>&ldquo;umask&rdquo;: 18,</td>
+<td>&ldquo;umask&rdquo;: 2,</td>
+</tr>
+</tbody>
+</table>
+<p>Ardından aşağıdaki gibi gerekli izin ayarlamalarını yapın.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo ufw allow 9091
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo usermod -a -G debian-transmission pi
+</code></pre></div><p>Ve Servisimizi artık başlatabiliriz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo service transmission-daemon start
+</code></pre></div><p>Aynı network&rsquo;te bulunan herhangi bir cihaz üzerinden <a href=""><strong>http://IPADRESI:9091</strong></a> olarak bağlanabilirsiniz.</p>
+<p align="center"> 
+	<img src="/images/posts/pi3-torrent-server/6.png">
+</p>
+
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/gnu/linux">GNU/Linux</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'boratanrikulu';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> copyright notice |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77508691-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

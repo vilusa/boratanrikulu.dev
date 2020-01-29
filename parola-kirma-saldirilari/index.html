@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Parola Kırma Saldırıları - Bora Tanrıkulu</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Parola Kırma Saldırıları" />
+<meta property="og:description" content="genel olarak bruteforce&#39;un ne olduğunu açıklayan bir anlatım." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boratanrikulu.dev/parola-kirma-saldirilari/" />
+<meta property="article:published_time" content="2018-04-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-04-17T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Parola Kırma Saldırıları"/>
+<meta name="twitter:description" content="genel olarak bruteforce&#39;un ne olduğunu açıklayan bir anlatım."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="https://boratanrikulu.dev/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://boratanrikulu.dev/">
+				<img src="/images/avatar.jpeg" alt="Bora Tanrıkulu" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="https://boratanrikulu.dev/">Bora Tanrıkulu</a></h1>
+	<div class="site-description"><p>Interested in shell scripting, system administration and golang.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/boratanrikulu/" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/boratanrikulu_/" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://linkedin.com/in/bora-tanrikulu/" title="LinkedIn"><i data-feather="linkedin"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/aboutme">About me</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">17</span>
+							<span class="rest">Apr 2018</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">Parola Kırma Saldırıları</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p><strong>Kaynaklar</strong><br>
+<a href="https://erdemoflaz.com/sifre-ve-parola-arasindaki-farklar/">erdemoflaz.com/sifre-ve-parola-arasindaki-farklar</a><br>
+<a href="http://www.openwall.com/john/doc/EXAMPLES.shtml">openwall.com/john/doc/examples</a><br>
+<a href="https://null-byte.wonderhowto.com/how-to/hack-like-pro-crack-passwords-part-4-creating-custom-wordlist-with-crunch-0156817/">null-byte.wonderhowto.com/how-to/crunch</a></p>
+<hr>
+<h2 id="parola-nedir-">Parola Nedir ?</h2>
+<p>Okunduğunda anlam ifade eden, kişinin kendinin de bildiği, kendinin seçip kullandığı kelimelerdir.<br>
+<strong>Örneğin:</strong> 123456, password, qwerty gibi kelimeler buna örnek verilebilir.</p>
+<h2 id="şifre-nedir-">Şifre Nedir ?</h2>
+<p>Normal olarak okunduğunda bir anlam ifade etmeyen, çeşitli algoritmalar ile oluşturulup geri dönüştürülebilir veya geri dönüştürülemez hallerde kullanıldığı metinlerdir.<br>
+<strong>Örneğin:</strong> sha-1, md5, base64, md4, rsa, idea gibi algoritmalar şifrelemede sıklıkla kullanılan çeşitlerdir.</p>
+<p>Kısaca <strong>“senin bildiğin parola, sistemin bildiği şifredir”</strong> diyebiliriz.</p>
+<hr>
+<h2 id="crunch-ile-wordlist-oluşturmak">Crunch ile Wordlist Oluşturmak</h2>
+<ul>
+<li>
+<p>Wordlist oluşturmak amacıyla kullanılan bir tool&rsquo;dur.</p>
+<p>Genel yapısı :</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    crunch &lt;min&gt; &lt;max&gt; [options]
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+ Aşağıdaki gibi bir yapı ile, 8 karakterli rakamlardan oluşan tüm kombinasyonları elde etmiş olursunuz.
+
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">     crunch 8 8 0123456789 -o numeric-wordlist.lst
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+<li>
+<p>Hazır charset kullanımı için <strong>-f</strong> parametresi kullanılır.</p>
+<p><img src="/images/posts/parola-kirma-saldirilari/1.png" alt="hazir-charset"><br>
+<img src="/images/posts/parola-kirma-saldirilari/2.png" alt="hazir-charset"></p>
+</li>
+<li>
+<p>Çıktıların nasıl olacağını belirlemek için <strong>-t</strong> (pattern) parametresi kullanılır.</p>
+<p><img src="/images/posts/parola-kirma-saldirilari/3.png" alt="pattern"></p>
+</li>
+<li>
+<p>Kelime bazında kullanmak için <strong>-p</strong> parametresi kullanılır.</p>
+<p><img src="/images/posts/parola-kirma-saldirilari/4.png" alt="kelimeile"></p>
+</li>
+</ul>
+<hr>
+<h2 id="cupp-ile-wordlist-oluşturmak">CUPP ile Wordlist oluşturmak</h2>
+<ul>
+<li>
+<p>Kişilere özel olarak wordlist oluşturmayı kolaylaştıran bir tool&rsquo;dur. <a href="https://github.com/Mebus/cupp">github.com/mebus/cupp</a></p>
+<p><img src="/images/posts/parola-kirma-saldirilari/5.png" alt="cupp"><br>
+<img src="/images/posts/parola-kirma-saldirilari/6.png" alt="cupp"><br>
+<img src="/images/posts/parola-kirma-saldirilari/7.png" alt="cupp"></p>
+</li>
+</ul>
+<hr>
+<h2 id="hazır-wordlistler">Hazır Wordlist&rsquo;ler</h2>
+<ul>
+<li>
+<p>Internet üzerinde dolaşmakta olan bir çok hazır wordlist var. Bunlar kullanılabilir. Ama hedefe yönelik bilgi sahibi iseniz, özelleştirilmiş wordlist hazırlamak en iyi seçenektir.</p>
+<p>Bu repo&rsquo;da bir çok hazır wordlist bulunmakta : <a href="https://github.com/danielmiessler/SecLists/tree/master/Passwords">github.com/danielmiessler/SecLists</a></p>
+<p><img src="/images/posts/parola-kirma-saldirilari/8.png" alt="hazir-wordlist"></p>
+</li>
+</ul>
+<hr>
+<h2 id="john-the-ripper-ile-hashleri-kırmak">John the Ripper ile Hash&rsquo;leri Kırmak</h2>
+<ul>
+<li>
+<p>Oldukça popüler olan bu uygulama ile bir çok şifre kırılabilir. Bir çok şifreleme türünü desteklemektedir.</p>
+<p>Örneğin Exploit anlatımında kevgir cihazında yetki yükseltme ile root&rsquo;a kadar çıkmıştık. Ama root&rsquo;un parolasını hala bilmiyorduk. John the Ripper ile (eğer şanslı isek) kullanıcının parolasını kırabilir. Tek ihtiyacımız olan parolanın hash&rsquo;leniş hali yani şifresi.</p>
+<p>Linux sistemlerde her kullanıcının parolası, hash&rsquo;lenmiş olarak <strong>/etc/shadow</strong> dosyasında tutulur.</p>
+<p>Aşağıdaki örnekte kendi sistemimdeki root kullanıcısın parolasını John the Ripper ile örnek olarak kırdım. (tabiki parolası 12345678 değildi, örnek olması açısından değiştirdim.)</p>
+<p><img src="/images/posts/parola-kirma-saldirilari/9.png" alt="john-the-ripper"></p>
+<p>Aynı mantıkla Windows sistemdeki kullanıcıların da şifreleri kırılabilir. Bunun için <strong>C:\Windows\System32\config</strong> alında bulunan <strong>SYSTEM</strong> ve <strong>SAM</strong> dosyalarına ihtiyacınız olacak. Bu dosyaları bir şekilde aldıktan sonra <strong>pwdump</strong> isimli programı kullarak hash&rsquo;leri alabilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    pwdump &lt;system hive&gt; &lt;SAM hive&gt;
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+<li>
+<p>Eğer hash türünde olmayan bir dosyayı kırmak istiyorsanız, örneğin bir zip dosyasını, öncelikle onu John the Ripper'ın kırabileceği bir formata dönüştürmelisiniz. Bunun için <strong>zip2john</strong> kullanılabilir.</p>
+<p><img src="/images/posts/parola-kirma-saldirilari/10.png" alt="crack-zip"></p>
+</li>
+<li>
+<p>MD5 algoritması ile hazırlanmış bir hash aşağıdaki gibi kırılabilir.</p>
+<p><img src="/images/posts/parola-kirma-saldirilari/11.png" alt="md5"></p>
+</li>
+</ul>
+<hr>
+<h2 id="medusa-ve-hydra-kullanımı">Medusa ve Hydra Kullanımı</h2>
+<p>2 servisin genel olarak kullanımı aşağıdaki gibidir:</p>
+<ul>
+<li>
+<p><strong>Medusa:</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    Medusa -h [host-ip] [-u username] [-P file] -M [service]
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+<li>
+<p><strong>Hydra:</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    hydra [-l username] [-P file] [host-ip] [service]
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+</ul>
+<p>SSH servisi üzerinde testler yaparken kullanılabilecek güzel bir Wordlist <a href="https://github.com/jeanphorn/wordlist/blob/master/ssh_passwd.txt">github.com/jeanphorn/wordlist</a></p>
+<p><img src="/images/posts/parola-kirma-saldirilari/12.png" alt="ssh-brute-force"></p>
+<hr>
+<h2 id="metasploit-ile-brute-force">Metasploit ile Brute Force</h2>
+<ul>
+<li>
+<p>Brute Force için metasploit kullanılabilir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    search auxiliary/scanner/
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+<li>
+<p>SSH için metasploit ile brute force yapmak</p>
+<p><img src="/images/posts/parola-kirma-saldirilari/13.png" alt="ssh-metasploit"></p>
+</li>
+</ul>
+
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/security">Security</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'boratanrikulu';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> copyright notice |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77508691-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

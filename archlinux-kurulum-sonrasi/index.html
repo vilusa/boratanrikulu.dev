@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Archlinux - Kurulum Sonrası - Bora Tanrıkulu</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Archlinux - Kurulum Sonrası" />
+<meta property="og:description" content="archlinux &#43; xfce = rocks!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boratanrikulu.dev/archlinux-kurulum-sonrasi/" />
+<meta property="article:published_time" content="2018-05-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-05-29T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Archlinux - Kurulum Sonrası"/>
+<meta name="twitter:description" content="archlinux &#43; xfce = rocks!"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="https://boratanrikulu.dev/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://boratanrikulu.dev/">
+				<img src="/images/avatar.jpeg" alt="Bora Tanrıkulu" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="https://boratanrikulu.dev/">Bora Tanrıkulu</a></h1>
+	<div class="site-description"><p>Interested in shell scripting, system administration and golang.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/boratanrikulu/" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/boratanrikulu_/" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://linkedin.com/in/bora-tanrikulu/" title="LinkedIn"><i data-feather="linkedin"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/aboutme">About me</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">29</span>
+							<span class="rest">May 2018</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">Archlinux - Kurulum Sonrası</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p><strong>NOT 1:</strong> Kurulumu gerçekleştirebilmeniz için orta seviye GNU/LINUX bilginiz olması gerekmektedir, aşağıdaki anlatım da buna uygun olarak hazırlanmıştır. <strong>Kurulum sırasında yaşayabileceğiniz herhangi bir sorun, sorumluluğum altında değildir.</strong></p>
+<p><strong>NOT 2:</strong> Adımlar XFCE masaüstüne uygun olacak şekildedir. Bazı paket yüklemeleri tercihendir. Kendi kişisel zevkinize göre şekillendirebilirsiniz.</p>
+<p><strong>Not 3:</strong> Adımlar Intel + Nvidia sistemlere uygun olacak şekilde yapılmıştır. Açık kaynak sürücülerin kurulumu yapılmıştır.</p>
+<p><strong>Not 4:</strong> Ne yaptığınızı bilmiyorsanız adımları uygulamayın.</p>
+<hr>
+<h2 id="xorg-kurulumu">XORG Kurulumu</h2>
+<p>Xorg kurulumu için aşağıdaki işlemleri yapmanız gerekmektedir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -S xorg xorg-xinit
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -S pulseaudio pulseaudio-alsa
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -S xf86-video-intel
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -S libva-vdpau-driver libvdpau-va-gl libva-intel-driver
+</code></pre></div><p>Aşağıdaki gibi dosya oluşturun</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo nano /etc/X11/xorg.conf.d/20-intel.conf
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	Section	&#34;Device&#34;
+		Identifier		&#34;Intel Graphics&#34;
+		Driver			&#34;intel&#34;
+	EndSection
+
+</code></pre></div><p>Ayrıca aşağıdaki parametreyi grub&rsquo;a ekleyebilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	intel_idle.max_cstate=1
+</code></pre></div><hr>
+<h2 id="xfce4-kurulumu">XFCE4 Kurulumu</h2>
+<p>XFCE4 kurulumu için aşağıdaki gibi bir yol izleyebilirsiniz. Gerekli görülen bazı paketleri de aşağıdaki gibi kurmanızı öneririm.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -S xfce4
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	echo &#34;exec startxfce4&#34; &gt; .xinitrc
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -S xfce4-pulseaudio-plugin pavucontrol xfce4-notifyd xfce4-notes-plugin xfce4-screenshooter xfce4-clipman-plugin xfce4-taskmanager slock
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -S gedit gnome-system-log gnome-logs gnome-calculator gnome-disk-utility evince
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -S viewnior unrar p7zip file-roller htop screenfetch
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -S gvfs gvfs-mtp ntfs-3g
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -S arc-gtk-theme arc-icon-theme gtk-engine-murrine conky
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -S firefox vlc
+</code></pre></div><p>Bilgisayar uykuya alındığında otomatik olarak slock ile kitlenmesi için aşağıdaki gibi bir servis oluşturun.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo nano /etc/systemd/system/slock@.service
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	[Unit]
+	Description=Lock X session using slock for user %i
+	Before=sleep.target
+
+	[Service]
+	User=%i
+	Environment=DISPLAY=:0
+	ExecStartPre=/usr/bin/xset dpms force suspend
+	ExecStart=/usr/bin/slock
+
+	[Install]
+	WantedBy=sleep.target
+</code></pre></div><p>Ardından enable çekin.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo systemctl enable slock@USERNAME.service
+</code></pre></div><hr>
+<h2 id="lightdm-kurulumu">LightDM Kurulumu</h2>
+<p>LightDM&rsquo;i aşağıdaki gibi kurabilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -S lightdm
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -S lightdm-gtk-greeter lightdm-gtk-greeter-settings
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo systemctl enable lightdm.service
+</code></pre></div><hr>
+<h2 id="network-paketlerinin-kurulumu">Network Paketlerinin Kurulumu</h2>
+<p>Network ile ilgili paketleri aşağıdaki gibi kurabilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -S networkmanager network-manager-applet gnome-keyring
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -S openvpn openssh
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo systemctl enable NetworkManager.service
+</code></pre></div><hr>
+<h2 id="güvenlik-duvarının-kurulumu">Güvenlik Duvarının Kurulumu</h2>
+<p>Güvenlik duvarı olarak UFW basit ve etkili bir çözüm olacaktır. Aşağıdaki gibi kurabilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -S ufw &amp;&amp; sudo systemctl enable ufw
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo ufw enable &amp;&amp; sudo ufw status verbose
+</code></pre></div><hr>
+<h2 id="klavye-dilinin-belirlenmesi">Klavye Dilinin Belirlenmesi</h2>
+<p>Klavye&rsquo;nin X&rsquo;de Türkçe olarak ayarlanması için aşağıdaki adımları uygulamanız gerekmektedir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo localectl --no-convert set-x11-keymap tr
+</code></pre></div><p>Sonucu aşağıdaki gibi kontrol edebilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	less /etc/X11/xorg.conf.d/00-keyboard.conf
+</code></pre></div><hr>
+<h2 id="trizen-kurulumu">Trizen Kurulumu</h2>
+<p>AUR Helper olarak yaourt kullanmanızı tavsiye etmiyorum. Trizen kullanım açısından basit ve güvenilirdir. Aşağıdaki gibi kurabilirsiniz. <a href="https://wiki.archlinux.org/index.php/AUR_helpers"><strong>[1]**</strong></a> <a href="https://www.reddit.com/r/archlinux/comments/4azqyb/whats_so_bad_with_yaourt/">[2]**</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -S git
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	cd Downloads &amp;&amp; git clone https://aur.archlinux.org/trizen.git
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	cd trizen &amp;&amp; makepkg -si
+</code></pre></div><p><strong>[1] :</strong>  <a href="https://wiki.archlinux.org/index.php/AUR_helpers">https://wiki.archlinux.org/index.php/AUR_helpers</a><br>
+<strong>[2] :</strong>  <a href="https://www.reddit.com/r/archlinux/comments/4azqyb/whats_so_bad_with_yaourt/">https://www.reddit.com/r/archlinux/comments/4azqyb/whats_so_bad_with_yaourt/</a></p>
+<hr>
+<h2 id="cups-kurulumu">CUPS Kurulumu</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -S cups
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo systemctl start org.cups.cupsd.service
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -S hplip
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	hp-plugin -i
+</code></pre></div><p>Ardından aşağıdaki adrese gidip konfigürasyonu yapabilirsiniz.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	localhost:631/
+</code></pre></div><hr>
+<h2 id="tavsiye-edilen-bazı-uygulamalar">Tavsiye Edilen Bazı Uygulamalar</h2>
+<p>Aşağıdaki adımlar <strong>tamamen kişiseldir</strong>. Eğer sizin de benzer ihtiyaçlarınız var ise aşağıdaki gibi kurabilirsiniz.</p>
+<p><strong>Komutların ne yaptığını bilmiyorsanız kullanmayın!</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -S gimp kdenlive frei0r-plugins breeze-icons audacity libreoffice-fresh qt4 bleachbit catfish transmission-gtk simplescreenrecorder telegram-desktop mypaint nmap smplayer smplayer-themes smplayer-icons gparted baobab python-pip rofi net-tools
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -S jre9-openjdk-headless jre9-openjdk jdk9-openjdk openjdk9-doc openjdk9-src
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -S virtualbox virtualbox-host-modules-arch linux-headers
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo modprobe vboxdrv &amp;&amp; sudo gpasswd -a username vboxusers
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	trizen -S paper-icon-theme-git spotify
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	curl -O https://download.sublimetext.com/sublimehq-pub.gpg &amp;&amp; sudo pacman-key --add sublimehq-pub.gpg &amp;&amp; sudo pacman-key --lsign-key 8A8F901A &amp;&amp; rm sublimehq-pub.gpg 
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	echo -e &#34;\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64&#34; | sudo tee -a /etc/pacman.conf
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo pacman -Syu sublime-text
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo ufw enable
+</code></pre></div><h2 id="bazı-linkler">Bazı Link&rsquo;ler</h2>
+<p><a href="https://bbs.archlinux.org/viewtopic.php?id=75693">useradd: group &lsquo;nogroup&rsquo; does not exist</a><br>
+<a href="https://wiki.archlinux.org/index.php/Pacman/Rosetta">Pacman Similarities with Others</a><br>
+<a href="https://wiki.archlinux.org/index.php/users_and_groups#Group_list">Group List</a><br>
+<a href="https://wiki.archlinux.org/index.php/xorg#Driver_installation">Xorg</a><br>
+<a href="https://wiki.archlinux.org/index.php/nouveau#Keep_NVIDIA_driver_installed">Blicklist Nouveau</a></p>
+
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/gnu/linux">GNU/Linux</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'boratanrikulu';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> copyright notice |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77508691-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

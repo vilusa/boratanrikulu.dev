@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Aktif Bilgi Toplama (NMAP) - Bora Tanrıkulu</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Aktif Bilgi Toplama (NMAP)" />
+<meta property="og:description" content="nmap kullanımı hakkında bir özet." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boratanrikulu.dev/aktif-bilgi-toplama/" />
+<meta property="article:published_time" content="2018-03-13T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-03-13T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Aktif Bilgi Toplama (NMAP)"/>
+<meta name="twitter:description" content="nmap kullanımı hakkında bir özet."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<script src="https://boratanrikulu.dev/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://boratanrikulu.dev/">
+				<img src="/images/avatar.jpeg" alt="Bora Tanrıkulu" />
+			</a>
+		</div>
+	
+	<h1 class="site-title"><a href="https://boratanrikulu.dev/">Bora Tanrıkulu</a></h1>
+	<div class="site-description"><p>Interested in shell scripting, system administration and golang.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/boratanrikulu/" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/boratanrikulu_/" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://linkedin.com/in/bora-tanrikulu/" title="LinkedIn"><i data-feather="linkedin"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/aboutme">About me</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">13</span>
+							<span class="rest">Mar 2018</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">Aktif Bilgi Toplama (NMAP)</h1>
+				</div>
+			</div>
+					
+			<div class="markdown">
+				<p><strong>Kaynaklar:</strong><br>
+NMAP ile Ağ Keşfi - Murat Yokuş (Pusula Yayıncılık)<br>
+<a href="https://canyoupwn.me/tr-nmap-cheatsheet/">canyoupwn.me/tr-nmap-cheatsheet/</a><br>
+<a href="https://jlk.fjfi.cvut.cz/arch/manpages/man/extra/nmap/nmap.1.en">jlk.fjfi.cvut.cz/arch/manpages/man/extra/nmap/</a></p>
+<hr>
+<h2 id="aktif-bilgi-toplama-">Aktif Bilgi Toplama ?</h2>
+<ul>
+<li>
+<p>Geçen hafta anlatımını yaptığım pasif bilgi toplama ile IP ve servis bilgileri gibi bir çok veriye, hedef sistem ile doğrudan ilişkiye girmeden, hali hazırda internet üzerinde bulunan <strong>açık kaynaklardan</strong> bilgi toplayarak erişmiştik.</p>
+</li>
+<li>
+<p>Pasif bilgi toplama işleminden sonra <strong>aktif bilgi toplama</strong> adımı gelmektedir.</p>
+<p>Aktif bilgi toplama adımında hedef <strong>sistem ile doğrudan</strong> ilişkiye girilir. Hedef sistem ile kurulan bu ilişki sonuncunda, hedefin log&rsquo;ları incelendiğinde bu durum fark edilebilir. En basitinden bir IP adresine yapılacak port taraması firewall log&rsquo;larına düşecektir.</p>
+</li>
+</ul>
+<hr>
+<h2 id="nmap-nedir-">NMAP Nedir ?</h2>
+<ul>
+<li>
+<p>Nmap, bir güvenlik tarayıcısıdır. Taranan ağın haritasını çıkartabilir ve ağ makinalarında çalışan servislerin durumlarını, işletim sistemlerini tespit edebilir.</p>
+<p>Bu sistemlerin açık olan portlarını, çalışan fiziksel aygıt tiplerini, çalışma süresini, yazılımların hangi servisleri kullandığını, yazılımların sürüm numaralarını, sistemin firewall&rsquo;a sahip olup olmadığını, ağ kartının üreticisinin adı gibi bilgileri tespit edebilir.</p>
+</li>
+<li>
+<p>Ağda aktif olan cihazların tespiti için yapılmış, bir NMAP taraması örneği:</p>
+<p><img src="/images/posts/aktif-bilgi-toplama/1.png" alt="nmap-ping-taraması"></p>
+</li>
+</ul>
+<hr>
+<h2 id="nmap-ile-tarama-işlemleri">NMAP ile Tarama İşlemleri</h2>
+<ul>
+<li>
+<p>Tek bir hedef üzerinde tarama işlemi aşağıdaki gibi hiç bir argüman kullanmadan yapılabilir.<br>
+Varsayılan bir NMAP taraması en sık kullanılan 1000 TCP/IP portunu tarar.</p>
+</li>
+<li>
+<p>Bu tarama örneği, <a href="https://sourceforge.net/projects/metasploitable/files/Metasploitable2/"><strong>metasploitable</strong></a> cihazı üzerinde gerçekleştirilmiştir. Görüldüğü gibi bir çok port cihaz üzerinde açıktır.</p>
+<p><strong>Port:</strong> Protokol / Port numarası</p>
+<p><strong>State:</strong> Port bilgisini verir.</p>
+<p>    -&gt; Açık<br>
+    -&gt; Kapalı<br>
+    -&gt; Filtreli<br>
+    -&gt; Filtresiz</p>
+<p><strong>Service:</strong> Port numarasına ait servis bilgisini verir.</p>
+<p><img src="/images/posts/aktif-bilgi-toplama/2.png" alt="nmap-argumansiz-tarama"></p>
+</li>
+</ul>
+<hr>
+<h2 id="çoklu-hedefler-üzerinde-tarama-yapmak">Çoklu Hedefler Üzerinde Tarama Yapmak</h2>
+<ul>
+<li>
+<p>NMAP ile aynı anda birden fazla hedef üzerinde tarama işlemi gerçekleştirilebilir.</p>
+<p>Bunun için aşağıdaki örnekteki bi hedef IP&rsquo;ler ardı ardına yazılabilir</p>
+<p><img src="/images/posts/aktif-bilgi-toplama/3.png" alt="nmap-coklu-tarama"></p>
+</li>
+<li>
+<p>Ya da aynı işlem aşağıdaki komut ile de yapılabilir</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    nmap 10.0.2.16,17
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+<li>
+<p>Belirli IP aralıklarını taramak için ise aşağıdaki komut kullanılabilir.</p>
+<p>Bu komut 10.0.2.1 ile 10.0.2.100 arasındaki IP&rsquo;ler üzerinde tarama işlemi yapar.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    nmap 10.0.2.1-100
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+<li>
+<p>Birden çok network/subnets taramak için de aralıklar kullanılabilir.</p>
+<p>Bu komut 10.0.1.* subnet&rsquo;inden 10.0.100.* subnet&rsquo;ine kadar, bu subnet&rsquo;lerin tüm IP&rsquo;lerini tarar.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    nmap 10.0.1-100.*
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+<li>
+<p>Tarama sırasında aynı network içersinde bir çok cihaz olabilir. Bu cihazlardan bazılarını taramak istemez isek <strong>&ndash;exclude</strong> parametresi kullanılır.</p>
+<p>Örnek vermek gerekirse, aşağıdaki tarama işleminde <strong>10.0.2.0/24</strong> ağında bulunan tüm cihazları taramasını ama locahost olan 10.0.2.14 IP&rsquo;sını taramaması sağlanır.</p>
+<p><img src="/images/posts/aktif-bilgi-toplama/4.png" alt="nmap-exclude"></p>
+</li>
+</ul>
+<hr>
+<h2 id="agresif-tarama-yapmak">Agresif Tarama Yapmak</h2>
+<ul>
+<li>
+<p><strong>-A</strong> parametresi, NMAP ile hedef üzerinde agresif tarama yapmayı sağlar.<br>
+Agresif tarama işlemi ile, NMAP&rsquo;te en sık kullanılan parametrelerin bazıları otomatik olarak kullanılmış olur.</p>
+<p>Bunlar; İşletim Sistemi Tespiti, Versiyon Tespiti, Script taraması ve Traceroute&rsquo;tur. (<em>-O -sC &ndash;traceroute</em>)
+<em><strong>&quot;-A, to enable OS and version detection, script scanning, and traceroute&rdquo;</strong></em></p>
+<p><a href="https://sourceforge.net/projects/metasploitable/files/Metasploitable2/"><strong>metasploitable</strong></a> cihazı üzerinde yapılan <strong>agresif tarama örneği</strong>:</p>
+<p><img src="/images/posts/aktif-bilgi-toplama/5.png" alt="nmap&ndash;A">
+<img src="/images/posts/aktif-bilgi-toplama/6.png" alt="nmap&ndash;A">
+<img src="/images/posts/aktif-bilgi-toplama/7.png" alt="nmap&ndash;A">
+<img src="/images/posts/aktif-bilgi-toplama/8.png" alt="nmap&ndash;A">
+<img src="/images/posts/aktif-bilgi-toplama/9.png" alt="nmap&ndash;A"></p>
+</li>
+</ul>
+<hr>
+<h2 id="nmap-parametreleri">NMAP Parametreleri</h2>
+<ul>
+<li>Varsayılan tarama seçenekleri, güvenli sistemler üzerinde fazla etkili değildir. Aşağıdaki tabloda daha kapsamlı tarama ve keşif yapmamızı sağlayan parametreler gösterilmiştir.
+<table>
+<thead>
+<tr>
+<th>Açıklama</th>
+<th align="center">Parametre</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ping Atma</td>
+<td align="center"><strong>-PN</strong></td>
+</tr>
+<tr>
+<td>Sadece Ping Tarama</td>
+<td align="center"><strong>-sP</strong></td>
+</tr>
+<tr>
+<td>TCP syn ping</td>
+<td align="center"><strong>-PS</strong></td>
+</tr>
+<tr>
+<td>TCP ack ping</td>
+<td align="center"><strong>-PA</strong></td>
+</tr>
+<tr>
+<td>UDP ping</td>
+<td align="center"><strong>-PU</strong></td>
+</tr>
+<tr>
+<td>SCTP init ping</td>
+<td align="center"><strong>-PY</strong></td>
+</tr>
+<tr>
+<td>ICMP echo ping</td>
+<td align="center"><strong>-PE</strong></td>
+</tr>
+<tr>
+<td>ICMP timestamp ping</td>
+<td align="center"><strong>-PP</strong></td>
+</tr>
+<tr>
+<td>ICMP adress mask ping</td>
+<td align="center"><strong>-PM</strong></td>
+</tr>
+<tr>
+<td>IP protocol ping</td>
+<td align="center"><strong>-PO</strong></td>
+</tr>
+<tr>
+<td>ARP ping</td>
+<td align="center"><strong>-PR</strong></td>
+</tr>
+<tr>
+<td>Traceroute</td>
+<td align="center"><strong>&ndash;traceroute</strong></td>
+</tr>
+<tr>
+<td>Reverse dns çözümleme</td>
+<td align="center"><strong>-R</strong></td>
+</tr>
+<tr>
+<td>Reverse dns çözümleme kapa</td>
+<td align="center"><strong>-n</strong></td>
+</tr>
+<tr>
+<td>Alternatif dns lookup</td>
+<td align="center"><strong>&ndash;system-dns</strong></td>
+</tr>
+<tr>
+<td>Manuel dns sunucu belirleme</td>
+<td align="center"><strong>&ndash;dns-servers</strong></td>
+</tr>
+<tr>
+<td>Host listesi oluşturma</td>
+<td align="center"><strong>&ndash;sL</strong></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h4 id="-pn-parametresi-ile-pingsiz-tarama">-PN Parametresi ile Ping&rsquo;siz Tarama</h4>
+<ul>
+<li>
+<p>NMAP varsayılan oalrak, açık portları için bir sistemi taramaya başlamadan önce hedefin aktif olup olmadığını tespit etmek için ping atar. Bu parametre ile hedef üzerinden ping ile kontrol işlemi atlanarak eksiksiz bir bir port taraması yapılır.</p>
+<p>Bu parametre ping isteklerini engelleyen firewall&rsquo;lara karşı etkili olmaktadır.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    nmap -PN 10.0.2.17
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+</ul>
+<h4 id="-sp-parametresi-ile-sadece-ping-tarama">-sP Parametresi ile Sadece Ping Tarama</h4>
+<ul>
+<li>
+<p>Bu parametre ile hedef basit bir ping isteği gönderilerek aktif olup olmadığı tespit edilmeye çalışılır.</p>
+<p><img src="/images/posts/aktif-bilgi-toplama/1.png" alt="nmap-ping-taraması"></p>
+</li>
+</ul>
+<h4 id="-ps-parametresi-ile-tcp-syn-ping">-PS Parametresi ile TCP syn ping</h4>
+<ul>
+<li>
+<p>TCP syn ping, hedef sisteme bir syn paketi gönderir ve bir yanıt dönmesini dinler.</p>
+<p>Bu Alternatif keşif yönetimi, standart ICMP pinglerini engelleyen sistemlere karşılı işe yarayabilir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    nmap -PS [port1,port2,...,] [hedef]
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+</ul>
+<h4 id="-pa-parametresi-ile-tcp-ack-ping">-PA parametresi ile TCP ack ping</h4>
+<ul>
+<li>
+<p>TCP ack ping, hdeften gelen bir yanır için varolmayan TCP bağlantılarına yanıt vererek sistemi keşfetmeye çalışır. Bu işlem 3&rsquo;lü el sıkışma (3 way handshake) işlemi gibidir.</p>
+<p>Bu Alternatif keşif yönetimi, standart ICMP pinglerini engelleyen sistemlere karşılı işe yarayabilir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    nmap -PA [port1,port2,...,] [hedef]
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+</ul>
+<h4 id="-pu-parametresi-ile-udp-ping">-PU parametresi ile UDP ping</h4>
+<ul>
+<li>
+<p>Hedeften yanıt almak için UDP paketleri gönderilir. Çoğu firewall bunu engellese de, bazı yapılandırma sistemleri yalnızca TCP bağlantılarını filtrelemek için yapılandırıldıysa izin vermektedir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    nmap -PU [port1,port2,...,] [hedef]
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+</ul>
+<h3 id="gelişmiş-tarama">Gelişmiş tarama</h3>
+<ul>
+<li>NMAP varsayılan olarak temel bir TCP taraması yapmaktadır. Bazı durumlarda daha detaylı bilgi toplamak için ya da firewall'ı atlamak için daha farklı parametreler kullanmamız gerekebilir.
+<table>
+<thead>
+<tr>
+<th>Tarama Türü</th>
+<th align="center">Parametre</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TCP syn scan</td>
+<td align="center"><strong>-sS</strong></td>
+</tr>
+<tr>
+<td>TCP connect scan</td>
+<td align="center"><strong>-sT</strong></td>
+</tr>
+<tr>
+<td>UDP scan</td>
+<td align="center"><strong>-sU</strong></td>
+</tr>
+<tr>
+<td>TCP null scan</td>
+<td align="center"><strong>-sN</strong></td>
+</tr>
+<tr>
+<td>TCP fin scan</td>
+<td align="center"><strong>-sF</strong></td>
+</tr>
+<tr>
+<td>XMAS scan</td>
+<td align="center"><strong>-sX</strong></td>
+</tr>
+<tr>
+<td>TCP ack scan</td>
+<td align="center"><strong>-sA</strong></td>
+</tr>
+<tr>
+<td>Custom TCP scan</td>
+<td align="center"><strong>&ndash;scanflags</strong></td>
+</tr>
+<tr>
+<td>IP protocol scan</td>
+<td align="center"><strong>&ndash;sO</strong></td>
+</tr>
+<tr>
+<td>Ham internet paketleri gönderme</td>
+<td align="center"><strong>&ndash;send-eth</strong></td>
+</tr>
+<tr>
+<td>IP paketleri gönderme</td>
+<td align="center"><strong>&ndash;send-ip</strong></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h3 id="port-tarama-işlemleri">Port Tarama İşlemleri</h3>
+<ul>
+<li>
+<p>NMAP varsayılan olarak en çok kullanılan 1000 portu tarama işlemi yapar. Bu portlar dışındaki portların taramasını yapmak için parametreler ile belirtmemiz gerekir.</p>
+<p>Toplam 131.070 TCP/IP portu vardır. (65.535 TCP + 65.535 UDP)</p>
+<table>
+<thead>
+<tr>
+<th>Açıklama</th>
+<th align="center">Parametre</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hızlı Tarama</td>
+<td align="center"><strong>-F</strong></td>
+</tr>
+<tr>
+<td>Belirli Port Tarama</td>
+<td align="center"><strong>-p [port-numarasi]</strong></td>
+</tr>
+<tr>
+<td>İsim ile Port Tarama</td>
+<td align="center"><strong>-p [port-adi]</strong></td>
+</tr>
+<tr>
+<td>Protocol ile Port Tarama</td>
+<td align="center"><strong>-p T:[tcp-portu], U:[udp-portu]</strong></td>
+</tr>
+<tr>
+<td>Tüm Portları taramak</td>
+<td align="center"><strong>-p-</strong></td>
+</tr>
+<tr>
+<td>En fazla kullanılan Portları taramak</td>
+<td align="center"><strong>&ndash;top-ports sayi</strong></td>
+</tr>
+<tr>
+<td>Ardışık olarak Port tarama</td>
+<td align="center"><strong>-r</strong></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<hr>
+<h2 id="nmap-script-engine-nse">NMAP Script Engine (NSE)</h2>
+<ul>
+<li>
+<p>NSE, kullanıcıların NMAP ile tarama işlevlerini gerçekleştirmek için özel komut dosyaları kullanmayı sağlar. NSE, nadiren de olsa sistem duraklamaları ve veri kaybı gibi sonuçlara neden olabilecek agresif tarama teknikleri kullanır.</p>
+<p>Sadece kendinizin yazdığı script değil, hali hazırda içine *<em>default</em> olarak dahil edilmiş scriptlerde vardır.</p>
+<table>
+<thead>
+<tr>
+<th>Özellikler</th>
+<th align="center">Parametre</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tek Script çalıştırma</td>
+<td align="center"><strong>&ndash;script [script-adi]</strong></td>
+</tr>
+<tr>
+<td>Çoklu Script çalıştırma</td>
+<td align="center"><strong>&ndash;script [script-adi-1], [script-adi-2]</strong></td>
+</tr>
+<tr>
+<td>Kategoriye göre Script çalıştırma</td>
+<td align="center"><strong>&ndash;script [kategori-adi]</strong></td>
+</tr>
+<tr>
+<td>Çoklu kategoriye göre Script çalıştırma</td>
+<td align="center"><strong>&ndash;script [kategori-adi-1], [kategori-adi-2]</strong></td>
+</tr>
+<tr>
+<td>Script durum izleme</td>
+<td align="center"><strong>&ndash;script-trace</strong></td>
+</tr>
+<tr>
+<td>Script Database Güncelleme</td>
+<td align="center"><strong>-script-updatedb</strong></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h4 id="tek-script-çalıştırma">Tek Script Çalıştırma</h4>
+<ul>
+<li>
+<p><strong>whois-domain.nse</strong> script&rsquo;i ile yapılan tarama örneği:</p>
+<p><img src="/images/posts/aktif-bilgi-toplama/10.png" alt="nmap-nse-whois"></p>
+</li>
+</ul>
+<h4 id="kategoriye-göre-script-çalıştırma">Kategoriye göre Script Çalıştırma</h4>
+<ul>
+<li>
+<p>Kategorileri daha detaylı incelemek için: <a href="https://nmap.org/nsedoc/">nmap.org/nsedoc/</a></p>
+<table>
+<thead>
+<tr>
+<th>Kategori</th>
+<th align="center">Kapsam ve İşlevi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>All</strong></td>
+<td align="center">Tüm NSE Script dosyalarını çalıştırır</td>
+</tr>
+<tr>
+<td><strong>Auth</strong></td>
+<td align="center">Kimlik Doğrulama Script&rsquo;leri</td>
+</tr>
+<tr>
+<td><strong>Default</strong></td>
+<td align="center">Varsayılan Script Dosyalarını çalıştırır</td>
+</tr>
+<tr>
+<td><strong>Discovery</strong></td>
+<td align="center">Hedef hakkında detaylı keşif yapar</td>
+</tr>
+<tr>
+<td><strong>External</strong></td>
+<td align="center">Dış kaynak ile iletişim kuran script (whois vs.)</td>
+</tr>
+<tr>
+<td><strong>Intrusive</strong></td>
+<td align="center">Hedef sisteme sızmaya çalışan Script dosyaları</td>
+</tr>
+<tr>
+<td><strong>Malware</strong></td>
+<td align="center">Backdoor ve Malware kontrol Script dosyaları</td>
+</tr>
+<tr>
+<td><strong>Safe</strong></td>
+<td align="center">Basit Script dosyaları</td>
+</tr>
+<tr>
+<td><strong>Vuln</strong></td>
+<td align="center">Zefiyetleri kontrol eden script dosyları</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Malware kategorisinde bulunan scriptler ile tarama örneği:</p>
+<p><img src="/images/posts/aktif-bilgi-toplama/15.png" alt="nmap-nse-malware">
+<img src="/images/posts/aktif-bilgi-toplama/16.png" alt="nmap-nse-malware-2"></p>
+</li>
+</ul>
+<h4 id="örnek-bir-backdoor-bulma-aşaması">Örnek Bir Backdoor Bulma Aşaması</h4>
+<ul>
+<li>
+<p>NMAP ile versiyon taraması yaparız;</p>
+<p><img src="/images/posts/aktif-bilgi-toplama/18.png" alt="nmap-ftp-backdoor"></p>
+</li>
+<li>
+<p>Çıkan sonuçlara uygun Scriptlere bakarız.</p>
+<p>ftp (vsftpd 2.3.4) için yapılan script taraması:</p>
+<p><img src="/images/posts/aktif-bilgi-toplama/19.png" alt="nmap-ftp-backdoor"></p>
+<p>Referance kısmında bunun için belirtilen exploit&rsquo;i kullanmak için metasploit&rsquo;i açıyoruz ve belirtilen aramayı yaptıktan sonra exploit&rsquo;imizi seçiyoruz.</p>
+<p><img src="/images/posts/aktif-bilgi-toplama/20.png" alt="msfconsole-ftp">
+<img src="/images/posts/aktif-bilgi-toplama/21.png" alt="msfconsole-ftp">
+<img src="/images/posts/aktif-bilgi-toplama/22.png" alt="msfconsole-ftp"></p>
+</li>
+</ul>
+<h4 id="script-dosyaları-database-güncelleme">Script Dosyaları Database Güncelleme</h4>
+<ul>
+<li>
+<p>Aşağıdaki gibi güncelleme işlemi gerçekleştirilir.</p>
+<p><img src="/images/posts/aktif-bilgi-toplama/12.png" alt="nmap-nse-update-db"></p>
+</li>
+</ul>
+<h4 id="script-dosyalarının-konumu">Script Dosyalarının Konumu</h4>
+<ul>
+<li>
+<p>Script dosyaları, linux sistemlerde, <strong>/usr/share/nmap/scripts/</strong> altındadır.</p>
+<p><img src="/images/posts/aktif-bilgi-toplama/13.png" alt="nmap-scripts-folder">
+<img src="/images/posts/aktif-bilgi-toplama/14.png" alt="nmap-scripts-search"></p>
+</li>
+</ul>
+<hr>
+<h2 id="güvenlik-duvarını-atlatmak">Güvenlik Duvarını Atlatmak</h2>
+<ul>
+<li>NMAP ile yapılan taramalar güvenlik duvarına takılır doğru ya da hiç sonuç vermeyebilir. NMAP, bu savunmaları atlatmak için oluşturulmuş birkaç özellik barındırmaktadır.
+<table>
+<thead>
+<tr>
+<th>Özellik</th>
+<th align="center">Parametre</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Parçalanmış paketler</td>
+<td align="center"><strong>-f</strong></td>
+</tr>
+<tr>
+<td>MTU ayarı</td>
+<td align="center"><strong>&ndash;mtu</strong></td>
+</tr>
+<tr>
+<td>Decoy kullanmak</td>
+<td align="center"><strong>-D</strong></td>
+</tr>
+<tr>
+<td>Idle Zombie tarama</td>
+<td align="center"><strong>-sI</strong></td>
+</tr>
+<tr>
+<td>Manuel kaynak port belirtmek</td>
+<td align="center"><strong>&ndash;source-port</strong></td>
+</tr>
+<tr>
+<td>Rastgele veri ekleme</td>
+<td align="center"><strong>&ndash;data-length</strong></td>
+</tr>
+<tr>
+<td>Rastgele hedef taramak</td>
+<td align="center"><strong>&ndash;randomize-hosts</strong></td>
+</tr>
+<tr>
+<td>Mac Adress Spoof</td>
+<td align="center"><strong>&ndash;spoof-mac</strong></td>
+</tr>
+<tr>
+<td>Bad Checksums gönderme</td>
+<td align="center"><strong>&ndash;badsum</strong></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h4 id="parçalanmış-paketler">Parçalanmış Paketler</h4>
+<ul>
+<li>
+<p><strong>-f</strong> paremetresi, hedefe gönderilen paketleri 8 byte&rsquo;lık paketlere bölerek gönderme işlemini gerçekleştirir.</p>
+<p>Eski veya yanlış yapılandırılmış güvenlik duvarlarını atlatmaya çalışırken işe yarayabilir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    nmap -f [hedef]
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+</ul>
+<h4 id="mtu-ayarı">MTU Ayarı</h4>
+<ul>
+<li>
+<p><strong>-mtu</strong> parametresi, özel MTU(<strong>Maximum Transmission Unit</strong>) değeri belirtmek için kullanılır.</p>
+<p>Aşağıdaki örnek <strong>-f</strong> parametresindeki gibi paketleri 8 byte&rsquo;lık paketler kullanır.</p>
+<p><strong>&ndash;mtu</strong> parametresinde [değer], 8 ve katı şeklinde olmalıdır.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    nmap --mtu 8 [hedef]
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+</ul>
+<h4 id="decoy-kullanımı">Decoy Kullanımı</h4>
+<ul>
+<li>
+<p><strong>-D</strong> opsiyonu, bir veya deha fazla decoy kullanarak NMAP taramasını maskelemek için kullanılır.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    nmap -D RND: [sayı] [hedef]
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+</ul>
+<h4 id="idle-zombie-tarama">Idle Zombie Tarama</h4>
+<ul>
+<li>
+<p><strong>-sI</strong> parametresi, idle zombi tarması gerçekleştirmek için kullanılır.</p>
+<p>Idle Zombie taraması ile, boşta çalışan sistemlerden yararlanırız. Bu boşta çalışan sistem üzerinden, hedefteki sistemin taraması gerçekleştirirlir.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    nmap -sI [zombie-sistem] [hedef]
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+</code></pre></div></li>
+</ul>
+<h4 id="mac-adress-spoof">Mac Adress Spoof</h4>
+<ul>
+<li>
+<p><strong>&ndash;spoof-mac</strong> parametresi, saldıran cihazın mac adresinin hedef sistem üzerinde log&rsquo;lanmasına karşı değiştirmeyi sağlar.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    nmap --spoof-mac 0 [hedef]
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+ ![nmap-mac](/images/posts/aktif-bilgi-toplama/23.png)</code></pre></div></li>
+</ul>
+
+			</div>
+
+			<div class="tags">
+				
+					
+						<ul class="flat">
+							
+							<li><a href="/tags/security">Security</a></li>
+							
+						</ul>
+					
+				
+			</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'boratanrikulu';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> copyright notice |  <a href="https://github.com/knadh/hugo-ink">Ink</a> theme on <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-77508691-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>feather.replace()</script>
+</body>
+</html>

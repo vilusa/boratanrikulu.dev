@@ -382,5 +382,20 @@ Her ne kadar sunucu yönetiminin üzerimde bu mesleğe yönelmeme sebep verecek 
 Takribi olarak 1 yıl boyunca, web alanında kendimi geliştirmek için fikirlerime felsefi açıdan yakın hissettiğim Ruby/Rails üzerinde kendimi geliştirdim.</description>
     </item>
     
+    <item>
+      <title>Journey</title>
+      <link>https://staging.boratanrikulu.dev/journey/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://staging.boratanrikulu.dev/journey/</guid>
+      <description>I like to keep my memories.
+There are some photos that are taken at events I attended.
+  Title: &amp;quot;Izmir Fen Lisesi - Temel GNU/Linux Eğitimi&amp;quot;  As lecturer.
+  Title: &amp;quot;SMTP Nedir? Nasıl Çalışır? Postfix Sunucu Ayaklandırılması&amp;quot;  As lecturer.
+  Title: &amp;quot;DNS Nedir? Nasıl Çalışır?&amp;quot;  As lecturer.
+  Title: &amp;quot;Herkes için GNU/Linux - 2019&amp;quot;  As lecturer.
+  Title: &amp;quot;Ruby/Rails - Mustafa Akgül Özgür Yazılım Yaz Kampı&amp;quot;  As lecturer.</description>
+    </item>
+    
   </channel>
 </rss>

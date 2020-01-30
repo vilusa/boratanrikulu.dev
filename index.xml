@@ -390,11 +390,12 @@ Takribi olarak 1 yıl boyunca, web alanında kendimi geliştirmek için fikirler
       <guid>https://staging.boratanrikulu.dev/journey/</guid>
       <description>I like to keep my memories.
 There are some photos that are taken at events I attended.
+I call this section &amp;ldquo;journey&amp;rdquo;. I love to join events and made events
   Title: &amp;quot;Izmir Fen Lisesi - Temel GNU/Linux Eğitimi&amp;quot;  As lecturer.
-  Title: &amp;quot;SMTP Nedir? Nasıl Çalışır? Postfix Sunucu Ayaklandırılması&amp;quot;  As lecturer.
-  Title: &amp;quot;DNS Nedir? Nasıl Çalışır?&amp;quot;  As lecturer.
-  Title: &amp;quot;Herkes için GNU/Linux - 2019&amp;quot;  As lecturer.
-  Title: &amp;quot;Ruby/Rails - Mustafa Akgül Özgür Yazılım Yaz Kampı&amp;quot;  As lecturer.</description>
+Took about 3 hours.
+  I talked about philosophy and basic usage of gnu/Linux.
+There is a slide I used on the event. [Slide]
+  Title: &amp;quot;SMTP Nedir?</description>
     </item>
     
   </channel>

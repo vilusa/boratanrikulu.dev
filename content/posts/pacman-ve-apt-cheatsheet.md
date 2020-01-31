@@ -3,6 +3,7 @@ date: "2018-07-07T00:00:00Z"
 tags:
 - GNU/Linux
 title: Pacman ve APT Cheatsheet
+description: kullanışlı bir cheatsheet
 ---
 
 ***Yazan: [boratanrikulu](https://github.com/boratanrikulu)***

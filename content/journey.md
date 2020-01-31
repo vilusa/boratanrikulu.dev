@@ -27,7 +27,7 @@ title: Journey
 > As lecturer.  
  Took about 2-3 hours.
 
-> I talked about smtp structure and posix configuration.  
+> I talked about smtp structure and postfix configuration.  
   There is a document I used on the event. [**`[Document]`**]({{< ref "posts/smtp-nasil-calisir-ve-postfix-kurulumu" >}})
 
 ![smtp](/images/journey/smtp1.jpg)
@@ -57,6 +57,15 @@ title: Journey
 > There is a document I wrote about the title. [**`[Document]`**]({{< ref "posts/postgresql-veri-tipleri-ve-siralama" >}})
 
 ![dns](/images/journey/pg1.jpg)
+
+---
+
+### Title: **`"Teknofest'19"`**
+
+> As attendee.  
+  Took about 1 day.
+
+![teknofest](/images/journey/teknofest.jpg)
 
 ---
 

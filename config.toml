@@ -88,13 +88,13 @@ url = "/journey"
 weight = 3
 
 [[menu.main]]
-name = "Contact"
-url = "/contact"
+name = "All Posts"
+url = "/tags"
 weight = 4
 
 [[menu.main]]
-name = "All Posts"
-url = "/tags"
+name = "Contact"
+url = "/contact"
 weight = 5
 
 [[params.social]]

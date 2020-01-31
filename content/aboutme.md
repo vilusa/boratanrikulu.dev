@@ -28,10 +28,11 @@ Takribi olarak 1 yıl boyunca, web alanında kendimi geliştirmek için fikirler
 ### Work Experience
 
 > [**`Lab2023 Bilişim Teknolojileri A.Ş.`**](https://lab2023.com/)  
->  - Full Stack Web Developer,  
-  Feb 2019 – Sep 2019  
->  - Intern,   
-  Nov 2018 - Feb 2019  
+  >> As `Full Stack Web Developer`,  
+    Feb 2019 – Sep 2019  
+>
+  >> As `Intern`,   
+    Nov 2018 - Feb 2019  
 
 ---
 
@@ -49,22 +50,22 @@ Takribi olarak 1 yıl boyunca, web alanında kendimi geliştirmek için fikirler
 ### Volunteer Experience
 
 > [**`Lecturer`**]({{< ref "journey#title-izmir-fen-lisesi---temel-gnulinux-eğitimi" >}})  
-> At "Izmir Fen Lisesi"  
+> At `"Izmir Fen Lisesi"`  
   About philosophy and basic usage of gnu/linux  
   Jan 2020 (3 hours)  
 
 > [**`Lecturer`**]({{< ref "journey#title-smtp-nedir-nasıl-çalışır-postfix-sunucu-ayaklandırılması" >}})  
-> At "Pamukkale University"  
+> At `"Pamukkale University"`  
   About smtp structure and postfix configuration  
   Dec 2019 (3 hours)  
 
 > [**`Lecturer`**]({{< ref "journey#title-dns-nedir-nasıl-çalışır" >}})  
-> At "Pamukkale University"  
+> At `"Pamukkale University"`  
   About dns structure and how web works  
   Dec 2019 (3 hours)  
 
 > [**`Lecturer`**]({{< ref "journey#title-herkes-için-gnulinux---2019" >}})  
-> At "Pamukkale University"  
+> At `"Pamukkale University" `  
   About basic usage of gnu/linux  
   September 2019 (4 weeks)  
 
@@ -72,11 +73,11 @@ Takribi olarak 1 yıl boyunca, web alanında kendimi geliştirmek için fikirler
   Seb 2019 - current  
 
 > [**`Asistant Lecturer`**]({{< ref "journey#title-rubyrails---mustafa-akgül-özgür-yazılım-yaz-kampı" >}})  
-> At "Mustafa Akgül Özgür Yazılım Kampı"  
+> At `"Mustafa Akgül Özgür Yazılım Kampı"`  
   About ruby/rails course   
   Jul 2019 (2 weeks)  
 
 > [**`Lecturer`**]({{< ref "journey#title-herkes-için-gnulinux---2018" >}})  
-> At "Pamukkale University"  
+> At `"Pamukkale University"`  
   About basic usage of gnu/linux  
   September 2018 (4 weeks)  

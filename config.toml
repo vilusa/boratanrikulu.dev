@@ -93,7 +93,7 @@ url = "/contact"
 weight = 4
 
 [[menu.main]]
-name = "Tags"
+name = "All Posts"
 url = "/tags"
 weight = 5
 

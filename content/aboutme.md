@@ -10,15 +10,7 @@ Takribi olarak 1 yıl boyunca, web alanında kendimi geliştirmek için fikirler
 
 Şuan kendimi **DevOps** alanında daha yakın hissediyorum, araştırma ve çalışmalarımı bu alan üzerine yapıyorum. DevOps alanında tecrübe kazanacağım bir iş arayışındayım.
 
----
-
-### Work Experience
-
-> [**`Lab2023 Bilişim Teknolojileri A.Ş.`**](https://lab2023.com/)  
->  - Full Stack Web Developer,  
-  Feb 2019 – Sep 2019  
->  - Intern,   
-  Nov 2018 - Feb 2019  
+<!-- > "Dinlenmemek üzere yola çıkanlar asla yorulmazlar." -->
 
 ---
 
@@ -30,6 +22,16 @@ Takribi olarak 1 yıl boyunca, web alanında kendimi geliştirmek için fikirler
 - Ruby and Rails
 - PostgreSQL
 - Golang
+
+---
+
+### Work Experience
+
+> [**`Lab2023 Bilişim Teknolojileri A.Ş.`**](https://lab2023.com/)  
+>  - Full Stack Web Developer,  
+  Feb 2019 – Sep 2019  
+>  - Intern,   
+  Nov 2018 - Feb 2019  
 
 ---
 
@@ -46,41 +48,35 @@ Takribi olarak 1 yıl boyunca, web alanında kendimi geliştirmek için fikirler
 
 ### Volunteer Experience
 
-> **`Lecturer`**  
+> [**`Lecturer`**]({{< ref "journey#title-izmir-fen-lisesi---temel-gnulinux-eğitimi" >}})  
 > At "Izmir Fen Lisesi"  
   About philosophy and basic usage of gnu/linux  
   Jan 2020 (3 hours)  
-  [**`[Info]`**]({{< ref "journey#title-izmir-fen-lisesi---temel-gnulinux-eğitimi" >}})
 
-> **`Lecturer`**  
+> [**`Lecturer`**]({{< ref "journey#title-smtp-nedir-nasıl-çalışır-postfix-sunucu-ayaklandırılması" >}})  
 > At "Pamukkale University"  
   About smtp structure and postfix configuration  
   Dec 2019 (3 hours)  
-  [**`[Info]`**]({{< ref "journey#title-smtp-nedir-nasıl-çalışır-postfix-sunucu-ayaklandırılması" >}})
 
-> **`Lecturer`**  
+> [**`Lecturer`**]({{< ref "journey#title-dns-nedir-nasıl-çalışır" >}})  
 > At "Pamukkale University"  
   About dns structure and how web works  
   Dec 2019 (3 hours)  
-  [**`[Info]`**]({{< ref "journey#title-dns-nedir-nasıl-çalışır" >}})
 
-> **`Lecturer`**  
+> [**`Lecturer`**]({{< ref "journey#title-herkes-için-gnulinux---2019" >}})  
 > At "Pamukkale University"  
   About basic usage of gnu/linux  
   September 2019 (4 weeks)  
-  [**`[Info]`**]({{< ref "journey#title-herkes-için-gnulinux---2019" >}})
 
-> **`Team Lead of`** [**`PaüSiber Community`**](https://pausiber.xyz)  
+> [**`Team Lead of PaüSiber Community`**](https://pausiber.xyz)  
   Seb 2019 - current  
 
-> **`Asistant Lecturer`**  
+> [**`Asistant Lecturer`**]({{< ref "journey#title-rubyrails---mustafa-akgül-özgür-yazılım-yaz-kampı" >}})  
 > At "Mustafa Akgül Özgür Yazılım Kampı"  
   About ruby/rails course   
   Jul 2019 (2 weeks)  
-  [**`[Info]`**]({{< ref "journey#title-rubyrails---mustafa-akgül-özgür-yazılım-yaz-kampı" >}})
 
-> **`Lecturer`**  
+> [**`Lecturer`**]({{< ref "journey#title-herkes-için-gnulinux---2018" >}})  
 > At "Pamukkale University"  
   About basic usage of gnu/linux  
   September 2018 (4 weeks)  
-  [**`[Info]`**]({{< ref "journey#title-herkes-için-gnulinux---2018" >}})

@@ -1,4 +1,4 @@
-baseURL = "https://staging.boratanrikulu.dev/"
+baseURL = "https://boratanrikulu.dev/"
 languageCode = "en-us"
 title = "Bora Tanrıkulu"
 theme = "hugo-ink"

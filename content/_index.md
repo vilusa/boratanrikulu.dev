@@ -70,10 +70,10 @@ If you need to contact me, feel free to send an email to: [**`boratanrikulu@gmai
 > [**`Lecturer`**]({{< ref "journey#title-herkes-için-gnulinux---2019" >}})  
 > At `"Pamukkale University" `  
   About basic usage of gnu/linux  
-  September 2019 (4 weeks)  
+  Sep 2019 (4 weeks)  
 
 > [**`Team Lead of PaüSiber Community`**](https://pausiber.xyz)  
-  Seb 2019 - current  
+  Sep 2019 - current  
 
 > [**`Asistant Lecturer`**]({{< ref "journey#title-rubyrails---mustafa-akgül-özgür-yazılım-yaz-kampı" >}})  
 > At `"Mustafa Akgül Özgür Yazılım Kampı"`  
@@ -83,4 +83,4 @@ If you need to contact me, feel free to send an email to: [**`boratanrikulu@gmai
 > [**`Lecturer`**]({{< ref "journey#title-herkes-için-gnulinux---2018" >}})  
 > At `"Pamukkale University"`  
   About basic usage of gnu/linux  
-  September 2018 (4 weeks)  
+  Sep 2018 (4 weeks)  

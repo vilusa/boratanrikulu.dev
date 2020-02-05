@@ -2,13 +2,13 @@
 title: About me
 ---
 
-**GNU/Linux** işletim sistemleri ile tanışmam sonucunda oluşan sunucu yönetimi ve siber güvenliğe ilgim, meslek olarak kendime bilgisayar mühendisliğini seçmeme neden oldu. Şuan Pamukkale Üniversitesi’nde okumaktayım.
+My interest in server management and cybersecurity resulting from meeting with GNU / Linux operating systems caused me to choose computer engineering as a profession. I am currently studying at Pamukkale University.
 
-Her ne kadar sunucu yönetiminin üzerimde bu mesleğe yönelmeme sebep verecek kadar büyük bir etkisi olsa da ilgi alanım başka taraflara da kayabiliyor. Geliştirme sürecinin tüm alanlarında rol alarak tecrübe etmek istememden dolayı, farklı alanlara yönelmekten çekinmemeye çalışıyorum.
+Although server management has a big impact on me to lead this profession, my interest can move to other parties. Since I want to experience by playing a role in all areas of the development process, I try not to hesitate to focus on different areas.
 
-Takribi olarak 1 yıl boyunca, web alanında kendimi geliştirmek için fikirlerime felsefi açıdan yakın hissettiğim **Ruby/Rails** üzerinde kendimi geliştirdim. Hala aktif olarak Ruby ve Rails kullanıyorum.
+For about 1 year, I developed myself on Ruby / Rails, where I felt philosophically close to my ideas to improve myself on the web. I still actively use Ruby and Rails.
 
-Şuan kendimi **DevOps** alanında daha yakın hissediyorum, araştırma ve çalışmalarımı bu alan üzerine yapıyorum. DevOps alanında tecrübe kazanacağım bir iş arayışındayım.
+Now I feel closer to DevOps, and I do my research and studies on this field. I am looking for a job where I will gain experience in DevOps.m.
 
 <!-- > "Dinlenmemek üzere yola çıkanlar asla yorulmazlar." -->
 

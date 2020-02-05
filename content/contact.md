@@ -1,5 +1,6 @@
 ---
 title: Contact
+showNavigate: false
 type: page
 ---
 

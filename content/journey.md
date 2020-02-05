@@ -1,5 +1,6 @@
 ---
 title: Journey
+showNavigate: false
 ---
 
 > I like to keep my memories.  

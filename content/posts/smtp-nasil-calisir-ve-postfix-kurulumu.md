@@ -7,9 +7,9 @@ title: SMTP Nasıl Çalışır ve Postfix Kurulumu
 ---
 
 **Kaynaklar**  
-LYK'18 - GNU/Linux Sistem Yönetimi 2. Düzey [**[Erdem Bayer]**](https://www.linkedin.com/in/erdem-bayer-1633915/) [**[Murathan Bostancı]**](https://www.linkedin.com/in/murathanbostanci/)
+LYK'18 - GNU/Linux Sistem Yönetimi 2. Düzey [**`[Erdem Bayer]`**](https://www.linkedin.com/in/erdem-bayer-1633915/) [**`[Murathan Bostancı]`**](https://www.linkedin.com/in/murathanbostanci/)
 
-**NOT 1:** Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz [**[0]**](https://github.com/boratanrikulu/boratanrikulu.github.io/tree/master/_posts)  
+**NOT 1:** Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz [**`[0]`**](https://github.com/boratanrikulu/boratanrikulu.github.io/tree/master/_posts)  
 **NOT 2:** Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim **:)**
 
 ---
@@ -19,7 +19,7 @@ LYK'18 - GNU/Linux Sistem Yönetimi 2. Düzey [**[Erdem Bayer]**](https://www.li
 **Simple Mail Transfer Protocol**, yani SMTP, ilk olarak 1982'de [**RFC 821**](https://tools.ietf.org/html/rfc821)'de tanımlanmıştır.  
 Günümüzde kullanılan **Extended SMTP** ise, 2008'de güncellenerek [**RFC 5321**](https://tools.ietf.org/html/rfc5321)'de tanımlanmıştır.
 
-**25/TCP** portunu kullanan SMTP, e-posta göndermek için sunucu ile istemci arasındaki iletişimi belirleyen protokoldür. [**[1]**](https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol)  
+**25/TCP** portunu kullanan SMTP, e-posta göndermek için sunucu ile istemci arasındaki iletişimi belirleyen protokoldür. [**`[1]`**](https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol)  
 
 ---
 
@@ -311,7 +311,7 @@ Gördüğünüz gibi, Elon Musk tarafından bir iş teklifi aldım **:)**.
 	<img src="/images/posts/smtp-nasil-calisir-ve-postfix-kurulumu/0.png">
 </p>
 
-Postfix bir çok modülün birleşmesi ile oluşan bir yapıdır. [**[2]**](http://www.porcupine.org/postfix/doc/big-picture.html)
+Postfix bir çok modülün birleşmesi ile oluşan bir yapıdır. [**`[2]`**](http://www.porcupine.org/postfix/doc/big-picture.html)
 
 Her şey ayrı bir parça olarka çalışır. Örneğin mail gönderilmesi bozulsa bile, mail alımı işlemi devam edebilir. Her servisin durumu ayrı ayrıdır.
 

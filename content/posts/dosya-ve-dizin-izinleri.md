@@ -14,7 +14,7 @@ title: Dosya ve Dizin İzinleri
 
 ## Dosya ve Dizininlerin Linux'daki Durumu
 
-**Linux'ta her şey birer dosyadır**. [**[1]**](https://stackoverflow.com/a/10893965)
+**Linux'ta her şey birer dosyadır**. [**`[1]`**](https://stackoverflow.com/a/10893965)
 
 Özünde dizinler de dosyaların konumunu belirten birer özel dosyadır. Dizinler veri içeremez, yalnızca konum belirtmek amaçlı kullanılabilirler. Dizinlerin bir türü yoktur, uzantısı yoktur. Dosyaların ise bir türü vardır, uzantısı bulunabilir.
 

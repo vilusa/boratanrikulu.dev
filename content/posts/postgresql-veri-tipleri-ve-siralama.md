@@ -284,7 +284,7 @@ Bu durumda belki de Text ya da Char olarak tutmanın daha iyi olabileceğini dü
 Şimdi veri tiplerinin genel hatlarıyla tanıdığımıza göre konunun başında verdiğimiz örneğe geri dönebiliriz.
 
 | Veri Adı | Veri Tipi | Veri Tipi Uzunluğu(byte) |
-|:--------:|:---------:|
+|:--------:|:---------:|:---------:|
 | is_shipped  | bool        | 1 |
 | user_id     | int8        | 8 |
 | order_total | numeric     | -1 |
@@ -406,7 +406,7 @@ SELECT a.attname, t.typname, t.typalign, t.typlen
 Bizim örneğimize göre en uygun kolon sıralaması aşağıdaki gibi yapılmalıdır. Yalnızca sıralamayı değiştirerek takribi olarak 20% alan tasarrufu sağlamış olduk.
 
 | Veri Adı | Veri Tipi | Veri Tipi Uzunluğu(byte) |
-|:--------:|:---------:|
+|:--------:|:---------:|:---------:|
 | id          | int8        | 8 |
 | user_id     | int8        | 8 |
 | order_dt    | timestamptz | 8 |

@@ -68,7 +68,7 @@ DNS recursor olarak ta bilinen Recursive resolvers, DNS sorgu ayağının ilk ad
 Bu elçi tarayıcı tarafından (veya isteği ne atıyor ise) yapılan isteği alır ve DNS sorgulama sürecini yapıp sonucu geri client'e döndürür. DNS Recursive Resolvers isteğin cevabını ilk olarak cache üzerinden sorgular. Eğer aranan cevap cache'de zaten var ise ve bu bilginin güncelliği sisteme göre kabul edilebilir ise istek yapılmadan direkt olarak sonuç dönülebilir. Ya da Root nameserver, TLD nameserver, Authoritative nameserver için gerekli istekler atılır.
 
 <p align="center">
-  <img src="https://www.cloudflare.com/images/posts/learning/dns/dns-server-types/root-nameserver.png" alt="how-dns-works-cloudfleare">
+  <img src="https://www.cloudflare.com/img/learning/dns/what-is-dns/dns-lookup-diagram.png" alt="how-dns-works-cloudfleare">
 </p>
 
 ---
@@ -78,7 +78,7 @@ Bu elçi tarayıcı tarafından (veya isteği ne atıyor ise) yapılan isteği a
 Root nameserver'i insanlar tarafından okunabilir olan text dosyasının IP karşılığına çevrilmesindeki ilk adım olarak düşünebiliriz. Recursive Resolver tarafından ilk istek atılan yerdir.
 
 <p align="center">
-  <img src="https://www.cloudflare.com/images/posts/learning/dns/glossary/dns-root-server/dns-root-server.png" alt="root nameservers">
+  <img src="https://www.cloudflare.com/img/learning/dns/glossary/dns-root-server/dns-root-server.png" alt="root nameservers">
 </p>
 
 Root nameserver'lar zone olarak düşünülebilir. Dünyada 13 adet zone bulunur. Yani 13 çeşit Root Nameserver vardır. Fakat bu yalnızca 13 sunucu olduğunu anlamına gelmez. Birbirinin kopyası bir çok sunucu vardır. Bu sayede sunuculara daha kolay erişilebilir. Bu yapı anycast ile sağlanır.

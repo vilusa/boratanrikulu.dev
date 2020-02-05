@@ -28,7 +28,7 @@ Raspberry Pi 3 ile kolaylıkla bir torrent istemcisi hazırlayabilirsiniz. Bu mi
 
 ## SD Kartın Hazırlanışı
 
-Öncelikle bu adresten[**[1]**](https://www.raspberrypi.org/downloads/raspbian/)  **Raspbian Stretch Lite**'i indirin. Ardından aşağıdaki işlemleri uygulayın.
+Öncelikle bu adresten[**`[1]`**](https://www.raspberrypi.org/downloads/raspbian/)  **Raspbian Stretch Lite**'i indirin. Ardından aşağıdaki işlemleri uygulayın.
 
 **lsblk** ile SD kartınızın lokasyonunu tespit edin. Örneğin benim sistemimde aşağıdaki gibi **/dev/mmcblk0** adresinde. Sizin de benzer olacaktır.
 <p align="center"> 

@@ -7,9 +7,9 @@ title: PostgreSQL Nedir ? Nasıl Çalışır ?
 ---
 
 **Kaynaklar**  
-LYK'18 - GNU/Linux Sistem Yönetimi 2. Düzey [**[Devrim Gündüz]**](https://twitter.com/DevrimGunduzTR)
+LYK'18 - GNU/Linux Sistem Yönetimi 2. Düzey [**`[Devrim Gündüz]`**](https://twitter.com/DevrimGunduzTR)
 
-**NOT 1:** Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz [**[0]**](https://github.com/boratanrikulu/boratanrikulu.github.io/tree/master/_posts)  
+**NOT 1:** Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz [**`[0]`**](https://github.com/boratanrikulu/boratanrikulu.github.io/tree/master/_posts)  
 **NOT 2:** Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim **:)**
 
 ---
@@ -22,7 +22,7 @@ SQL dilinin kullanıldığı PostgreSQL'in verileri güvenli bir şekilde saklam
 
 PostgreSQL tüm ana işletim sistemlerinde çalışır.  
 
-PostgreSQL, kanıtlanmış mimarisi, güvenilirliği, veri bütünlüğü, sağlam özellik seti, genişletilebilirliği ve yazılımın arkasındaki açık kaynak topluluğunun sürekli olarak performans ve yenilikçi çözümler sunması ile güçlü bir ün kazanmıştır. [**[1]**](https://www.postgresql.org/about/)
+PostgreSQL, kanıtlanmış mimarisi, güvenilirliği, veri bütünlüğü, sağlam özellik seti, genişletilebilirliği ve yazılımın arkasındaki açık kaynak topluluğunun sürekli olarak performans ve yenilikçi çözümler sunması ile güçlü bir ün kazanmıştır. [**`[1]`**](https://www.postgresql.org/about/)
 
 ---
 
@@ -95,7 +95,7 @@ Connection Pooler ayrı bir sunucuda ya da direkt PostgreSQL ile aynı sunucuda 
 
 PostgreSQL default olarak en fazla 100 client kabul edebilir. Bu nedenle default ayarlar ile Connection Pooler çalıştırıldığında kendine 100 tane postgres bağlantısı sağlar. Eğer dışardan gelen client sayısı 100'den fazla olursa, pooler bunları sıraya koyabilir.
 
-PgBouncer bir connection pooler'dır. [**[2]**](https://pgbouncer.github.io/)
+PgBouncer bir connection pooler'dır. [**`[2]`**](https://pgbouncer.github.io/)
 
 ---
 
@@ -141,7 +141,7 @@ Disklerin default olarak 5%' i journal olarak tanımlanır. Veriler diske yazıl
 
 Buradaki mantık küçük bir alana yazma işleminin daha kolay olmasıdır, yazma küçük bir bölgeye yapılır ve bu veriler daha sonra dağıtılır.
 
-PostgreSQL de benzer bir mantık ile çalışır. WAL için postgres'in journal'ı denebilir. [**[3]**](https://www.postgresql.org/docs/9.1/static/wal-intro.html)
+PostgreSQL de benzer bir mantık ile çalışır. WAL için postgres'in journal'ı denebilir. [**`[3]`**](https://www.postgresql.org/docs/9.1/static/wal-intro.html)
 
 ---
 
@@ -195,7 +195,7 @@ Ayrıca elle de vacuum işlemi yapılabilir.
 
 **NOT:** Örnek uygulama amacıyla CentOS tercih ettim. Siz başka dağıtımlar tercih edebilirsiniz.
 
-İlk olarak repo adresini eklememiz gerekiyor. [**[4]**](https://yum.postgresql.org/)
+İlk olarak repo adresini eklememiz gerekiyor. [**`[4]`**](https://yum.postgresql.org/)
 ```bash
 yum install https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-7-x86_64/pgdg-centos10-10-2.noarch.rpm
 ```

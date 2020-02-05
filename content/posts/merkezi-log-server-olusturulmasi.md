@@ -7,16 +7,16 @@ title: Merkezi Log Server Oluşturulması
 ---
 
 **Kaynaklar**  
-LYK'18 - GNU/Linux Sistem Yönetimi 2. Düzey [**[Erdem Bayer]**](https://www.linkedin.com/in/erdem-bayer-1633915/)  
+LYK'18 - GNU/Linux Sistem Yönetimi 2. Düzey [**`[Erdem Bayer]`**](https://www.linkedin.com/in/erdem-bayer-1633915/)  
 
-**NOT 1:** Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz [**[0]**](https://github.com/boratanrikulu/boratanrikulu.github.io/tree/master/_posts)  
+**NOT 1:** Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz [**`[0]`**](https://github.com/boratanrikulu/boratanrikulu.github.io/tree/master/_posts)  
 **NOT 2:** Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim **:)**
 
 ---
 
 ## Rsyslog Nedir ?
 
-Rsyslog, log'ların yönlendirilmesini sağlayan, UNIX tabanlı sistemlerde çalışan, açık kaynak bir yazılımdır. Temel syslog protokolünü uygulayan rsyslog; içeriğe dayalı filtreleme, zengin filtreleme yetenekleri, esnek yapılandırma seçenekleri ile göze çarpar. Ayrıca taşıma için TCP'yi kullanma gibi özellikler ekler. [**[1]**](https://en.wikipedia.org/wiki/Rsyslog) 
+Rsyslog, log'ların yönlendirilmesini sağlayan, UNIX tabanlı sistemlerde çalışan, açık kaynak bir yazılımdır. Temel syslog protokolünü uygulayan rsyslog; içeriğe dayalı filtreleme, zengin filtreleme yetenekleri, esnek yapılandırma seçenekleri ile göze çarpar. Ayrıca taşıma için TCP'yi kullanma gibi özellikler ekler. [**`[1]`**](https://en.wikipedia.org/wiki/Rsyslog)
 
 ---
 
@@ -28,7 +28,7 @@ Bir süreç tarafından log yazılacağında, log ilk olarak **/dev/log**'a yaz�
 
 /dev/log bir **socket**'tir.
 
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/merkezi-log-server-olusturulmasi/1.png">
 </p>
 
@@ -44,11 +44,11 @@ Log'ların nereye, hangi aciliyet ile yazılacağını belirtmek için 2 etiket 
 **Facility** ile **hangi türde** bir log mesajı olduğu belirtilir;  
 **Severity** ile de **hangi aciliyette** bir log olduğu belirtilir.
 
-Facility ve Severity türleri bellidir, ekleme çıkarma yapılamaz. 
+Facility ve Severity türleri bellidir, ekleme çıkarma yapılamaz.
 
 ---
 
-#### Facility [**[2]**](https://wiki.gentoo.org/wiki/Rsyslog#Facility)
+#### Facility [**`[2]`**](https://wiki.gentoo.org/wiki/Rsyslog#Facility)
 
 | Numarasal Kod | Facility | Açıklama |
 |:--------------:|:--------:|:-----------:|
@@ -77,7 +77,7 @@ Facility ve Severity türleri bellidir, ekleme çıkarma yapılamaz.
 
 ---
 
-#### Severity [**[3]**](https://wiki.gentoo.org/wiki/Rsyslog#Severity)
+#### Severity [**`[3]`**](https://wiki.gentoo.org/wiki/Rsyslog#Severity)
 
 | Numarasal Kod | Severity | Açıklama |
 |:-------------:|:--------:|:--------:|
@@ -88,7 +88,7 @@ Facility ve Severity türleri bellidir, ekleme çıkarma yapılamaz.
 | 4 	| warning 	| warning conditions
 | 5 	| notice 	| normal but significant condition
 | 6 	| info 	| informational messages
-| 7 	| debug 	| debug-level messages 
+| 7 	| debug 	| debug-level messages
 
 ---
 
@@ -128,7 +128,7 @@ Eğer normalde olmayan bir facility ya da severity kullanmaya çalışırsak hat
 [root@log ~#] logger -p mesaj.onemli "cok onemli bir mesaj."
 ```
 
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/merkezi-log-server-olusturulmasi/2.png">
 </p>
 
@@ -153,7 +153,7 @@ Aslında rsyslog çalışma mantığı direkt, rsyslog tarafından /dev/log'un o
 
 Dosyada ayarlar incelendiğinde bazılarının başında **"-"** olduğu gözükür. Bu "sync" işleminin yapılmasına gerek olmadığı belirtmek içindir. Ama aslında günümüzde bir işlevi yoktur. Eskiden rsyslog tarafından yazma işlemi yapıldıktan sonra sync yapılırken, günümüzde bu işlem yapılmamaktadır. **Yani "-" yazılsa da yazılmasa da sync yapılmaz.**
 
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/merkezi-log-server-olusturulmasi/3.png">
 </p>
 
@@ -192,7 +192,7 @@ Ardından aşağıdaki gibi oluşturduğumuz log'ların yazıldığını görebi
 [root@log ~#] cat /var/log/sec-logs
 ```
 
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/merkezi-log-server-olusturulmasi/4.png">
 </p>
 
@@ -222,7 +222,7 @@ Aşağıdaki görselde daha anlaşılır şekilde görebilirsiniz.
 
 **NOT :** 3 server için de **CentOS 7** tercih edilmiştir. Siz başka dağıtımlar tercih edebilirsiniz.
 
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/merkezi-log-server-olusturulmasi/0.png">
 </p>
 
@@ -283,7 +283,7 @@ Ayrıca firewall'da gerekli port'u açmamız gerekiyor. Aşağıdaki gibi açabi
 [root@log ~#] tail -f /var/log/maillog
 ```
 
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/merkezi-log-server-olusturulmasi/5.png">
 </p>
 
@@ -307,7 +307,7 @@ Eğer Wordpress Server'ın tüm log'larını, Log Server'a yollamak istiyorsak a
 
 Bizim kurmak istediğimiz yapıdaki amaç; Log Server'ın **/var/log/remote** dizini altında **her uzak sunucu için ayrı klasör oluşması** ve bunların altında uzak server log'larının saklanmasını sağlamak.
 
-Bunun için template yapısını kullanacağız. [**[4]**](https://www.rsyslog.com/doc/master/configuration/properties.html)
+Bunun için template yapısını kullanacağız. [**`[4]`**](https://www.rsyslog.com/doc/master/configuration/properties.html)
 
 Kullanacağımız template aşağıdaki gibi olacak. Bu iki satırı /etc/rsyslog.conf'da uygun bir yere ekleyin ve servisi reload'layın.
 
@@ -320,7 +320,7 @@ $template RemoteServersTamplate, "/var/log/remote/%hostname%/%syslogfacility-tex
 
 Postfix ve Wordpress Server'da test amaçlı birkaç log oluşturduğumuzda sorunsuz çalıştırğını gözlemliyoruz.
 
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/merkezi-log-server-olusturulmasi/6.png">
 </p>
 
@@ -342,7 +342,7 @@ Yani aslında Log Server'ın loglarını bu kural satırına uygulamak istemiyor
 
 Tüm cihazlarda bir kaç log ürettikten sonra aşağıdaki sonucu gözlemliyoruz.
 
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/merkezi-log-server-olusturulmasi/7.png">
 </p>
 

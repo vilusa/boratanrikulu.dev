@@ -160,7 +160,7 @@ Sonucu aşağıdaki gibi kontrol edebilirsiniz.
 
 ## Trizen Kurulumu
 
-AUR Helper olarak yaourt kullanmanızı tavsiye etmiyorum. Trizen kullanım açısından basit ve güvenilirdir. Aşağıdaki gibi kurabilirsiniz. [**[1]**](https://wiki.archlinux.org/index.php/AUR_helpers) [**[2]**](https://www.reddit.com/r/archlinux/comments/4azqyb/whats_so_bad_with_yaourt/)  
+AUR Helper olarak yaourt kullanmanızı tavsiye etmiyorum. Trizen kullanım açısından basit ve güvenilirdir. Aşağıdaki gibi kurabilirsiniz. [**`[1]`**](https://wiki.archlinux.org/index.php/AUR_helpers) [**`[2]`**](https://www.reddit.com/r/archlinux/comments/4azqyb/whats_so_bad_with_yaourt/)  
 
 ```
 	sudo pacman -S git

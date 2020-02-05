@@ -7,9 +7,9 @@ title: TCP/IP
 ---
 
 **Kaynaklar**    
-[kevsersrca.github.io/blog/security/osi-katmanlari-ve-prokolleri/](https://kevsersrca.github.io/blog//security/osi-katmanlari-ve-prokolleri/)    
-[en.wikipedia.org/wiki/TCP/IP](https://en.wikipedia.org/wiki/TCP/IP)  
-[networkstatic.net (çizimler)](http://networkstatic.net/wp-content/uploads/2012/04/)
+[`kevsersrca.github.io/blog/security/osi-katmanlari-ve-prokolleri/`](https://kevsersrca.github.io/blog//security/osi-katmanlari-ve-prokolleri/)    
+[`en.wikipedia.org/wiki/TCP/IP`](https://en.wikipedia.org/wiki/TCP/IP)  
+[`networkstatic.net (çizimler)`](http://networkstatic.net/wp-content/uploads/2012/04/)
 
 ---
 

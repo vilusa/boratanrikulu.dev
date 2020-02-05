@@ -7,8 +7,8 @@ title: Brute Force ve Kapsamlı Arama
 ---
 
 **Kaynaklar:**  
-[**Introduction to the Design & Analysis of Algorithms 3e - Pearson**](https://www.pandora.com.tr/kitap/introduction-to-the-design-and-analysis-of-algorithms-3e/270012)  
-[**@elif_haytaoglu**](https://www.linkedin.com/in/elif-haytaoglu-97176564/)
+[**`Introduction to the Design & Analysis of Algorithms 3e - Pearson`**](https://www.pandora.com.tr/kitap/introduction-to-the-design-and-analysis-of-algorithms-3e/270012)  
+[**`@elif_haytaoglu`**](https://www.linkedin.com/in/elif-haytaoglu-97176564/)
 
 ---
 
@@ -30,7 +30,7 @@ Bilgisayar bilimleri için oldukça önemli olan sıralama problemini çözmek a
 
 ### Selection Sort
 
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/brute-force/brute_force_2.gif" alt="selection sort">
 </p>
 
@@ -59,7 +59,7 @@ Selection Sort'un diğer sıralama algoritmalarından **ayıran bir özelliği**
 
 ### Bubble Sort
 
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/brute-force/brute_force_1.gif" alt="bubble sort">
 </p>
 
@@ -169,7 +169,7 @@ Büyüme hızı: `Θ(n^2)`
 
 ### Convex-Hull Problem
 
-<p align="center"> 
+<p align="center">
 	<img height="400" src="/images/posts/brute-force/brute_force_1.png" alt="convex-hull problem">
 </p>
 
@@ -191,7 +191,7 @@ Exhaustive Search'ü üç problemin çözümünde kullanacağız; Traveling Sale
 
 150 yıldır araştırmacılar tarafından araştırılan bu problemde istenen, verilen n şehir içerisinde, her şehirde yalnızca bir kez uğranılan minimum turun bulunmasıdır. Bu noktada problem en kısa Hemiltonaian çevrimini bulmaya dönmüş olur. Brute force yaklaşımı ile, Exhaustive Search yaparsak, bu sorunu çözerken tüm kombinasyonal durumlar yazılır ve ağırlık bakımından en optimal yol(lar) seçilir.
 
-<p align="center"> 
+<p align="center">
 	<img height="600" src="/images/posts/brute-force/brute_force_0.png" alt="traveling salesman problem">
 </p>
 
@@ -208,7 +208,7 @@ Büyüme hızı: `Θ(n!)`
 
 Çok bilindik diğer bir problem olan Knapsack probleminde amaç bir sırt çantasına maksimum olarak sığabilecek alt ürün grubunu bulmaktır. Bir yük uçağı hayal edin, bu uçağın kapasitesini verimli kullanabilmek amacıyla, kapasiteyi aşmadan elmizdeki metaryeller optimum şekilde uçağa koymamız gerekir. Ya da bir hırsız düşünün, hırsız torbasını en verimli şekilde doldurmalıdır, hırsız çantasına ağırlıkça en az, **pahaca en çok eşyayı doldurmak** ister.
 
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/brute-force/brute_force_2.png" alt="knapsack problem">
 </p>
 
@@ -221,13 +221,13 @@ Büyüme hızı: `Ω(2^n)`
 
 Bir diğer problem olan Assignment Probleminde n tane insan ve n tane iş olduğu söylenir, her çalışan yalnızca bir işe atabilir ve her işte yalnızca bir çalışan çalışabilir. Her çalışanın bir işte çalışması için belirli bir maliyet vardır. **En düşük maliyete sahip çalışan-iş eşleştirilmesi**nin nasıl yapılması gerektiğini sorar.
 
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/brute-force/brute_force_3.png" alt="assignment problem">
 </p>
 
 Yukardağı tabloyu bir matrix olarak düşünürseniz, her satırda ve kolonda yalnızca bir seçim yapılarak en düşük maliyet hesabı yapılacaktır.
 
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/brute-force/brute_force_4.png" alt="assignment problem">
 </p>
 
@@ -247,7 +247,7 @@ Exhaustive Search dolaşma yöntemi olan DFS ve BFS'ye de uygulanabilir.
 
 Derine gidilir. Dolaşma işlemi bir düğümden başlar. Gidilebilecek mümkün komşulardan bir tanesini seçer ve ilerler. Gidilebilecek diğer düğümlere bakmadan önce yeni gidilen düğümün komşuları incelenir ve bir tanesine gidilir. Gidilebilecek komşu kalmayınca geri sarılarak mümkün komşular aranır.
 
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/brute-force/brute_force_5.png" alt="depth-first search">
 </p>
 
@@ -273,7 +273,7 @@ def dfs(v)
 
 Enine gidilir. Dolaşma işlemi bir düğümden başlar. Gidilebilecek mümkün komşular hepsini sırayla seçer ve ilerler. Gidilebilecek bütün komşular gezildikten sonra ilk komşunun komşuları seçilir.
 
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/brute-force/brute_force_6.png" alt="breadth-first search">
 </p>
 

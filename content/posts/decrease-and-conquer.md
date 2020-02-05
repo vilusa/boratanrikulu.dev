@@ -7,8 +7,8 @@ title: Decrease and Conquer
 ---
 
 **Kaynaklar:**  
-[**Introduction to the Design & Analysis of Algorithms 3e - Pearson**](https://www.pandora.com.tr/kitap/introduction-to-the-design-and-analysis-of-algorithms-3e/270012)  
-[**@elif_haytaoglu**](https://www.linkedin.com/in/elif-haytaoglu-97176564/)
+[**`Introduction to the Design & Analysis of Algorithms 3e - Pearson`**](https://www.pandora.com.tr/kitap/introduction-to-the-design-and-analysis-of-algorithms-3e/270012)  
+[**`@elif_haytaoglu`**](https://www.linkedin.com/in/elif-haytaoglu-97176564/)
 
 ---
 
@@ -34,7 +34,7 @@ Yaklaşımın üç çeşidi bulunur:
 Decrease-by-one yaklaşımı ile liste sıralanmasına Insertion Sort iyi bir örnektir.
 Algoritmanın mantığı şu şekildedir; sıralanması gereken listenin daha ufak bir bölümü sıralı gibi kabul edilir ve seçilen pivot bu mantıkla sırada durması gerektiği yere yerleştirilir.
 
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_1.gif" alt="insertion sort gif">
 </p>
 
@@ -52,7 +52,7 @@ def insertion_sort(list)
       j--
     list[j+1] = v
 ```
-Algoritmadaki ana işlem `list[j] > v` kontrolüdür. 
+Algoritmadaki ana işlem `list[j] > v` kontrolüdür.
 
 Büyüme hızı;  
 En kötü: `Θ(n^2)`  
@@ -67,19 +67,19 @@ Topological Sorting, yalnızca yönlü ağaçlarda uygulanabilen bir sıralama a
 
 Topological Sorting uygulayabileceğimiz yollardan bir tanesi; tüm vertex'lerin taranması ve herhangi bir **girdisi olmayan vertex**'lerin çıkarılmasıdır.
 
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_3.gif" alt="topological sorting gif">
 </p>
 
 Diğer bir yol ise; ilgili ağaçta **DFS olarak dolaşmak** ve bu dolaşma sırasının tersini almaktır. Tersi alanmış bu sıra bize Topological Sorting sıralamasını verecektir.
 
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_0.png" alt="topological sorting">
 </p>
 
 Döngü içeren ağaçlara (yani DFS dolaşımında backforward içeren ağaçlara) Topological Sorting uygulanamaz. Örneğin aşağıdaki gibi bir ağaca Topological Sorting uygulanamaz.
 
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_7.png" alt="not topological sort">
 </p>
 
@@ -94,7 +94,7 @@ Bu bölümde kombinasyon nesneleri olan; alt kümeler ve permütasyonların olu�
 1'den n'ye kadar olan sayıların permütasyonları istense nasıl bulursunuz ?  
 **John Trotter** algoritması ile bunu oldukça pratik bir yoldan bulabiliriz.
 
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_8.png" alt="johnson trotter">
 </p>
 
@@ -105,7 +105,7 @@ Bu bölümde kombinasyon nesneleri olan; alt kümeler ve permütasyonların olu�
 - Eğer var ise, büyük olan sayının yönü değiştirilerek mobil yapılır  
 - Hiç bir mobil kalmayasaya kadar bu şekilde devam eder
 
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_9.png" alt="johnson trotter">
 </p>
 
@@ -131,7 +131,7 @@ Bir kümenin tüm alt kümelerini bulmak gerekiyor olsun. Bunun için oldukça b
 
 Yani aşağıdaki gibi tüm alt kümeleri bulabiliriz.
 
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_10.png" alt="alt küme oluşturmak">
 </p>
 
@@ -146,7 +146,7 @@ Yani aşağıdaki gibi tüm alt kümeleri bulabiliriz.
 İkili arama işlemi sıralı dizilerde aranan verinin bulunmasını sağlar.  
 Yaklaşım basittir. İlk olarak ortanca değere bakılır; ortanca değer ile aranan değer karşılaştıralarak **sola** ya da **sağa** gidilir. Bu algoritma recursive şekilde aranan veri bulunasaya ya da  gidilecek yer kalmayasa kadar devam eder.
 
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_4.png" alt="binary search">
 </p>
 
@@ -198,7 +198,7 @@ Elimizdeki para sayısı eğer tek ise, bir tanesini kenara ayırır ve kalan pa
 
 Algoritmanın çalışma mantığına göre çalışma zaman büyüme hızı (binary search ile aynı mantıkta),  
 
-```T(n) = T(n/2) + 1, T(1) = 0``` 
+```T(n) = T(n/2) + 1, T(1) = 0```
 
 Bu da `Θ(log2(n))`'dir. Fakat bu algoritma geliştirilebilir. Eğer elimizdeki parayı 2'ye değil de 3'e bölerek işleme devam edersek çalışma zaman büyüme hızı azalacaktır.   
 
@@ -213,7 +213,7 @@ log2(n) / log3(n) = 1,6 kat
 
 Ruslar tarafından geliştirilen, **iki pozitif sayıyı daha kolay olarak çarpabilmeyi** sağlayan bu algoritma aşağıdaki gibidir.
 
-n ve m isimli iki tane pozitif sayı olsun elimizde. 
+n ve m isimli iki tane pozitif sayı olsun elimizde.
 
 Eğer n çift bir sayı ise, `n . m = n/2 . 2m`  
 Eğer n tek bir sayi ise, `n . m = (n-1)/2 . 2m + m`
@@ -222,7 +222,7 @@ Olarak işlemi güncelleriz. İşlem `1 . m = m` olasaya kadar devam eder ve eli
 
 50 ve 65 sayılarını çarpmak istiyor olalım, işlem aşağıdaki gibi olacaktır.
 
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_5.png" alt="russian peasant multiplication">
 </p>
 
@@ -232,13 +232,13 @@ Flavius Josephus, Roma'lılara karşı bir isyanı yönetmiş tarihi bir karakte
 
 Fakat Josephus bu fikri ortaya atarken aklında ölmek gibi bir fikir yoktu. **En son hayatta kalacak kişinin yerin durmalı** ve ardından kendini öldürmek yerine Roma'lılara teslim olmalıydı. Peki tam olarak nerede durmalıydı ?
 
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_2.gif" alt="josephus problem gif">
 </p>
 
 Aşağıdaki gibi adamların bir çember yapıp, saat yönünde ilerleyerek birbirini öldürdüğü düşünün. Yani 1 2'yi, 3 4'ü, 5 6'yı, 1 3'ü, 5 1'i öldürecektir.
 
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_6.png" alt="josephus problem">
 </p>
 

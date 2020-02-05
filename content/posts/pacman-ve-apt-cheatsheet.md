@@ -13,7 +13,7 @@ description: kullanışlı bir cheatsheet
 
 ---
 
-**NOT** : Eksik gördüğünüz kısımlar için **pull request** yollayabilirsiniz.[**[1]**](https://github.com/boratanrikulu/boratanrikulu.github.io)
+**NOT** : Eksik gördüğünüz kısımlar için **pull request** yollayabilirsiniz.[**`[1]`**](https://github.com/boratanrikulu/boratanrikulu.github.io)
 
 ---
 

@@ -7,14 +7,14 @@ title: LDAP Nedir ? Örnek Bir Uygulama.
 ---
 
 **Kaynaklar**  
-LYK'18 - GNU/Linux Sistem Yönetimi 2. Düzey [**[Aydın Doyak]**](https://twitter.com/aydintd)  
+LYK'18 - GNU/Linux Sistem Yönetimi 2. Düzey [**`[Aydın Doyak]`**](https://twitter.com/aydintd)  
 
 
 **NOT 0:** Ldif dosyalarının syntax'ına hakim olmak oldukça zor, ben de hakim değilim.  
 Konfigürasyon dosyaları, Aydın Doyak'tan alınmıştır.  
-[**aydintd.net/centos-7de-openldap-sunucu-kurulumu-ve-ayarlanmasi/**](https://aydintd.net/centos-7de-openldap-sunucu-kurulumu-ve-ayarlanmasi/)
+[**`aydintd.net/centos-7de-openldap-sunucu-kurulumu-ve-ayarlanmasi/`**](https://aydintd.net/centos-7de-openldap-sunucu-kurulumu-ve-ayarlanmasi/)
 
-**NOT 1:** Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz [**[0]**](https://github.com/boratanrikulu/boratanrikulu.github.io/tree/master/_posts)  
+**NOT 1:** Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz [**`[0]`**](https://github.com/boratanrikulu/boratanrikulu.github.io/tree/master/_posts)  
 **NOT 2:** Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim **:)**
 
 ---
@@ -29,7 +29,7 @@ Dizinde rollback, transaction gibi **kompleks işlemler desteklenmez**.
 
 Dizin daha çok **dağıtık çalışmaya ihtiyaç duyan uygulamalar için tercih edilir**. Kurumsal e-mail adres defteri, DNS sistemi gibi..
 
-Tanım kaynağı: [**[1]**](http://www.bilgisayarmuhendisleri.com/sayfa.aspx?s=60)
+Tanım kaynağı: [**`[1]`**](http://www.bilgisayarmuhendisleri.com/sayfa.aspx?s=60)
 
 ---
 
@@ -43,7 +43,7 @@ LDAP, yani **Lightweight Directory Access Protocol**, önceden **X.500** olarak 
 
 ## Bir Örnek Üzerinden Açıklanması
 
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/ldap-nedir-ornek-bir-uygulama/1.png">
 </p>
 
@@ -147,7 +147,7 @@ Yapacağımız değişiklik için 4 adet bilgi girmeliyiz;
 ağaç bilgisi **dn**,  
 işlem türü **changetype**,  
 işlemin nereye yapılacağı **add**,  
-değer **olcRootPw**.. 
+değer **olcRootPw**..
 
 Bunlar için aşağıdaki satırları özet fonksiyonu kısmını değiştirdikten sonra dosyaya kopyalayın ve kayıt edin.
 
@@ -165,10 +165,10 @@ olcRootPW: {SSHA}RO3LgVGv4emLElZbjKtCwBBYdKqz4mej
 
 İşlemin ardından aşağıdaki gibi bir çıktı gözlemleriz.
 
->	SASL/EXTERNAL authentication started
-	SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
-	SASL SSF: 0
-	modifying entry "olcDatabase={0}config,cn=config"
+>	`SASL/EXTERNAL authentication started  
+	SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth  
+	SASL SSF: 0  
+	modifying entry "olcDatabase={0}config,cn=config"  `
 
 ---
 
@@ -179,14 +179,14 @@ Doküman bilgileri için
 [root@ldap ~#] ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif
 ```
 
-Sistem bilgileri için 
+Sistem bilgileri için
 ```bash
 [root@ldap ~#] ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif
 ```
 
 Kullanıcı bilgileri için
 ```bash
-[root@ldap ~#] ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif 
+[root@ldap ~#] ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif
 ```
 
 Parola sınırlamaları yapmak için
@@ -279,14 +279,14 @@ ou: Group
 
 Bu işlemi ağacımıza işlemek için aşağıdaki gibi bir yapı kullanmalıyız. Buradaki **Wx** ifadesi parola sorgusunun sağlanması içindir. **-D** ise hangi dn ile işlemin yapılacağını belirtir, bir nevi hangi yetki ile yapılacağı.
 ```bash
-[root@ldap ~#] ldapadd -Wx -D cn=admin,dc=boratanrikulu,dc=me -f /root/ldif_files/basedomain.ldif 
+[root@ldap ~#] ldapadd -Wx -D cn=admin,dc=boratanrikulu,dc=me -f /root/ldif_files/basedomain.ldif
 ```
 
 Şuana kadar yaptığımız işlemler ile People ve Group olmak üzere iki adet Orginazsyon Unit'i olan boş bir ağaç oluşturmuş olduk.
 
 Aslında şu ana kadar uğraştığımız yapıların genel görnümü şu şekilde;
 
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/ldap-nedir-ornek-bir-uygulama/2.png">
 </p>  
 
@@ -389,7 +389,7 @@ Artık kullanıcı bilgileri için gerekli ayarlamaları yapmaya başlayabiliriz
 
 İlk olarak gruplaro oluşturalım. Sistemde 3 grup olsun istiyoruz;
 
-- **sysadmin** 
+- **sysadmin**
 - **developer**
 - **manager**
 
@@ -518,7 +518,7 @@ ldap_user_object_class = inetOrgPerson
 ldap_user_name = uid
 ldap_user_fullname = cn
 ldap_user_home_directory = homeDirectory
-ldap_user_email = mail 
+ldap_user_email = mail
 ldap_group_object_class = posixGroup
 ldap_group_name = cn
 
@@ -561,9 +561,9 @@ Artık servise restart çekebiliriz.
 
 Ardından aşağıdaki gibi test ettiğimizde sistemin sorunsuz çalıştığını görebiliriz.
 
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/ldap-nedir-ornek-bir-uygulama/3.png">
-</p> 
+</p>
 
 ---
 

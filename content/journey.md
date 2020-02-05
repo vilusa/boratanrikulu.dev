@@ -5,7 +5,7 @@ showNavigate: false
 
 > I like to keep my memories.  
   There are some photos that are taken at events I attended.  
-  I call this section "journey". I love to join events and made events
+  I call this section "journey". I love to join events and make events.
 
 ---
 

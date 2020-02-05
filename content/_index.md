@@ -2,13 +2,15 @@
 title: About me
 ---
 
-My interest in server management and cybersecurity resulting from meeting with GNU / Linux operating systems caused me to choose computer engineering as a profession. I am currently studying at Pamukkale University.
+Hey.  
+I'm Bora. A software engineer.  
 
-Although server management has a big impact on me to lead this profession, my interest can move to other parties. Since I want to experience by playing a role in all areas of the development process, I try not to hesitate to focus on different areas.
+Currently studying at computer engineering at Pamukkale University.  
+I'm mainly interested in **system administration**, **golang** and **shell scripting.**  
 
-For about 1 year, I developed myself on Ruby / Rails, where I felt philosophically close to my ideas to improve myself on the web. I still actively use Ruby and Rails.
+In this site, you'll find my blog posts and events that I attended.  
 
-Now I feel closer to DevOps, and I do my research and studies on this field. I am looking for a job where I will gain experience in DevOps.m.
+If you need to contact me, feel free to send an email to: [**`boratanrikulu@gmail.com`**](mailto:boratanrikulu@gmail.com)
 
 <!-- > "Dinlenmemek üzere yola çıkanlar asla yorulmazlar." -->
 

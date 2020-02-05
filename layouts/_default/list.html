@@ -24,7 +24,7 @@
 					</div>
 				</div>
 
-				<ul class="posts">
+				<ul class="posts flat">
 					{{- range .Data.Pages -}}
 					{{- if (in (.Site.Params.excludedTypes | default (slice "page")) .Type) -}}
 					{{- else -}}

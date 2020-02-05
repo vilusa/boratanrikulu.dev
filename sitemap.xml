@@ -3,17 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://staging.boratanrikulu.dev/blog/</loc>
+    <lastmod>2020-01-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://staging.boratanrikulu.dev/</loc>
     <lastmod>2020-01-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://staging.boratanrikulu.dev/tags/gnu/linux/</loc>
-    <lastmod>2020-01-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://staging.boratanrikulu.dev/posts/</loc>
     <lastmod>2020-01-15T00:00:00+00:00</lastmod>
   </url>
   
@@ -170,10 +170,6 @@
   <url>
     <loc>https://staging.boratanrikulu.dev/pasif-bilgi-toplama/</loc>
     <lastmod>2018-03-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://staging.boratanrikulu.dev/aboutme/</loc>
   </url>
   
   <url>

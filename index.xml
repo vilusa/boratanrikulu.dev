@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Bora Tanrıkulu</title>
+    <title>About me on Bora Tanrıkulu</title>
     <link>https://staging.boratanrikulu.dev/</link>
-    <description>Recent content on Bora Tanrıkulu</description>
+    <description>Recent content in About me on Bora Tanrıkulu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>copyright notice</copyright>
@@ -369,17 +369,6 @@ canyoupwn.me
 wikipedia.org
  Açık Kaynak İstihbaratı Nedir (OSINT)?   Diğer bir adıyla Open-Source Intelligence; dış dünyaya erişimi açık kaynakların kullanımıyla, çıkarlar doğrultusunda, hedefe yönelik bilgi toplanmasıdır. Herkes internet üzerinde bir iz bırakır. Bu bırakılan izlerin toplanıp birleştirilmesi / takip edilmesi ile önemli bilgiler elde edilebilir.
   Örneğin benim ismimi, google ya da başka bir arama motoru üzerinde aratacak olursanız, benim kullandığım sosyal medya hesaplarımın bir çoğuna, fotoğraflarıma, yaşıma, e-mail adresime, belki çok daha kişisel bilgilerime erişim sağlayabilirsiniz.</description>
-    </item>
-    
-    <item>
-      <title>About me</title>
-      <link>https://staging.boratanrikulu.dev/aboutme/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://staging.boratanrikulu.dev/aboutme/</guid>
-      <description>GNU/Linux işletim sistemleri ile tanışmam sonucunda oluşan sunucu yönetimi ve siber güvenliğe ilgim, meslek olarak kendime bilgisayar mühendisliğini seçmeme neden oldu. Şuan Pamukkale Üniversitesi’nde okumaktayım.
-Her ne kadar sunucu yönetiminin üzerimde bu mesleğe yönelmeme sebep verecek kadar büyük bir etkisi olsa da ilgi alanım başka taraflara da kayabiliyor. Geliştirme sürecinin tüm alanlarında rol alarak tecrübe etmek istememden dolayı, farklı alanlara yönelmekten çekinmemeye çalışıyorum.
-Takribi olarak 1 yıl boyunca, web alanında kendimi geliştirmek için fikirlerime felsefi açıdan yakın hissettiğim Ruby/Rails üzerinde kendimi geliştirdim.</description>
     </item>
     
     <item>

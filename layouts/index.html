@@ -5,9 +5,16 @@
 	<div class="container wrapper">
 		{{ partial "head.html" . }}
 
-    <div class="markdown">
-      {{ .Content }}
-    </div>
+		<div class="post">
+			<div class="post-header">
+				<div class="matter">
+					<h1 class="title">{{ .Title }}</h1>
+				</div>
+			</div>
+	    <div class="markdown">
+	      {{ .Content }}
+	    </div>
+		</div>
 	</div>
 	{{ partial "footer.html" . }}
 </body>

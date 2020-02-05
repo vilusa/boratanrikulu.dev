@@ -5,36 +5,61 @@
 	<div class="container wrapper">
 		{{ partial "head.html" . }}
 
+		<div class="markdown" style="float: right;">
+			<h3 style="display: inline;">
+				<a href="/tags/">
+					<strong>
+						<code>Tags</code>
+					</strong>
+					<i class="fas fa-caret-right" style="color: #333;"></i>
+				</a>
+			</h3>
+		</div>
+
 		<div class="recent-posts section">
 			<div class="posts">
 				{{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
 				{{ $paginator := .Paginate (where $pages "Params.hidden" "ne" true) }}
-				{{ range $paginator.Pages }}
-					<div class="post">
-						<div class="post-header">
-							<div class="meta">
-								<div class="date">
-									<span class="day">{{ dateFormat "02" .Date }}</span>
-							<span class="rest">{{ if $.Site.Data.month }}{{ index $.Site.Data.month (printf "%d" .Date.Month) }} {{ .Date.Year }}{{ else }}{{ dateFormat "Jan 2006" .Date }}{{ end }}</span>
-								</div>
-							</div>
-							<div class="matter">
-								<h4 class="title small">
-									<a href="{{ .RelPermalink }}">{{.Title}}{{ if .Draft }}<sup class="draft-label">DRAFT</sup>{{ end }}</a>
-								</h4>
-								<span class="description">
-									{{ if isset .Params "description" }}
-										{{ .Description }}
-									{{ else if gt (len .RawContent) 120 }}
-										{{ slicestr .RawContent 0 120 }}...
-									{{ else }}
-										{{ .RawContent }}
-									{{ end }}
-								</span>
-							</div>
+				<div class="post">
+					<div class="post-header">
+						<div class="matter">
+							<h1 class="title">{{ .Title }}</h1>
 						</div>
 					</div>
-				{{ end }}
+
+					<div class="markdown">
+			      {{ .Content }}
+			    </div>
+
+					{{ range $paginator.Pages }}
+					<ul class="posts">
+						<li class="post">
+							<div class="post-header">
+								<div class="meta">
+									<div class="date">
+										<span class="day">{{ dateFormat "02" .Date }}</span>
+										<span class="rest">{{ if $.Site.Data.month }}{{ index $.Site.Data.month (printf "%d" .Date.Month) }} {{ .Date.Year }}{{ else }}{{ dateFormat "Jan 2006" .Date }}{{ end }}</span>
+									</div>
+								</div>
+								<div class="matter">
+									<h4 class="title small">
+										<a href="{{ .RelPermalink }}">{{.Title}}{{ if .Draft }}<sup class="draft-label">DRAFT</sup>{{ end }}</a>
+									</h4>
+									<span class="description">
+										{{ if isset .Params "description" }}
+											{{ .Description }}
+										{{ else if gt (len .RawContent) 120 }}
+											{{ slicestr .RawContent 0 120 }}...
+										{{ else }}
+											{{ .RawContent }}
+										{{ end }}
+									</span>
+								</div>
+							</div>
+						</li>
+					</ul>
+					{{ end }}
+				</div>
 				{{ template "partials/paginator.html" . }}
 			</div>
 		</div>

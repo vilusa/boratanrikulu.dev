@@ -422,7 +422,7 @@ ul {
 
 p code, strong code {
   padding: 2px 4px;
-  font-size: 90%;
+  font-size: 0.8em;
   color: #c7254e;
   /* background-color: #f9f2f4; */
   border-radius: 4px;
@@ -449,7 +449,7 @@ pre.highlight, .highlight > pre, td.code pre {
   border-left: 7px solid #444;
   margin-top: 1em;
   border-radius: 4px;
-  font-size: 1.1em;
+  font-size: 1.0em;
   font-family: serif;
 }
 

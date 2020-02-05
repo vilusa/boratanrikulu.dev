@@ -87,11 +87,11 @@
           </h3>
         </div><div class="markdown">
 				<p><strong>Kaynaklar</strong><br>
-LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://twitter.com/aydintd">**[Aydın Doyak]**</a></p>
+LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://twitter.com/aydintd"><strong><code>[Aydın Doyak]</code></strong></a></p>
 <p><strong>NOT 0:</strong> Ldif dosyalarının syntax'ına hakim olmak oldukça zor, ben de hakim değilim.<br>
 Konfigürasyon dosyaları, Aydın Doyak&rsquo;tan alınmıştır.<br>
-<a href="https://aydintd.net/centos-7de-openldap-sunucu-kurulumu-ve-ayarlanmasi/"><strong>aydintd.net/centos-7de-openldap-sunucu-kurulumu-ve-ayarlanmasi/</strong></a></p>
-<p><strong>NOT 1:</strong> Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz <a href="https://github.com/boratanrikulu/boratanrikulu.github.io/tree/master/_posts">**[0]**</a><br>
+<a href="https://aydintd.net/centos-7de-openldap-sunucu-kurulumu-ve-ayarlanmasi/"><strong><code>aydintd.net/centos-7de-openldap-sunucu-kurulumu-ve-ayarlanmasi/</code></strong></a></p>
+<p><strong>NOT 1:</strong> Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz <a href="https://github.com/boratanrikulu/boratanrikulu.github.io/tree/master/_posts"><strong><code>[0]</code></strong></a><br>
 <strong>NOT 2:</strong> Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim <strong>:)</strong></p>
 <hr>
 <h2 id="directory-dizin-nedir-">Directory (Dizin) Nedir ?</h2>
@@ -99,14 +99,14 @@ Konfigürasyon dosyaları, Aydın Doyak&rsquo;tan alınmıştır.<br>
 <p>Veritabanlarından farklı olarak; dizinde veriler belirli bir hiyerarşiye göre tutulur. Bu sebeble arama ve okuma işlemleri aynı işi yapan bir veritabanı uygulamasına gore daha performanslıdır olabilir.</p>
 <p>Dizinde rollback, transaction gibi <strong>kompleks işlemler desteklenmez</strong>.</p>
 <p>Dizin daha çok <strong>dağıtık çalışmaya ihtiyaç duyan uygulamalar için tercih edilir</strong>. Kurumsal e-mail adres defteri, DNS sistemi gibi..</p>
-<p>Tanım kaynağı: <a href="http://www.bilgisayarmuhendisleri.com/sayfa.aspx?s=60">**[1]**</a></p>
+<p>Tanım kaynağı: <a href="http://www.bilgisayarmuhendisleri.com/sayfa.aspx?s=60"><strong><code>[1]</code></strong></a></p>
 <hr>
 <h2 id="ldap-nedir-">LDAP Nedir ?</h2>
 <p>LDAP, yani <strong>Lightweight Directory Access Protocol</strong>, önceden <strong>X.500</strong> olarak tanımlanmış dizin erişim protokolünün hafifletilmiş bir sürümüdür.</p>
 <p>İletişim protokolü olarak TCP/IP&rsquo;yi kullanır.</p>
 <hr>
 <h2 id="bir-örnek-üzerinden-açıklanması">Bir Örnek Üzerinden Açıklanması</h2>
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/ldap-nedir-ornek-bir-uygulama/1.png">
 </p>
 <p>Genel olarak tanım üzerinden LDAP'ın kullanım amacı anlaşılamamış olabilir.</p>
@@ -163,10 +163,7 @@ olcRootPW: {SSHA}RO3LgVGv4emLElZbjKtCwBBYdKqz4mej
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@ldap ~#<span style="color:#000;font-weight:bold">]</span> ldapadd -Y EXTERNAL -H ldapi:/// -f /root/ldif_files/change_password.ldif
 </code></pre></div><p>İşlemin ardından aşağıdaki gibi bir çıktı gözlemleriz.</p>
 <blockquote>
-<p>SASL/EXTERNAL authentication started
-SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
-SASL SSF: 0
-modifying entry &ldquo;olcDatabase={0}config,cn=config&rdquo;</p>
+<p><code>SASL/EXTERNAL authentication started   SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth   SASL SSF: 0   modifying entry &quot;olcDatabase={0}config,cn=config&quot;  </code></p>
 </blockquote>
 <hr>
 <p>Default olarak gelen bazı <strong>schema</strong>&lsquo;lar vardır. Bunlar /etc/openldap/schema/ altında bulunur. Bunların bazılarının sisteme işlenmesinde fayda vardır. Bunları aşağıdaki gibi basalım.</p>
@@ -175,7 +172,7 @@ modifying entry &ldquo;olcDatabase={0}config,cn=config&rdquo;</p>
 </code></pre></div><p>Sistem bilgileri için</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@ldap ~#<span style="color:#000;font-weight:bold">]</span> ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif
 </code></pre></div><p>Kullanıcı bilgileri için</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@ldap ~#<span style="color:#000;font-weight:bold">]</span> ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif 
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@ldap ~#<span style="color:#000;font-weight:bold">]</span> ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif
 </code></pre></div><p>Parola sınırlamaları yapmak için</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@ldap ~#<span style="color:#000;font-weight:bold">]</span> ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/ppolicy.ldif
 </code></pre></div><hr>
@@ -240,10 +237,10 @@ dn: ou=Group,dc=boratanrikulu,dc=me
 objectClass: organizationalUnit
 ou: Group
 </code></pre></div><p>Bu işlemi ağacımıza işlemek için aşağıdaki gibi bir yapı kullanmalıyız. Buradaki <strong>Wx</strong> ifadesi parola sorgusunun sağlanması içindir. <strong>-D</strong> ise hangi dn ile işlemin yapılacağını belirtir, bir nevi hangi yetki ile yapılacağı.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@ldap ~#<span style="color:#000;font-weight:bold">]</span> ldapadd -Wx -D <span style="color:#008080">cn</span><span style="color:#000;font-weight:bold">=</span>admin,dc<span style="color:#000;font-weight:bold">=</span>boratanrikulu,dc<span style="color:#000;font-weight:bold">=</span>me -f /root/ldif_files/basedomain.ldif 
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@ldap ~#<span style="color:#000;font-weight:bold">]</span> ldapadd -Wx -D <span style="color:#008080">cn</span><span style="color:#000;font-weight:bold">=</span>admin,dc<span style="color:#000;font-weight:bold">=</span>boratanrikulu,dc<span style="color:#000;font-weight:bold">=</span>me -f /root/ldif_files/basedomain.ldif
 </code></pre></div><p>Şuana kadar yaptığımız işlemler ile People ve Group olmak üzere iki adet Orginazsyon Unit&rsquo;i olan boş bir ağaç oluşturmuş olduk.</p>
 <p>Aslında şu ana kadar uğraştığımız yapıların genel görnümü şu şekilde;</p>
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/ldap-nedir-ornek-bir-uygulama/2.png">
 </p>  
 <p>Aşağıdaki komut ile ağacığımızın tamamını görüntüleyelim. Bu komut ile <strong>&ldquo;dc=boratanrikulu,dc=me&rdquo;</strong> ağacının tamamını görütüleyebiliriz.</p>
@@ -391,7 +388,7 @@ ldap_user_object_class = inetOrgPerson
 ldap_user_name = uid
 ldap_user_fullname = cn
 ldap_user_home_directory = homeDirectory
-ldap_user_email = mail 
+ldap_user_email = mail
 ldap_group_object_class = posixGroup
 ldap_group_name = cn
 
@@ -415,9 +412,9 @@ enumerate = true
 </code></pre></div><p>Artık servise restart çekebiliriz.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>client@boratanrikulu ~$<span style="color:#000;font-weight:bold">]</span> sudo systemctl restart sssd
 </code></pre></div><p>Ardından aşağıdaki gibi test ettiğimizde sistemin sorunsuz çalıştığını görebiliriz.</p>
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/ldap-nedir-ornek-bir-uygulama/3.png">
-</p> 
+</p>
 <hr>
 <p>LDAP hakkında yazacaklarım şuan için bu kadar. LDAP çok detaylı bir konu, kendi öğrendiklerimi yazarak paylaşmak istedim, umarım faydalı olmuştur.</p>
 <p><strong>NOT :</strong> Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim <strong>:)</strong></p>

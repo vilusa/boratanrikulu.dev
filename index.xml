@@ -71,9 +71,9 @@ Arkaplan görevleri bir işlemin durmasına rol açmadan, eş bir çizgide yür�
       <pubDate>Fri, 21 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://boratanrikulu.dev/decrease-and-conquer/</guid>
-      <description>Kaynaklar:**
+      <description>Kaynaklar:
 Introduction to the Design &amp;amp; Analysis of Algorithms 3e - Pearson
-@elif_haytaoglu**
+@elif_haytaoglu
  Decrease and Conquer Bu yaklaşımda; verilen problemlere çözüm bulmak amacıyla problemden daha küçük boyuttaki örneğine çözüm aranır. Daha küçük boyutu için bulunan çözüm ana probleme uygulanır.
 Yaklaşımın üç çeşidi bulunur:
  Decrease by a constant (sabit bir sayı ile azaltma) Decrease by a constant factor (sabit bir çarpan ile azaltma) Variable size decrease (değişken boyutta azaltma)   Decrease-by-a-constant Algoritmaları İşleyeceğimiz ilk çeşit olan decrease-by-a-constant yaklaşımında, değişken sayısı her aşamada belli bir sabit sayı kadar azaltılarak (bu sabit sayı genellikle 1 olarak seçilir), çözüm bulunmaya çalışılır.</description>
@@ -85,9 +85,9 @@ Yaklaşımın üç çeşidi bulunur:
       <pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://boratanrikulu.dev/brute-force/</guid>
-      <description>Kaynaklar:**
+      <description>Kaynaklar:
 Introduction to the Design &amp;amp; Analysis of Algorithms 3e - Pearson
-@elif_haytaoglu**
+@elif_haytaoglu
  Brute Force Brute Force yaklışımı, bir problemin çözümü için en kolay yollardan biridir. Direkt sonuç odaklıdır, performans aranmaz.
 Örneğin 5^5&amp;rsquo;i brute force yaklaşımı ile aşağıdaki gibi 4 çarpma işlemi yaparak buluruz.
 5^5 = 5x5x5x5x5
@@ -101,11 +101,11 @@ Brute Force uygularken, performans geliştirmesi yapmak amacıyla pek düşünü
       
       <guid>https://boratanrikulu.dev/ldap-nedir-ornek-bir-uygulama/</guid>
       <description>Kaynaklar
-LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey **[Aydın Doyak]**
+LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Aydın Doyak]
 NOT 0: Ldif dosyalarının syntax&#39;ına hakim olmak oldukça zor, ben de hakim değilim.
 Konfigürasyon dosyaları, Aydın Doyak&amp;rsquo;tan alınmıştır.
 aydintd.net/centos-7de-openldap-sunucu-kurulumu-ve-ayarlanmasi/
-NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz **[0]**
+NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz [0]
 NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim :)
  Directory (Dizin) Nedir ? Dizin, belirli türden nesnelerden oluşan küme ve bu küme üzerinde sorgu yapılması imkanı veren bir yapı olarak özetlenebilir.</description>
     </item>
@@ -117,8 +117,8 @@ NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim
       
       <guid>https://boratanrikulu.dev/merkezi-log-server-olusturulmasi/</guid>
       <description>Kaynaklar
-LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey **[Erdem Bayer]**
-NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz **[0]**
+LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Erdem Bayer]
+NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz [0]
 NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim :)
  Rsyslog Nedir ? Rsyslog, log&amp;rsquo;ların yönlendirilmesini sağlayan, UNIX tabanlı sistemlerde çalışan, açık kaynak bir yazılımdır. Temel syslog protokolünü uygulayan rsyslog; içeriğe dayalı filtreleme, zengin filtreleme yetenekleri, esnek yapılandırma seçenekleri ile göze çarpar. Ayrıca taşıma için TCP&amp;rsquo;yi kullanma gibi özellikler ekler.</description>
     </item>
@@ -130,8 +130,8 @@ NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim
       
       <guid>https://boratanrikulu.dev/smtp-nasil-calisir-ve-postfix-kurulumu/</guid>
       <description>Kaynaklar
-LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Erdem Bayer]** [Murathan Bostancı]**
-NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz **[0]**
+LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Erdem Bayer] [Murathan Bostancı]
+NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz [0]
 NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim :)
  SMTP Nedir ? Simple Mail Transfer Protocol, yani SMTP, ilk olarak 1982&amp;rsquo;de RFC 821&amp;lsquo;de tanımlanmıştır.
 Günümüzde kullanılan Extended SMTP ise, 2008&amp;rsquo;de güncellenerek RFC 5321&amp;lsquo;de tanımlanmıştır.
@@ -145,8 +145,8 @@ Günümüzde kullanılan Extended SMTP ise, 2008&amp;rsquo;de güncellenerek RFC
       
       <guid>https://boratanrikulu.dev/postgresql-nedir-nasil-calisir/</guid>
       <description>Kaynaklar
-LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey **[Devrim Gündüz]**
-NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz **[0]**
+LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Devrim Gündüz]
+NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz [0]
 NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim :)
  PostgreSQL Nedir ? PostgreSQL güçlü bir Object-Relational database servisidir.
 SQL dilinin kullanıldığı PostgreSQL&amp;rsquo;in verileri güvenli bir şekilde saklama, karmaşık verileri ölçeklendirme gibi bir çok özelliği vardır.
@@ -191,7 +191,7 @@ $ sudo dpkg-reconfigure tzdata  Zamanlanmış Görev Nedir ? Zamanlanmış göre
       <description>Kaynaklar
 wiki.archlinux.org/File_permissions_and_attributes
 en.wikipedia.org/wiki/Chmod
- Dosya ve Dizininlerin Linux&amp;rsquo;daki Durumu Linux&amp;rsquo;ta her şey birer dosyadır. **[1]**
+ Dosya ve Dizininlerin Linux&amp;rsquo;daki Durumu Linux&amp;rsquo;ta her şey birer dosyadır. [1]
 Özünde dizinler de dosyaların konumunu belirten birer özel dosyadır. Dizinler veri içeremez, yalnızca konum belirtmek amaçlı kullanılabilirler. Dizinlerin bir türü yoktur, uzantısı yoktur. Dosyaların ise bir türü vardır, uzantısı bulunabilir.
 Dizin ve dosya isimleri aynı olamaz.
  Dosya ve Dizin İzinlerinin İncelenmesi ls ile dosyaların izinleri incelenebilir.
@@ -207,7 +207,7 @@ $ ls -l fileName Dosya ve dizin işlemlerine bakıldığında 10 karakterden olu
       <description>Yazan: boratanrikulu
 Kaynaklar
 wiki.archlinux.org/Pacman/Rosetta
- NOT : Eksik gördüğünüz kısımlar için pull request yollayabilirsiniz.**[1]**
+ NOT : Eksik gördüğünüz kısımlar için pull request yollayabilirsiniz.[1]
     PACMAN APT Açıklama     pacman -S [packageName] apt install [packageName] paket yükler   pacman -Rs [packageName] apt remove [packageName] paket siler   pacman -Ss [packageName] apt search [packageName] paket arar   pacman -Sy apt update repo paket bilgilerini günceller   pacman -Syu apt update &amp;amp;&amp;amp; apt upgrade yüklü paketleri günceller   pacman -Syu apt update &amp;amp;&amp;amp; apt dist-upgrade sistemin tam güncellemesini yapar   pacman -Qdtq | pacman -Rs - apt autoremove herhangi bir pakete bağlı olmayan gereksiz paketleri siler   pacman -Sw [packageName] apt install &amp;ndash;download-only [packageName] paketi yalnızca indirir (paket yöneticisi cache konumuna)   ls /var/cache/pacman/pkg/ ls /var/cache/apt/archives/ paket yöneticisi cache&amp;rsquo;ni görüntüler   pacman -U [/path/to/packageName.</description>
     </item>
     

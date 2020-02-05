@@ -87,18 +87,18 @@
           </h3>
         </div><div class="markdown">
 				<p><strong>Kaynaklar</strong><br>
-LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://www.linkedin.com/in/erdem-bayer-1633915/">**[Erdem Bayer]**</a></p>
-<p><strong>NOT 1:</strong> Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz <a href="https://github.com/boratanrikulu/boratanrikulu.github.io/tree/master/_posts">**[0]**</a><br>
+LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://www.linkedin.com/in/erdem-bayer-1633915/"><strong><code>[Erdem Bayer]</code></strong></a></p>
+<p><strong>NOT 1:</strong> Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz <a href="https://github.com/boratanrikulu/boratanrikulu.github.io/tree/master/_posts"><strong><code>[0]</code></strong></a><br>
 <strong>NOT 2:</strong> Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim <strong>:)</strong></p>
 <hr>
 <h2 id="rsyslog-nedir-">Rsyslog Nedir ?</h2>
-<p>Rsyslog, log&rsquo;ların yönlendirilmesini sağlayan, UNIX tabanlı sistemlerde çalışan, açık kaynak bir yazılımdır. Temel syslog protokolünü uygulayan rsyslog; içeriğe dayalı filtreleme, zengin filtreleme yetenekleri, esnek yapılandırma seçenekleri ile göze çarpar. Ayrıca taşıma için TCP&rsquo;yi kullanma gibi özellikler ekler. <a href="https://en.wikipedia.org/wiki/Rsyslog">**[1]**</a></p>
+<p>Rsyslog, log&rsquo;ların yönlendirilmesini sağlayan, UNIX tabanlı sistemlerde çalışan, açık kaynak bir yazılımdır. Temel syslog protokolünü uygulayan rsyslog; içeriğe dayalı filtreleme, zengin filtreleme yetenekleri, esnek yapılandırma seçenekleri ile göze çarpar. Ayrıca taşıma için TCP&rsquo;yi kullanma gibi özellikler ekler. <a href="https://en.wikipedia.org/wiki/Rsyslog"><strong><code>[1]</code></strong></a></p>
 <hr>
 <h2 id="rsyslog-nasıl-çalışır-">Rsyslog Nasıl Çalışır ?</h2>
 <p>Bir süreç tarafından log yazılacağında, log ilk olarak <strong>/dev/log</strong>&lsquo;a yazılır.</p>
 <p>Örneğin postfix tarafından bir log yazılmak istendiğinde, ilgili log /dev/log&rsquo;a yazılır. <strong>rsyslog</strong> tarafından dinlenen /dev/log&rsquo;daki log mesajı; rsyslog tarafından <strong>/var/log/mail</strong>&lsquo;e yazılır.</p>
 <p>/dev/log bir <strong>socket</strong>&lsquo;tir.</p>
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/merkezi-log-server-olusturulmasi/1.png">
 </p>
 <hr>
@@ -112,7 +112,7 @@ LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://www.linkedi
 <strong>Severity</strong> ile de <strong>hangi aciliyette</strong> bir log olduğu belirtilir.</p>
 <p>Facility ve Severity türleri bellidir, ekleme çıkarma yapılamaz.</p>
 <hr>
-<h4 id="facility-2httpswikigentooorgwikirsyslogfacility">Facility <a href="https://wiki.gentoo.org/wiki/Rsyslog#Facility">**[2]**</a></h4>
+<h4 id="facility-2httpswikigentooorgwikirsyslogfacility">Facility <a href="https://wiki.gentoo.org/wiki/Rsyslog#Facility"><strong><code>[2]</code></strong></a></h4>
 <table>
 <thead>
 <tr>
@@ -235,7 +235,7 @@ LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://www.linkedi
 </tbody>
 </table>
 <hr>
-<h4 id="severity-3httpswikigentooorgwikirsyslogseverity">Severity <a href="https://wiki.gentoo.org/wiki/Rsyslog#Severity">**[3]**</a></h4>
+<h4 id="severity-3httpswikigentooorgwikirsyslogseverity">Severity <a href="https://wiki.gentoo.org/wiki/Rsyslog#Severity"><strong><code>[3]</code></strong></a></h4>
 <table>
 <thead>
 <tr>
@@ -301,7 +301,7 @@ LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://www.linkedi
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> tail -10 /var/log/maillog
 </code></pre></div><p>Eğer normalde olmayan bir facility ya da severity kullanmaya çalışırsak hata verecektir.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> logger -p mesaj.onemli <span style="color:#d14">&#34;cok onemli bir mesaj.&#34;</span>
-</code></pre></div><p align="center"> 
+</code></pre></div><p align="center">
 	<img src="/images/posts/merkezi-log-server-olusturulmasi/2.png">
 </p>
 <hr>
@@ -313,7 +313,7 @@ LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://www.linkedi
 <p>Şimdi ufaktan konfigürasyon dosyasını kurcalamaya başlayalım.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> vim /etc/rsyslog.conf
 </code></pre></div><p>Dosyada ayarlar incelendiğinde bazılarının başında <strong>&quot;-&quot;</strong> olduğu gözükür. Bu &ldquo;sync&rdquo; işleminin yapılmasına gerek olmadığı belirtmek içindir. Ama aslında günümüzde bir işlevi yoktur. Eskiden rsyslog tarafından yazma işlemi yapıldıktan sonra sync yapılırken, günümüzde bu işlem yapılmamaktadır. <strong>Yani &ldquo;-&rdquo; yazılsa da yazılmasa da sync yapılmaz.</strong></p>
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/merkezi-log-server-olusturulmasi/3.png">
 </p>
 <p>Şimdi test amacıyla bir kural satırı ekleyelim. Aşağıdaki satırı, konfigürasyon dosyasında uygun bir yere ekleyin.</p>
@@ -328,7 +328,7 @@ LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://www.linkedi
 </code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> logger -p auth.alert <span style="color:#d14">&#34;you are under bruteforce attack.&#34;</span>
 </code></pre></div><p>Ardından aşağıdaki gibi oluşturduğumuz log&rsquo;ların yazıldığını görebiliriz.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> cat /var/log/sec-logs
-</code></pre></div><p align="center"> 
+</code></pre></div><p align="center">
 	<img src="/images/posts/merkezi-log-server-olusturulmasi/4.png">
 </p>
 <p>Örneğin auth ve cron haricindeki tüm facility&rsquo;lerin info severity&rsquo;e sahip olan loglarını bir yere kaydetmek istiyor olalım. Bu durumda aşağıdaki gibi bir kural girebiliriz.</p>
@@ -342,7 +342,7 @@ LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://www.linkedi
 <p>Bunun için elimizde bir adet <strong>postfix</strong> ve bir adet <strong>wordpress</strong> server'ı olacak, bu iki sunucunun da log&rsquo;larını ayrı bir server&rsquo;da tutacağız.</p>
 <p>Aşağıdaki görselde daha anlaşılır şekilde görebilirsiniz.</p>
 <p><strong>NOT :</strong> 3 server için de <strong>CentOS 7</strong> tercih edilmiştir. Siz başka dağıtımlar tercih edebilirsiniz.</p>
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/merkezi-log-server-olusturulmasi/0.png">
 </p>
 <hr>
@@ -369,7 +369,7 @@ $InputTCPServerRun 514
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@wordpress ~#<span style="color:#000;font-weight:bold">]</span> logger -T -n 192.168.2.140 -P <span style="color:#099">514</span> -p mail.info <span style="color:#d14">&#34;Wordpress Server&#39;dan gelen LOG.&#34;</span>
 </code></pre></div><p>Şimdi Log Server&rsquo;da durumu kontrol edelim.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@log ~#<span style="color:#000;font-weight:bold">]</span> tail -f /var/log/maillog
-</code></pre></div><p align="center"> 
+</code></pre></div><p align="center">
 	<img src="/images/posts/merkezi-log-server-olusturulmasi/5.png">
 </p>
 <p>Eğer Wordpress Server'ın tüm log&rsquo;larını, Log Server&rsquo;a yollamak istiyorsak aşağıdaki gibi bir satırı konfigürasyon dosyasına eklememiz yeterlidir. Fakat biz Log Server log&rsquo;ları ile uzak server log&rsquo;larının karışmasını istemediğimiz için bir adım daha uygulamamız gerekiyor; <strong>template !</strong></p>
@@ -381,12 +381,12 @@ $InputTCPServerRun 514
 </code></pre></div><hr>
 <h4 id="template-kullanımı">Template Kullanımı</h4>
 <p>Bizim kurmak istediğimiz yapıdaki amaç; Log Server'ın <strong>/var/log/remote</strong> dizini altında <strong>her uzak sunucu için ayrı klasör oluşması</strong> ve bunların altında uzak server log&rsquo;larının saklanmasını sağlamak.</p>
-<p>Bunun için template yapısını kullanacağız. <a href="https://www.rsyslog.com/doc/master/configuration/properties.html">**[4]**</a></p>
+<p>Bunun için template yapısını kullanacağız. <a href="https://www.rsyslog.com/doc/master/configuration/properties.html"><strong><code>[4]</code></strong></a></p>
 <p>Kullanacağımız template aşağıdaki gibi olacak. Bu iki satırı /etc/rsyslog.conf&rsquo;da uygun bir yere ekleyin ve servisi reload&rsquo;layın.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$template RemoteServersTamplate, &#34;/var/log/remote/%hostname%/%syslogfacility-text%/%syslogseverity-text%.log&#34;
 </code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">*.*        ?RemoteServersTamplate
 </code></pre></div><p>Postfix ve Wordpress Server&rsquo;da test amaçlı birkaç log oluşturduğumuzda sorunsuz çalıştırğını gözlemliyoruz.</p>
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/merkezi-log-server-olusturulmasi/6.png">
 </p>
 <hr>
@@ -397,7 +397,7 @@ $InputTCPServerRun 514
 <p>Yani aslında Log Server'ın loglarını bu kural satırına uygulamak istemiyorsak şu şekilde yapmamız yeterlidir.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">*.*        if $hostname != &#39;log&#39; then ?RemoteServersTamplate
 </code></pre></div><p>Tüm cihazlarda bir kaç log ürettikten sonra aşağıdaki sonucu gözlemliyoruz.</p>
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/merkezi-log-server-olusturulmasi/7.png">
 </p>
 <hr>

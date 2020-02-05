@@ -86,9 +86,9 @@
             </a>
           </h3>
         </div><div class="markdown">
-				<p><strong>Kaynaklar:**<br>
-<a href="https://www.pandora.com.tr/kitap/introduction-to-the-design-and-analysis-of-algorithms-3e/270012"><strong>Introduction to the Design &amp; Analysis of Algorithms 3e - Pearson</strong></a><br>
-</strong>@elif_haytaoglu**<a href="https://www.linkedin.com/in/elif-haytaoglu-97176564/"></a></p>
+				<p><strong>Kaynaklar:</strong><br>
+<a href="https://www.pandora.com.tr/kitap/introduction-to-the-design-and-analysis-of-algorithms-3e/270012"><strong><code>Introduction to the Design &amp; Analysis of Algorithms 3e - Pearson</code></strong></a><br>
+<a href="https://www.linkedin.com/in/elif-haytaoglu-97176564/"><strong><code>@elif_haytaoglu</code></strong></a></p>
 <hr>
 <h2 id="decrease-and-conquer">Decrease and Conquer</h2>
 <p>Bu yaklaşımda; verilen problemlere çözüm bulmak amacıyla problemden daha küçük boyuttaki örneğine çözüm aranır. Daha küçük boyutu için bulunan çözüm ana probleme uygulanır.</p>
@@ -105,7 +105,7 @@
 <h3 id="insertion-sort">Insertion Sort</h3>
 <p>Decrease-by-one yaklaşımı ile liste sıralanmasına Insertion Sort iyi bir örnektir.
 Algoritmanın mantığı şu şekildedir; sıralanması gereken listenin daha ufak bir bölümü sıralı gibi kabul edilir ve seçilen pivot bu mantıkla sırada durması gerektiği yere yerleştirilir.</p>
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_1.gif" alt="insertion sort gif">
 </p>
 <p>Örnek vermek gerekirse, elinizde bir deste kart var gibi düşünün. Sıralamak için baktığınız karttan geriye dönük olarak giderek gereken yere koyarsınız. Insertion Sort tam olarak bu <strong>kart sıralaması</strong>nın yapılmasıdır.</p>
@@ -127,15 +127,15 @@ Ortalama: <code>Θ(n^2)</code></p>
 <h2 id="topological-sorting">Topological Sorting</h2>
 <p>Topological Sorting, yalnızca yönlü ağaçlarda uygulanabilen bir sıralama algoritmasıdır. Agaçtan kendisine bir girdi olmayan parçaların koparılma sırası olarak düşünülebilir. Paket yöneticileri, görev talimatları gibi uygulamalarda kullanılır.</p>
 <p>Topological Sorting uygulayabileceğimiz yollardan bir tanesi; tüm vertex&rsquo;lerin taranması ve herhangi bir <strong>girdisi olmayan vertex</strong>&lsquo;lerin çıkarılmasıdır.</p>
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_3.gif" alt="topological sorting gif">
 </p>
 <p>Diğer bir yol ise; ilgili ağaçta <strong>DFS olarak dolaşmak</strong> ve bu dolaşma sırasının tersini almaktır. Tersi alanmış bu sıra bize Topological Sorting sıralamasını verecektir.</p>
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_0.png" alt="topological sorting">
 </p>
 <p>Döngü içeren ağaçlara (yani DFS dolaşımında backforward içeren ağaçlara) Topological Sorting uygulanamaz. Örneğin aşağıdaki gibi bir ağaca Topological Sorting uygulanamaz.</p>
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_7.png" alt="not topological sort">
 </p>
 <hr>
@@ -144,7 +144,7 @@ Ortalama: <code>Θ(n^2)</code></p>
 <h3 id="permütasyon-oluşturmak">Permütasyon Oluşturmak</h3>
 <p>1&rsquo;den n&rsquo;ye kadar olan sayıların permütasyonları istense nasıl bulursunuz ?<br>
 <strong>John Trotter</strong> algoritması ile bunu oldukça pratik bir yoldan bulabiliriz.</p>
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_8.png" alt="johnson trotter">
 </p>
 <ul>
@@ -155,7 +155,7 @@ Ortalama: <code>Θ(n^2)</code></p>
 <li>Eğer var ise, büyük olan sayının yönü değiştirilerek mobil yapılır</li>
 <li>Hiç bir mobil kalmayasaya kadar bu şekilde devam eder</li>
 </ul>
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_9.png" alt="johnson trotter">
 </p>
 <p>Sözde kodu:</p>
@@ -171,7 +171,7 @@ Ortalama: <code>Θ(n^2)</code></p>
 <p>Bir kümenin tüm alt kümelerini bulmak gerekiyor olsun. Bunun için oldukça basit bir mantık vardır; ikilik tabandan yararlanmak.</p>
 <p>3 elemanlı bir küme olsun, o halde <strong>ikilik taban</strong>da 111&rsquo;e kadar yazarsak tüm alt kümeleri bulmuş oluruz.</p>
 <p>Yani aşağıdaki gibi tüm alt kümeleri bulabiliriz.</p>
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_10.png" alt="alt küme oluşturmak">
 </p>
 <hr>
@@ -180,7 +180,7 @@ Ortalama: <code>Θ(n^2)</code></p>
 <h3 id="binary-search">Binary Search</h3>
 <p>İkili arama işlemi sıralı dizilerde aranan verinin bulunmasını sağlar.<br>
 Yaklaşım basittir. İlk olarak ortanca değere bakılır; ortanca değer ile aranan değer karşılaştıralarak <strong>sola</strong> ya da <strong>sağa</strong> gidilir. Bu algoritma recursive şekilde aranan veri bulunasaya ya da  gidilecek yer kalmayasa kadar devam eder.</p>
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_4.png" alt="binary search">
 </p>
 <p>Sözde kodu:</p>
@@ -228,17 +228,17 @@ log2(n) / log3(n) = 1,6 kat</p>
 Eğer n tek bir sayi ise, <code>n . m = (n-1)/2 . 2m + m</code></p>
 <p>Olarak işlemi güncelleriz. İşlem <code>1 . m = m</code> olasaya kadar devam eder ve elimizde son kalan değer çarpma işleminin sonucu olmuş olur.</p>
 <p>50 ve 65 sayılarını çarpmak istiyor olalım, işlem aşağıdaki gibi olacaktır.</p>
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_5.png" alt="russian peasant multiplication">
 </p>
 <h3 id="josephus-problem">Josephus Problem</h3>
 <p>Flavius Josephus, Roma&rsquo;lılara karşı bir isyanı yönetmiş tarihi bir karakterdir. Roma&rsquo;lılar tarafından etrafları sarıldığında ve isyankarlar teslim olmak yerine ölmeyi tercih ettiklerinde, kişilerin intihar etmeden ölebilmeleri için herkesin birbirini öldüreceği, son ayakta kalan kişinin de kendisini öldürmesi gerektiği bir sistem ortaya atmıştır. Bu şekilde neredeyse tüm isyanlarlar (kendini öldürecek olan bir kişi hariç) intihar etmeden canlarına son verebilecekti.</p>
 <p>Fakat Josephus bu fikri ortaya atarken aklında ölmek gibi bir fikir yoktu. <strong>En son hayatta kalacak kişinin yerin durmalı</strong> ve ardından kendini öldürmek yerine Roma&rsquo;lılara teslim olmalıydı. Peki tam olarak nerede durmalıydı ?</p>
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_2.gif" alt="josephus problem gif">
 </p>
 <p>Aşağıdaki gibi adamların bir çember yapıp, saat yönünde ilerleyerek birbirini öldürdüğü düşünün. Yani 1 2&rsquo;yi, 3 4'ü, 5 6&rsquo;yı, 1 3'ü, 5 1&rsquo;i öldürecektir.</p>
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_6.png" alt="josephus problem">
 </p>
 <p>6 kişilik bu örnekte en son ayakta kalan adam 5 numaralı yerde duran olacaktır.</p>

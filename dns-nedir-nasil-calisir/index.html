@@ -131,13 +131,13 @@
                                             .......
 </code></pre></div><p>Bu elçi tarayıcı tarafından (veya isteği ne atıyor ise) yapılan isteği alır ve DNS sorgulama sürecini yapıp sonucu geri client&rsquo;e döndürür. DNS Recursive Resolvers isteğin cevabını ilk olarak cache üzerinden sorgular. Eğer aranan cevap cache&rsquo;de zaten var ise ve bu bilginin güncelliği sisteme göre kabul edilebilir ise istek yapılmadan direkt olarak sonuç dönülebilir. Ya da Root nameserver, TLD nameserver, Authoritative nameserver için gerekli istekler atılır.</p>
 <p align="center">
-  <img src="https://www.cloudflare.com/images/posts/learning/dns/dns-server-types/root-nameserver.png" alt="how-dns-works-cloudfleare">
+  <img src="https://www.cloudflare.com/img/learning/dns/what-is-dns/dns-lookup-diagram.png" alt="how-dns-works-cloudfleare">
 </p>
 <hr>
 <h4 id="root-nameserver-nedir-">Root nameserver Nedir ?</h4>
 <p>Root nameserver&rsquo;i insanlar tarafından okunabilir olan text dosyasının IP karşılığına çevrilmesindeki ilk adım olarak düşünebiliriz. Recursive Resolver tarafından ilk istek atılan yerdir.</p>
 <p align="center">
-  <img src="https://www.cloudflare.com/images/posts/learning/dns/glossary/dns-root-server/dns-root-server.png" alt="root nameservers">
+  <img src="https://www.cloudflare.com/img/learning/dns/glossary/dns-root-server/dns-root-server.png" alt="root nameservers">
 </p>
 <p>Root nameserver&rsquo;lar zone olarak düşünülebilir. Dünyada 13 adet zone bulunur. Yani 13 çeşit Root Nameserver vardır. Fakat bu yalnızca 13 sunucu olduğunu anlamına gelmez. Birbirinin kopyası bir çok sunucu vardır. Bu sayede sunuculara daha kolay erişilebilir. Bu yapı anycast ile sağlanır.</p>
 <p>Recursive Resolver tarafından, eğer cache&rsquo;da ilgili veri yok ise, istek Root Nameserver&rsquo;a ilk olarak atılır. Ardından ağaç yapısında aşağılara, TLD Nameserver ve Authoritative Nameserver&rsquo;a istek atılarak devam edilir. Yani DNS yapısı ağaç şeklinde kurgulanmıştır, aynı *nix tabanlı sistemlerde olduğu gibi.</p>

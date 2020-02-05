@@ -18,9 +18,9 @@
       <pubDate>Fri, 21 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://boratanrikulu.dev/decrease-and-conquer/</guid>
-      <description>Kaynaklar:**
+      <description>Kaynaklar:
 Introduction to the Design &amp;amp; Analysis of Algorithms 3e - Pearson
-@elif_haytaoglu**
+@elif_haytaoglu
  Decrease and Conquer Bu yaklaşımda; verilen problemlere çözüm bulmak amacıyla problemden daha küçük boyuttaki örneğine çözüm aranır. Daha küçük boyutu için bulunan çözüm ana probleme uygulanır.
 Yaklaşımın üç çeşidi bulunur:
  Decrease by a constant (sabit bir sayı ile azaltma) Decrease by a constant factor (sabit bir çarpan ile azaltma) Variable size decrease (değişken boyutta azaltma)   Decrease-by-a-constant Algoritmaları İşleyeceğimiz ilk çeşit olan decrease-by-a-constant yaklaşımında, değişken sayısı her aşamada belli bir sabit sayı kadar azaltılarak (bu sabit sayı genellikle 1 olarak seçilir), çözüm bulunmaya çalışılır.</description>
@@ -32,9 +32,9 @@ Yaklaşımın üç çeşidi bulunur:
       <pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://boratanrikulu.dev/brute-force/</guid>
-      <description>Kaynaklar:**
+      <description>Kaynaklar:
 Introduction to the Design &amp;amp; Analysis of Algorithms 3e - Pearson
-@elif_haytaoglu**
+@elif_haytaoglu
  Brute Force Brute Force yaklışımı, bir problemin çözümü için en kolay yollardan biridir. Direkt sonuç odaklıdır, performans aranmaz.
 Örneğin 5^5&amp;rsquo;i brute force yaklaşımı ile aşağıdaki gibi 4 çarpma işlemi yaparak buluruz.
 5^5 = 5x5x5x5x5

@@ -33,8 +33,8 @@ Internete bağlı her cihazın eşsiz bir IP adresi vardır. Yani yukarda DNS so
       
       <guid>https://boratanrikulu.dev/smtp-nasil-calisir-ve-postfix-kurulumu/</guid>
       <description>Kaynaklar
-LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Erdem Bayer]** [Murathan Bostancı]**
-NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz **[0]**
+LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Erdem Bayer] [Murathan Bostancı]
+NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz [0]
 NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim :)
  SMTP Nedir ? Simple Mail Transfer Protocol, yani SMTP, ilk olarak 1982&amp;rsquo;de RFC 821&amp;lsquo;de tanımlanmıştır.
 Günümüzde kullanılan Extended SMTP ise, 2008&amp;rsquo;de güncellenerek RFC 5321&amp;lsquo;de tanımlanmıştır.

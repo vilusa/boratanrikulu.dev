@@ -301,19 +301,72 @@ Ya da belki de Text tipini tercih edebiliriz.</p>
 <hr>
 <h3 id="örneğimize-geri-dönelim"><strong><code>Örneğimize geri dönelim.</code></strong></h3>
 <p>Şimdi veri tiplerinin genel hatlarıyla tanıdığımıza göre konunun başında verdiğimiz örneğe geri dönebiliriz.</p>
-<p>| Veri Adı | Veri Tipi | Veri Tipi Uzunluğu(byte) |
-|:&mdash;&mdash;&ndash;:|:&mdash;&mdash;&mdash;:|
-| is_shipped  | bool        | 1 |
-| user_id     | int8        | 8 |
-| order_total | numeric     | -1 |
-| order_dt    | timestamptz | 8 |
-| order_type  | int2        | 2 |
-| ship_dt     | timestamptz | 8 |
-| item_ct     | int4        | 4 |
-| ship_cost   | numeric     | -1 |
-| receive_dt  | timestamptz |  8 |
-| tracking_cd | text        | -1 |
-| id          | int8        | 8 |</p>
+<table>
+<thead>
+<tr>
+<th align="center">Veri Adı</th>
+<th align="center">Veri Tipi</th>
+<th align="center">Veri Tipi Uzunluğu(byte)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">is_shipped</td>
+<td align="center">bool</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">user_id</td>
+<td align="center">int8</td>
+<td align="center">8</td>
+</tr>
+<tr>
+<td align="center">order_total</td>
+<td align="center">numeric</td>
+<td align="center">-1</td>
+</tr>
+<tr>
+<td align="center">order_dt</td>
+<td align="center">timestamptz</td>
+<td align="center">8</td>
+</tr>
+<tr>
+<td align="center">order_type</td>
+<td align="center">int2</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center">ship_dt</td>
+<td align="center">timestamptz</td>
+<td align="center">8</td>
+</tr>
+<tr>
+<td align="center">item_ct</td>
+<td align="center">int4</td>
+<td align="center">4</td>
+</tr>
+<tr>
+<td align="center">ship_cost</td>
+<td align="center">numeric</td>
+<td align="center">-1</td>
+</tr>
+<tr>
+<td align="center">receive_dt</td>
+<td align="center">timestamptz</td>
+<td align="center">8</td>
+</tr>
+<tr>
+<td align="center">tracking_cd</td>
+<td align="center">text</td>
+<td align="center">-1</td>
+</tr>
+<tr>
+<td align="center">id</td>
+<td align="center">int8</td>
+<td align="center">8</td>
+</tr>
+</tbody>
+</table>
 <p>Bir yazılımcı olarak bu kolonları nasıl sıralardınız ? Hepiniz farklı bir cevabı olabilir. Kolayına nasıl gelirse. Yanlış.</p>
 <p>Bu kolonların sıralaması performansı ya da veritabanı boyunu etkiler mi konusu hiç aklınıza geldi mi ?</p>
 <hr>
@@ -392,19 +445,72 @@ Ya da belki de Text tipini tercih edebiliriz.</p>
    <span style="color:#000;font-weight:bold">AND</span> a.attnum <span style="color:#000;font-weight:bold">&gt;</span><span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>
  <span style="color:#000;font-weight:bold">ORDER</span> <span style="color:#000;font-weight:bold">BY</span> t.typlen <span style="color:#000;font-weight:bold">DESC</span>;
 </code></pre></div><p>Bizim örneğimize göre en uygun kolon sıralaması aşağıdaki gibi yapılmalıdır. Yalnızca sıralamayı değiştirerek takribi olarak 20% alan tasarrufu sağlamış olduk.</p>
-<p>| Veri Adı | Veri Tipi | Veri Tipi Uzunluğu(byte) |
-|:&mdash;&mdash;&ndash;:|:&mdash;&mdash;&mdash;:|
-| id          | int8        | 8 |
-| user_id     | int8        | 8 |
-| order_dt    | timestamptz | 8 |
-| ship_dt     | timestamptz | 8 |
-| receive_dt  | timestamptz |  8 |
-| item_ct     | int4        | 4 |
-| order_type  | int2        | 2 |
-| is_shipped  | bool        | 1 |
-| tracking_cd | text        | -1 |
-| ship_cost   | numeric     | -1 |
-| order_total | numeric     | -1 |</p>
+<table>
+<thead>
+<tr>
+<th align="center">Veri Adı</th>
+<th align="center">Veri Tipi</th>
+<th align="center">Veri Tipi Uzunluğu(byte)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">id</td>
+<td align="center">int8</td>
+<td align="center">8</td>
+</tr>
+<tr>
+<td align="center">user_id</td>
+<td align="center">int8</td>
+<td align="center">8</td>
+</tr>
+<tr>
+<td align="center">order_dt</td>
+<td align="center">timestamptz</td>
+<td align="center">8</td>
+</tr>
+<tr>
+<td align="center">ship_dt</td>
+<td align="center">timestamptz</td>
+<td align="center">8</td>
+</tr>
+<tr>
+<td align="center">receive_dt</td>
+<td align="center">timestamptz</td>
+<td align="center">8</td>
+</tr>
+<tr>
+<td align="center">item_ct</td>
+<td align="center">int4</td>
+<td align="center">4</td>
+</tr>
+<tr>
+<td align="center">order_type</td>
+<td align="center">int2</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center">is_shipped</td>
+<td align="center">bool</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">tracking_cd</td>
+<td align="center">text</td>
+<td align="center">-1</td>
+</tr>
+<tr>
+<td align="center">ship_cost</td>
+<td align="center">numeric</td>
+<td align="center">-1</td>
+</tr>
+<tr>
+<td align="center">order_total</td>
+<td align="center">numeric</td>
+<td align="center">-1</td>
+</tr>
+</tbody>
+</table>
 
 			</div>
 

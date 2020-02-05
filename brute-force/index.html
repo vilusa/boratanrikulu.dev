@@ -86,9 +86,9 @@
             </a>
           </h3>
         </div><div class="markdown">
-				<p><strong>Kaynaklar:**<br>
-<a href="https://www.pandora.com.tr/kitap/introduction-to-the-design-and-analysis-of-algorithms-3e/270012"><strong>Introduction to the Design &amp; Analysis of Algorithms 3e - Pearson</strong></a><br>
-</strong>@elif_haytaoglu**<a href="https://www.linkedin.com/in/elif-haytaoglu-97176564/"></a></p>
+				<p><strong>Kaynaklar:</strong><br>
+<a href="https://www.pandora.com.tr/kitap/introduction-to-the-design-and-analysis-of-algorithms-3e/270012"><strong><code>Introduction to the Design &amp; Analysis of Algorithms 3e - Pearson</code></strong></a><br>
+<a href="https://www.linkedin.com/in/elif-haytaoglu-97176564/"><strong><code>@elif_haytaoglu</code></strong></a></p>
 <hr>
 <h2 id="brute-force">Brute Force</h2>
 <p>Brute Force yaklışımı, bir problemin çözümü için en kolay yollardan biridir. Direkt sonuç odaklıdır, performans aranmaz.</p>
@@ -99,7 +99,7 @@
 <h2 id="brute-force-ile-sıralama-algoritmaları">Brute Force ile Sıralama Algoritmaları</h2>
 <p>Bilgisayar bilimleri için oldukça önemli olan sıralama problemini çözmek amacıyla yüzlerce algoritma geliştirilmiştir. Bunlardan Selection Sort ve Bubble Sort, brute force yaklaşımıyla yapılan sıralama algoritmalarına örnektir. Bu iki algoritma da <code>Θ(n)</code> ile çalışır.</p>
 <h3 id="selection-sort">Selection Sort</h3>
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/brute-force/brute_force_2.gif" alt="selection sort">
 </p>
 <p>Algoritması:</p>
@@ -121,7 +121,7 @@
 </code></pre></div><p>Büyüme hızı: <code>Θ(n^2)</code></p>
 <p>Selection Sort&rsquo;un diğer sıralama algoritmalarından <strong>ayıran bir özelliği</strong> vardır. Algoritma tüm elemanları n^2 kere dolaşırken swap işlemi yalnızca n kez yapılır.</p>
 <h3 id="bubble-sort">Bubble Sort</h3>
-<p align="center"> 
+<p align="center">
   <img src="/images/posts/brute-force/brute_force_1.gif" alt="bubble sort">
 </p>
 <p>Algoritması:</p>
@@ -205,7 +205,7 @@
 </code></pre></div><p>Temel işlem d&rsquo;nin bulunduğu yerdir.</p>
 <p>Büyüme hızı: <code>Θ(n^2)</code></p>
 <h3 id="convex-hull-problem">Convex-Hull Problem</h3>
-<p align="center"> 
+<p align="center">
 	<img height="400" src="/images/posts/brute-force/brute_force_1.png" alt="convex-hull problem">
 </p>
 <p>Verilen noktalar için <strong>dışbükey bir çevreleyici</strong>nin bulunmasıdır.</p>
@@ -217,7 +217,7 @@
 <p>Exhaustive Search'ü üç problemin çözümünde kullanacağız; Traveling Salesman Problem, Knapsack Problem, Assignment Problem.</p>
 <h3 id="traveling-salesman-problem-gezgin-satıcı-problemi">Traveling Salesman Problem (gezgin satıcı problemi)</h3>
 <p>150 yıldır araştırmacılar tarafından araştırılan bu problemde istenen, verilen n şehir içerisinde, her şehirde yalnızca bir kez uğranılan minimum turun bulunmasıdır. Bu noktada problem en kısa Hemiltonaian çevrimini bulmaya dönmüş olur. Brute force yaklaşımı ile, Exhaustive Search yaparsak, bu sorunu çözerken tüm kombinasyonal durumlar yazılır ve ağırlık bakımından en optimal yol(lar) seçilir.</p>
-<p align="center"> 
+<p align="center">
 	<img height="600" src="/images/posts/brute-force/brute_force_0.png" alt="traveling salesman problem">
 </p>
 <p>Kaç yol vardır ?</p>
@@ -227,7 +227,7 @@
 Büyüme hızı: <code>Θ(n!)</code></p>
 <h3 id="knapsack-problem-sırtçantası-problemi">Knapsack Problem (sırtçantası problemi)</h3>
 <p>Çok bilindik diğer bir problem olan Knapsack probleminde amaç bir sırt çantasına maksimum olarak sığabilecek alt ürün grubunu bulmaktır. Bir yük uçağı hayal edin, bu uçağın kapasitesini verimli kullanabilmek amacıyla, kapasiteyi aşmadan elmizdeki metaryeller optimum şekilde uçağa koymamız gerekir. Ya da bir hırsız düşünün, hırsız torbasını en verimli şekilde doldurmalıdır, hırsız çantasına ağırlıkça en az, <strong>pahaca en çok eşyayı doldurmak</strong> ister.</p>
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/brute-force/brute_force_2.png" alt="knapsack problem">
 </p>
 <p>Exhaustive Search yaklaşımına göre problemi çözmek istersek, kombinasyonal olarak tüm alt grupları bulur, problem sınırımız olan kapasiteye en uygun değeri taşıyan alt grubu seçeriz.</p>
@@ -235,11 +235,11 @@ Büyüme hızı: <code>Θ(n!)</code></p>
 Büyüme hızı: <code>Ω(2^n)</code></p>
 <h3 id="assignment-problem-atama-problemi">Assignment Problem (atama problemi)</h3>
 <p>Bir diğer problem olan Assignment Probleminde n tane insan ve n tane iş olduğu söylenir, her çalışan yalnızca bir işe atabilir ve her işte yalnızca bir çalışan çalışabilir. Her çalışanın bir işte çalışması için belirli bir maliyet vardır. <strong>En düşük maliyete sahip çalışan-iş eşleştirilmesi</strong>nin nasıl yapılması gerektiğini sorar.</p>
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/brute-force/brute_force_3.png" alt="assignment problem">
 </p>
 <p>Yukardağı tabloyu bir matrix olarak düşünürseniz, her satırda ve kolonda yalnızca bir seçim yapılarak en düşük maliyet hesabı yapılacaktır.</p>
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/brute-force/brute_force_4.png" alt="assignment problem">
 </p>
 <p>Exhaustive Search yaklaşımı ile problem çözülecek olursa olabilecek tüm kombinasyonal ifadeler bulunur ve en düşük maliyete sahip olan seçilir. Fakat bu yöntemden çok daha kullanışlı olan Hungarian method&rsquo;unun kullanılması daha mantıklı olacaktır.</p>
@@ -253,7 +253,7 @@ Büyüme hızı: <code>Ω(2^n)</code></p>
 <p>Exhaustive Search dolaşma yöntemi olan DFS ve BFS&rsquo;ye de uygulanabilir.</p>
 <h3 id="depth-first-search-dfs">Depth-first search (DFS)</h3>
 <p>Derine gidilir. Dolaşma işlemi bir düğümden başlar. Gidilebilecek mümkün komşulardan bir tanesini seçer ve ilerler. Gidilebilecek diğer düğümlere bakmadan önce yeni gidilen düğümün komşuları incelenir ve bir tanesine gidilir. Gidilebilecek komşu kalmayınca geri sarılarak mümkün komşular aranır.</p>
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/brute-force/brute_force_5.png" alt="depth-first search">
 </p>
 <p>Sözde kodu:</p>
@@ -272,7 +272,7 @@ def <span style="color:#900;font-weight:bold">dfs</span><span style="color:#000;
       <span style="color:#900;font-weight:bold">dfs</span><span style="color:#000;font-weight:bold">(</span>w<span style="color:#000;font-weight:bold">)</span>
 </code></pre></div><h3 id="breadth-first-search-bfs">Breadth-first search (BFS)</h3>
 <p>Enine gidilir. Dolaşma işlemi bir düğümden başlar. Gidilebilecek mümkün komşular hepsini sırayla seçer ve ilerler. Gidilebilecek bütün komşular gezildikten sonra ilk komşunun komşuları seçilir.</p>
-<p align="center"> 
+<p align="center">
 	<img src="/images/posts/brute-force/brute_force_6.png" alt="breadth-first search">
 </p>
 <p>Sözde kodu:</p>

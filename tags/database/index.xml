@@ -35,8 +35,8 @@ Bu anlatım boyunca öncelikle PostgreSQL&amp;rsquo;de bulunan temel veritipleri
       
       <guid>https://boratanrikulu.dev/postgresql-nedir-nasil-calisir/</guid>
       <description>Kaynaklar
-LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey **[Devrim Gündüz]**
-NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz **[0]**
+LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Devrim Gündüz]
+NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz [0]
 NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim :)
  PostgreSQL Nedir ? PostgreSQL güçlü bir Object-Relational database servisidir.
 SQL dilinin kullanıldığı PostgreSQL&amp;rsquo;in verileri güvenli bir şekilde saklama, karmaşık verileri ölçeklendirme gibi bir çok özelliği vardır.

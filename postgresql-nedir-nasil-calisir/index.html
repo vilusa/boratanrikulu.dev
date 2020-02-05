@@ -87,15 +87,15 @@
           </h3>
         </div><div class="markdown">
 				<p><strong>Kaynaklar</strong><br>
-LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://twitter.com/DevrimGunduzTR">**[Devrim Gündüz]**</a></p>
-<p><strong>NOT 1:</strong> Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz <a href="https://github.com/boratanrikulu/boratanrikulu.github.io/tree/master/_posts">**[0]**</a><br>
+LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://twitter.com/DevrimGunduzTR"><strong><code>[Devrim Gündüz]</code></strong></a></p>
+<p><strong>NOT 1:</strong> Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz <a href="https://github.com/boratanrikulu/boratanrikulu.github.io/tree/master/_posts"><strong><code>[0]</code></strong></a><br>
 <strong>NOT 2:</strong> Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim <strong>:)</strong></p>
 <hr>
 <h2 id="postgresql-nedir-">PostgreSQL Nedir ?</h2>
 <p>PostgreSQL güçlü bir <strong>Object-Relational</strong> database servisidir.</p>
 <p>SQL dilinin kullanıldığı PostgreSQL&rsquo;in verileri güvenli bir şekilde saklama, karmaşık verileri ölçeklendirme gibi bir çok özelliği vardır.</p>
 <p>PostgreSQL tüm ana işletim sistemlerinde çalışır.</p>
-<p>PostgreSQL, kanıtlanmış mimarisi, güvenilirliği, veri bütünlüğü, sağlam özellik seti, genişletilebilirliği ve yazılımın arkasındaki açık kaynak topluluğunun sürekli olarak performans ve yenilikçi çözümler sunması ile güçlü bir ün kazanmıştır. <a href="https://www.postgresql.org/about/">**[1]**</a></p>
+<p>PostgreSQL, kanıtlanmış mimarisi, güvenilirliği, veri bütünlüğü, sağlam özellik seti, genişletilebilirliği ve yazılımın arkasındaki açık kaynak topluluğunun sürekli olarak performans ve yenilikçi çözümler sunması ile güçlü bir ün kazanmıştır. <a href="https://www.postgresql.org/about/"><strong><code>[1]</code></strong></a></p>
 <hr>
 <h2 id="postgresqlin-özellikleri">PostgreSQL&rsquo;in Özellikleri</h2>
 <ul>
@@ -165,7 +165,7 @@ LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://twitter.com
 <p>Bir client bağlanacağında direkt olarak Connection Pooler ile bağlantı kurar. Server ise karşısında direkt olarak Connection Pooler'ı görür.</p>
 <p>Connection Pooler ayrı bir sunucuda ya da direkt PostgreSQL ile aynı sunucuda yürütülebilir. Ama aynı sunucuda daha performanslı bir sonuç verecektir.</p>
 <p>PostgreSQL default olarak en fazla 100 client kabul edebilir. Bu nedenle default ayarlar ile Connection Pooler çalıştırıldığında kendine 100 tane postgres bağlantısı sağlar. Eğer dışardan gelen client sayısı 100&rsquo;den fazla olursa, pooler bunları sıraya koyabilir.</p>
-<p>PgBouncer bir connection pooler&rsquo;dır. <a href="https://pgbouncer.github.io/">**[2]**</a></p>
+<p>PgBouncer bir connection pooler&rsquo;dır. <a href="https://pgbouncer.github.io/"><strong><code>[2]</code></strong></a></p>
 <hr>
 <h3 id="sorguların-çalıştırılması">Sorguların Çalıştırılması</h3>
 <p align="center">
@@ -194,7 +194,7 @@ LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://twitter.com
 </blockquote>
 <p>Disklerin default olarak 5%&rsquo; i journal olarak tanımlanır. Veriler diske yazılacağında direkt olarak journal bölgesine yazılır, bu bölgeye yazılan veriler belli bir periyod ile dışar <strong>flash</strong> edilir.</p>
 <p>Buradaki mantık küçük bir alana yazma işleminin daha kolay olmasıdır, yazma küçük bir bölgeye yapılır ve bu veriler daha sonra dağıtılır.</p>
-<p>PostgreSQL de benzer bir mantık ile çalışır. WAL için postgres&rsquo;in journal'ı denebilir. <a href="https://www.postgresql.org/docs/9.1/static/wal-intro.html">**[3]**</a></p>
+<p>PostgreSQL de benzer bir mantık ile çalışır. WAL için postgres&rsquo;in journal'ı denebilir. <a href="https://www.postgresql.org/docs/9.1/static/wal-intro.html"><strong><code>[3]</code></strong></a></p>
 <hr>
 <h3 id="dirty-buffers">Dirty Buffers</h3>
 <p align="center">
@@ -248,7 +248,7 @@ LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://twitter.com
 <hr>
 <h2 id="örnek-bir-postgresql-uygulaması">Örnek Bir PostgreSQL Uygulaması</h2>
 <p><strong>NOT:</strong> Örnek uygulama amacıyla CentOS tercih ettim. Siz başka dağıtımlar tercih edebilirsiniz.</p>
-<p>İlk olarak repo adresini eklememiz gerekiyor. <a href="https://yum.postgresql.org/">**[4]**</a></p>
+<p>İlk olarak repo adresini eklememiz gerekiyor. <a href="https://yum.postgresql.org/"><strong><code>[4]</code></strong></a></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum install https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-7-x86_64/pgdg-centos10-10-2.noarch.rpm
 </code></pre></div><p>Ardından PostgreSQL kurulumunu yapalım.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum install postgresql10-server

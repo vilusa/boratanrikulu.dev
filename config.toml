@@ -72,20 +72,9 @@ name = "Home"
 url = "/"
 weight = 1
 
-# [[menu.main]]
-# name = "All posts"
-# url = "/posts"
-# weight = 2
-
-
 [[menu.main]]
 name = "Blog"
 url = "/blog"
-weight = 2
-
-[[menu.main]]
-name = "Tags"
-url = "/tags"
 weight = 2
 
 [[menu.main]]

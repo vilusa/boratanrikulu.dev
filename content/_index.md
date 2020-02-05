@@ -1,5 +1,6 @@
 ---
 title: About me
+description: "Interested in system administration, golang and shell scripting."
 ---
 
 Hey.  

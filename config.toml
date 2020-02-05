@@ -51,7 +51,7 @@ disqusShortname = "boratanrikulu"
   posts = ":filename/"
 
 [params]
-	subtitle = "Interested in shell scripting, system administration and golang."
+	subtitle = "Interested in system administration, golang and shell scripting."
 
 	# Optional 64x64 avatar image.
 	avatar = "/images/avatar.jpeg"

@@ -48,7 +48,7 @@ disqusShortname = "boratanrikulu"
     startLevel = 2
 
 [permalinks]
-  posts = "/:filename/"
+  posts = ":filename/"
 
 [params]
 	subtitle = "Interested in shell scripting, system administration and golang."
@@ -77,9 +77,15 @@ weight = 1
 # url = "/posts"
 # weight = 2
 
+
 [[menu.main]]
-name = "About me"
-url = "/aboutme"
+name = "Blog"
+url = "/blog"
+weight = 2
+
+[[menu.main]]
+name = "Tags"
+url = "/tags"
 weight = 2
 
 [[menu.main]]
@@ -88,14 +94,9 @@ url = "/journey"
 weight = 3
 
 [[menu.main]]
-name = "All Posts"
-url = "/tags"
-weight = 4
-
-[[menu.main]]
 name = "Contact"
 url = "/contact"
-weight = 5
+weight = 4
 
 [[params.social]]
 name = "Github"

@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Security on Bora Tanrıkulu</title>
-    <link>https://staging.boratanrikulu.dev/tags/security/</link>
+    <link>https://boratanrikulu.dev/tags/security/</link>
     <description>Recent content in Security on Bora Tanrıkulu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>copyright notice</copyright>
     <lastBuildDate>Sat, 26 May 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://staging.boratanrikulu.dev/tags/security/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://boratanrikulu.dev/tags/security/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Kablosuz Ağ Güvenliği - Bölüm 1</title>
-      <link>https://staging.boratanrikulu.dev/kablosuz-ag-guvenligi-bolum-1/</link>
+      <link>https://boratanrikulu.dev/kablosuz-ag-guvenligi-bolum-1/</link>
       <pubDate>Sat, 26 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://staging.boratanrikulu.dev/kablosuz-ag-guvenligi-bolum-1/</guid>
+      <guid>https://boratanrikulu.dev/kablosuz-ag-guvenligi-bolum-1/</guid>
       <description>Kaynaklar
 Hacktrick&amp;rsquo;18 - Kablosuz Ağ Sızma Testleri - Besim Altınok
  Bazı Temel Bilgiler Modemler kendilerinin aktif olduğu belirtmek için etrafa Beacon paketleri yayarlar, bu sayede çevredeki aktif ağları görebiliriz.
@@ -29,10 +29,10 @@ Asociation Request ve Asociation Response aşamaları ile de bağlanma işlemi t
     
     <item>
       <title>Sniffing İşlemi</title>
-      <link>https://staging.boratanrikulu.dev/sniffing-islemi/</link>
+      <link>https://boratanrikulu.dev/sniffing-islemi/</link>
       <pubDate>Mon, 23 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://staging.boratanrikulu.dev/sniffing-islemi/</guid>
+      <guid>https://boratanrikulu.dev/sniffing-islemi/</guid>
       <description>Kaynaklar
 kevsersrca.github.io/blog/security/tcpdump/
 wiki.wireshark.org/CaptureFilters
@@ -45,10 +45,10 @@ Network&amp;rsquo;te akan paketleri sniffing işlemi ile (şifrelenmiş değil i
     
     <item>
       <title>Parola Kırma Saldırıları</title>
-      <link>https://staging.boratanrikulu.dev/parola-kirma-saldirilari/</link>
+      <link>https://boratanrikulu.dev/parola-kirma-saldirilari/</link>
       <pubDate>Tue, 17 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://staging.boratanrikulu.dev/parola-kirma-saldirilari/</guid>
+      <guid>https://boratanrikulu.dev/parola-kirma-saldirilari/</guid>
       <description>Kaynaklar
 erdemoflaz.com/sifre-ve-parola-arasindaki-farklar
 openwall.com/john/doc/examples
@@ -62,10 +62,10 @@ Kısaca “senin bildiğin parola, sistemin bildiği şifredir” diyebiliriz.</
     
     <item>
       <title>Exploit</title>
-      <link>https://staging.boratanrikulu.dev/exploit/</link>
+      <link>https://boratanrikulu.dev/exploit/</link>
       <pubDate>Mon, 26 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://staging.boratanrikulu.dev/exploit/</guid>
+      <guid>https://boratanrikulu.dev/exploit/</guid>
       <description>Kaynaklar
 tr.wikipedia.org/wiki/exploit
 medium.com/@celk0irem007/kevgir-yetki-yukseltme
@@ -77,10 +77,10 @@ Exploit&amp;rsquo;ler genellikle hedef sistemin kontrolünü kazanma, yetki yük
     
     <item>
       <title>Aktif Bilgi Toplama (NMAP)</title>
-      <link>https://staging.boratanrikulu.dev/aktif-bilgi-toplama/</link>
+      <link>https://boratanrikulu.dev/aktif-bilgi-toplama/</link>
       <pubDate>Tue, 13 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://staging.boratanrikulu.dev/aktif-bilgi-toplama/</guid>
+      <guid>https://boratanrikulu.dev/aktif-bilgi-toplama/</guid>
       <description>Kaynaklar:
 NMAP ile Ağ Keşfi - Murat Yokuş (Pusula Yayıncılık)
 canyoupwn.me/tr-nmap-cheatsheet/
@@ -92,10 +92,10 @@ Aktif bilgi toplama adımında hedef sistem ile doğrudan ilişkiye girilir.</de
     
     <item>
       <title>Pasif Bilgi Toplama (Açık Kaynak İstihbaratı)</title>
-      <link>https://staging.boratanrikulu.dev/pasif-bilgi-toplama/</link>
+      <link>https://boratanrikulu.dev/pasif-bilgi-toplama/</link>
       <pubDate>Mon, 05 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://staging.boratanrikulu.dev/pasif-bilgi-toplama/</guid>
+      <guid>https://boratanrikulu.dev/pasif-bilgi-toplama/</guid>
       <description>Kaynaklar:
 erdemoflaz.com/pasif-bilgi-toplama
 canyoupwn.me

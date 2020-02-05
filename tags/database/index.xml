@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Database on Bora Tanrıkulu</title>
-    <link>https://staging.boratanrikulu.dev/tags/database/</link>
+    <link>https://boratanrikulu.dev/tags/database/</link>
     <description>Recent content in Database on Bora Tanrıkulu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>copyright notice</copyright>
     <lastBuildDate>Wed, 25 Dec 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://staging.boratanrikulu.dev/tags/database/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://boratanrikulu.dev/tags/database/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>PostgreSQL&#39;de Veri Tipleri ve Sıralama</title>
-      <link>https://staging.boratanrikulu.dev/postgresql-veri-tipleri-ve-siralama/</link>
+      <link>https://boratanrikulu.dev/postgresql-veri-tipleri-ve-siralama/</link>
       <pubDate>Wed, 25 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://staging.boratanrikulu.dev/postgresql-veri-tipleri-ve-siralama/</guid>
+      <guid>https://boratanrikulu.dev/postgresql-veri-tipleri-ve-siralama/</guid>
       <description>Kaynaklar:
 Devrim Gündüz - PostgreSQL&#39;de Veri Tipleri - Microsoft Türkiye
 2ndquadrant.com/on-rocks-and-sand/
@@ -30,10 +30,10 @@ Bu anlatım boyunca öncelikle PostgreSQL&amp;rsquo;de bulunan temel veritipleri
     
     <item>
       <title>PostgreSQL Nedir ? Nasıl Çalışır ?</title>
-      <link>https://staging.boratanrikulu.dev/postgresql-nedir-nasil-calisir/</link>
+      <link>https://boratanrikulu.dev/postgresql-nedir-nasil-calisir/</link>
       <pubDate>Thu, 16 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://staging.boratanrikulu.dev/postgresql-nedir-nasil-calisir/</guid>
+      <guid>https://boratanrikulu.dev/postgresql-nedir-nasil-calisir/</guid>
       <description>Kaynaklar
 LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey **[Devrim Gündüz]**
 NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz **[0]**

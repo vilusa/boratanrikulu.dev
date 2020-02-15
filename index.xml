@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>About me on Bora Tanrıkulu</title>
+    <title>Me. on Bora Tanrıkulu</title>
     <link>https://boratanrikulu.dev/</link>
-    <description>Recent content in About me on Bora Tanrıkulu</description>
+    <description>Recent content in Me. on Bora Tanrıkulu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>copyright notice</copyright>
@@ -386,9 +386,9 @@ wikipedia.org
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://boratanrikulu.dev/journey/</guid>
-      <description>I like to keep my memories.
-There are some photos that are taken at events I attended.
-I call this section &amp;ldquo;journey&amp;rdquo;. I love to join events and make events.
+      <description>Here are some photos from events I attended.
+I love taking parts in events and organizing them.
+Therefore &amp;ldquo;journey&amp;rdquo; is what I choose to call this section.
   Title: &amp;quot;Izmir Fen Lisesi - Temel GNU/Linux Eğitimi&amp;quot;  As lecturer.
 Took about 3 hours.
   I talked about philosophy and basic usage of gnu/Linux.

@@ -3,9 +3,9 @@ title: Journey
 showNavigate: false
 ---
 
-> I like to keep my memories.  
-  There are some photos that are taken at events I attended.  
-  I call this section "journey". I love to join events and make events.
+> Here are some photos from events I attended.  
+  I love taking parts in events and organizing them.  
+  Therefore "journey" is what I choose to call this section.
 
 ---
 

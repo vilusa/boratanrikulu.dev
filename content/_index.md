@@ -1,17 +1,20 @@
 ---
-title: About me
+title: Me.
 description: "Interested in system administration, golang and shell scripting."
 ---
 
-Hey.  
-I'm Bora. A software engineer.  
+Hey. It's Bora.  
+A software developer.  
 
-Currently studying at computer engineering at Pamukkale University.  
-I'm mainly interested in **system administration**, **golang** and **shell scripting.**  
+Senior year at Pamukkale University with Computer Engineering major.
+
+Experienced in Linux System Administration, Shell Scripting, Ruby/Rails.  
+Looking forward to improve my capabilities in **Golang** and **Devops**.
 
 In this site, you'll find my blog posts and events that I attended.  
 
-If you need to contact me, feel free to send an email to: [**`boratanrikulu@gmail.com`**](mailto:boratanrikulu@gmail.com)
+Feel free to contact me at: [**`boratanrikulu@gmail.com`**](mailto:boratanrikulu@gmail.com)  
+or see [**`Contact`**]({{< ref "contact" >}}) page for more options.
 
 <!-- > "Dinlenmemek üzere yola çıkanlar asla yorulmazlar." -->
 

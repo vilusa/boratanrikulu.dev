@@ -16,6 +16,8 @@ In this site, you'll find my blog posts and events that I attended.
 Feel free to contact me at: [**`boratanrikulu@gmail.com`**](mailto:boratanrikulu@gmail.com)  
 or see [**`Contact`**]({{< ref "contact" >}}) page for more options.
 
+[**`[CV]`**](/resume.pdf)
+
 <!-- > "Dinlenmemek üzere yola çıkanlar asla yorulmazlar." -->
 
 ---

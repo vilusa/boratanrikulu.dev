@@ -101,8 +101,8 @@ Brute Force uygularken, performans geliştirmesi yapmak amacıyla pek düşünü
       
       <guid>https://boratanrikulu.dev/ldap-nedir-ornek-bir-uygulama/</guid>
       <description>Kaynaklar
-LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Aydın Doyak]
-NOT 0: Ldif dosyalarının syntax&#39;ına hakim olmak oldukça zor, ben de hakim değilim.
+LYK&#39;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Aydın Doyak]
+NOT 0: Ldif dosyalarının syntax&amp;rsquo;ına hakim olmak oldukça zor, ben de hakim değilim.
 Konfigürasyon dosyaları, Aydın Doyak&amp;rsquo;tan alınmıştır.
 aydintd.net/centos-7de-openldap-sunucu-kurulumu-ve-ayarlanmasi/
 NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz [0]
@@ -117,7 +117,7 @@ NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim
       
       <guid>https://boratanrikulu.dev/merkezi-log-server-olusturulmasi/</guid>
       <description>Kaynaklar
-LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Erdem Bayer]
+LYK&#39;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Erdem Bayer]
 NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz [0]
 NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim :)
  Rsyslog Nedir ? Rsyslog, log&amp;rsquo;ların yönlendirilmesini sağlayan, UNIX tabanlı sistemlerde çalışan, açık kaynak bir yazılımdır. Temel syslog protokolünü uygulayan rsyslog; içeriğe dayalı filtreleme, zengin filtreleme yetenekleri, esnek yapılandırma seçenekleri ile göze çarpar. Ayrıca taşıma için TCP&amp;rsquo;yi kullanma gibi özellikler ekler.</description>
@@ -130,7 +130,7 @@ NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim
       
       <guid>https://boratanrikulu.dev/smtp-nasil-calisir-ve-postfix-kurulumu/</guid>
       <description>Kaynaklar
-LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Erdem Bayer] [Murathan Bostancı]
+LYK&#39;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Erdem Bayer] [Murathan Bostancı]
 NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz [0]
 NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim :)
  SMTP Nedir ? Simple Mail Transfer Protocol, yani SMTP, ilk olarak 1982&amp;rsquo;de RFC 821&amp;lsquo;de tanımlanmıştır.
@@ -145,7 +145,7 @@ Günümüzde kullanılan Extended SMTP ise, 2008&amp;rsquo;de güncellenerek RFC
       
       <guid>https://boratanrikulu.dev/postgresql-nedir-nasil-calisir/</guid>
       <description>Kaynaklar
-LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Devrim Gündüz]
+LYK&#39;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Devrim Gündüz]
 NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz [0]
 NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim :)
  PostgreSQL Nedir ? PostgreSQL güçlü bir Object-Relational database servisidir.
@@ -161,10 +161,10 @@ PostgreSQL, kanıtlanmış mimarisi, güvenilirliği, veri bütünlüğü, sağl
       
       <guid>https://boratanrikulu.dev/bus-topology-ornek-uygulama/</guid>
       <description>Kaynaklar
-LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey (Engür Pişirici)
+LYK&#39;18 - GNU/Linux Sistem Yönetimi 2. Düzey (Engür Pişirici)
 NOT: Anlatım için VirtualBox ve Debian9 kullanılmıştır.
  Bus Topology Nedir ? Cihazların tek bir çizgi(line) üzerinde birbirine bağlanması ile oluşturulan network&amp;rsquo;e Bus Topology denir.
- Avantajları  Küçük network için kolay bir çözümdür. Star Topology&amp;rsquo;e göre daha az kablo gerektirir, ucuzdur.   Dezavantajları  Temassızlık, kopukluk, kısa devre vs. tüm sistemi etkiler. Arıza tespiti zordur.     Oluşturulacak Yapıya Genel Bir Bakış Bu şekilde bir yapı kurup, B server&#39;ı üzerinden akan trafiği yönetmek istiyoruz.</description>
+ Avantajları  Küçük network için kolay bir çözümdür. Star Topology&amp;rsquo;e göre daha az kablo gerektirir, ucuzdur.   Dezavantajları  Temassızlık, kopukluk, kısa devre vs. tüm sistemi etkiler. Arıza tespiti zordur.     Oluşturulacak Yapıya Genel Bir Bakış Bu şekilde bir yapı kurup, B server&amp;rsquo;ı üzerinden akan trafiği yönetmek istiyoruz.</description>
     </item>
     
     <item>
@@ -273,7 +273,7 @@ Not 4: Ne yaptığınızı bilmiyorsanız adımları uygulamayın.
       
       <guid>https://boratanrikulu.dev/kablosuz-ag-guvenligi-bolum-1/</guid>
       <description>Kaynaklar
-Hacktrick&amp;rsquo;18 - Kablosuz Ağ Sızma Testleri - Besim Altınok
+Hacktrick&#39;18 - Kablosuz Ağ Sızma Testleri - Besim Altınok
  Bazı Temel Bilgiler Modemler kendilerinin aktif olduğu belirtmek için etrafa Beacon paketleri yayarlar, bu sayede çevredeki aktif ağları görebiliriz.
 Client modeme bağlanmak isterse, talep isteği olaran bir Probe Request paketi yollar.
 Bu paketi alan modem Probe Response paketi ile cevap verir.
@@ -292,7 +292,7 @@ kevsersrca.github.io/blog/security/tcpdump/
 wiki.wireshark.org/CaptureFilters
 wiki.wireshark.org/DisplayFilters
 guru99.com/wireshark-passwords-sniffer
- Sniffing Nedir ? Bilgisayarlar network&amp;rsquo;lerde paket yayınlayarak iletişim kurarlar. Bu işlem için IP kullanılır ve paket network&#39;ün türüne göre tüm ağı dolaşabilir. Paket geçtiği yollarda okunabilir yani pakete sniffing işlemi yapılabilir.
+ Sniffing Nedir ? Bilgisayarlar network&amp;rsquo;lerde paket yayınlayarak iletişim kurarlar. Bu işlem için IP kullanılır ve paket network&amp;rsquo;ün türüne göre tüm ağı dolaşabilir. Paket geçtiği yollarda okunabilir yani pakete sniffing işlemi yapılabilir.
 Basit bir şekilde söylemek gerekirse Sniffing yani koklama network&amp;rsquo;te akan paketlerin tek tek incelenmesidir. Paketler değiştirilmeden direkt olarak okunabilir. Paketleri yakalamak için bir çok sniffing tool&amp;rsquo;u mevcuttur. (WireShark bunlar arasında en popüleridir.)
 Network&amp;rsquo;te akan paketleri sniffing işlemi ile (şifrelenmiş değil ise) parolalar gibi hassas veriler elde edilebilir.</description>
     </item>

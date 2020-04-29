@@ -33,7 +33,7 @@ Internete bağlı her cihazın eşsiz bir IP adresi vardır. Yani yukarda DNS so
       
       <guid>https://boratanrikulu.dev/smtp-nasil-calisir-ve-postfix-kurulumu/</guid>
       <description>Kaynaklar
-LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Erdem Bayer] [Murathan Bostancı]
+LYK&#39;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Erdem Bayer] [Murathan Bostancı]
 NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz [0]
 NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim :)
  SMTP Nedir ? Simple Mail Transfer Protocol, yani SMTP, ilk olarak 1982&amp;rsquo;de RFC 821&amp;lsquo;de tanımlanmıştır.
@@ -48,10 +48,10 @@ Günümüzde kullanılan Extended SMTP ise, 2008&amp;rsquo;de güncellenerek RFC
       
       <guid>https://boratanrikulu.dev/bus-topology-ornek-uygulama/</guid>
       <description>Kaynaklar
-LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey (Engür Pişirici)
+LYK&#39;18 - GNU/Linux Sistem Yönetimi 2. Düzey (Engür Pişirici)
 NOT: Anlatım için VirtualBox ve Debian9 kullanılmıştır.
  Bus Topology Nedir ? Cihazların tek bir çizgi(line) üzerinde birbirine bağlanması ile oluşturulan network&amp;rsquo;e Bus Topology denir.
- Avantajları  Küçük network için kolay bir çözümdür. Star Topology&amp;rsquo;e göre daha az kablo gerektirir, ucuzdur.   Dezavantajları  Temassızlık, kopukluk, kısa devre vs. tüm sistemi etkiler. Arıza tespiti zordur.     Oluşturulacak Yapıya Genel Bir Bakış Bu şekilde bir yapı kurup, B server&#39;ı üzerinden akan trafiği yönetmek istiyoruz.</description>
+ Avantajları  Küçük network için kolay bir çözümdür. Star Topology&amp;rsquo;e göre daha az kablo gerektirir, ucuzdur.   Dezavantajları  Temassızlık, kopukluk, kısa devre vs. tüm sistemi etkiler. Arıza tespiti zordur.     Oluşturulacak Yapıya Genel Bir Bakış Bu şekilde bir yapı kurup, B server&amp;rsquo;ı üzerinden akan trafiği yönetmek istiyoruz.</description>
     </item>
     
     <item>

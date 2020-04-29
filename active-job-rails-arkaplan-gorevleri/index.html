@@ -14,7 +14,7 @@
 <meta name="twitter:description" content="Rails&#39;da arkaplan görevlerin nasıl yapılacağını anlatır."/>
 <link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" />
 
 	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 		<script src="https://boratanrikulu.dev/js/main.js"></script>
@@ -137,7 +137,7 @@ Servislerin güncel listesine buradan <a href="https://edgeapi.rubyonrails.org/c
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">rails generate mailer <span style="color:#008080">UserMailer</span>
 </code></pre></div><p>Bu mailer&rsquo;e <strong>welcome</strong> diye bir method ekleyelim</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">UserMailer</span> <span style="color:#000;font-weight:bold">&lt;</span> <span style="color:#008080">ApplicationMailer</span>
-  <span style="color:#000;font-weight:bold">def</span> <span style="color:#458;font-weight:bold"></span><span style="color:#000;font-weight:bold"></span><span style="color:#900;font-weight:bold">welcome</span>(user)
+  <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">welcome</span>(user)
     <span style="color:#008080">@user</span> <span style="color:#000;font-weight:bold">=</span> user
     mail(<span style="color:#990073">to</span>: <span style="color:#008080">@user</span><span style="color:#000;font-weight:bold">.</span>email, <span style="color:#990073">subject</span>: <span style="color:#d14">&#39;Welcome!&#39;</span>)
   <span style="color:#000;font-weight:bold">end</span>
@@ -149,7 +149,7 @@ Servislerin güncel listesine buradan <a href="https://edgeapi.rubyonrails.org/c
 
   <span style="color:#000;font-weight:bold">private</span>
 
-  <span style="color:#000;font-weight:bold">def</span> <span style="color:#458;font-weight:bold"></span><span style="color:#000;font-weight:bold"></span><span style="color:#900;font-weight:bold">send_welcome_mail</span>
+  <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">send_welcome_mail</span>
     <span style="color:#008080">UserMailer</span><span style="color:#000;font-weight:bold">.</span>welcome(<span style="color:#0086b3">self</span>)<span style="color:#000;font-weight:bold">.</span>deliver_later
   <span style="color:#000;font-weight:bold">end</span>
 <span style="color:#000;font-weight:bold">end</span>
@@ -165,7 +165,7 @@ Servislerin güncel listesine buradan <a href="https://edgeapi.rubyonrails.org/c
 </code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">UsersCleanJob</span> <span style="color:#000;font-weight:bold">&lt;</span> <span style="color:#008080">ApplicationJob</span>
   queue_as <span style="color:#990073">:default</span>
 
-  <span style="color:#000;font-weight:bold">def</span> <span style="color:#458;font-weight:bold"></span><span style="color:#000;font-weight:bold"></span><span style="color:#900;font-weight:bold">perform</span>(<span style="color:#000;font-weight:bold">*</span>args)
+  <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">perform</span>(<span style="color:#000;font-weight:bold">*</span>args)
     <span style="color:#998;font-style:italic"># Do something later</span>
   <span style="color:#000;font-weight:bold">end</span>
 <span style="color:#000;font-weight:bold">end</span>
@@ -181,12 +181,12 @@ Servislerin güncel listesine buradan <a href="https://edgeapi.rubyonrails.org/c
 
   around_perform <span style="color:#990073">:around_cleanup</span>
 
-  <span style="color:#000;font-weight:bold">def</span> <span style="color:#458;font-weight:bold"></span><span style="color:#000;font-weight:bold"></span><span style="color:#900;font-weight:bold">perform</span>
+  <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">perform</span>
     <span style="color:#998;font-style:italic"># Do something later</span>
   <span style="color:#000;font-weight:bold">end</span>
 
   <span style="color:#000;font-weight:bold">private</span>
-    <span style="color:#000;font-weight:bold">def</span> <span style="color:#458;font-weight:bold"></span><span style="color:#000;font-weight:bold"></span><span style="color:#900;font-weight:bold">around_cleanup</span>
+    <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">around_cleanup</span>
       <span style="color:#998;font-style:italic"># Do something before perform</span>
       <span style="color:#000;font-weight:bold">yield</span>
       <span style="color:#998;font-style:italic"># Do something after perform</span>

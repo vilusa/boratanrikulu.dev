@@ -14,7 +14,7 @@
 <meta name="twitter:description" content="&#39;algoritmalar - decrease and conquer&#39; konusu hakkında aldığım notlar."/>
 <link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" />
 
 	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 		<script src="https://boratanrikulu.dev/js/main.js"></script>
@@ -114,9 +114,9 @@ Algoritmanın mantığı şu şekildedir; sıralanması gereken listenin daha uf
   <span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:</span> 1 to n<span style="color:#000;font-weight:bold">-</span>1 <span style="color:#000;font-weight:bold">do</span>
     v <span style="color:#000;font-weight:bold">=</span> list<span style="color:#000;font-weight:bold">[</span>i<span style="color:#000;font-weight:bold">]</span>
     j <span style="color:#000;font-weight:bold">=</span> i<span style="color:#000;font-weight:bold">-</span>1
-    <span style="color:#000;font-weight:bold">while</span> j <span style="color:#000;font-weight:bold">&gt;</span><span style="color:#000;font-weight:bold">=</span> 0 AND list<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">&gt;</span> v <span style="color:#000;font-weight:bold">do</span>
+    <span style="color:#000;font-weight:bold">while</span> j <span style="color:#000;font-weight:bold">&gt;=</span> 0 AND list<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">&gt;</span> v <span style="color:#000;font-weight:bold">do</span>
       list<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">+</span>1<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">=</span> list<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">]</span>
-      j<span style="color:#000;font-weight:bold">-</span><span style="color:#000;font-weight:bold">-</span>
+      j<span style="color:#000;font-weight:bold">--</span>
     list<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">+</span>1<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">=</span> v
 </code></pre></div><p>Algoritmadaki ana işlem <code>list[j] &gt; v</code> kontrolüdür.</p>
 <p>Büyüme hızı;<br>
@@ -159,7 +159,7 @@ Ortalama: <code>Θ(n^2)</code></p>
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_9.png" alt="johnson trotter">
 </p>
 <p>Sözde kodu:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">def <span style="color:#900;font-weight:bold">john_trotter</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">)</span><span style="color:#000;font-weight:bold">:</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">def <span style="color:#900;font-weight:bold">john_trotter</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">):</span>
   initialize the list with arrow as the first permutation
   <span style="color:#000;font-weight:bold">while</span> the last permutaion has a mobile element <span style="color:#000;font-weight:bold">do</span>
     find its largest mobile element k
@@ -185,7 +185,7 @@ Yaklaşım basittir. İlk olarak ortanca değere bakılır; ortanca değer ile a
 </p>
 <p>Sözde kodu:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">def <span style="color:#900;font-weight:bold">binary_search</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">,</span> key<span style="color:#000;font-weight:bold">)</span>
-  <span style="color:#000;font-weight:bold">if</span> list<span style="color:#000;font-weight:bold">[</span>list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">length</span><span style="color:#000;font-weight:bold">/</span>2<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">=</span> key
+  <span style="color:#000;font-weight:bold">if</span> list<span style="color:#000;font-weight:bold">[</span>list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">length</span><span style="color:#000;font-weight:bold">/</span>2<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">==</span> key
     <span style="color:#000;font-weight:bold">return</span> list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">length</span><span style="color:#000;font-weight:bold">/</span>2
   <span style="color:#000;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">if</span> key <span style="color:#000;font-weight:bold">&gt;</span> list<span style="color:#000;font-weight:bold">[</span>list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">length</span><span style="color:#000;font-weight:bold">/</span>2<span style="color:#000;font-weight:bold">]</span>
     <span style="color:#000;font-weight:bold">return</span> <span style="color:#900;font-weight:bold">binary_search</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">right_half</span><span style="color:#000;font-weight:bold">,</span> key<span style="color:#000;font-weight:bold">)</span>
@@ -196,7 +196,7 @@ Yaklaşım basittir. İlk olarak ortanca değere bakılır; ortanca değer ile a
   left <span style="color:#000;font-weight:bold">=</span> 0
   right <span style="color:#000;font-weight:bold">=</span> list<span style="color:#000;font-weight:bold">.</span><span style="color:#008080">length</span>
 
-  <span style="color:#000;font-weight:bold">while</span> counter <span style="color:#000;font-weight:bold">&lt;</span><span style="color:#000;font-weight:bold">=</span> left <span style="color:#000;font-weight:bold">do</span>
+  <span style="color:#000;font-weight:bold">while</span> counter <span style="color:#000;font-weight:bold">&lt;=</span> left <span style="color:#000;font-weight:bold">do</span>
     median <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span> counter <span style="color:#000;font-weight:bold">+</span> left <span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">/</span> 2
     <span style="color:#000;font-weight:bold">if</span> key <span style="color:#000;font-weight:bold">=</span> list<span style="color:#000;font-weight:bold">[</span>median<span style="color:#000;font-weight:bold">]</span>
       <span style="color:#000;font-weight:bold">return</span> median
@@ -237,7 +237,7 @@ Eğer n tek bir sayi ise, <code>n . m = (n-1)/2 . 2m + m</code></p>
 <p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_2.gif" alt="josephus problem gif">
 </p>
-<p>Aşağıdaki gibi adamların bir çember yapıp, saat yönünde ilerleyerek birbirini öldürdüğü düşünün. Yani 1 2&rsquo;yi, 3 4'ü, 5 6&rsquo;yı, 1 3'ü, 5 1&rsquo;i öldürecektir.</p>
+<p>Aşağıdaki gibi adamların bir çember yapıp, saat yönünde ilerleyerek birbirini öldürdüğü düşünün. Yani 1 2&rsquo;yi, 3 4&rsquo;ü, 5 6&rsquo;yı, 1 3&rsquo;ü, 5 1&rsquo;i öldürecektir.</p>
 <p align="center">
   <img src="/images/posts/decrease-and-conquer/decrease_and_conquer_6.png" alt="josephus problem">
 </p>

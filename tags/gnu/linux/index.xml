@@ -7,7 +7,6 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>copyright notice</copyright>
-    <lastBuildDate>Wed, 15 Jan 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://boratanrikulu.dev/tags/gnu/linux/index.xml" rel="self" type="application/rss+xml" />
     
@@ -29,8 +28,8 @@
       
       <guid>https://boratanrikulu.dev/ldap-nedir-ornek-bir-uygulama/</guid>
       <description>Kaynaklar
-LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Aydın Doyak]
-NOT 0: Ldif dosyalarının syntax&#39;ına hakim olmak oldukça zor, ben de hakim değilim.
+LYK&#39;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Aydın Doyak]
+NOT 0: Ldif dosyalarının syntax&amp;rsquo;ına hakim olmak oldukça zor, ben de hakim değilim.
 Konfigürasyon dosyaları, Aydın Doyak&amp;rsquo;tan alınmıştır.
 aydintd.net/centos-7de-openldap-sunucu-kurulumu-ve-ayarlanmasi/
 NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz [0]
@@ -45,7 +44,7 @@ NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim
       
       <guid>https://boratanrikulu.dev/merkezi-log-server-olusturulmasi/</guid>
       <description>Kaynaklar
-LYK&amp;rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Erdem Bayer]
+LYK&#39;18 - GNU/Linux Sistem Yönetimi 2. Düzey [Erdem Bayer]
 NOT 1: Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz [0]
 NOT 2: Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim :)
  Rsyslog Nedir ? Rsyslog, log&amp;rsquo;ların yönlendirilmesini sağlayan, UNIX tabanlı sistemlerde çalışan, açık kaynak bir yazılımdır. Temel syslog protokolünü uygulayan rsyslog; içeriğe dayalı filtreleme, zengin filtreleme yetenekleri, esnek yapılandırma seçenekleri ile göze çarpar. Ayrıca taşıma için TCP&amp;rsquo;yi kullanma gibi özellikler ekler.</description>

@@ -14,7 +14,7 @@
 <meta name="twitter:description" content="postgresql&#39;in nasıl çalıştığını adım adım açıklar."/>
 <link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" />
 
 	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 		<script src="https://boratanrikulu.dev/js/main.js"></script>
@@ -87,7 +87,7 @@
           </h3>
         </div><div class="markdown">
 				<p><strong>Kaynaklar</strong><br>
-LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://twitter.com/DevrimGunduzTR"><strong><code>[Devrim Gündüz]</code></strong></a></p>
+LYK'18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://twitter.com/DevrimGunduzTR"><strong><code>[Devrim Gündüz]</code></strong></a></p>
 <p><strong>NOT 1:</strong> Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz <a href="https://github.com/boratanrikulu/boratanrikulu.github.io/tree/master/_posts"><strong><code>[0]</code></strong></a><br>
 <strong>NOT 2:</strong> Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim <strong>:)</strong></p>
 <hr>
@@ -151,7 +151,7 @@ LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://twitter.com
 <p>Eğer girilen bilgiler doğru ise Postmaster tarafından bir postgres <strong>fork</strong> edilir ve client bağlanır. (attach)</p>
 <p>Her client bağlandığında ayrı bir postgres fork edilir. Client bağlantısı kesileceğinde bu süreç öldürülür. Öldürme işlemi <strong>pg-terminate-backend</strong> kullanılır. Kill yerine ayrı bir yapının kullanılmasının sebebi, öldürme işlemlerinin Postmaster&rsquo;a bildirilmek istenmesidir.</p>
 <blockquote>
-<p>Peki neden thread yerine fork&rsquo;lama işlemi yapılıyor ?. Aslında burada bakış açısı farkı vardır, farklı düşünce şekilleri olabilir. Thread yapısında, her client kapanması durumunda postmaster'ın da kapatılması gerekirdi. Bu yüzden fork&rsquo;lama tercih edilmiştir.</p>
+<p>Peki neden thread yerine fork&rsquo;lama işlemi yapılıyor ?. Aslında burada bakış açısı farkı vardır, farklı düşünce şekilleri olabilir. Thread yapısında, her client kapanması durumunda postmaster&rsquo;ın da kapatılması gerekirdi. Bu yüzden fork&rsquo;lama tercih edilmiştir.</p>
 </blockquote>
 <p>Genel yapıya bakıldığında her client bağlantısı sağlandığında fork&rsquo;lama işlemi ve öldürme işleminin yürütüldüğü gözükür. Her bağlantı işleminde bunun yapılması oldukça büyük bir yük yaratacaktır. Bunun engellenmesi amacıyla <strong>Connection Pooler</strong> kullanılır.</p>
 <hr>
@@ -162,7 +162,7 @@ LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://twitter.com
 <p>Connection Pooler ile her bağlantı için uygulanan fork&rsquo;lama işleminin yükü önlenebilir.</p>
 <p>Connection Pooler, PostgreSQL başlatıldığında default client sayısı kadar postgres oluşturur ve kendine bağlar.</p>
 <p>Postgres&rsquo;lerin oluşturulması yalnızca 1 kez yapılacağı için pooler sayesinde işlem yükünden ciddi bir kazanç sağlanır.</p>
-<p>Bir client bağlanacağında direkt olarak Connection Pooler ile bağlantı kurar. Server ise karşısında direkt olarak Connection Pooler'ı görür.</p>
+<p>Bir client bağlanacağında direkt olarak Connection Pooler ile bağlantı kurar. Server ise karşısında direkt olarak Connection Pooler&rsquo;ı görür.</p>
 <p>Connection Pooler ayrı bir sunucuda ya da direkt PostgreSQL ile aynı sunucuda yürütülebilir. Ama aynı sunucuda daha performanslı bir sonuç verecektir.</p>
 <p>PostgreSQL default olarak en fazla 100 client kabul edebilir. Bu nedenle default ayarlar ile Connection Pooler çalıştırıldığında kendine 100 tane postgres bağlantısı sağlar. Eğer dışardan gelen client sayısı 100&rsquo;den fazla olursa, pooler bunları sıraya koyabilir.</p>
 <p>PgBouncer bir connection pooler&rsquo;dır. <a href="https://pgbouncer.github.io/"><strong><code>[2]</code></strong></a></p>
@@ -182,9 +182,9 @@ LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://twitter.com
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#000;font-weight:bold">SELECT</span> <span style="color:#000;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">FROM</span> customers
 </code></pre></div><p>Bir sorgu çalıştırılacağı zaman Shared Bufffers&rsquo;da verinin olup olmadığına bakılır, eğer yok ise kernel tarafından ilk olarak cache&rsquo;e bakılır eğer orada da yok ise diske gidilir, ilgili veriler shared buffers&rsquo;a taşınır ve sorgu çalıştırılır. Sorgu çalıştırıldıktan sonra sonuç postgres&rsquo;e atılır, postgres de sonucu client&rsquo;a yollar.</p>
 <blockquote>
-<p>Eğer yapılan sorgunun sonucunun boyutu shared buffers'ın fiziksel boyutundan büyük ise, shared buffers bypass edilebilir.</p>
+<p>Eğer yapılan sorgunun sonucunun boyutu shared buffers&rsquo;ın fiziksel boyutundan büyük ise, shared buffers bypass edilebilir.</p>
 </blockquote>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#000;font-weight:bold">INSERT</span> <span style="color:#000;font-weight:bold">INTO</span> customers(name) <span style="color:#000;font-weight:bold">VALUES</span>(<span style="color:#d14">&#39;</span><span style="color:#d14">bora</span><span style="color:#d14">&#39;</span>)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#000;font-weight:bold">INSERT</span> <span style="color:#000;font-weight:bold">INTO</span> customers(name) <span style="color:#000;font-weight:bold">VALUES</span>(<span style="color:#d14">&#39;bora&#39;</span>)
 </code></pre></div><p>Bir insert sorgusu çalıştırılacağı zaman diske yazılmasına gerek yoktur, direkt olarak Shared Buffers&rsquo;a yazılabilir, daha sonra bu veriler disk ile eşlenir. Disk ile eşlenmemiş, yani disk ile aynı olmayan veriler Dirty Buffer olarak adlandırılır.</p>
 <hr>
 <h3 id="journal-nedir-">Journal Nedir ?</h3>
@@ -194,14 +194,14 @@ LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://twitter.com
 </blockquote>
 <p>Disklerin default olarak 5%&rsquo; i journal olarak tanımlanır. Veriler diske yazılacağında direkt olarak journal bölgesine yazılır, bu bölgeye yazılan veriler belli bir periyod ile dışar <strong>flash</strong> edilir.</p>
 <p>Buradaki mantık küçük bir alana yazma işleminin daha kolay olmasıdır, yazma küçük bir bölgeye yapılır ve bu veriler daha sonra dağıtılır.</p>
-<p>PostgreSQL de benzer bir mantık ile çalışır. WAL için postgres&rsquo;in journal'ı denebilir. <a href="https://www.postgresql.org/docs/9.1/static/wal-intro.html"><strong><code>[3]</code></strong></a></p>
+<p>PostgreSQL de benzer bir mantık ile çalışır. WAL için postgres&rsquo;in journal&rsquo;ı denebilir. <a href="https://www.postgresql.org/docs/9.1/static/wal-intro.html"><strong><code>[3]</code></strong></a></p>
 <hr>
 <h3 id="dirty-buffers">Dirty Buffers</h3>
 <p align="center">
 	<img src="/images/posts/postgresql-nedir-nasil-calisir/4.png">
 </p>
 <p>Shared Buffers&rsquo;taki veriler <strong>Clean</strong> ve <strong>Dirty</strong> olmak üzere ikiye ayrılır. Buffer durumu kernel tarafından bilinir. Kernel eğer veriyi götürüyorsa clean, dışarıdan geliyor ise dirty olarak isimlendirir.</p>
-<p>Dirty Buffers'ın belli aralıkla ile diske yazılması gerekir. Bunun için Background Writer kullanılır.</p>
+<p>Dirty Buffers&rsquo;ın belli aralıkla ile diske yazılması gerekir. Bunun için Background Writer kullanılır.</p>
 <blockquote>
 <p>Disk üzerinde bir buffer boyutu 8kb iken RAM&rsquo;de 4kb yer kaplar.</p>
 </blockquote>
@@ -277,7 +277,7 @@ LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://twitter.com
 	<img src="/images/posts/postgresql-nedir-nasil-calisir/6.png">
 </p>
 <p>Aşağıdaki gibi yeni bir müşteri eklemesi yapabiliriz.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#000;font-weight:bold">INSERT</span> <span style="color:#000;font-weight:bold">INTO</span> customers <span style="color:#000;font-weight:bold">VALUES</span>(<span style="color:#d14">&#39;</span><span style="color:#d14">M</span><span style="color:#d14">&#39;</span>, <span style="color:#d14">&#39;</span><span style="color:#d14">Bora</span><span style="color:#d14">&#39;</span>, <span style="color:#d14">&#39;</span><span style="color:#d14">Tanrikulu</span><span style="color:#d14">&#39;</span>, <span style="color:#099">21</span>);
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#000;font-weight:bold">INSERT</span> <span style="color:#000;font-weight:bold">INTO</span> customers <span style="color:#000;font-weight:bold">VALUES</span>(<span style="color:#d14">&#39;M&#39;</span>, <span style="color:#d14">&#39;Bora&#39;</span>, <span style="color:#d14">&#39;Tanrikulu&#39;</span>, <span style="color:#099">21</span>);
 </code></pre></div><p>Son olarak yaptığımız işlemin sonucu görmek için tüm tabloyu görüntüleyelim.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#000;font-weight:bold">SELECT</span> <span style="color:#000;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">FROM</span> customers;
 </code></pre></div><p align="center">

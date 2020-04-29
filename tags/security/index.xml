@@ -19,7 +19,7 @@
       
       <guid>https://boratanrikulu.dev/kablosuz-ag-guvenligi-bolum-1/</guid>
       <description>Kaynaklar
-Hacktrick&amp;rsquo;18 - Kablosuz Ağ Sızma Testleri - Besim Altınok
+Hacktrick&#39;18 - Kablosuz Ağ Sızma Testleri - Besim Altınok
  Bazı Temel Bilgiler Modemler kendilerinin aktif olduğu belirtmek için etrafa Beacon paketleri yayarlar, bu sayede çevredeki aktif ağları görebiliriz.
 Client modeme bağlanmak isterse, talep isteği olaran bir Probe Request paketi yollar.
 Bu paketi alan modem Probe Response paketi ile cevap verir.
@@ -38,7 +38,7 @@ kevsersrca.github.io/blog/security/tcpdump/
 wiki.wireshark.org/CaptureFilters
 wiki.wireshark.org/DisplayFilters
 guru99.com/wireshark-passwords-sniffer
- Sniffing Nedir ? Bilgisayarlar network&amp;rsquo;lerde paket yayınlayarak iletişim kurarlar. Bu işlem için IP kullanılır ve paket network&#39;ün türüne göre tüm ağı dolaşabilir. Paket geçtiği yollarda okunabilir yani pakete sniffing işlemi yapılabilir.
+ Sniffing Nedir ? Bilgisayarlar network&amp;rsquo;lerde paket yayınlayarak iletişim kurarlar. Bu işlem için IP kullanılır ve paket network&amp;rsquo;ün türüne göre tüm ağı dolaşabilir. Paket geçtiği yollarda okunabilir yani pakete sniffing işlemi yapılabilir.
 Basit bir şekilde söylemek gerekirse Sniffing yani koklama network&amp;rsquo;te akan paketlerin tek tek incelenmesidir. Paketler değiştirilmeden direkt olarak okunabilir. Paketleri yakalamak için bir çok sniffing tool&amp;rsquo;u mevcuttur. (WireShark bunlar arasında en popüleridir.)
 Network&amp;rsquo;te akan paketleri sniffing işlemi ile (şifrelenmiş değil ise) parolalar gibi hassas veriler elde edilebilir.</description>
     </item>

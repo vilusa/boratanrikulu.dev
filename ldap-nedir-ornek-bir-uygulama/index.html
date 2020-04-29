@@ -14,7 +14,7 @@
 <meta name="twitter:description" content="lyk18&#39;de yapılan ldap anlatımının bir özeti."/>
 <link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" />
 
 	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 		<script src="https://boratanrikulu.dev/js/main.js"></script>
@@ -87,8 +87,8 @@
           </h3>
         </div><div class="markdown">
 				<p><strong>Kaynaklar</strong><br>
-LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://twitter.com/aydintd"><strong><code>[Aydın Doyak]</code></strong></a></p>
-<p><strong>NOT 0:</strong> Ldif dosyalarının syntax'ına hakim olmak oldukça zor, ben de hakim değilim.<br>
+LYK'18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://twitter.com/aydintd"><strong><code>[Aydın Doyak]</code></strong></a></p>
+<p><strong>NOT 0:</strong> Ldif dosyalarının syntax&rsquo;ına hakim olmak oldukça zor, ben de hakim değilim.<br>
 Konfigürasyon dosyaları, Aydın Doyak&rsquo;tan alınmıştır.<br>
 <a href="https://aydintd.net/centos-7de-openldap-sunucu-kurulumu-ve-ayarlanmasi/"><strong><code>aydintd.net/centos-7de-openldap-sunucu-kurulumu-ve-ayarlanmasi/</code></strong></a></p>
 <p><strong>NOT 1:</strong> Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz <a href="https://github.com/boratanrikulu/boratanrikulu.github.io/tree/master/_posts"><strong><code>[0]</code></strong></a><br>
@@ -109,12 +109,12 @@ Konfigürasyon dosyaları, Aydın Doyak&rsquo;tan alınmıştır.<br>
 <p align="center">
 	<img src="/images/posts/ldap-nedir-ornek-bir-uygulama/1.png">
 </p>
-<p>Genel olarak tanım üzerinden LDAP'ın kullanım amacı anlaşılamamış olabilir.</p>
+<p>Genel olarak tanım üzerinden LDAP&rsquo;ın kullanım amacı anlaşılamamış olabilir.</p>
 <p>Şöyle hayal edin; 100 tane çalışanı olan bir şirket olsun. Bu şirkette her çalışan için bir bilgisayar olmalı. Yani elimizde <strong>100 tane client</strong> olacak. Bu şirkete her yeni bir çalışan alındığında/değiştirildiğinde, ilgili bilgisayarda kullanıcı bilgilerinin değiştirilmesi gerecek. Bu işlemi her seferinde local bilgisayar üzerinden yapılması gereksiz bir iş yükü yaratacaktır. İşte bu durumda LDAP kullanılabilir.</p>
-<p>Kullanıcı bilgileri local bilgisayarlar üzerinde tutmak yerine merkezi bir server üzerinden tutulur ve tüm client&rsquo;lar kullanıcı bilgilerini bu LDAP server'ı üzerinden çeker. Eğer bir çalışan değişikliği yapılacak ise de direkt merkezi server üzerinden kolaylıkla yapılabilir.</p>
-<p>Biz de bu anlatımda, örnekteki durumu baz alarak, kullanıcı bilgilerini saklayabileceğimiz bir LDAP server'ı hazırlayacağız.</p>
+<p>Kullanıcı bilgileri local bilgisayarlar üzerinde tutmak yerine merkezi bir server üzerinden tutulur ve tüm client&rsquo;lar kullanıcı bilgilerini bu LDAP server&rsquo;ı üzerinden çeker. Eğer bir çalışan değişikliği yapılacak ise de direkt merkezi server üzerinden kolaylıkla yapılabilir.</p>
+<p>Biz de bu anlatımda, örnekteki durumu baz alarak, kullanıcı bilgilerini saklayabileceğimiz bir LDAP server&rsquo;ı hazırlayacağız.</p>
 <hr>
-<h2 id="serverın-hazırlanması">Server'ın Hazırlanması</h2>
+<h2 id="serverın-hazırlanması">Server&rsquo;ın Hazırlanması</h2>
 <p><strong>NOT :</strong> Anlatım için CentOS 7 tercih edilmiştir.</p>
 <p>İlk olarak aşağıdaki gibi <strong>hostname</strong>&lsquo;i ayarlayalım.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@ldap ~#<span style="color:#000;font-weight:bold">]</span> hostnamectl set-hostname ldap.boratanrikulu.me
@@ -129,7 +129,7 @@ Aşağıdaki gibi güvenlik duvarında gerekli izinleri verelim.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@ldap ~#<span style="color:#000;font-weight:bold">]</span> firewall-cmd --zone<span style="color:#000;font-weight:bold">=</span>public --list-all
 </code></pre></div><hr>
 <h2 id="openldap-kurulumu">OpenLDAP Kurulumu</h2>
-<p>Aşağıdaki gibi OpenLDAP'ı kuralım.</p>
+<p>Aşağıdaki gibi OpenLDAP&rsquo;ı kuralım.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@ldap ~#<span style="color:#000;font-weight:bold">]</span> yum install openldap-servers openldap-clients openldap
 </code></pre></div><p>Ardından default olan DB_CONFIG dosyasını kullanım için ayarlayalım.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@ldap ~#<span style="color:#000;font-weight:bold">]</span> cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
@@ -247,7 +247,7 @@ ou: Group
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@ldap ~#<span style="color:#000;font-weight:bold">]</span> ldapsearch -Wx -D <span style="color:#008080">cn</span><span style="color:#000;font-weight:bold">=</span>admin,dc<span style="color:#000;font-weight:bold">=</span>boratanrikulu,dc<span style="color:#000;font-weight:bold">=</span>me -b <span style="color:#d14">&#34;dc=boratanrikulu,dc=me&#34;</span>
 </code></pre></div><p>ldapsearch -H ldaps:/// -Wx -D cn=admin,dc=boratanrikulu,dc=me -b &ldquo;dc=boratanrikulu,dc=me&rdquo;</p>
 <hr>
-<h2 id="openldapın-ssl-ile-kullanılması">OpenLDAP'ın SSL ile Kullanılması</h2>
+<h2 id="openldapın-ssl-ile-kullanılması">OpenLDAP&rsquo;ın SSL ile Kullanılması</h2>
 <p>LDAP sunucumuzda SSL kullanmak için sertifika satın alabilir ya da kendimiz oluşturabiliriz. Biz bu anlatımda kendimiz bir SSL sertifikası oluşturacağız. Bunun için aşağıdaki adımları uygulayın.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@ldap ~#<span style="color:#000;font-weight:bold">]</span> <span style="color:#0086b3">cd</span> /etc/pki/tls/certs/
 </code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@ldap certs#<span style="color:#000;font-weight:bold">]</span> <span style="color:#0086b3">echo</span> <span style="color:#d14">&#34;03&#34;</span> &gt; file.srl
@@ -257,7 +257,7 @@ ou: Group
 </code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@ldap certs#<span style="color:#000;font-weight:bold">]</span> openssl x509 -req -in server.req -CA ca.pem -CAkey privkey.pem -CAserial file.srl -out server.pem
 </code></pre></div><p>SSL sertifikamızı bu şekilde oluşturmuş olduk.</p>
 <p>Daha sonradan kullanacağımız dosyalar <strong>ca.pem</strong>, <strong>server.pem</strong>, <strong>server.key</strong> olarak /etc/pki/tls/certs dizini altında oluşturuldu.</p>
-<p>Şimdi artık OpenLDAP'ı <strong>ldaps</strong> çalıştıracak şekilde ayarlayabiliriz.</p>
+<p>Şimdi artık OpenLDAP&rsquo;ı <strong>ldaps</strong> çalıştıracak şekilde ayarlayabiliriz.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@ldap ~#<span style="color:#000;font-weight:bold">]</span> vim /etc/sysconfig/slapd
 </code></pre></div><p>SLAPD_URLS satırını aşağıdaki gibi güncelleyin.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">SLAPD_URLS=&#34;ldapi:/// ldap:/// ldaps:///&#34;
@@ -316,7 +316,7 @@ objectClass: top
 objectClass: posixGroup
 gidNumber: 12000
 </code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@ldap ~#<span style="color:#000;font-weight:bold">]</span> ldapadd -Wx -D <span style="color:#008080">cn</span><span style="color:#000;font-weight:bold">=</span>admin,dc<span style="color:#000;font-weight:bold">=</span>boratanrikulu,dc<span style="color:#000;font-weight:bold">=</span>me -f /root/ldif_files/add_groups.ldif
-</code></pre></div><p>Burada gidNumber'ı 10000&rsquo;dan başlatma sebebimiz default sistem id&rsquo;leri ile çakışma ihtimalini düşürmek istememizdir.</p>
+</code></pre></div><p>Burada gidNumber&rsquo;ı 10000&rsquo;dan başlatma sebebimiz default sistem id&rsquo;leri ile çakışma ihtimalini düşürmek istememizdir.</p>
 <hr>
 <p>Artık kullanıcı ekleyebiliriz. <strong>Bora Tanrıkulu</strong> isimli bir kullanıcı ekleyelim. Kullanıcı parolası özet fonksiyonunu slappasswd ile oluşturabilirsiniz.</p>
 <p>Biz bu örnekte başka kullanıcı eklemeyeceğiz. Başka bir kullanıcı eklemek isterseniz <strong>uidNumber</strong>&lsquo;ı artırmayı unutmayın. Ya da kullanıcı grubunu değiştirmek istiyorsanız <strong>gidNumber</strong>&lsquo;ı değiştirin.</p>
@@ -342,7 +342,7 @@ userPassword: {SSHA}RO3LgVGv4emLElZbjKtCwBBYdKqz4mej
 </code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@ldap ~#<span style="color:#000;font-weight:bold">]</span> ldapadd -Wx -D <span style="color:#008080">cn</span><span style="color:#000;font-weight:bold">=</span>admin,dc<span style="color:#000;font-weight:bold">=</span>boratanrikulu,dc<span style="color:#000;font-weight:bold">=</span>me -f /root/ldif_files/add_boratanrikulu.ldif
 </code></pre></div><p>Ardından aşağıdaki gibi bir sorgu ile işlemlerin son halini görebiliriz.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@ldap ~#<span style="color:#000;font-weight:bold">]</span> ldapsearch -Wx -D <span style="color:#008080">cn</span><span style="color:#000;font-weight:bold">=</span>admin,dc<span style="color:#000;font-weight:bold">=</span>boratanrikulu,dc<span style="color:#000;font-weight:bold">=</span>me -b <span style="color:#d14">&#34;dc=boratanrikulu,dc=me&#34;</span>
-</code></pre></div><p><strong>NOT :</strong> LDAP'ı terminal üzerinden kullanmak oldukça zor. Grafiksel çözümler arıyorsanız; <strong>LDAP Account Manager</strong> ya da <strong>Apache Directory Studio</strong>&lsquo;a bakabilirsiniz. Ben bu anlatımda bunların kullanıma değinmeyeceğim.</p>
+</code></pre></div><p><strong>NOT :</strong> LDAP&rsquo;ı terminal üzerinden kullanmak oldukça zor. Grafiksel çözümler arıyorsanız; <strong>LDAP Account Manager</strong> ya da <strong>Apache Directory Studio</strong>&lsquo;a bakabilirsiniz. Ben bu anlatımda bunların kullanıma değinmeyeceğim.</p>
 <hr>
 <h2 id="client-tarafından-bilgilerin-çekilmesi">Client Tarafından Bilgilerin Çekilmesi</h2>
 <p><strong>Not :</strong> Client olarak Debian kullanılmıştır.</p>

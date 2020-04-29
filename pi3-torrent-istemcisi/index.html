@@ -14,7 +14,7 @@
 <meta name="twitter:description" content="raspberry pi 3 ile torrent istemcisi hazırlanması."/>
 <link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" />
 
 	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 		<script src="https://boratanrikulu.dev/js/main.js"></script>
@@ -127,7 +127,7 @@ Benim sistemimde <strong>/tmp</strong> altında idi. Bu işlem biraz uzun sürec
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo nmap -sP 192.168.2.0/24
 </code></pre></div><hr>
 <h2 id="temel-server-ayarları">Temel Server Ayarları</h2>
-<p>Pi3 server'ımız sadece local network&rsquo;te çalışacak olmasına rağmen temel sunucu ayarlarının yapılmasında fayda vardır. Bunlar sizin için bir problem değil ise bu aşamayı atlayabilirsiniz. Ama uygulamanızı <strong>kesinlikle</strong> öneririm.</p>
+<p>Pi3 server&rsquo;ımız sadece local network&rsquo;te çalışacak olmasına rağmen temel sunucu ayarlarının yapılmasında fayda vardır. Bunlar sizin için bir problem değil ise bu aşamayı atlayabilirsiniz. Ama uygulamanızı <strong>kesinlikle</strong> öneririm.</p>
 <p>Pi3 cihazımızın default parolası <strong>raspberry</strong>&lsquo;dir. Aşağıdaki gibi bağlantı kurabilirsiniz.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	ssh pi@IPADRESI
 </code></pre></div><p>Eğer buraya kadar bir problem çıkmadıysa başarı ile bağlantı kurmuş olmalısınız.</p>
@@ -241,7 +241,7 @@ Benim sistemimde <strong>/tmp</strong> altında idi. Bu işlem biraz uzun sürec
 </table>
 <hr>
 <h2 id="transmission-daemon-kurulumu">Transmission-Daemon Kurulumu</h2>
-<p>Torrent server'ını kurmak için aşağıdaki adımları takip edin.</p>
+<p>Torrent server&rsquo;ını kurmak için aşağıdaki adımları takip edin.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo apt install transmission-daemon
 </code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	sudo service transmission-daemon stop
 </code></pre></div><p>Ardından aşağıdaki gib ayar dosyasını açın ve gerekli satırları değiştirin.</p>

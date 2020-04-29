@@ -14,7 +14,7 @@
 <meta name="twitter:description" content="lyk18&#39;de yapılan postfix anlatımının bir özeti."/>
 <link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" />
 
 	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 		<script src="https://boratanrikulu.dev/js/main.js"></script>
@@ -87,7 +87,7 @@
           </h3>
         </div><div class="markdown">
 				<p><strong>Kaynaklar</strong><br>
-LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://www.linkedin.com/in/erdem-bayer-1633915/"><strong><code>[Erdem Bayer]</code></strong></a> <a href="https://www.linkedin.com/in/murathanbostanci/"><strong><code>[Murathan Bostancı]</code></strong></a></p>
+LYK'18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://www.linkedin.com/in/erdem-bayer-1633915/"><strong><code>[Erdem Bayer]</code></strong></a> <a href="https://www.linkedin.com/in/murathanbostanci/"><strong><code>[Murathan Bostancı]</code></strong></a></p>
 <p><strong>NOT 1:</strong> Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz <a href="https://github.com/boratanrikulu/boratanrikulu.github.io/tree/master/_posts"><strong><code>[0]</code></strong></a><br>
 <strong>NOT 2:</strong> Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim <strong>:)</strong></p>
 <hr>
@@ -113,7 +113,7 @@ Günümüzde kullanılan <strong>Extended SMTP</strong> ise, 2008&rsquo;de günc
 	<img src="/images/posts/smtp-nasil-calisir-ve-postfix-kurulumu/1.png">
 </p>
 <p><strong><a href="mailto:admin@boratanrikulu.me">admin@boratanrikulu.me</a></strong> kullanıcısının <strong><a href="mailto:elon.musk@spacex.com">elon.musk@spacex.com</a></strong> kullanıcısına mail atmak istediğini düşünelim.</p>
-<p>Bu durumda client tarafından mail yollandığında, mail ilk olarak <a href="https://boratanrikulu.me"><strong>boratanrikulu.me</strong></a>&lsquo;nin mail server'ına gidecektir. Bu <strong>server bilgisi DNS sorgusunda bulunan MX kaydı ile tespit edilir</strong>. Yani mail yollanacağında MX kaydı sorgusu yapılır ve mail ona göre ilgili server&rsquo;a yollanır.</p>
+<p>Bu durumda client tarafından mail yollandığında, mail ilk olarak <a href="https://boratanrikulu.me"><strong>boratanrikulu.me</strong></a>&lsquo;nin mail server&rsquo;ına gidecektir. Bu <strong>server bilgisi DNS sorgusunda bulunan MX kaydı ile tespit edilir</strong>. Yani mail yollanacağında MX kaydı sorgusu yapılır ve mail ona göre ilgili server&rsquo;a yollanır.</p>
 <p>Mail&rsquo;in server&rsquo;a yollanma işlemi SMTP protokolü ile gerçekleşir. Bu aşamada eğer server&rsquo;da gerekli konfigürasyon yapıldıysa; mail&rsquo;i yollayan kişi gerçekten <a href="https://boratanrikulu.me"><strong>boratanrikulu.me</strong></a> kullanıcısı mı, gönderilen mail&rsquo;de istenmeyen veri ya da text var mı gibi bazı kontroller yapılabilir, ama bunların hiç biri aslında bir zorunluluk değildir.</p>
 <p><strong>From</strong> ve <strong>To</strong> kısımlarının dolu olması yeterlidir, bunların herhangi bir şekilde doğrulunun yapılması zorunluluk değildir. Ama tabiki günümüz mail servisleri tarafından bu kontroller yapılacaktır. Fakat söylediğim gibi, <strong>bu kontrollerin yapılması bir zorunluluk değildir</strong> SMTP protokolü için.</p>
 <p>Mail, server tarafından alındıktan sonra bir <strong>envelope</strong>&lsquo;a (zarf) konur. Mail, server&rsquo;lar arasında bu envelope içersinde iletilir.</p>
@@ -121,20 +121,20 @@ Günümüzde kullanılan <strong>Extended SMTP</strong> ise, 2008&rsquo;de günc
 <p align="center">
 	<img src="/images/posts/smtp-nasil-calisir-ve-postfix-kurulumu/2.png">
 </p>
-<p><a href="https://boratanrikulu.me/"><strong>boratanrikulu.me</strong></a> mail server'ı tarafından mail, <a href="https://www.spacex.com/"><strong>spacex.com</strong></a> mail server'ına SMTP protokolü kullanılarak yollanır. Bu aşamada mail direkt olarak hedef server&rsquo;a ulaşacak diye bir şey yoktur. <strong>Mail yollanırken araya başka server&rsquo;lar girebilir</strong> ve mail bu şekilde iletilir. Ya da iletilemeyebilir. Yani <strong>yolda mail kaybolabilir</strong>. Bu yüzden gerekli testlerin yapılması önemli bir husustur.</p>
+<p><a href="https://boratanrikulu.me/"><strong>boratanrikulu.me</strong></a> mail server&rsquo;ı tarafından mail, <a href="https://www.spacex.com/"><strong>spacex.com</strong></a> mail server&rsquo;ına SMTP protokolü kullanılarak yollanır. Bu aşamada mail direkt olarak hedef server&rsquo;a ulaşacak diye bir şey yoktur. <strong>Mail yollanırken araya başka server&rsquo;lar girebilir</strong> ve mail bu şekilde iletilir. Ya da iletilemeyebilir. Yani <strong>yolda mail kaybolabilir</strong>. Bu yüzden gerekli testlerin yapılması önemli bir husustur.</p>
 <p><strong>SMTP mail&rsquo;in hedefe kesinlikle varacağını tahattüt etmez.</strong></p>
 <p>Mail&rsquo;in hangi server&rsquo;lardan geçtiği <strong>envelope header</strong>&lsquo;a bakılarak tespit edilebilir.</p>
 <p>Mail <a href="https://www.spacex.com/"><strong>spacex.com</strong></a>&lsquo;a ulaştığında hedef sistem tarafından bazı kontroller yapılabilir. Fakat bunların hiç biri zorunlu değildir. Hatta kontrol yapılmasını geçelim, server&rsquo;lar tarafından direkt olarak header ve body kısımları değiştirilebilir. Bunun engellenmesi amacıyla <strong>SSL</strong> şifreleme yapılması önemlidir.</p>
-<p>Şöyle düşünün, elimizde temel konfigürasyon haricinde bir ek ayar, kontrol yapılmamış iki tane mail server'ı olsun. Bu durumda hiç bir kontrol yapılmadığı için istediğimiz mail adresini <strong>From</strong> kısmıda belirterek, hedefdeki mail server'ına yollayabiliriz ve hedefteki kullanıcı sanki bizim yazdığımız kullanıcıdan gelmişçesine bu mail&rsquo;i alır. Bunun bir örneğini anlatımın ilerki kısımlarında mevcuttur.</p>
+<p>Şöyle düşünün, elimizde temel konfigürasyon haricinde bir ek ayar, kontrol yapılmamış iki tane mail server&rsquo;ı olsun. Bu durumda hiç bir kontrol yapılmadığı için istediğimiz mail adresini <strong>From</strong> kısmıda belirterek, hedefdeki mail server&rsquo;ına yollayabiliriz ve hedefteki kullanıcı sanki bizim yazdığımız kullanıcıdan gelmişçesine bu mail&rsquo;i alır. Bunun bir örneğini anlatımın ilerki kısımlarında mevcuttur.</p>
 <hr>
-<p>Genel olarak, gerekli konfigürasyon ayarları yapılmış bir mail server'ında aşağıdaki gibi kontroller yapalabilir.</p>
+<p>Genel olarak, gerekli konfigürasyon ayarları yapılmış bir mail server&rsquo;ında aşağıdaki gibi kontroller yapalabilir.</p>
 <ul>
 <li><strong>Gri liste</strong> ile mail&rsquo;i yollayan kullanıcının kontrolü</li>
 <li>Mail&rsquo;in geldiği mail adresinin alan adının, <strong>reverse dns</strong> adresinin kontrolü</li>
 <li>Mail <strong>SPF</strong> kaydındaki bir server&rsquo;dan mı geliyor kontrolü</li>
 </ul>
 <blockquote>
-<p>SPF (<strong>Sender Policy Framework</strong>) mail server'ı tarafından kabul edilecek mail server&rsquo;larının kaydını tutar.</p>
+<p>SPF (<strong>Sender Policy Framework</strong>) mail server&rsquo;ı tarafından kabul edilecek mail server&rsquo;larının kaydını tutar.</p>
 </blockquote>
 <ul>
 <li>Mail&rsquo;in geldiği server, <strong>domain key</strong> ile örtüşüyor mu kontrolü</li>
@@ -142,13 +142,13 @@ Günümüzde kullanılan <strong>Extended SMTP</strong> ise, 2008&rsquo;de günc
 <li><strong>Header</strong> ve <strong>Body</strong> kısımlarının kontrolü (Saat, başlık, belli kelimeler)</li>
 <li><strong>Content Security</strong> (virüs taraması) ve <strong>spam</strong> kontrolü yapılır.</li>
 </ul>
-<p>Eğer bu ve benzeri kontrolleri geçerse; ya da kontrol olmayan bir mail server'ı ise, hedef kullanıcının dizinine mail teslim edilir.</p>
+<p>Eğer bu ve benzeri kontrolleri geçerse; ya da kontrol olmayan bir mail server&rsquo;ı ise, hedef kullanıcının dizinine mail teslim edilir.</p>
 <hr>
 <h2 id="e-mailin-kullanıcı-tarafından-teslim-alınması">E-Mail&rsquo;in Kullanıcı Tarafından Teslim Alınması</h2>
 <p align="center">
 	<img src="/images/posts/smtp-nasil-calisir-ve-postfix-kurulumu/3.png">
 </p>
-<p>Bir kullanıcı e-mail server'ından mail&rsquo;lerini almak istediğinde bunu iki yol ile yapabilir;</p>
+<p>Bir kullanıcı e-mail server&rsquo;ından mail&rsquo;lerini almak istediğinde bunu iki yol ile yapabilir;</p>
 <ul>
 <li><strong>POP</strong></li>
 <li><strong>IMAP</strong></li>
@@ -158,11 +158,11 @@ Günümüzde kullanılan <strong>Extended SMTP</strong> ise, 2008&rsquo;de günc
 <hr>
 <h2 id="postfix-kurulumu">Postfix Kurulumu</h2>
 <p><strong>NOT:</strong> Anlatım için <strong>CentOS 7</strong> tercih edilmiştir.</p>
-<p>Bu örnekte <a href="https://boratanrikulu.me"><strong>boratanrikulu.me</strong></a> server'ı için basit bir mail servisinin nasıl yapılandırıldığındığı göreceksiniz. Bu anlatımı uygulayarak takip edebilmek için elinizde bir domain ve server olması gerekmektedir. Elinizde yok ise de yalnızca okuyarak da anlatıma katılabilirsiniz.</p>
+<p>Bu örnekte <a href="https://boratanrikulu.me"><strong>boratanrikulu.me</strong></a> server&rsquo;ı için basit bir mail servisinin nasıl yapılandırıldığındığı göreceksiniz. Bu anlatımı uygulayarak takip edebilmek için elinizde bir domain ve server olması gerekmektedir. Elinizde yok ise de yalnızca okuyarak da anlatıma katılabilirsiniz.</p>
 <p>Anlatımda domain servisi için <a href="https://www.namecheap.com/"><strong>namecheap</strong></a>&lsquo;i tercih ettim. Siz farklı şirketleri tercih edebilirsiniz, DNS ayarları menusu hepsinde benzer olacaktır.</p>
 <hr>
 <h4 id="mx-kaydının-hazırlanması">MX Kaydının Hazırlanması</h4>
-<p>Mail yollanması sırasında MX kaydından mail server'ı tespit edildiği için <strong>DNS&rsquo;in SMTP için hayati önemi vardır</strong>. Bu yüzden ilk olarak <a href="https://boratanrikulu.me"><strong>boratanrikulu.me</strong></a> domain&rsquo;i için MX kaydı olarak server IP&rsquo;mizi girmeliyiz aşağıdaki örnekteki.</p>
+<p>Mail yollanması sırasında MX kaydından mail server&rsquo;ı tespit edildiği için <strong>DNS&rsquo;in SMTP için hayati önemi vardır</strong>. Bu yüzden ilk olarak <a href="https://boratanrikulu.me"><strong>boratanrikulu.me</strong></a> domain&rsquo;i için MX kaydı olarak server IP&rsquo;mizi girmeliyiz aşağıdaki örnekteki.</p>
 <p align="center">
 	<img src="/images/posts/smtp-nasil-calisir-ve-postfix-kurulumu/5.png">
 </p>
@@ -172,7 +172,7 @@ Günümüzde kullanılan <strong>Extended SMTP</strong> ise, 2008&rsquo;de günc
 </p>
 <hr>
 <h4 id="serverda-temel-ayarların-yapılması">Server&rsquo;da Temel Ayarların Yapılması</h4>
-<p>MX kaydını ekledikten sonra artık server'ı yapılandırmaya başlayabiliriz. İlk olarak hostname&rsquo;i ayarlamak ile başlıyoruz.</p>
+<p>MX kaydını ekledikten sonra artık server&rsquo;ı yapılandırmaya başlayabiliriz. İlk olarak hostname&rsquo;i ayarlamak ile başlıyoruz.</p>
 <p>Şuanki <strong>hostname</strong>&lsquo;i görmek için aşadağıdaki komutu yürütebilirsiniz.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hostnamectl status
 </code></pre></div><p>Ardından MX kaydına eklediğimiz adresi hostname olarak set edelim.</p>
@@ -199,8 +199,8 @@ Günümüzde kullanılan <strong>Extended SMTP</strong> ise, 2008&rsquo;de günc
 </code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">adduser request
 </code></pre></div><p>Artık postfix kullanıma geçebiliriz. Telnet ile bağlanalım.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">telnet mail.boratanrikulu.me smtp
-</code></pre></div><p>Bu örnekteki amacımız <strong><a href="mailto:info@mail.boratanrikulu.me">info@mail.boratanrikulu.me</a></strong> kullanıcısından <strong><a href="mailto:root@mail.boratanrikulu.me">root@mail.boratanrikulu.me</a></strong> kullanıcısına mail atmak. Bu sayede hiç bir konfigürasyon yapılmamış mail server'ını test edebileceğiz.</p>
-<p>SMTP protokolünde ile yapılması gereken selamlamadır. Aşağıdaki gibi server'ı selamlayım.</p>
+</code></pre></div><p>Bu örnekteki amacımız <strong><a href="mailto:info@mail.boratanrikulu.me">info@mail.boratanrikulu.me</a></strong> kullanıcısından <strong><a href="mailto:root@mail.boratanrikulu.me">root@mail.boratanrikulu.me</a></strong> kullanıcısına mail atmak. Bu sayede hiç bir konfigürasyon yapılmamış mail server&rsquo;ını test edebileceğiz.</p>
+<p>SMTP protokolünde ile yapılması gereken selamlamadır. Aşağıdaki gibi server&rsquo;ı selamlayım.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">EHLO mail.boratanrikulu.me
 </code></pre></div><p>Mail&rsquo;i kimin yolladığı, yani <strong>From</strong> kısmı aşağıdaki gibi belirtilir.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">MAIL FROM:info@mail.boratanrikulu.me
@@ -234,7 +234,7 @@ Günümüzde kullanılan <strong>Extended SMTP</strong> ise, 2008&rsquo;de günc
 <li>Diğer header&rsquo;lara göre <strong>sıralama daha yavaştır</strong>.</li>
 <li><strong>Silme</strong> işlemleri daha <strong>yavaştır</strong>.</li>
 <li>Dosya <strong>bozulma risk daha büyüktür</strong>.</li>
-<li>Bir çok deamon'ın dosya üzerinde işlem yapması, <strong>süreçler arası bekleme durumu doğurur</strong>, performans düşer.</li>
+<li>Bir çok deamon&rsquo;ın dosya üzerinde işlem yapması, <strong>süreçler arası bekleme durumu doğurur</strong>, performans düşer.</li>
 </ul>
 </li>
 </ul>

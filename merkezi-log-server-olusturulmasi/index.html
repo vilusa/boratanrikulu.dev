@@ -14,7 +14,7 @@
 <meta name="twitter:description" content="lyk18&#39;de yapılan rsyslog anlatımının bir özeti."/>
 <link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" />
 
 	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 		<script src="https://boratanrikulu.dev/js/main.js"></script>
@@ -87,7 +87,7 @@
           </h3>
         </div><div class="markdown">
 				<p><strong>Kaynaklar</strong><br>
-LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://www.linkedin.com/in/erdem-bayer-1633915/"><strong><code>[Erdem Bayer]</code></strong></a></p>
+LYK'18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://www.linkedin.com/in/erdem-bayer-1633915/"><strong><code>[Erdem Bayer]</code></strong></a></p>
 <p><strong>NOT 1:</strong> Eksik ya da yanlış gördüğünüz yerler için Pull Request atabilirsiniz <a href="https://github.com/boratanrikulu/boratanrikulu.github.io/tree/master/_posts"><strong><code>[0]</code></strong></a><br>
 <strong>NOT 2:</strong> Yazı ile ilgili düşüncelerinizi yorum yazarak belirtirseniz sevinirim <strong>:)</strong></p>
 <hr>
@@ -338,8 +338,8 @@ LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey <a href="https://www.linkedi
 </code></pre></div><p><strong>NOT :</strong> Konfigürasyon dosyasını değiştirdikten sonra servisi reload&rsquo;lamayı unutmayın <strong>:)</strong>.</p>
 <hr>
 <h2 id="merkezi-log-sunucusunun-hazırlanması">Merkezi Log Sunucusunun Hazırlanması</h2>
-<p>Bu örnekte merkezi bir log server'ı kuracağız.</p>
-<p>Bunun için elimizde bir adet <strong>postfix</strong> ve bir adet <strong>wordpress</strong> server'ı olacak, bu iki sunucunun da log&rsquo;larını ayrı bir server&rsquo;da tutacağız.</p>
+<p>Bu örnekte merkezi bir log server&rsquo;ı kuracağız.</p>
+<p>Bunun için elimizde bir adet <strong>postfix</strong> ve bir adet <strong>wordpress</strong> server&rsquo;ı olacak, bu iki sunucunun da log&rsquo;larını ayrı bir server&rsquo;da tutacağız.</p>
 <p>Aşağıdaki görselde daha anlaşılır şekilde görebilirsiniz.</p>
 <p><strong>NOT :</strong> 3 server için de <strong>CentOS 7</strong> tercih edilmiştir. Siz başka dağıtımlar tercih edebilirsiniz.</p>
 <p align="center">
@@ -372,7 +372,7 @@ $InputTCPServerRun 514
 </code></pre></div><p align="center">
 	<img src="/images/posts/merkezi-log-server-olusturulmasi/5.png">
 </p>
-<p>Eğer Wordpress Server'ın tüm log&rsquo;larını, Log Server&rsquo;a yollamak istiyorsak aşağıdaki gibi bir satırı konfigürasyon dosyasına eklememiz yeterlidir. Fakat biz Log Server log&rsquo;ları ile uzak server log&rsquo;larının karışmasını istemediğimiz için bir adım daha uygulamamız gerekiyor; <strong>template !</strong></p>
+<p>Eğer Wordpress Server&rsquo;ın tüm log&rsquo;larını, Log Server&rsquo;a yollamak istiyorsak aşağıdaki gibi bir satırı konfigürasyon dosyasına eklememiz yeterlidir. Fakat biz Log Server log&rsquo;ları ile uzak server log&rsquo;larının karışmasını istemediğimiz için bir adım daha uygulamamız gerekiyor; <strong>template !</strong></p>
 <p><strong>NOT 1:</strong> Aynı satırı Postfix Server için de ekleyin.<br>
 <strong>NOT 2:</strong> Konfigürasyon dosyasını değiştirdikten sonra reload işlemini unutmayın.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">*.*          @@192.168.2.140:514 <span style="color:#998;font-style:italic"># TCP</span>
@@ -380,7 +380,7 @@ $InputTCPServerRun 514
 </code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000;font-weight:bold">[</span>root@wordpress ~#<span style="color:#000;font-weight:bold">]</span> systemctl force-reload rsyslog
 </code></pre></div><hr>
 <h4 id="template-kullanımı">Template Kullanımı</h4>
-<p>Bizim kurmak istediğimiz yapıdaki amaç; Log Server'ın <strong>/var/log/remote</strong> dizini altında <strong>her uzak sunucu için ayrı klasör oluşması</strong> ve bunların altında uzak server log&rsquo;larının saklanmasını sağlamak.</p>
+<p>Bizim kurmak istediğimiz yapıdaki amaç; Log Server&rsquo;ın <strong>/var/log/remote</strong> dizini altında <strong>her uzak sunucu için ayrı klasör oluşması</strong> ve bunların altında uzak server log&rsquo;larının saklanmasını sağlamak.</p>
 <p>Bunun için template yapısını kullanacağız. <a href="https://www.rsyslog.com/doc/master/configuration/properties.html"><strong><code>[4]</code></strong></a></p>
 <p>Kullanacağımız template aşağıdaki gibi olacak. Bu iki satırı /etc/rsyslog.conf&rsquo;da uygun bir yere ekleyin ve servisi reload&rsquo;layın.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$template RemoteServersTamplate, &#34;/var/log/remote/%hostname%/%syslogfacility-text%/%syslogseverity-text%.log&#34;
@@ -391,10 +391,10 @@ $InputTCPServerRun 514
 </p>
 <hr>
 <h4 id="expression-based-filtreleme-kullanımı">Expression-Based Filtreleme Kullanımı</h4>
-<p>Aslında burada aslında bir sorun var, gördüğünüz gibi local olan Log Server'ın log&rsquo;ları da yazılmış ve <strong>log</strong> diye bir klasör oluşturulmuş. Biz bunu istemiyoruz. Bunu önlemek amacıyla <strong>Expression-Based Filtreleme</strong> uygulanabilir.</p>
+<p>Aslında burada aslında bir sorun var, gördüğünüz gibi local olan Log Server&rsquo;ın log&rsquo;ları da yazılmış ve <strong>log</strong> diye bir klasör oluşturulmuş. Biz bunu istemiyoruz. Bunu önlemek amacıyla <strong>Expression-Based Filtreleme</strong> uygulanabilir.</p>
 <p>Bunun kullanımı şu şekildedir;</p>
 <p><strong>&quot;</strong> if <strong>EXPRESSION</strong> then <strong>ACTION</strong> else <strong>ACTION</strong> <strong>&quot;</strong></p>
-<p>Yani aslında Log Server'ın loglarını bu kural satırına uygulamak istemiyorsak şu şekilde yapmamız yeterlidir.</p>
+<p>Yani aslında Log Server&rsquo;ın loglarını bu kural satırına uygulamak istemiyorsak şu şekilde yapmamız yeterlidir.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">*.*        if $hostname != &#39;log&#39; then ?RemoteServersTamplate
 </code></pre></div><p>Tüm cihazlarda bir kaç log ürettikten sonra aşağıdaki sonucu gözlemliyoruz.</p>
 <p align="center">

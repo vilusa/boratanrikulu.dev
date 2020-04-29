@@ -14,7 +14,7 @@
 <meta name="twitter:description" content="postgresql&#39;de kullanılan veri tiplerini açıklar. sıralamayı (alignment) anlatır."/>
 <link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" />
 
 	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 		<script src="https://boratanrikulu.dev/js/main.js"></script>
@@ -184,8 +184,8 @@ Char(n) sabit uzunlukta veriler saklanacağında mantıklı olabilir.</p>
 Char(n) yerine bunu kullanmak bir çok senaryoda çok daha mantıklı olacaktır.</p>
 <p><strong><code>Not</code></strong></p>
 <p>PostgreSQL&rsquo;de verileri birbirine <strong><code>cast</code></strong> etmek için <strong><code>::</code></strong> operatörü kullanılır. Aşağıdaki gibi kullanılır.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#d14">&#39;</span><span style="color:#d14">F</span><span style="color:#d14">&#39;</span>::<span style="color:#0086b3">varchar</span>(<span style="color:#099">5</span>) <span style="color:#000;font-weight:bold">as</span> vc5;
-<span style="color:#d14">&#39;</span><span style="color:#d14">F</span><span style="color:#d14">&#39;</span>::<span style="color:#0086b3">char</span>(<span style="color:#099">5</span>) <span style="color:#000;font-weight:bold">as</span> c5;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#d14">&#39;F&#39;</span>::<span style="color:#0086b3">varchar</span>(<span style="color:#099">5</span>) <span style="color:#000;font-weight:bold">as</span> vc5;
+<span style="color:#d14">&#39;F&#39;</span>::<span style="color:#0086b3">char</span>(<span style="color:#099">5</span>) <span style="color:#000;font-weight:bold">as</span> c5;
 </code></pre></div><p>Bu iki verinin boyutu birbirinden farklıdır.<br>
 vc5&rsquo;de yalnızca F&rsquo;in boyutu kadar alan gerekli iken, c5&rsquo;de sabit bir değer olan 5 byte kadar alan açılır.</p>
 <hr>
@@ -194,7 +194,7 @@ vc5&rsquo;de yalnızca F&rsquo;in boyutu kadar alan gerekli iken, c5&rsquo;de sa
 <hr>
 <h4 id="smallint-int2">smallint, int2</h4>
 <p>2 byte&rsquo;lık integer veri saklamak amacıyla kullanılır.<br>
-smallint ve int2 ifadeleri birbirinin alias'ı durumundadır.</p>
+smallint ve int2 ifadeleri birbirinin alias&rsquo;ı durumundadır.</p>
 <hr>
 <h4 id="integer-int4-int">integer, int4, int</h4>
 <p>4 byte&rsquo;lık integer veri saklamak amacıyla kullanılır.</p>
@@ -229,14 +229,14 @@ Serial int4 tipindedir Integer tiplerine göre smallserial, bigserial türleri d
 <hr>
 <h4 id="enum">Enum</h4>
 <p>Statik, sıralı veri kümeleri saklamak için kullanılır.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#000;font-weight:bold">CREATE</span> <span style="color:#000;font-weight:bold">TYPE</span> haftanin_gunleri <span style="color:#000;font-weight:bold">AS</span> ENUM (<span style="color:#d14">&#39;</span><span style="color:#d14">Pazartesi</span><span style="color:#d14">&#39;</span>, <span style="color:#d14">&#39;</span><span style="color:#d14">Salı</span><span style="color:#d14">&#39;</span>, .... , <span style="color:#d14">&#39;</span><span style="color:#d14">Pazar</span><span style="color:#d14">&#39;</span>);
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#000;font-weight:bold">CREATE</span> <span style="color:#000;font-weight:bold">TYPE</span> haftanin_gunleri <span style="color:#000;font-weight:bold">AS</span> ENUM (<span style="color:#d14">&#39;Pazartesi&#39;</span>, <span style="color:#d14">&#39;Salı&#39;</span>, .... , <span style="color:#d14">&#39;Pazar&#39;</span>);
 </code></pre></div><hr>
 <h4 id="domain">Domain</h4>
 <p>Validasyon yapmak amacıyla kullanılır. Örneğin aşağıdaki örnekte US posta kodu için bir validasyon yapısı kurulmuştur. <a href="https://www.postgresql.org/docs/current/sql-createdomain.html"><strong><code>[kaynak]</code></strong></a></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#000;font-weight:bold">CREATE</span> <span style="color:#000;font-weight:bold">DOMAIN</span> us_postal_code <span style="color:#000;font-weight:bold">AS</span> <span style="color:#0086b3">TEXT</span>
 <span style="color:#000;font-weight:bold">CHECK</span>(
-   VALUE <span style="color:#000;font-weight:bold">~</span> <span style="color:#d14">&#39;</span><span style="color:#d14">^\d{5}$</span><span style="color:#d14">&#39;</span>
-<span style="color:#000;font-weight:bold">OR</span> VALUE <span style="color:#000;font-weight:bold">~</span> <span style="color:#d14">&#39;</span><span style="color:#d14">^\d{5}-\d{4}$</span><span style="color:#d14">&#39;</span>
+   VALUE <span style="color:#000;font-weight:bold">~</span> <span style="color:#d14">&#39;^\d{5}$&#39;</span>
+<span style="color:#000;font-weight:bold">OR</span> VALUE <span style="color:#000;font-weight:bold">~</span> <span style="color:#d14">&#39;^\d{5}-\d{4}$&#39;</span>
 );
 
 <span style="color:#000;font-weight:bold">CREATE</span> <span style="color:#000;font-weight:bold">TABLE</span> us_snail_addy (
@@ -441,8 +441,8 @@ Ya da belki de Text tipini tercih edebiliriz.</p>
   <span style="color:#000;font-weight:bold">FROM</span> pg_class <span style="color:#000;font-weight:bold">c</span>
   <span style="color:#000;font-weight:bold">JOIN</span> pg_attribute a <span style="color:#000;font-weight:bold">ON</span> (a.attrelid <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">c</span>.oid)
   <span style="color:#000;font-weight:bold">JOIN</span> pg_type t <span style="color:#000;font-weight:bold">ON</span> (t.oid <span style="color:#000;font-weight:bold">=</span> a.atttypid)
- <span style="color:#000;font-weight:bold">WHERE</span> <span style="color:#000;font-weight:bold">c</span>.relname <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;</span><span style="color:#d14">user_order</span><span style="color:#d14">&#39;</span>
-   <span style="color:#000;font-weight:bold">AND</span> a.attnum <span style="color:#000;font-weight:bold">&gt;</span><span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>
+ <span style="color:#000;font-weight:bold">WHERE</span> <span style="color:#000;font-weight:bold">c</span>.relname <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;user_order&#39;</span>
+   <span style="color:#000;font-weight:bold">AND</span> a.attnum <span style="color:#000;font-weight:bold">&gt;=</span> <span style="color:#099">0</span>
  <span style="color:#000;font-weight:bold">ORDER</span> <span style="color:#000;font-weight:bold">BY</span> t.typlen <span style="color:#000;font-weight:bold">DESC</span>;
 </code></pre></div><p>Bizim örneğimize göre en uygun kolon sıralaması aşağıdaki gibi yapılmalıdır. Yalnızca sıralamayı değiştirerek takribi olarak 20% alan tasarrufu sağlamış olduk.</p>
 <table>

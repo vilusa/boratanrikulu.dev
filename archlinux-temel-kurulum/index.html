@@ -14,7 +14,7 @@
 <meta name="twitter:description" content="archlinux &#43; xfce = rocks!"/>
 <link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" />
 
 	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 		<script src="https://boratanrikulu.dev/js/main.js"></script>
@@ -165,7 +165,7 @@ Disk type&rsquo;larını doğru girmeniz önemlidir, aşağıdaki fotoğraftaki 
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	less /etc/pacman.d/mirrorlist
 </code></pre></div><p>Aşağıdaki gibi <strong>reflector</strong>&lsquo;u kurun.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	pacman -Syy reflector
-</code></pre></div><p>Aşağıdaki gibi bir yapı ile istediğiniz ülkede bulunan mirror'ı kullanabilirsiniz. Ülke tercihe bağlı olarak değişebilir. Konumunuza yakın bir ülke daha yararlı olacaktır.</p>
+</code></pre></div><p>Aşağıdaki gibi bir yapı ile istediğiniz ülkede bulunan mirror&rsquo;ı kullanabilirsiniz. Ülke tercihe bağlı olarak değişebilir. Konumunuza yakın bir ülke daha yararlı olacaktır.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	reflector --country &#39;United States&#39; --age 12 --completion-percent 100 -i kernel.org --sort rate --save /etc/pacman.d/mirrorlist
 </code></pre></div><p>Değişikliği görmek için aşağıdaki komutu yürütebilirsiniz.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">	less /etc/pacman.d/mirrorlist

@@ -14,7 +14,7 @@
 <meta name="twitter:description" content="lyk18&#39;de yapılan network uygulamasının bir özeti."/>
 <link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" />
 
 	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 		<script src="https://boratanrikulu.dev/js/main.js"></script>
@@ -87,7 +87,7 @@
           </h3>
         </div><div class="markdown">
 				<p><strong>Kaynaklar</strong><br>
-LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey (Engür Pişirici)</p>
+LYK'18 - GNU/Linux Sistem Yönetimi 2. Düzey (Engür Pişirici)</p>
 <p><strong>NOT:</strong> Anlatım için VirtualBox ve Debian9 kullanılmıştır.</p>
 <hr>
 <h2 id="bus-topology-nedir-">Bus Topology Nedir ?</h2>
@@ -111,7 +111,7 @@ LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey (Engür Pişirici)</p>
 <p align="center">
 	<img src="/images/posts/bus-topology-ornek-uygulama/logo.png">
 </p>
-<p>Bu şekilde bir yapı kurup, B server'ı üzerinden akan trafiği yönetmek istiyoruz. Bunun için 3 interface&rsquo;e ihtiyacımız var. Interface&rsquo;leri aşağıdaki gibi oluşturabilirsiniz.</p>
+<p>Bu şekilde bir yapı kurup, B server&rsquo;ı üzerinden akan trafiği yönetmek istiyoruz. Bunun için 3 interface&rsquo;e ihtiyacımız var. Interface&rsquo;leri aşağıdaki gibi oluşturabilirsiniz.</p>
 <hr>
 <h2 id="interfacelerin-ayarlanması">Interface&rsquo;lerin Ayarlanması</h2>
 <p align="center">
@@ -157,22 +157,22 @@ LYK&rsquo;18 - GNU/Linux Sistem Yönetimi 2. Düzey (Engür Pişirici)</p>
 </table>
 <hr>
 <h2 id="client---a-nın-yapılandırılması">Client - A&rsquo; nın Yapılandırılması</h2>
-<p>A Cihazını bir istemci gibi kullanacağımız için <strong>curl</strong>&lsquo;e ihtiyacımız olacak. Yüklü değil ise kurun. Eğer istiyorsanız terminal browser'ı da kurabilirsiniz.</p>
+<p>A Cihazını bir istemci gibi kullanacağımız için <strong>curl</strong>&lsquo;e ihtiyacımız olacak. Yüklü değil ise kurun. Eğer istiyorsanız terminal browser&rsquo;ı da kurabilirsiniz.</p>
 <p>Network ayarlarını yapılandırmak için aşağıdaki script&rsquo;i root yetkisi ile her başlangıçta çalıştırılacak şekilde hazırlayın.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#999;font-weight:bold;font-style:italic">#!/bin/bash
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>
-setName<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+setName<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
 	ip link <span style="color:#0086b3">set</span> dev enp0s8 down
 	ip link <span style="color:#0086b3">set</span> dev enp0s8 name AtoB
 	ip link <span style="color:#0086b3">set</span> dev AtoB up
 <span style="color:#000;font-weight:bold">}</span>
 
-setIPs<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+setIPs<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
 	ip addr add 192.168.3.3/24 dev AtoB <span style="color:#998;font-style:italic"># sets Device A IP for vboxnet1</span>
 	ip route add 192.168.4.0/24 dev AtoB via 192.168.3.40 <span style="color:#998;font-style:italic"># sets Device B as the router to access vboxnet2</span>
 <span style="color:#000;font-weight:bold">}</span>
 
-main<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+main<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
 	setName
 	setIPs
 <span style="color:#000;font-weight:bold">}</span>
@@ -194,7 +194,7 @@ main
 </code></pre></div><p>Network ayarlarını yapılandırmak için aşağıdaki script&rsquo;i root yetkisi ile her başlangıçta çalıştırılacak şekilde hazırlayın.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#999;font-weight:bold;font-style:italic">#!/bin/bash
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>
-setNames<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+setNames<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
 	ip link <span style="color:#0086b3">set</span> dev enp0s8 down
 	ip link <span style="color:#0086b3">set</span> dev enp0s8 name BtoA
 	ip link <span style="color:#0086b3">set</span> dev BtoA up
@@ -204,21 +204,21 @@ setNames<span style="color:#000;font-weight:bold">(</span><span style="color:#00
 	ip link <span style="color:#0086b3">set</span> dev BtoC up
 <span style="color:#000;font-weight:bold">}</span>
 
-setIPs<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+setIPs<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
 	ip addr add 192.168.3.40/24 dev BtoA <span style="color:#998;font-style:italic"># sets Device B IP for vboxnet0</span>
 	ip addr add 192.168.4.2/24 dev BtoC <span style="color:#998;font-style:italic"># sets Device B IP for vboxnet2</span>
 
 <span style="color:#000;font-weight:bold">}</span>
 
-setIPForward<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+setIPForward<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
 	<span style="color:#008080">ipForward</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">`</span>cat /proc/sys/net/ipv4/ip_forward<span style="color:#d14">`</span>
 
-	<span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000;font-weight:bold">[</span> <span style="color:#d14">&#34;</span><span style="color:#008080">$ipForward</span><span style="color:#d14">&#34;</span> -eq <span style="color:#d14">&#34;0&#34;</span> <span style="color:#000;font-weight:bold">]</span><span style="color:#000;font-weight:bold">]</span>; <span style="color:#000;font-weight:bold">then</span> <span style="color:#998;font-style:italic"># sets IP Forward as 1</span>
+	<span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">[[</span> <span style="color:#d14">&#34;</span><span style="color:#008080">$ipForward</span><span style="color:#d14">&#34;</span> -eq <span style="color:#d14">&#34;0&#34;</span> <span style="color:#000;font-weight:bold">]]</span>; <span style="color:#000;font-weight:bold">then</span> <span style="color:#998;font-style:italic"># sets IP Forward as 1</span>
 		sysctl net.ipv4.ip_forward<span style="color:#000;font-weight:bold">=</span><span style="color:#099">1</span>
 	<span style="color:#000;font-weight:bold">fi</span>
 <span style="color:#000;font-weight:bold">}</span>
 
-main<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+main<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
 	setNames
 	setIPs
 	setIPForward
@@ -240,18 +240,18 @@ main
 </code></pre></div><p>Network ayarlarını yapılandırmak için aşağıdaki script&rsquo;i root yetkisi ile her başlangıçta çalıştırılacak şekilde hazırlayın.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#999;font-weight:bold;font-style:italic">#!/bin/bash
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>
-setName<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+setName<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
 	ip link <span style="color:#0086b3">set</span> dev enp0s8 down
 	ip link <span style="color:#0086b3">set</span> dev enp0s8 name CtoB
 	ip link <span style="color:#0086b3">set</span> dev CtoB up
 <span style="color:#000;font-weight:bold">}</span>
 
-setIPs<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+setIPs<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
 	ip addr add 192.168.4.4/24 dev CtoB <span style="color:#998;font-style:italic"># sets Device C IP for vboxnet1</span>
 	ip route add 192.168.3.0/24 dev CtoB via 192.168.4.2 <span style="color:#998;font-style:italic"># sets Device B as the router to access vboxnet0</span>
 <span style="color:#000;font-weight:bold">}</span>
 
-main<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+main<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
 	setName
 	setIPs
 <span style="color:#000;font-weight:bold">}</span>
@@ -272,18 +272,18 @@ main
 </code></pre></div><p>Network ayarlarını yapılandırmak için aşağıdaki script&rsquo;i root yetkisi ile her başlangıçta çalıştırılacak şekilde hazırlayın.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#999;font-weight:bold;font-style:italic">#!/bin/bash
 </span><span style="color:#999;font-weight:bold;font-style:italic"></span>
-setName<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+setName<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
 	ip link <span style="color:#0086b3">set</span> dev enp0s8 down
 	ip link <span style="color:#0086b3">set</span> dev enp0s8 name DtoB
 	ip link <span style="color:#0086b3">set</span> dev DtoB up
 <span style="color:#000;font-weight:bold">}</span>
 
-setIPs<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+setIPs<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
 	ip addr add 192.168.4.5/24 dev DtoB <span style="color:#998;font-style:italic"># sets Device D IP for vboxnet1</span>
 	ip route add 192.168.3.0/24 dev DtoB via 192.168.4.2 <span style="color:#998;font-style:italic"># sets Device B as the router to access vboxnet0</span>
 <span style="color:#000;font-weight:bold">}</span>
 
-main<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+main<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
 	setName
 	setIPs
 <span style="color:#000;font-weight:bold">}</span>
@@ -293,7 +293,7 @@ main
 <h2 id="ne-yaptık--ne-yapmak-istiyoruz-">Ne Yaptık ? Ne Yapmak İstiyoruz ?</h2>
 <p>Oluşturulan scriptlerin çalışması için tüm cihazların kapatıp tekrar açın.<br>
 Şuan oluşan yapıda A cihazından (B üzerinden geçerek) C ve D cihazlarına erişim sağlanabiliyor. Ama bizim yapmak istediğimiz yapı tam olarak bu değil. Biz A cihazından yalnızca B&rsquo;ye istek yapılmasını, hangi cevabın dönüleceğini B üzerinden karar vermek istiyoruz.</p>
-<p>Yani aslında buradaki amaç B cihazı üzerinden client&rsquo;lara hizmet vermek, C ve D cihazlarını B&rsquo;nin arkasında tutmak. Bu sayede direkt olarak B üzerinde yaptığımız ayarlar sayesinde network'ü kollaylıkla yönetebileceğiz.</p>
+<p>Yani aslında buradaki amaç B cihazı üzerinden client&rsquo;lara hizmet vermek, C ve D cihazlarını B&rsquo;nin arkasında tutmak. Bu sayede direkt olarak B üzerinde yaptığımız ayarlar sayesinde network&rsquo;ü kollaylıkla yönetebileceğiz.</p>
 <hr>
 <h2 id="forwarder-yapılandırılması">Forwarder Yapılandırılması</h2>
 <p>B üzerine yapılan web servisi sorgularında hangi server&rsquo;dan dönüş sağlanılacağını ayarlamak için aşağıdaki gibi bir script kullanacağız.</p>
@@ -303,24 +303,24 @@ main
 <span style="color:#008080">C_IP</span><span style="color:#000;font-weight:bold">=</span>192.168.4.4
 <span style="color:#008080">D_IP</span><span style="color:#000;font-weight:bold">=</span>192.168.4.5
 
-delete_them_all<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+delete_them_all<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
 	iptables -t nat -F <span style="color:#998;font-style:italic"># deletes all nat rules</span>
 <span style="color:#000;font-weight:bold">}</span>
 
-add_nat_rule<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+add_nat_rule<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
 	iptables -t nat -A PREROUTING -p tcp --dport <span style="color:#099">80</span> -d 192.168.3.40 -j DNAT --to-destination <span style="color:#d14">&#34;</span><span style="color:#008080">$1</span><span style="color:#d14">&#34;</span>
 <span style="color:#000;font-weight:bold">}</span>
 
-main<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
-	<span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000;font-weight:bold">[</span> <span style="color:#d14">&#34;</span><span style="color:#008080">$1</span><span style="color:#d14">&#34;</span> <span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;c&#34;</span> <span style="color:#000;font-weight:bold">]</span><span style="color:#000;font-weight:bold">]</span>; <span style="color:#000;font-weight:bold">then</span>
+main<span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+	<span style="color:#000;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">[[</span> <span style="color:#d14">&#34;</span><span style="color:#008080">$1</span><span style="color:#d14">&#34;</span> <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#34;c&#34;</span> <span style="color:#000;font-weight:bold">]]</span>; <span style="color:#000;font-weight:bold">then</span>
 		delete_them_all
 		add_nat_rule <span style="color:#d14">&#34;</span><span style="color:#008080">$C_IP</span><span style="color:#d14">&#34;</span> <span style="color:#998;font-style:italic"># adds Device C IP to forward</span>
 		<span style="color:#0086b3">echo</span> <span style="color:#d14">&#34;Process is Completed [C].&#34;</span>
-	<span style="color:#000;font-weight:bold">elif</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000;font-weight:bold">[</span> <span style="color:#d14">&#34;</span><span style="color:#008080">$1</span><span style="color:#d14">&#34;</span> <span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;d&#34;</span> <span style="color:#000;font-weight:bold">]</span><span style="color:#000;font-weight:bold">]</span>; <span style="color:#000;font-weight:bold">then</span>
+	<span style="color:#000;font-weight:bold">elif</span> <span style="color:#000;font-weight:bold">[[</span> <span style="color:#d14">&#34;</span><span style="color:#008080">$1</span><span style="color:#d14">&#34;</span> <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#34;d&#34;</span> <span style="color:#000;font-weight:bold">]]</span>; <span style="color:#000;font-weight:bold">then</span>
 		delete_them_all
 		add_nat_rule <span style="color:#d14">&#34;</span><span style="color:#008080">$D_IP</span><span style="color:#d14">&#34;</span> <span style="color:#998;font-style:italic"># adds Device D IP to forward</span>
 		<span style="color:#0086b3">echo</span> <span style="color:#d14">&#34;Process is Completed [D].&#34;</span>
-	<span style="color:#000;font-weight:bold">elif</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000;font-weight:bold">[</span> <span style="color:#d14">&#34;</span><span style="color:#008080">$1</span><span style="color:#d14">&#34;</span> <span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;off&#34;</span> <span style="color:#000;font-weight:bold">]</span><span style="color:#000;font-weight:bold">]</span>; <span style="color:#000;font-weight:bold">then</span>
+	<span style="color:#000;font-weight:bold">elif</span> <span style="color:#000;font-weight:bold">[[</span> <span style="color:#d14">&#34;</span><span style="color:#008080">$1</span><span style="color:#d14">&#34;</span> <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#34;off&#34;</span> <span style="color:#000;font-weight:bold">]]</span>; <span style="color:#000;font-weight:bold">then</span>
 		delete_them_all
 		<span style="color:#0086b3">echo</span> <span style="color:#d14">&#34;All NAT Rules are Deleted.&#34;</span>
 	<span style="color:#000;font-weight:bold">else</span>
@@ -338,7 +338,7 @@ main <span style="color:#d14">&#34;</span><span style="color:#008080">$*</span><
 	<img src="/images/posts/bus-topology-ornek-uygulama/2.png">
 </p>
 <hr>
-<p>Eğer B üzerinden D forward'ı açılırsa</p>
+<p>Eğer B üzerinden D forward&rsquo;ı açılırsa</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">B$ ./forward.sh d
 </code></pre></div><p>Client - A, D&rsquo;yi görüntüler</p>
 <p align="center">

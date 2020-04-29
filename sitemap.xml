@@ -8,17 +8,7 @@
   </url>
   
   <url>
-    <loc>https://boratanrikulu.dev/tags/gnu/linux/</loc>
-    <lastmod>2020-01-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://boratanrikulu.dev/</loc>
-    <lastmod>2020-01-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://boratanrikulu.dev/tags/</loc>
     <lastmod>2020-01-15T00:00:00+00:00</lastmod>
   </url>
   
@@ -34,6 +24,11 @@
   
   <url>
     <loc>https://boratanrikulu.dev/postgresql-veri-tipleri-ve-siralama/</loc>
+    <lastmod>2019-12-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://boratanrikulu.dev/tags/</loc>
     <lastmod>2019-12-25T00:00:00+00:00</lastmod>
   </url>
   
@@ -174,6 +169,10 @@
   
   <url>
     <loc>https://boratanrikulu.dev/contact/</loc>
+  </url>
+  
+  <url>
+    <loc>https://boratanrikulu.dev/tags/gnu/linux/</loc>
   </url>
   
   <url>

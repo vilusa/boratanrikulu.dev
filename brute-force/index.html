@@ -14,7 +14,7 @@
 <meta name="twitter:description" content="&#39;algoritmalar - brute force&#39; konusu hakkında aldığım notlar."/>
 <link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" /><link rel="stylesheet" type="text/css" href="https://boratanrikulu.dev/css/dark.css" media="(prefers-color-scheme: dark)" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boratanrikulu.dev/css/main.css" />
 
 	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 		<script src="https://boratanrikulu.dev/js/main.js"></script>
@@ -117,7 +117,7 @@
     <span style="color:#000;font-weight:bold">for</span> j <span style="color:#000;font-weight:bold">:</span> i<span style="color:#000;font-weight:bold">+</span>1 to n<span style="color:#000;font-weight:bold">-</span>1 <span style="color:#000;font-weight:bold">do</span>
       <span style="color:#000;font-weight:bold">if</span> <span style="color:#900;font-weight:bold">list</span><span style="color:#000;font-weight:bold">(</span>j<span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">&lt;</span> list<span style="color:#000;font-weight:bold">(</span>min<span style="color:#000;font-weight:bold">)</span>
         min <span style="color:#000;font-weight:bold">=</span> j
-    <span style="color:#900;font-weight:bold">swap</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">[</span>i<span style="color:#000;font-weight:bold">]</span><span style="color:#000;font-weight:bold">,</span> list<span style="color:#000;font-weight:bold">[</span>min<span style="color:#000;font-weight:bold">]</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#900;font-weight:bold">swap</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">[</span>i<span style="color:#000;font-weight:bold">],</span> list<span style="color:#000;font-weight:bold">[</span>min<span style="color:#000;font-weight:bold">])</span>
 </code></pre></div><p>Büyüme hızı: <code>Θ(n^2)</code></p>
 <p>Selection Sort&rsquo;un diğer sıralama algoritmalarından <strong>ayıran bir özelliği</strong> vardır. Algoritma tüm elemanları n^2 kere dolaşırken swap işlemi yalnızca n kez yapılır.</p>
 <h3 id="bubble-sort">Bubble Sort</h3>
@@ -134,7 +134,7 @@
   <span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:</span> 0 to n<span style="color:#000;font-weight:bold">-</span>2 <span style="color:#000;font-weight:bold">do</span>
     <span style="color:#000;font-weight:bold">for</span> j <span style="color:#000;font-weight:bold">:</span> 0 to n<span style="color:#000;font-weight:bold">-</span>1<span style="color:#000;font-weight:bold">-</span>i <span style="color:#000;font-weight:bold">do</span>
       <span style="color:#000;font-weight:bold">if</span> list<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">&gt;</span> list<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">+</span>1<span style="color:#000;font-weight:bold">]</span>
-        <span style="color:#900;font-weight:bold">swap</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">]</span><span style="color:#000;font-weight:bold">,</span> list<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">+</span>1<span style="color:#000;font-weight:bold">]</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#900;font-weight:bold">swap</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">],</span> list<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">+</span>1<span style="color:#000;font-weight:bold">])</span>
 </code></pre></div><p>Büyüme hızı: <code>Θ(n^2)</code></p>
 <p>Sıralama algoritmaları hakkında çözülebilecek problemler: (syf 129)</p>
 <ul>
@@ -157,7 +157,7 @@
 <p>Sözde kodu:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">def <span style="color:#900;font-weight:bold">sequential_search</span><span style="color:#000;font-weight:bold">(</span>list<span style="color:#000;font-weight:bold">,</span> key<span style="color:#000;font-weight:bold">)</span>
   <span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:</span> 0 to n<span style="color:#000;font-weight:bold">-</span>1 <span style="color:#000;font-weight:bold">do</span>
-    <span style="color:#000;font-weight:bold">if</span>  key <span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">=</span> list<span style="color:#000;font-weight:bold">[</span>i<span style="color:#000;font-weight:bold">]</span>
+    <span style="color:#000;font-weight:bold">if</span>  key <span style="color:#000;font-weight:bold">==</span> list<span style="color:#000;font-weight:bold">[</span>i<span style="color:#000;font-weight:bold">]</span>
       <span style="color:#000;font-weight:bold">return</span> i
   <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">-</span>1
 </code></pre></div><p>Büyüme hızı: <code>Θ(n)</code></p>
@@ -178,9 +178,9 @@
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">def <span style="color:#900;font-weight:bold">string_matching</span><span style="color:#000;font-weight:bold">(</span>text<span style="color:#000;font-weight:bold">,</span> word<span style="color:#000;font-weight:bold">)</span>
   <span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:</span> 0 to n<span style="color:#000;font-weight:bold">-</span>m <span style="color:#000;font-weight:bold">do</span>
     j <span style="color:#000;font-weight:bold">=</span> 0
-    <span style="color:#000;font-weight:bold">while</span> j <span style="color:#000;font-weight:bold">&lt;</span> m AND word<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">=</span> text<span style="color:#000;font-weight:bold">[</span>i<span style="color:#000;font-weight:bold">+</span>j<span style="color:#000;font-weight:bold">]</span>
-      j<span style="color:#000;font-weight:bold">+</span><span style="color:#000;font-weight:bold">+</span>
-    <span style="color:#000;font-weight:bold">if</span> j <span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">=</span> m
+    <span style="color:#000;font-weight:bold">while</span> j <span style="color:#000;font-weight:bold">&lt;</span> m AND word<span style="color:#000;font-weight:bold">[</span>j<span style="color:#000;font-weight:bold">]</span> <span style="color:#000;font-weight:bold">==</span> text<span style="color:#000;font-weight:bold">[</span>i<span style="color:#000;font-weight:bold">+</span>j<span style="color:#000;font-weight:bold">]</span>
+      j<span style="color:#000;font-weight:bold">++</span>
+    <span style="color:#000;font-weight:bold">if</span> j <span style="color:#000;font-weight:bold">==</span> m
       <span style="color:#000;font-weight:bold">return</span> i
   <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">-</span>1
 </code></pre></div><p>Büyüme hızı: En kötü durumda, her defasında while&rsquo;a gireceği için, <code>Θ(nm)</code></p>
@@ -196,7 +196,7 @@
   index2 <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">-</span>1
   <span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:</span> 1 to n<span style="color:#000;font-weight:bold">-</span>1 <span style="color:#000;font-weight:bold">do</span>
     <span style="color:#000;font-weight:bold">for</span> j <span style="color:#000;font-weight:bold">:</span> i<span style="color:#000;font-weight:bold">+</span>1 to n <span style="color:#000;font-weight:bold">do</span>
-      d <span style="color:#000;font-weight:bold">=</span> sqrt<span style="color:#000;font-weight:bold">(</span><span style="color:#000;font-weight:bold">(</span>xi<span style="color:#000;font-weight:bold">-</span>xj<span style="color:#000;font-weight:bold">)</span><span style="color:#000;font-weight:bold">^</span>2 <span style="color:#000;font-weight:bold">+</span> <span style="color:#000;font-weight:bold">(</span>yi<span style="color:#000;font-weight:bold">-</span>yj<span style="color:#000;font-weight:bold">)</span><span style="color:#000;font-weight:bold">^</span>2<span style="color:#000;font-weight:bold">)</span>
+      d <span style="color:#000;font-weight:bold">=</span> sqrt<span style="color:#000;font-weight:bold">((</span>xi<span style="color:#000;font-weight:bold">-</span>xj<span style="color:#000;font-weight:bold">)^</span>2 <span style="color:#000;font-weight:bold">+</span> <span style="color:#000;font-weight:bold">(</span>yi<span style="color:#000;font-weight:bold">-</span>yj<span style="color:#000;font-weight:bold">)^</span>2<span style="color:#000;font-weight:bold">)</span>
       <span style="color:#000;font-weight:bold">if</span> d <span style="color:#000;font-weight:bold">&lt;</span> dmin
         dmin <span style="color:#000;font-weight:bold">=</span> d
         index1 <span style="color:#000;font-weight:bold">=</span> i
@@ -209,12 +209,12 @@
 	<img height="400" src="/images/posts/brute-force/brute_force_1.png" alt="convex-hull problem">
 </p>
 <p>Verilen noktalar için <strong>dışbükey bir çevreleyici</strong>nin bulunmasıdır.</p>
-<p>X ve X birleştiren doğru parçası diğer tüm noktaları bir tarafta bırakıyorsa bu doğru parçası Convex Hull’ın bir kenarıdır. Bu testi tüm nokta çiftleri için gerçekleştirdiğimizde Convex-Hull'ın uç noktalarını bulabiliriz.</p>
+<p>X ve X birleştiren doğru parçası diğer tüm noktaları bir tarafta bırakıyorsa bu doğru parçası Convex Hull’ın bir kenarıdır. Bu testi tüm nokta çiftleri için gerçekleştirdiğimizde Convex-Hull&rsquo;ın uç noktalarını bulabiliriz.</p>
 <hr>
 <h2 id="exhaustive-search-kapsamlı-arama">Exhaustive Search (kapsamlı arama)</h2>
 <p>Exhaustive Search, kombinasyonal problemlerine brute force yaklaşımı ile çözüm bulmaktadır.</p>
 <p>Bir problemin tüm elemanlarını bulur ve bu buldukları arasından problemin kısıtlamlarına uygun olanları seçer. Ardından seçilen elemanlar arasından problem için uygun olan eleman seçilir (en optimize olan eleman).</p>
-<p>Exhaustive Search'ü üç problemin çözümünde kullanacağız; Traveling Salesman Problem, Knapsack Problem, Assignment Problem.</p>
+<p>Exhaustive Search&rsquo;ü üç problemin çözümünde kullanacağız; Traveling Salesman Problem, Knapsack Problem, Assignment Problem.</p>
 <h3 id="traveling-salesman-problem-gezgin-satıcı-problemi">Traveling Salesman Problem (gezgin satıcı problemi)</h3>
 <p>150 yıldır araştırmacılar tarafından araştırılan bu problemde istenen, verilen n şehir içerisinde, her şehirde yalnızca bir kez uğranılan minimum turun bulunmasıdır. Bu noktada problem en kısa Hemiltonaian çevrimini bulmaya dönmüş olur. Brute force yaklaşımı ile, Exhaustive Search yaparsak, bu sorunu çözerken tüm kombinasyonal durumlar yazılır ve ağırlık bakımından en optimal yol(lar) seçilir.</p>
 <p align="center">
@@ -265,7 +265,7 @@ Büyüme hızı: <code>Ω(2^n)</code></p>
       <span style="color:#900;font-weight:bold">dfs</span><span style="color:#000;font-weight:bold">(</span>v<span style="color:#000;font-weight:bold">)</span>
 
 def <span style="color:#900;font-weight:bold">dfs</span><span style="color:#000;font-weight:bold">(</span>v<span style="color:#000;font-weight:bold">)</span>
-  count<span style="color:#000;font-weight:bold">+</span><span style="color:#000;font-weight:bold">+</span>
+  count<span style="color:#000;font-weight:bold">++</span>
   mark v with count
   <span style="color:#000;font-weight:bold">for</span> each vertex w in V adjacent to v <span style="color:#000;font-weight:bold">do</span>
     <span style="color:#000;font-weight:bold">if</span> w is marked with 0
@@ -284,13 +284,13 @@ def <span style="color:#900;font-weight:bold">dfs</span><span style="color:#000;
       <span style="color:#900;font-weight:bold">bfs</span><span style="color:#000;font-weight:bold">(</span>v<span style="color:#000;font-weight:bold">)</span>
 
 def <span style="color:#900;font-weight:bold">bfs</span><span style="color:#000;font-weight:bold">(</span>v<span style="color:#000;font-weight:bold">)</span>
-  count<span style="color:#000;font-weight:bold">+</span><span style="color:#000;font-weight:bold">+</span>
+  count<span style="color:#000;font-weight:bold">++</span>
   mark v with count
   initialize a queue with v
   <span style="color:#000;font-weight:bold">while</span> the queue is not empty <span style="color:#000;font-weight:bold">do</span>
     <span style="color:#000;font-weight:bold">for</span> each vertex w in V adjacent to the front vertex <span style="color:#000;font-weight:bold">do</span>
       <span style="color:#000;font-weight:bold">if</span> w is marked with 0
-        count<span style="color:#000;font-weight:bold">+</span><span style="color:#000;font-weight:bold">+</span>
+        count<span style="color:#000;font-weight:bold">++</span>
         add w to the queue
     remove the front vertex from the queue
 </code></pre></div>

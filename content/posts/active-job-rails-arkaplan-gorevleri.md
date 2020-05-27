@@ -15,7 +15,7 @@ title: Active Job - Rails Arkaplan Görevleri
 
 # Arkaplan Görevi Nedir ?
 
-Rails'da arka plan görevlerini yönetmek için kullanılan Active Record'u açıklamaya başlamadan önce ilk olarak arkaplan görevi kavramının ne olduğuna açıklık getirmek gerekiyor.
+Rails'da arka plan görevlerini yönetmek için kullanılan Active Job'u açıklamaya başlamadan önce ilk olarak arkaplan görevi kavramının ne olduğuna açıklık getirmek gerekiyor.
 
 Arkaplan görevleri bir işlemin durmasına rol açmadan, eş bir çizgide yürüyerek rol almasıdır. E-posta yollanması buna çok güzel bir örnektir. Örneğin kullanıcı sistemimize kayıt olmak için kayıt ol formunu doldurduğunda onaylama epostası yollanıyor olsun. Kullanıcı bu tuşa bastığında eposta yollama işlemini direkt olarak işleme alırsak, e-posta yollanasıya kadar kullanıcı yükleme ekranında bekler. Fakat eğer arka plan görevi olarak çalışmasını sağlar ise işlem bir kuyruğa alınır ve sayfa direkt yüklenir.
 
